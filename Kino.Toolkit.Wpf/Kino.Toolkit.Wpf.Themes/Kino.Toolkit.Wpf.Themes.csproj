@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C42C3B76-CB37-400F-8B53-5E7AFFD3B590}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Kino.Toolkit.Wpf.Samples</RootNamespace>
-    <AssemblyName>Kino.Toolkit.Wpf.Samples</AssemblyName>
+    <ProjectGuid>{3C932FBC-74DF-4380-95BB-F3972CEB4C08}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Kino.Toolkit.Wpf.Themes</RootNamespace>
+    <AssemblyName>Kino.Toolkit.Wpf.Themes</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -50,20 +47,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="CustomControl1.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -91,13 +79,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Kino.Toolkit.Wpf.Themes\Kino.Toolkit.Wpf.Themes.csproj">
-      <Project>{3c932fbc-74df-4380-95bb-f3972ceb4c08}</Project>
-      <Name>Kino.Toolkit.Wpf.Themes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Kino.Toolkit.Wpf\Kino.Toolkit.Wpf.csproj">
       <Project>{f816c9bc-b890-4c91-8341-04f32ce64c17}</Project>
       <Name>Kino.Toolkit.Wpf</Name>
