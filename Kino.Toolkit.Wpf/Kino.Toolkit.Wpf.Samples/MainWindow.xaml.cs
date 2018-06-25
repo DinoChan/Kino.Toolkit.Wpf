@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,29 @@ namespace Kino.Toolkit.Wpf.Samples
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+
+        private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<Object> e)
+        {
+            this.UpdateSelectedView(e.NewValue as SampleTreeViewItem);
+        }
+
+        private void UpdateSelectedView(SampleTreeViewItem treeViewItem)
+        {
+            if (treeViewItem != null)
+            {
+                Type type = treeViewItem.SampleType;
+                if (type != null)
+                {
+                    string name = type.FullName;
+
+                    Assembly assembly = GetType().Assembly;
+                    Type sampleType = assembly.GetType(name);
+
+                    SampleContentControl.Content = (FrameworkElement)Activator.CreateInstance(sampleType);
+                }
+            }
         }
     }
 }
