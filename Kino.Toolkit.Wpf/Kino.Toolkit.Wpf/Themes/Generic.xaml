@@ -4,5 +4,7 @@
     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Button/KinoButton.xaml"/>
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/ProgressRing/KinoProgressRing.xaml"/>
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/TransitioningContentControl/KinoTransitioningContentControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

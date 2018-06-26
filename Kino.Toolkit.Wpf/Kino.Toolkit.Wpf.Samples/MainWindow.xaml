@@ -21,6 +21,8 @@
             <TreeViewItem Header="Controls">
                 <local:SampleTreeViewItem Header="TransitioningContentControl"
                                           SampleType="{x:Type local:TransitioningContentControlSample}" />
+                <local:SampleTreeViewItem Header="ProgressRing"
+                                          SampleType="{x:Type local:ProgressRingSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

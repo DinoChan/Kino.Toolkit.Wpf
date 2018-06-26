@@ -21,7 +21,7 @@ namespace Kino.Toolkit.Wpf
     [TemplateVisualState(GroupName = PresentationGroup, Name = DefaultTransitionState)]
     [TemplatePart(Name = PreviousContentPresentationSitePartName, Type = typeof(ContentControl))]
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
-    public class TransitioningContentControl : ContentControl
+    public class KinoTransitioningContentControl : ContentControl
     {
         #region Visual state names
         /// <summary>
@@ -97,7 +97,7 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.Register(
                 "IsTransitioning",
                 typeof(bool),
-                typeof(TransitioningContentControl),
+                typeof(KinoTransitioningContentControl),
                 new PropertyMetadata(OnIsTransitioningPropertyChanged));
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Event arguments.</param>
         private static void OnIsTransitioningPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TransitioningContentControl source = (TransitioningContentControl)d;
+            KinoTransitioningContentControl source = (KinoTransitioningContentControl)d;
 
             if (!source._allowIsTransitioningWrite)
             {
@@ -163,7 +163,7 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.Register(
                 "Transition",
                 typeof(string),
-                typeof(TransitioningContentControl),
+                typeof(KinoTransitioningContentControl),
                 new PropertyMetadata(DefaultTransitionState, OnTransitionPropertyChanged));
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Event arguments.</param>
         private static void OnTransitionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TransitioningContentControl source = (TransitioningContentControl)d;
+            KinoTransitioningContentControl source = (KinoTransitioningContentControl)d;
             string oldTransition = e.OldValue as string;
             string newTransition = e.NewValue as string;
 
@@ -228,7 +228,7 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.Register(
                 "RestartTransitionOnContentChange",
                 typeof(bool),
-                typeof(TransitioningContentControl),
+                typeof(KinoTransitioningContentControl),
                 new PropertyMetadata(false, OnRestartTransitionOnContentChangePropertyChanged));
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Event arguments.</param>
         private static void OnRestartTransitionOnContentChangePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((TransitioningContentControl)d).OnRestartTransitionOnContentChangeChanged((bool)e.OldValue, (bool)e.NewValue);
+            ((KinoTransitioningContentControl)d).OnRestartTransitionOnContentChangeChanged((bool)e.OldValue, (bool)e.NewValue);
         }
 
         /// <summary>
@@ -259,11 +259,11 @@ namespace Kino.Toolkit.Wpf
         #endregion Events
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransitioningContentControl"/> class.
+        /// Initializes a new instance of the <see cref="KinoTransitioningContentControl"/> class.
         /// </summary>
-        public TransitioningContentControl()
+        public KinoTransitioningContentControl()
         {
-            DefaultStyleKey = typeof(TransitioningContentControl);
+            DefaultStyleKey = typeof(KinoTransitioningContentControl);
         }
 
         /// <summary>

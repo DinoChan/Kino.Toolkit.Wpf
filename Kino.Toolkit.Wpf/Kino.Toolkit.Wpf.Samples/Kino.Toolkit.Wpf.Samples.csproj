@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
+      <DependentUpon>ProgressRingSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\TransitioningContentControl\TransitioningContentControlSample.xaml.cs">
       <DependentUpon>TransitioningContentControlSample.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Samples\ProgressRing\ProgressRingSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\TransitioningContentControl\TransitioningContentControlSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
