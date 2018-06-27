@@ -16,9 +16,9 @@
             <ColumnDefinition Width="Auto" MinWidth="150"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TreeView SelectedItemChanged="OnTreeViewSelectionChanged">
+        <TreeView SelectedItemChanged="OnTreeViewSelectionChanged" >
             <TreeViewItem Header="Kino" />
-            <TreeViewItem Header="Controls">
+            <TreeViewItem Header="Controls" IsExpanded="True">
                 <local:SampleTreeViewItem Header="TransitioningContentControl"
                                           SampleType="{x:Type local:TransitioningContentControlSample}" />
                 <local:SampleTreeViewItem Header="ProgressRing"

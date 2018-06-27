@@ -48,9 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\VisualStates.cs" />
+    <Compile Include="KinoStateIndicator\KinoStateIndicator.cs" />
+    <Compile Include="KinoStateIndicator\ProgressState.cs" />
     <Compile Include="ProgressRing\KinoProgressRing.cs" />
     <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.cs" />
+    <Compile Include="TransitioningContentControl\TransitionType.cs" />
     <Page Include="Button\KinoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KinoStateIndicator\KinoStateIndicator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

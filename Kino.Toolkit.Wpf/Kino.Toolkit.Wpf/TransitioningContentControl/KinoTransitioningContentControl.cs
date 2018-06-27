@@ -19,6 +19,10 @@ namespace Kino.Toolkit.Wpf
     /// <remarks>The API for this control will change considerably in the future.</remarks>
     [TemplateVisualState(GroupName = PresentationGroup, Name = NormalState)]
     [TemplateVisualState(GroupName = PresentationGroup, Name = DefaultTransitionState)]
+    [TemplateVisualState(GroupName = PresentationGroup, Name = LeftTransitionState)]
+    [TemplateVisualState(GroupName = PresentationGroup, Name = UpTransitionState)]
+    [TemplateVisualState(GroupName = PresentationGroup, Name = RightTransitionState)]
+    [TemplateVisualState(GroupName = PresentationGroup, Name = DownTransitionState)]
     [TemplatePart(Name = PreviousContentPresentationSitePartName, Type = typeof(ContentControl))]
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
     public class KinoTransitioningContentControl : ContentControl
@@ -39,6 +43,15 @@ namespace Kino.Toolkit.Wpf
         /// The name of the state that represents the default transition.
         /// </summary>
         public const string DefaultTransitionState = "DefaultTransition";
+
+        public const string LeftTransitionState = "LeftTransition";
+
+        public const string UpTransitionState = "UpTransition";
+
+        public const string RightTransitionState = "RightTransition";
+
+        public const string DownTransitionState = "DownTransition";
+
         #endregion Visual state names
 
         #region Template part names
@@ -206,6 +219,63 @@ namespace Kino.Toolkit.Wpf
             else
             {
                 source.CurrentTransition = newStoryboard;
+            }
+        }
+
+
+        /// <summary>
+        /// 获取或设置TransitionType的值
+        /// </summary>  
+        public TransitionType TransitionType
+        {
+            get => (TransitionType)GetValue(TransitionTypeProperty);
+            set => SetValue(TransitionTypeProperty, value);
+        }
+
+        /// <summary>
+        /// 标识 TransitionType 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty TransitionTypeProperty =
+            DependencyProperty.Register(nameof(TransitionType), typeof(TransitionType), typeof(KinoTransitioningContentControl), new PropertyMetadata(default(TransitionType), OnTransitionTypeChanged));
+
+        private static void OnTransitionTypeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+
+            var oldValue = (TransitionType)args.OldValue;
+            var newValue = (TransitionType)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoTransitioningContentControl;
+            target?.OnTransitionTypeChanged(oldValue, newValue);
+        }
+
+        /// <summary>
+        /// TransitionType 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">TransitionType 属性的旧值。</param>
+        /// <param name="newValue">TransitionType 属性的新值。</param>
+        protected virtual void OnTransitionTypeChanged(TransitionType oldValue, TransitionType newValue)
+        {
+            switch (newValue)
+            {
+                case TransitionType.Default:
+                    Transition = DefaultTransitionState;
+                    break;
+                case TransitionType.Left:
+                    Transition = LeftTransitionState;
+                    break;
+                case TransitionType.Up:
+                    Transition = UpTransitionState;
+                    break;
+                case TransitionType.Right:
+                    Transition = RightTransitionState;
+                    break;
+                case TransitionType.Down:
+                    Transition = DownTransitionState;
+                    break;
+                default:
+                    break;
             }
         }
         #endregion public string Transition

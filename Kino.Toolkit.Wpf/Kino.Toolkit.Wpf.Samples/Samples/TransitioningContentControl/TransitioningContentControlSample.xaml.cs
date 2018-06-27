@@ -23,6 +23,48 @@ namespace Kino.Toolkit.Wpf.Samples
         public TransitioningContentControlSample()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void OnChangByDefault(object sender, RoutedEventArgs e)
+        {
+            DefaultContent.TransitionType = TransitionType.Default;
+            DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void OnChangeByLeft(object sender, RoutedEventArgs e)
+        {
+            DefaultContent.TransitionType = TransitionType.Left;
+            DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void OnChangeByUp(object sender, RoutedEventArgs e)
+        {
+            DefaultContent.TransitionType = TransitionType.Up;
+            DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void OnChangeByRight(object sender, RoutedEventArgs e)
+        {
+            DefaultContent.TransitionType = TransitionType.Right;
+            DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void OnChangeByDown(object sender, RoutedEventArgs e)
+        {
+            DefaultContent.TransitionType = TransitionType.Down;
+            DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void OnChangByCustom(object sender, RoutedEventArgs e)
+        {
+            CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
     }
 }
