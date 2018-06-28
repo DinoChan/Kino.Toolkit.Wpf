@@ -410,6 +410,33 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
+
+        protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
+        {
+            base.OnContentTemplateChanged(oldContentTemplate, newContentTemplate);
+
+            StartTransition(oldContentTemplate, newContentTemplate);
+        }
+
+        private void StartTransition(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
+        {
+            // both presenters must be available, otherwise a transition is useless.
+            if (CurrentContentPresentationSite != null && PreviousContentPresentationSite != null)
+            {
+                CurrentContentPresentationSite.ContentTemplate = newContentTemplate;
+
+                PreviousContentPresentationSite.ContentTemplate = oldContentTemplate;
+
+                // and start a new transition
+                if (!IsTransitioning || RestartTransitionOnContentChange)
+                {
+                    IsTransitioning = true;
+                    VisualStateManager.GoToState(this, NormalState, false);
+                    VisualStateManager.GoToState(this, Transition, true);
+                }
+            }
+        }
+
         /// <summary>
         /// Handles the Completed event of the transition storyboard.
         /// </summary>

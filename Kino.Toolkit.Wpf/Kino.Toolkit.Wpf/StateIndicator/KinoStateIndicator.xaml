@@ -4,79 +4,35 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     mc:Ignorable="d">
-    <!--<TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE001;"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   FontSize="9"
-                                   Foreground="White">
 
-                        </TextBlock>-->
+    <DataTemplate x:Key="BusyContentTemplate">
+        <local:KinoProgressRing IsActive="True"
+                                MinHeight="10"
+                                MinWidth="10" />
+    </DataTemplate>
 
 
-    <Style TargetType="{x:Type ContentControl}"
-           x:Key="ContentElementStyle">
-        <Setter Property="Foreground"
-                Value="White" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ContentControl}">
-                    <Grid Margin="0"
-                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <Ellipse Fill="{TemplateBinding Background}"
-                                 Stroke="{TemplateBinding BorderBrush}"
-                                 StrokeThickness="1">
-                            <Ellipse.Effect>
-                                <DropShadowEffect ShadowDepth="0"
-                                                  Opacity="0.3"
-                                                  BlurRadius="5"
-                                                  Color="Black" />
-                            </Ellipse.Effect>
-                        </Ellipse>
-                        <ContentPresenter Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="CompletedContentTemplate">
+        <Ellipse Fill="LightSeaGreen">
+            <Ellipse.Effect>
+                <DropShadowEffect ShadowDepth="0"
+                                  Opacity="0.3"
+                                  BlurRadius="5"
+                                  Color="Black" />
+            </Ellipse.Effect>
+        </Ellipse>
+    </DataTemplate>
 
-
-    <Style TargetType="{x:Type ContentControl}"
-           x:Key="CompltedElementStyle"
-           BasedOn="{StaticResource ContentElementStyle}">
-        <Setter Property="Background"
-                Value="LightSeaGreen" />
-    </Style>
-
-
-    <Style TargetType="{x:Type ContentControl}"
-           x:Key="FaultElementStyle"
-           BasedOn="{StaticResource ContentElementStyle}">
-        <Setter Property="Background"
-                Value="MediumVioletRed" />
-    </Style>
-
-    <Style TargetType="{x:Type ContentControl}"
-           x:Key="BusyElementStyle"
-           BasedOn="{StaticResource ContentElementStyle}">
-        <!--<Setter Property="BorderBrush"
-                Value="#FFB8B8B8" />-->
-        <Setter Property="Padding"
-                Value="0" />
-        <Setter Property="ContentTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <local:KinoProgressRing IsActive="True"
-                                            MinHeight="15"
-                                            MinWidth="15" />
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
+    <DataTemplate x:Key="FaultedContentTemplate">
+        <Ellipse Fill="MediumVioletRed" >
+            <Ellipse.Effect>
+                <DropShadowEffect ShadowDepth="0"
+                                  Opacity="0.3"
+                                  BlurRadius="5"
+                                  Color="Black" />
+            </Ellipse.Effect>
+        </Ellipse>
+    </DataTemplate>
 
     <Style TargetType="{x:Type local:KinoStateIndicator}">
         <Setter Property="IsTabStop"
@@ -91,251 +47,46 @@
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ProgressStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Idle"
-                                                      To="Busy"
-                                                      GeneratedDuration="0:0:0.2">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="IdleElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2"
-                                                                        Value="{x:Static Visibility.Collapsed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="IdleElement">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <EasingDoubleKeyFrame KeyTime="0"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="1">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-
-                                    <VisualTransition GeneratedDuration="0:0:0.2"
-                                                      From="Busy"
-                                                      To="Completed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="CompletedElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="CompletedElement">
-                                                <EasingDoubleKeyFrame KeyTime="0"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="1">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Completed"
-                                                      To="Busy"
-                                                      GeneratedDuration="0:0:0.2">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="CompletedElement">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <EasingDoubleKeyFrame KeyTime="0"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="1">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="0:0:0.2"
-                                                      From="Busy"
-                                                      To="Faulted">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="FaultElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="FaultElement">
-                                                <EasingDoubleKeyFrame KeyTime="0"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="1">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Faulted"
-                                                      To="Busy"
-                                                      GeneratedDuration="0:0:0.2">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="FaultElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2"
-                                                                        Value="{x:Static Visibility.Collapsed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="FaultElement">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                           Storyboard.TargetName="BusyElement">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                      Value="0">
-                                                    <EasingDoubleKeyFrame.EasingFunction>
-                                                        <CubicEase EasingMode="EaseIn" />
-                                                    </EasingDoubleKeyFrame.EasingFunction>
-                                                </EasingDoubleKeyFrame>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Idle">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                       Storyboard.TargetName="IdleElement">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentControl.ContentTemplate)"
+                                                                       Storyboard.TargetName="Content">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{x:Static Visibility.Visible}" />
+                                                                    Value="{x:Null}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="Busy">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                       Storyboard.TargetName="BusyElement">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentControl.ContentTemplate)"
+                                                                       Storyboard.TargetName="Content">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{x:Static Visibility.Visible}" />
+                                                                    Value="{StaticResource BusyContentTemplate}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Completed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                       Storyboard.TargetName="CompletedElement">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentControl.ContentTemplate)"
+                                                                       Storyboard.TargetName="Content">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{x:Static Visibility.Visible}" />
+                                                                    Value="{StaticResource CompletedContentTemplate}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Faulted">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                       Storyboard.TargetName="FaultElement">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentControl.ContentTemplate)"
+                                                                       Storyboard.TargetName="Content">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{x:Static Visibility.Visible}" />
+                                                                    Value="{StaticResource FaultedContentTemplate}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentControl Style="{StaticResource BusyElementStyle}"
-                                        x:Name="BusyElement"
-                                        Visibility="Collapsed" />
-                        <ContentControl Style="{StaticResource CompltedElementStyle}"
-                                        x:Name="CompletedElement"
-                                        Visibility="Collapsed" />
-                        <ContentControl Style="{StaticResource FaultElementStyle}"
-                                        x:Name="FaultElement"
-                                        Visibility="Collapsed" />
-                        <ContentControl Content="{TemplateBinding IdleContent}"
-                                        x:Name="IdleElement"
-                                        Visibility="Collapsed" />
+                        <local:KinoTransitioningContentControl x:Name="Content" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                                               Content="{TemplateBinding IdleContent}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

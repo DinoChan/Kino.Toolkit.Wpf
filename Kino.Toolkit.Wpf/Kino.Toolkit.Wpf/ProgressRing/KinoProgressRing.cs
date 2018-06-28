@@ -85,8 +85,13 @@ namespace Kino.Toolkit.Wpf
             public TemplateSettingValues(double width)
             {
                 MaxSideLength = 400;
-                EllipseDiameter = width / 10 + 1;
-                EllipseOffset = new System.Windows.Thickness(EllipseDiameter);
+
+                if (width <= 40)
+                    EllipseDiameter = width / 10 + 1;
+                else
+                    EllipseDiameter = width / 10;
+
+                EllipseOffset = new System.Windows.Thickness(0, EllipseDiameter * 2.5, 0, 0);
             }
 
             public double MaxSideLength
