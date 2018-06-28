@@ -23,6 +23,8 @@
                                           SampleType="{x:Type local:TransitioningContentControlSample}" />
                 <local:SampleTreeViewItem Header="ProgressRing"
                                           SampleType="{x:Type local:ProgressRingSample}" />
+                <local:SampleTreeViewItem Header="StateIndicator"
+                                          SampleType="{x:Type local:StateIndicatorSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

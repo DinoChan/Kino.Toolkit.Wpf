@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-    [TemplateVisualState(GroupName =VisualStates.GroupActive,Name =VisualStates.StateActive)]
+    [TemplateVisualState(GroupName = VisualStates.GroupActive, Name = VisualStates.StateActive)]
     [TemplateVisualState(GroupName = VisualStates.GroupActive, Name = VisualStates.StateInactive)]
     public class KinoProgressRing : Control
     {
@@ -40,10 +40,14 @@ namespace Kino.Toolkit.Wpf
 
         protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
         {
-            var width = 100D;
-            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-                width = this.Width != double.NaN ? this.Width : availableSize.Width;
-            TemplateSettings = new TemplateSettingValues(width);
+            var width = 20d;
+            var height = 20d;
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this) == false)
+            {
+                width = double.IsNaN(this.Width) == false ? this.Width : availableSize.Width;
+                height = double.IsNaN(this.Height) == false ? this.Height : availableSize.Height;
+            }
+            TemplateSettings = new TemplateSettingValues(Math.Min(width, height));
             return base.MeasureOverride(availableSize);
         }
 
@@ -81,7 +85,7 @@ namespace Kino.Toolkit.Wpf
             public TemplateSettingValues(double width)
             {
                 MaxSideLength = 400;
-                EllipseDiameter = width / 10;
+                EllipseDiameter = width / 10 + 1;
                 EllipseOffset = new System.Windows.Thickness(EllipseDiameter);
             }
 

@@ -9,7 +9,7 @@ namespace Kino.Toolkit.Wpf
    public enum ProgressState
     {
         Idle,
-        Started,
+        Busy,
         Completed,
         Faulted,
     }

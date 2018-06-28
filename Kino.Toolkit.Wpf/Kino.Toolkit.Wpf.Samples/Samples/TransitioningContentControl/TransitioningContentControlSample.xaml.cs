@@ -66,5 +66,11 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
+
+        private void OnChangByCustom2(object sender, RoutedEventArgs e)
+        {
+            CustomContent.Transition = "CustomTransition";
+                CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
     }
 }

@@ -8,6 +8,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <kino:KinoProgressRing IsActive="True" Height="20" Width="20" />
+        <StackPanel VerticalAlignment="Center">
+            <kino:KinoProgressRing IsActive="True" Height="20" Width="20" Margin="8"/>
+            <kino:KinoProgressRing IsActive="True"
+                                   Height="40"
+                                   Width="40"
+                                   Margin="8"
+                                   MinHeight="9"
+                                   MinWidth="9"/>
+        </StackPanel>
     </Grid>
 </UserControl>

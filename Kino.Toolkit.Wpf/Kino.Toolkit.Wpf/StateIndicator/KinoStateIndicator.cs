@@ -9,16 +9,16 @@ using System.Windows.Markup;
 
 namespace Kino.Toolkit.Wpf
 {
-    [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = ReadyStateName)]
-    [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = StartedStateName)]
+    [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = IdleStateName)]
+    [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = BusyStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = CompletedStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = FaultedStateName)]
     [ContentProperty(nameof(IdleContent))]
     public class KinoStateIndicator : Control
     {
         private const string ProgressStatesGroupName = "ProgressStates";
-        private const string ReadyStateName = "Ready";
-        private const string StartedStateName = "Started";
+        private const string IdleStateName = "Idle";
+        private const string BusyStateName = "Busy";
         private const string CompletedStateName = "Completed";
         private const string FaultedStateName = "Faulted";
 
@@ -105,10 +105,10 @@ namespace Kino.Toolkit.Wpf
             switch (State)
             {
                 case ProgressState.Idle:
-                    progressState = ReadyStateName;
+                    progressState = IdleStateName;
                     break;
-                case ProgressState.Started:
-                    progressState = StartedStateName;
+                case ProgressState.Busy:
+                    progressState = BusyStateName;
                     break;
                 case ProgressState.Completed:
                     progressState = CompletedStateName;
@@ -117,7 +117,7 @@ namespace Kino.Toolkit.Wpf
                     progressState = FaultedStateName;
                     break;
                 default:
-                    progressState = ReadyStateName;
+                    progressState = IdleStateName;
                     break;
             }
             VisualStateManager.GoToState(this, progressState, useTransitions);

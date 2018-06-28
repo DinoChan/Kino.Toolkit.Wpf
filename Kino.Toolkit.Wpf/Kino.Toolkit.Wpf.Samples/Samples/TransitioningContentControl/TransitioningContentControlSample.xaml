@@ -50,8 +50,39 @@
                                     </ObjectAnimationUsingKeyFrames>
                                 </Storyboard>
                             </VisualState>
+                            <VisualState x:Name="CustomTransition">
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                   Storyboard.TargetName="CurrentContentPresentationSite"
+                                                                   Storyboard.TargetProperty="(UIElement.Opacity)">
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                              Value="0" />
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00.400"
+                                                              Value="1" />
+                                    </DoubleAnimationUsingKeyFrames>
 
-                           
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="00:00:00.500"
+                                                     Storyboard.TargetName="CurrentContentPresentationSite"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+                                                     From="-50"
+                                                     To="0">
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase  EasingMode="EaseOut" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+
+                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                   Storyboard.TargetName="PreviousContentPresentationSite"
+                                                                   Storyboard.TargetProperty="(UIElement.Opacity)">
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00"
+                                                              Value="1" />
+                                        <SplineDoubleKeyFrame KeyTime="00:00:00.100"
+                                                              Value="0" />
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualState>
+
 
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
@@ -89,6 +120,7 @@
                     </Grid>
                 </Border>
             </ControlTemplate>
+      
         </Grid.Resources>
         <StackPanel>
             <StackPanel Orientation="Horizontal" >
@@ -103,6 +135,10 @@
             <StackPanel Orientation="Horizontal" >
                 <kino:KinoTransitioningContentControl Margin="8" x:Name="CustomContent"  Template="{StaticResource CustomTemplate}"/>
                 <Button Content="Custom" Click="OnChangByCustom" Margin="8" Width="64"/>
+                <Button Content="Custom2"
+                        Click="OnChangByCustom2"
+                        Margin="8"
+                        Width="64" />
             </StackPanel>
         </StackPanel>
     </Grid>
