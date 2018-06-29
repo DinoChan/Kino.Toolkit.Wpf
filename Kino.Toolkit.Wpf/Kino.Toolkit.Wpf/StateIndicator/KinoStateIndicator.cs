@@ -13,14 +13,17 @@ namespace Kino.Toolkit.Wpf
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = BusyStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = CompletedStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = FaultedStateName)]
-    [ContentProperty(nameof(IdleContent))]
-    public class KinoStateIndicator : Control
+    [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = NoneStateName)]
+    [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = OtherStateName)]
+    public class KinoStateIndicator : ContentControl
     {
         private const string ProgressStatesGroupName = "ProgressStates";
         private const string IdleStateName = "Idle";
         private const string BusyStateName = "Busy";
         private const string CompletedStateName = "Completed";
         private const string FaultedStateName = "Faulted";
+        private const string NoneStateName = "None";
+        private const string OtherStateName = "Other";
 
 
         public KinoStateIndicator()
@@ -41,7 +44,7 @@ namespace Kino.Toolkit.Wpf
         /// 标识 State 依赖属性。
         /// </summary>
         public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoStateIndicator), new PropertyMetadata(ProgressState.Idle, OnStateChanged));
+            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoStateIndicator), new PropertyMetadata(ProgressState.None, OnStateChanged));
 
         private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -50,42 +53,6 @@ namespace Kino.Toolkit.Wpf
             ProgressState newValue = (ProgressState)args.NewValue;
             if (oldValue != newValue)
                 target.OnStateChanged(oldValue, newValue);
-        }
-
-        /// <summary>
-        /// 获取或设置IdleContent的值
-        /// </summary>  
-        public object IdleContent
-        {
-            get => (object)GetValue(IdleContentProperty);
-            set => SetValue(IdleContentProperty, value);
-        }
-
-        /// <summary>
-        /// 标识 IdleContent 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty IdleContentProperty =
-            DependencyProperty.Register(nameof(IdleContent), typeof(object), typeof(KinoStateIndicator), new PropertyMetadata(null, OnIdleContentChanged));
-
-        private static void OnIdleContentChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-
-            var oldValue = (object)args.OldValue;
-            var newValue = (object)args.NewValue;
-            if (oldValue == newValue)
-                return;
-
-            var target = obj as KinoStateIndicator;
-            target?.OnIdleContentChanged(oldValue, newValue);
-        }
-
-        /// <summary>
-        /// IdleContent 属性更改时调用此方法。
-        /// </summary>
-        /// <param name="oldValue">IdleContent 属性的旧值。</param>
-        /// <param name="newValue">IdleContent 属性的新值。</param>
-        protected virtual void OnIdleContentChanged(object oldValue, object newValue)
-        {
         }
 
         public override void OnApplyTemplate()
@@ -99,11 +66,14 @@ namespace Kino.Toolkit.Wpf
             UpdateVisualStates(true);
         }
 
-        private void UpdateVisualStates(bool useTransitions)
+        protected virtual void UpdateVisualStates(bool useTransitions)
         {
             string progressState;
             switch (State)
             {
+                case ProgressState.None:
+                    progressState = NoneStateName;
+                    break;
                 case ProgressState.Idle:
                     progressState = IdleStateName;
                     break;
@@ -116,8 +86,11 @@ namespace Kino.Toolkit.Wpf
                 case ProgressState.Faulted:
                     progressState = FaultedStateName;
                     break;
+                case ProgressState.Other:
+                    progressState = OtherStateName;
+                    break;
                 default:
-                    progressState = IdleStateName;
+                    progressState = NoneStateName;
                     break;
             }
             VisualStateManager.GoToState(this, progressState, useTransitions);

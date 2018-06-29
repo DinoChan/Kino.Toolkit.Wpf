@@ -24,10 +24,12 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             InitializeComponent();
 
-            StatesListBox.Items.Add( ProgressState.Idle );
-            StatesListBox.Items.Add( ProgressState.Busy );
-            StatesListBox.Items.Add( ProgressState.Completed );
-            StatesListBox.Items.Add( ProgressState.Faulted );
+            StatesListBox.Items.Add(ProgressState.None);
+            StatesListBox.Items.Add(ProgressState.Idle);
+            StatesListBox.Items.Add(ProgressState.Busy);
+            StatesListBox.Items.Add(ProgressState.Completed);
+            StatesListBox.Items.Add(ProgressState.Faulted);
+            StatesListBox.Items.Add(ProgressState.Other);
             StatesListBox.SelectedIndex = 0;
         }
     }
