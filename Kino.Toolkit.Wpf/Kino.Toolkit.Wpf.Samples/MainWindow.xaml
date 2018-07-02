@@ -25,6 +25,8 @@
                                           SampleType="{x:Type local:ProgressRingSample}" />
                 <local:SampleTreeViewItem Header="StateIndicator"
                                           SampleType="{x:Type local:StateIndicatorSample}" />
+                <local:SampleTreeViewItem Header="Window"
+                                          SampleType="{x:Type local:WindowSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

@@ -7,5 +7,6 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/ProgressRing/KinoProgressRing.xaml"/>
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/TransitioningContentControl/KinoTransitioningContentControl.xaml"/>
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/StateIndicator/KinoStateIndicator.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Window/KinoWindow.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

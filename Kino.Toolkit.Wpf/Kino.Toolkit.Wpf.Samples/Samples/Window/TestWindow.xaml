@@ -1,0 +1,35 @@
+﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                 Title="TestWindow"
+                 Width="400"
+                 SizeToContent="Height"
+                 UseLayoutRounding="True"
+          >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,10">
+            <TextBlock Text="Name:" />
+            <TextBox />
+            <TextBlock TextWrapping="Wrap"
+                       Margin="0,10"
+                       Foreground="#BB000000"
+                       FontSize="10">
+                Theme resources in XAML are a set of resources that apply different values depending on which system theme is active. There are 3 themes that the XAML framework supports: "Light", "Dark", and "HighContrast".
+            </TextBlock>
+            <ComboBox  Margin="0,10" />
+        </StackPanel>
+        <Button Grid.Row="1"
+                Content="Test"
+                Click="OnTest"
+                Margin="0,10" />
+
+    </Grid>
+</kino:KinoWindow>
