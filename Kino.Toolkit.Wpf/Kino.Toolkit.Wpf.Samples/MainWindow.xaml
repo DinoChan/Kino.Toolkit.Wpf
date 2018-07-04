@@ -27,6 +27,8 @@
                                           SampleType="{x:Type local:StateIndicatorSample}" />
                 <local:SampleTreeViewItem Header="Window"
                                           SampleType="{x:Type local:WindowSample}" />
+                <local:SampleTreeViewItem Header="ResizingControl"
+                                          SampleType="{x:Type local:ResizingControlSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

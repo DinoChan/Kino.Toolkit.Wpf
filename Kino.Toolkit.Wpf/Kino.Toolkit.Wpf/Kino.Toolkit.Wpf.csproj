@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\VisualStates.cs" />
+    <Compile Include="ResizingControl\KinoResizingControl.cs" />
     <Compile Include="StateIndicator\KinoStateIndicator.cs" />
     <Compile Include="StateIndicator\ProgressState.cs" />
     <Compile Include="ProgressRing\KinoProgressRing.cs" />
@@ -61,6 +62,10 @@
     <Compile Include="TransitioningContentControl\TransitionType.cs" />
     <Compile Include="Window\KinoWindow.cs" />
     <Page Include="Button\KinoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResizingControl\KinoResizingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
