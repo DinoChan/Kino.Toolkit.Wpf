@@ -63,8 +63,8 @@
     <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
       <DependentUpon>ProgressRingSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Samples\ResizingControl\ResizingControlSample.xaml.cs">
-      <DependentUpon>ResizingControlSample.xaml</DependentUpon>
+    <Compile Include="Samples\Resizer\ResizerSample.xaml.cs">
+      <DependentUpon>ResizerSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\StateIndicator\StateIndicatorSample.xaml.cs">
       <DependentUpon>StateIndicatorSample.xaml</DependentUpon>
@@ -95,7 +95,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Samples\ResizingControl\ResizingControlSample.xaml">
+    <Page Include="Samples\Resizer\ResizerSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

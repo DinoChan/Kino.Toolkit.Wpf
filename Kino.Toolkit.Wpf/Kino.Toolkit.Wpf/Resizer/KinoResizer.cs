@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +11,24 @@ using System.Windows.Media.Animation;
 namespace Kino.Toolkit.Wpf
 {
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
-    public class KinoResizingControl : ContentControl
+    public class KinoResizer : ContentControl
     {
         private const string ContentPresenterName = "ContentPresenter";
 
-        public KinoResizingControl()
+        public KinoResizer()
         {
-            DefaultStyleKey = typeof(KinoResizingControl);
-            SizeChanged += OnControlSizeChanged;
+            DefaultStyleKey = typeof(KinoResizer);
+            //SizeChanged += OnControlSizeChanged;
             _resizingStoryboard = new Storyboard();
             _resizingStoryboard.FillBehavior = FillBehavior.HoldEnd;
             _resizingStoryboard.Completed += OnResizingCompleted;
+            _defaultHeightAnimation = new DoubleAnimation() { Duration = new Duration(TimeSpan.Zero) };
+            Storyboard.SetTarget(_defaultHeightAnimation, this);
+            Storyboard.SetTargetProperty(_defaultHeightAnimation, new PropertyPath(MinHeightProperty));
+
+            _defaultWidthAnimation = new DoubleAnimation() { Duration = new Duration(TimeSpan.Zero) };
+            Storyboard.SetTarget(_defaultWidthAnimation, this);
+            Storyboard.SetTargetProperty(_defaultWidthAnimation, new PropertyPath(MinWidthProperty));
         }
 
         private void OnResizingCompleted(object sender, EventArgs e)
@@ -28,14 +36,14 @@ namespace Kino.Toolkit.Wpf
             _isResizing = false;
         }
 
-        private void OnControlSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            _hasFirstSizeChanged = true;
-        }
+        //private void OnControlSizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    Clip = new System.Windows.Media.RectangleGeometry(new Rect(e.NewSize));
+        //}
 
-        protected ScrollViewer ScrollViewer { get; set; }
 
         private ContentPresenter _contentPreseter;
+
         protected ContentPresenter ContentPresenter
         {
             get
@@ -74,7 +82,7 @@ namespace Kino.Toolkit.Wpf
         /// 标识 Animation 依赖属性。
         /// </summary>
         public static readonly DependencyProperty AnimationProperty =
-            DependencyProperty.Register(nameof(Animation), typeof(DoubleAnimation), typeof(KinoResizingControl), new PropertyMetadata(default(DoubleAnimation), OnAnimationChanged));
+            DependencyProperty.Register(nameof(Animation), typeof(DoubleAnimation), typeof(KinoResizer), new PropertyMetadata(default(DoubleAnimation), OnAnimationChanged));
 
         private static void OnAnimationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -84,7 +92,7 @@ namespace Kino.Toolkit.Wpf
             if (oldValue == newValue)
                 return;
 
-            var target = obj as KinoResizingControl;
+            var target = obj as KinoResizer;
             target?.OnAnimationChanged(oldValue, newValue);
         }
 
@@ -101,12 +109,24 @@ namespace Kino.Toolkit.Wpf
         {
             base.OnApplyTemplate();
             ContentPresenter = GetTemplateChild(ContentPresenterName) as ContentPresenter;
+        }
 
+        protected override Size MeasureOverride(Size constraint)
+        {
+            int count = this.VisualChildrenCount;
+            UIElement child = (count > 0) ? this.GetVisualChild(0) as UIElement : null;
+            Size desiredSize = new Size();
+            if (child != null)
+            {
+                child.Measure(constraint);
+            }
+            return desiredSize;
         }
 
         private void OnContentSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ChangeSize(_hasFirstSizeChanged);
+            _hasFirstSizeChanged = true;
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
@@ -117,13 +137,14 @@ namespace Kino.Toolkit.Wpf
 
         private void ChangeSize(bool useAnimation)
         {
+
             if (ContentPresenter == null)
                 return;
 
             if (useAnimation == false)
             {
-                Height = ContentPresenter.ActualHeight;
-                Width = ContentPresenter.ActualWidth;
+                MinHeight = ContentPresenter.ActualHeight;
+                MinWidth = ContentPresenter.ActualWidth;
             }
             else
             {
@@ -145,20 +166,20 @@ namespace Kino.Toolkit.Wpf
                 {
                     heightAnimation = Animation.Clone();
                     Storyboard.SetTarget(heightAnimation, this);
-                    Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(HeightProperty));
+                    Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(MinHeightProperty));
 
                     widthAnimation = Animation.Clone();
                     Storyboard.SetTarget(widthAnimation, this);
-                    Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(WidthProperty));
+                    Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(MinWidthProperty));
                 }
                 else
                 {
                     heightAnimation = _defaultHeightAnimation;
                     widthAnimation = _defaultWidthAnimation;
                 }
-                //heightAnimation.From = this.ActualHeight;
-                //widthAnimation.From = this.ActualWidth;
+                heightAnimation.From = this.ActualHeight;
                 heightAnimation.To = ContentPresenter.ActualHeight;
+                widthAnimation.From = this.ActualWidth;
                 widthAnimation.To = ContentPresenter.ActualWidth;
 
                 _resizingStoryboard.Children.Clear();
@@ -167,5 +188,7 @@ namespace Kino.Toolkit.Wpf
                 return _resizingStoryboard;
             }
         }
+
+
     }
 }

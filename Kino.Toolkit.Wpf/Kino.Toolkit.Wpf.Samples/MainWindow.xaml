@@ -28,7 +28,7 @@
                 <local:SampleTreeViewItem Header="Window"
                                           SampleType="{x:Type local:WindowSample}" />
                 <local:SampleTreeViewItem Header="ResizingControl"
-                                          SampleType="{x:Type local:ResizingControlSample}" />
+                                          SampleType="{x:Type local:ResizerSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">
