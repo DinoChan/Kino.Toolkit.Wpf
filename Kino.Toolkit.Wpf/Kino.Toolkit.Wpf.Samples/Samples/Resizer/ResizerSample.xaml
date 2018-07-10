@@ -10,6 +10,20 @@
              d:DesignWidth="800">
     <Grid>
         <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <kino:KinoResizer HorizontalContentAlignment="Left">
+                    <TextBox AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Disabled"
+                             Margin="8" MinWidth="10"/>
+                </kino:KinoResizer>
+
+                <Button Content="Commit"
+                        Margin="8" Grid.Column="1"/>
+            </Grid>
             <kino:KinoResizer 
                                       HorizontalContentAlignment="Stretch">
                 <TextBox AcceptsReturn="True"

@@ -19,6 +19,8 @@
         <TreeView SelectedItemChanged="OnTreeViewSelectionChanged" >
             <TreeViewItem Header="Kino" />
             <TreeViewItem Header="Controls" IsExpanded="True">
+                <local:SampleTreeViewItem Header="Button"
+                                          SampleType="{x:Type local:ButtonSample}" />
                 <local:SampleTreeViewItem Header="TransitioningContentControl"
                                           SampleType="{x:Type local:TransitioningContentControlSample}" />
                 <local:SampleTreeViewItem Header="ProgressRing"
@@ -29,6 +31,8 @@
                                           SampleType="{x:Type local:WindowSample}" />
                 <local:SampleTreeViewItem Header="ResizingControl"
                                           SampleType="{x:Type local:ResizerSample}" />
+                <local:SampleTreeViewItem Header="SquareBox"
+                                          SampleType="{x:Type local:SquareBoxSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

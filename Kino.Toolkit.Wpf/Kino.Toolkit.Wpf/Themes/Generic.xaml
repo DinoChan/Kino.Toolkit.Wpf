@@ -9,5 +9,6 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/StateIndicator/KinoStateIndicator.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Window/KinoWindow.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Resizer/KinoResizer.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/SquareBox/KinoSquareBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
