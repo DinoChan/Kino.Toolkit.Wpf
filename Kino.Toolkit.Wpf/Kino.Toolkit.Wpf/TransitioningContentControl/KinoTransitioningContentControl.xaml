@@ -17,7 +17,7 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="2">
+                            >
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="PresentationStates">
                                 <VisualState x:Name="DefaultTransition">
@@ -35,7 +35,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.100"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>

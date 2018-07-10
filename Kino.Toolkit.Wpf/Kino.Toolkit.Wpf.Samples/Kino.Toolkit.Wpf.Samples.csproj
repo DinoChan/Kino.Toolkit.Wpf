@@ -60,11 +60,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Samples\Button\ButtonSample.xaml.cs">
+      <DependentUpon>ButtonSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
       <DependentUpon>ProgressRingSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\Resizer\ResizerSample.xaml.cs">
       <DependentUpon>ResizerSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SquareBox\SquareBoxSample.xaml.cs">
+      <DependentUpon>SquareBoxSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\StateIndicator\StateIndicatorSample.xaml.cs">
       <DependentUpon>StateIndicatorSample.xaml</DependentUpon>
@@ -91,11 +97,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Samples\Button\ButtonSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\ProgressRing\ProgressRingSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\Resizer\ResizerSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SquareBox\SquareBoxSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
