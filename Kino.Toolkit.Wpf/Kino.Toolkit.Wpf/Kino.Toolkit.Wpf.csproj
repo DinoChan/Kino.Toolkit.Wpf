@@ -68,6 +68,7 @@
     <Compile Include="TransitioningContentControl\TransitionType.cs" />
     <Compile Include="Window\KinoRibbonWindow.cs" />
     <Compile Include="Window\KinoWindow.cs" />
+    <Compile Include="Window\WindowService.cs" />
     <Page Include="Button\KinoButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -5,11 +5,8 @@ using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
-    [TemplatePart( Name =LayoutRootName, Type =typeof(FrameworkElement))]
     public class KinoWindow : Window
     {
-        private const string LayoutRootName = "LayoutRoot";
-
         public KinoWindow()
         {
             DefaultStyleKey = typeof(KinoWindow);
@@ -18,15 +15,6 @@ namespace Kino.Toolkit.Wpf
             CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreWindow, CanResizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
-        }
-
-        private FrameworkElement _layoutRoot;
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-            _layoutRoot = GetTemplateChild(LayoutRootName) as FrameworkElement;
-            UpdateLayoutRoot();
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -41,33 +29,6 @@ namespace Kino.Toolkit.Wpf
             base.OnContentRendered(e);
             if (SizeToContent == SizeToContent.WidthAndHeight)
                 InvalidateMeasure();
-        }
-
-        protected override void OnStateChanged(EventArgs e)
-        {
-            base.OnStateChanged(e);
-            UpdateLayoutRoot();
-        }
-
-        private void UpdateLayoutRoot()
-        {
-            if (_layoutRoot == null)
-                return;
-
-            if (this.WindowState == WindowState.Maximized)
-            {
-               var dpi= VisualTreeHelper.GetDpi(this);
-                if (dpi.DpiScaleX >= 1.5)
-                    _layoutRoot.Margin = new Thickness(6);
-                else
-                    _layoutRoot.Margin = new Thickness(7);
-               
-            }
-            else
-            {
-                _layoutRoot.Margin = new Thickness(0);
-            }
-
         }
 
         #region Window Commands

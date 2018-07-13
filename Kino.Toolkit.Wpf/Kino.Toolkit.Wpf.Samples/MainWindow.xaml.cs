@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Shell;
 
 namespace Kino.Toolkit.Wpf.Samples
 {
@@ -25,6 +26,7 @@ namespace Kino.Toolkit.Wpf.Samples
         public MainWindow()
         {
             InitializeComponent();
+            WindowChrome c = new WindowChrome();
         }
 
 
