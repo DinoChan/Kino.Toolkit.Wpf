@@ -34,8 +34,10 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -64,6 +66,7 @@
     <Compile Include="ProgressRing\KinoProgressRing.cs" />
     <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.cs" />
     <Compile Include="TransitioningContentControl\TransitionType.cs" />
+    <Compile Include="Window\KinoRibbonWindow.cs" />
     <Compile Include="Window\KinoWindow.cs" />
     <Page Include="Button\KinoButton.xaml">
       <SubType>Designer</SubType>
@@ -122,6 +125,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Images\defaultsystemicon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

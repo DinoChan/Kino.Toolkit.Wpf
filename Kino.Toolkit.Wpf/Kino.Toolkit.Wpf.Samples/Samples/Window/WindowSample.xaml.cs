@@ -30,5 +30,11 @@ namespace Kino.Toolkit.Wpf.Samples
             var testWindow = new TestWindow();
             testWindow.ShowDialog();
         }
+
+        private void OnShowTestRibbonWindow(object sender, RoutedEventArgs e)
+        {
+            var testWindow = new TestRibbonWindow();
+            testWindow.ShowDialog();
+        }
     }
 }

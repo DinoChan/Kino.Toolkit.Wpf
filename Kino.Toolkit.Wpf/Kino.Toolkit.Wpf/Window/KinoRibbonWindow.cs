@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Ribbon;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
-    [TemplatePart( Name =LayoutRootName, Type =typeof(FrameworkElement))]
-    public class KinoWindow : Window
+    [StyleTypedProperty(Property = nameof(RibbonStyle), StyleTargetType = typeof(Ribbon))]
+    public class KinoRibbonWindow : RibbonWindow
     {
-        private const string LayoutRootName = "LayoutRoot";
-
-        public KinoWindow()
+        public KinoRibbonWindow()
         {
-            DefaultStyleKey = typeof(KinoWindow);
+            DefaultStyleKey = typeof(KinoRibbonWindow);
             CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeWindow, CanResizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
@@ -20,13 +22,44 @@ namespace Kino.Toolkit.Wpf
             CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
         }
 
-        private FrameworkElement _layoutRoot;
 
-        public override void OnApplyTemplate()
+        /// <summary>
+        /// 获取或设置RibbonStyle的值
+        /// </summary>  
+        public Style RibbonStyle
         {
-            base.OnApplyTemplate();
-            _layoutRoot = GetTemplateChild(LayoutRootName) as FrameworkElement;
-            UpdateLayoutRoot();
+            get => (Style)GetValue(RibbonStyleProperty);
+            set => SetValue(RibbonStyleProperty, value);
+        }
+
+        /// <summary>
+        /// 标识 RibbonStyle 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty RibbonStyleProperty =
+            DependencyProperty.Register(nameof(RibbonStyle), typeof(Style), typeof(KinoRibbonWindow), new PropertyMetadata(default(Style), OnRibbonStyleChanged));
+
+        private static void OnRibbonStyleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+
+            var oldValue = (Style)args.OldValue;
+            var newValue = (Style)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoRibbonWindow;
+            target?.OnRibbonStyleChanged(oldValue, newValue);
+        }
+
+        /// <summary>
+        /// RibbonStyle 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">RibbonStyle 属性的旧值。</param>
+        /// <param name="newValue">RibbonStyle 属性的新值。</param>
+        protected virtual void OnRibbonStyleChanged(Style oldValue, Style newValue)
+        {
+            Resources.Remove(typeof(Ribbon));
+            if (newValue != null)
+                Resources.Add(typeof(Ribbon), newValue);
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -41,33 +74,6 @@ namespace Kino.Toolkit.Wpf
             base.OnContentRendered(e);
             if (SizeToContent == SizeToContent.WidthAndHeight)
                 InvalidateMeasure();
-        }
-
-        protected override void OnStateChanged(EventArgs e)
-        {
-            base.OnStateChanged(e);
-            UpdateLayoutRoot();
-        }
-
-        private void UpdateLayoutRoot()
-        {
-            if (_layoutRoot == null)
-                return;
-
-            if (this.WindowState == WindowState.Maximized)
-            {
-               var dpi= VisualTreeHelper.GetDpi(this);
-                if (dpi.DpiScaleX >= 1.5)
-                    _layoutRoot.Margin = new Thickness(6);
-                else
-                    _layoutRoot.Margin = new Thickness(7);
-               
-            }
-            else
-            {
-                _layoutRoot.Margin = new Thickness(0);
-            }
-
         }
 
         #region Window Commands
@@ -85,7 +91,6 @@ namespace Kino.Toolkit.Wpf
         private void CloseWindow(object sender, ExecutedRoutedEventArgs e)
         {
             this.Close();
-            //SystemCommands.CloseWindow(this);
         }
 
         private void MaximizeWindow(object sender, ExecutedRoutedEventArgs e)
