@@ -15,7 +15,15 @@ namespace Kino.Toolkit.Wpf
             CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreWindow, CanResizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
+
+            var length = WindowService.PaddedBorder;
+            var dpi = VisualTreeHelper.GetDpi(this);
+            var lengthWithScale = length / dpi.DpiScaleX;
+            ExtraBorderPadding = new Thickness(lengthWithScale);
         }
+
+        public Thickness ExtraBorderPadding { get; }
+
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {

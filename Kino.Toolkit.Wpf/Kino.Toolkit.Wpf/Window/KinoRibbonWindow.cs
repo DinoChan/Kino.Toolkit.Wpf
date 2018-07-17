@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Ribbon;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
@@ -20,7 +21,14 @@ namespace Kino.Toolkit.Wpf
             CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreWindow, CanResizeWindow));
             CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
+
+            var length = WindowService.PaddedBorder;
+            var dpi = VisualTreeHelper.GetDpi(this);
+            var lengthWithScale = length / dpi.DpiScaleX;
+            ExtraBorderPadding = new Thickness(lengthWithScale);
         }
+
+        public Thickness ExtraBorderPadding { get; }
 
 
         /// <summary>

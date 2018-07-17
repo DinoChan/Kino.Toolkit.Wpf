@@ -357,8 +357,7 @@
                                             Width="2"
                                             Background="#81444444"
                                             BorderBrush="#69EEEEEE"
-                                            BorderThickness="1,0,0,0"
-                                           />
+                                            BorderThickness="1,0,0,0" />
                                     <ContentPresenter Name="QatTopHostContentPresenter"
                                                       Grid.Column="1"
                                                       Content="{TemplateBinding Ribbon.QuickAccessToolBar}"
@@ -369,8 +368,7 @@
                                             Width="2"
                                             Background="#81444444"
                                             BorderBrush="#69EEEEEE"
-                                            BorderThickness="1,0,0,0"
-                                           />
+                                            BorderThickness="1,0,0,0" />
                                 </Grid>
                                 <ContentPresenter Name="PART_TitleHost"
                                                   ContentSource="Title"
@@ -658,7 +656,7 @@
     </Style>
 
     <Style TargetType="{x:Type local:KinoWindow}">
-       
+
         <Setter Property="Foreground"
                 Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
         <Setter Property="Background"
@@ -690,10 +688,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:KinoWindow}">
-                    <Grid Background="Red">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            x:Name="WindowBorder" >
+                            x:Name="WindowBorder">
                         <Grid x:Name="LayoutRoot"
                               Background="{TemplateBinding Background}">
                             <Grid.RowDefinitions>
@@ -714,7 +711,7 @@
                                            VerticalAlignment="Center"
                                           />-->
                                     <Button VerticalAlignment="Center"
-                                            Margin="4,-1,5,0" 
+                                            Margin="4,-1,5,0"
                                             Content="{TemplateBinding Icon}"
                                             Height="{x:Static SystemParameters.SmallIconHeight}"
                                             Width="{x:Static SystemParameters.SmallIconWidth}"
@@ -800,7 +797,6 @@
                                         WindowChrome.ResizeGripDirection="BottomRight" />
                         </Grid>
                     </Border>
-                    </Grid>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive"
@@ -817,16 +813,14 @@
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="WindowBorder"
-                                    Property="Margin"
-                                    Value="8" />
-                            <!--<Setter TargetName="WindowBorder"
-                                    Property="Margin"
-                                    Value="{x:Static local:WindowService.WindowOuterBorderThickness}" />-->
-                            <Setter TargetName="WindowBorder"
                                     Property="BorderThickness"
                                     Value="0" />
-                            <!--<Setter Property="Left" Value="0"/>
-                            <Setter Property="Top" Value="0"/>-->
+                            <Setter TargetName="WindowBorder"
+                                    Property="Padding"
+                                    Value="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+                            <Setter Property="Margin"
+                                    TargetName="LayoutRoot"
+                                    Value="{Binding ExtraBorderPadding, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
@@ -907,7 +901,6 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:KinoRibbonWindow}">
-                    <Grid>
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             x:Name="WindowBorder">
@@ -1008,7 +1001,6 @@
                                         WindowChrome.ResizeGripDirection="BottomRight" />
                         </Grid>
                     </Border>
-                    </Grid>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive"
@@ -1025,11 +1017,14 @@
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="WindowBorder"
-                                    Property="Margin"
-                                    Value="8" />
-                            <Setter TargetName="WindowBorder"
                                     Property="BorderThickness"
                                     Value="0" />
+                            <Setter TargetName="WindowBorder"
+                                    Property="Padding"
+                                    Value="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+                            <Setter Property="Margin"
+                                    TargetName="LayoutRoot"
+                                    Value="{Binding ExtraBorderPadding, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
