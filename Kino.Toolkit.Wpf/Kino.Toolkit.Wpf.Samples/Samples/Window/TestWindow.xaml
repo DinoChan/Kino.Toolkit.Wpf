@@ -6,6 +6,7 @@
         mc:Ignorable="d"
         xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                  Title="TestWindow"
+                 
                  Icon="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png"
                  Width="400"
                  SizeToContent="Height"

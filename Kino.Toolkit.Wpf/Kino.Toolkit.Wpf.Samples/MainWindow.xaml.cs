@@ -27,6 +27,10 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             InitializeComponent();
             WindowChrome c = new WindowChrome();
+            var d=SystemParameters.CaptionHeight;
+            var e = SystemParameters.WindowResizeBorderThickness;
+            var f = SystemParameters.WindowNonClientFrameThickness;
+            var g = SystemParameters.FixedFrameHorizontalBorderHeight;
         }
 
 
