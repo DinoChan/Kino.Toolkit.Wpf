@@ -112,7 +112,7 @@
                             BorderBrush="{TemplateBinding Control.BorderBrush}"
                             BorderThickness="{TemplateBinding Control.BorderThickness}"
                             RenderOptions.ClearTypeHint="Enabled"
-                            Margin="0,-1">
+                           >
                         <Border Name="InnerBorder"
                                 Background="{StaticResource RibbonContextualTabGroup.InnerBorderBackground}"
                                 BorderBrush="{TemplateBinding Control.Background}">

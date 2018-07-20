@@ -351,8 +351,6 @@
                 Value="False" />
         <Setter Property="ResizeMode"
                 Value="CanResizeWithGrip" />
-        <Setter Property="UseLayoutRounding"
-                Value="True" />
         <Setter Property="TextOptions.TextFormattingMode"
                 Value="Display" />
         <Setter Property="WindowStyle"
