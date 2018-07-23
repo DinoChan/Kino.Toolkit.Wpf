@@ -74,7 +74,7 @@
     <Compile Include="Samples\Window\TestRibbonWindow.xaml.cs">
       <DependentUpon>TestRibbonWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SquareBox\SquareBoxSample.xaml.cs">
+    <Compile Include="Samples\SquareBox\SquareBoxSample.xaml.cs">
       <DependentUpon>SquareBoxSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\StateIndicator\StateIndicatorSample.xaml.cs">
@@ -118,7 +118,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SquareBox\SquareBoxSample.xaml">
+    <Page Include="Samples\SquareBox\SquareBoxSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -127,9 +127,13 @@ namespace Kino.Toolkit.Wpf
             if (element == null)
                 return;
 
-            var point = _window.WindowState == WindowState.Maximized ? new Point(0, element.ActualHeight)
-                : new Point(_window.Left + _window.BorderThickness.Left, element.ActualHeight + _window.Top + _window.BorderThickness.Top);
-            point = element.TransformToAncestor(_window).Transform(point);
+
+            Point point;
+            if (_window.WindowState == WindowState.Maximized)
+                point = new Point(0, SystemParameters.WindowCaptionHeight);
+            else
+                point = new Point(_window.Left + _window.BorderThickness.Left, SystemParameters.WindowNonClientFrameThickness.Top + _window.Top + _window.BorderThickness.Top);
+
             SystemCommands.ShowSystemMenu(_window, point);
         }
         #endregion
