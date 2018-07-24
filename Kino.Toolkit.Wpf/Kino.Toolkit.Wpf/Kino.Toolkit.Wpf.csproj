@@ -55,6 +55,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandBar\KinoCommandBar.cs" />
+    <Compile Include="CommandBar\KinoWindowCommandBar.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Common\VisualStates.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
@@ -72,6 +74,10 @@
     <Compile Include="Window\RibbonService.cs" />
     <Compile Include="Window\WindowService.cs" />
     <Page Include="Button\KinoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommandBar\KinoCommandBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

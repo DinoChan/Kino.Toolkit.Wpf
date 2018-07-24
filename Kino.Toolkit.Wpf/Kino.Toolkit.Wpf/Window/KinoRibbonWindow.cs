@@ -53,6 +53,42 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
+        /// 获取或设置CommandBar的值
+        /// </summary>  
+        public KinoWindowCommandBar CommandBar
+        {
+            get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
+            set => SetValue(CommandBarProperty, value);
+        }
+
+        /// <summary>
+        /// 标识 CommandBar 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty CommandBarProperty =
+            DependencyProperty.Register(nameof(CommandBar), typeof(KinoWindowCommandBar), typeof(KinoRibbonWindow), new PropertyMetadata(default(KinoWindowCommandBar), OnCommandBarChanged));
+
+        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+
+            var oldValue = (KinoWindowCommandBar)args.OldValue;
+            var newValue = (KinoWindowCommandBar)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoRibbonWindow;
+            target?.OnCommandBarChanged(oldValue, newValue);
+        }
+
+        /// <summary>
+        /// CommandBar 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">CommandBar 属性的旧值。</param>
+        /// <param name="newValue">CommandBar 属性的新值。</param>
+        protected virtual void OnCommandBarChanged(KinoWindowCommandBar oldValue, KinoWindowCommandBar newValue)
+        {
+        }
+
+        /// <summary>
         /// RibbonStyle 属性更改时调用此方法。
         /// </summary>
         /// <param name="oldValue">RibbonStyle 属性的旧值。</param>

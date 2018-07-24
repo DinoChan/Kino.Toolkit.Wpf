@@ -72,18 +72,22 @@
         </Setter>
     </Style>
 
-    <Style x:Key="TitleBarButtonStyle"
+    <Style x:Key="WindowTitleBarButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Focusable"
                 Value="False" />
         <Setter Property="Background"
-                Value="#66FFFFFF" />
+                Value="#32FFFFFF" />
         <Setter Property="Width"
                 Value="36" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome"
+                Value="True" />
+        <Setter Property="IsTabStop"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -129,6 +133,51 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MinimizeButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolTip"
+                 Value="Minimize" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource MinimizeWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" />
+    </Style>
+
+    <Style x:Key="RestoreButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolBar.ToolTip"
+                 Value="Restore" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource RestoreWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" />
+    </Style>
+
+    <Style x:Key="MaximizeButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolTip"
+                 Value="Maximize" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource MaximizeWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" />
+    </Style>
+
+    <Style x:Key="CloseButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolTip"
+                 Value="Close" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource CloseWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" />
+    </Style>
+
+
 
     <Style TargetType="{x:Type local:KinoWindow}">
 
@@ -136,7 +185,7 @@
                 Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
         <Setter Property="Background"
                 Value="#FFF1F1F1" />
-         <Setter Property="BorderBrush"
+        <Setter Property="BorderBrush"
                 Value="#FF464775" />
         <Setter Property="BorderThickness"
                 Value="1" />
@@ -220,44 +269,24 @@
                                             Orientation="Horizontal"
                                             WindowChrome.IsHitTestVisibleInChrome="True"
                                             Margin="0,0,-1,0">
+                                    <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                      Focusable="False" />
                                     <Button x:Name="Minimize"
-                                            ToolTip="Minimize"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
-                                            ContentTemplate="{StaticResource MinimizeWhite}"
-                                            Style="{StaticResource TitleBarButtonStyle}"
-                                            IsTabStop="False" />
+                                            Style="{StaticResource MinimizeButtonStyle}" />
                                     <Grid Margin="1,0,1,0">
                                         <Button x:Name="Restore"
-                                                ToolTip="Restore"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
-                                                ContentTemplate="{StaticResource RestoreWhite}"
-                                                Style="{StaticResource TitleBarButtonStyle}"
-                                                Visibility="Collapsed"
-                                                IsTabStop="False" />
+                                                Style="{StaticResource RestoreButtonStyle}"
+                                                Visibility="Collapsed" />
                                         <Button x:Name="Maximize"
-                                                ToolTip="Maximize"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
-                                                ContentTemplate="{StaticResource MaximizeWhite}"
-                                                Style="{StaticResource TitleBarButtonStyle}"
-                                                IsTabStop="False" />
+                                                Style="{StaticResource MaximizeButtonStyle}" />
                                     </Grid>
                                     <Button x:Name="Close"
-                                            ToolTip="Close"
                                             Background="Red"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
-                                            ContentTemplate="{StaticResource CloseWhite}"
-                                            Style="{StaticResource TitleBarButtonStyle}"
-                                            IsTabStop="False" />
+                                            Style="{StaticResource CloseButtonStyle}" />
                                 </StackPanel>
                             </Grid>
                             <AdornerDecorator Grid.Row="1"
                                               KeyboardNavigation.IsTabStop="False">
-                                <!--<ContentPresenter x:Name="MainContentPresenter"
-                                                  KeyboardNavigation.TabNavigation="Cycle" />-->
                                 <ContentPresenter Content="{TemplateBinding Content}"
                                                   x:Name="MainContentPresenter"
                                                   KeyboardNavigation.TabNavigation="Cycle" />
@@ -421,38 +450,20 @@
                                             Orientation="Horizontal"
                                             WindowChrome.IsHitTestVisibleInChrome="True"
                                             Margin="0,-1,-1,0">
+                                    <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                      Focusable="False" />
                                     <Button x:Name="Minimize"
-                                            ToolTip="Minimize"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
-                                            ContentTemplate="{StaticResource MinimizeWhite}"
-                                            Style="{StaticResource TitleBarButtonStyle}"
-                                            IsTabStop="False" />
+                                            Style="{StaticResource MinimizeButtonStyle}" />
                                     <Grid Margin="1,0,1,0">
                                         <Button x:Name="Restore"
-                                                ToolTip="Restore"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
-                                                ContentTemplate="{StaticResource RestoreWhite}"
-                                                Style="{StaticResource TitleBarButtonStyle}"
-                                                Visibility="Collapsed"
-                                                IsTabStop="False" />
+                                                Style="{StaticResource RestoreButtonStyle}"
+                                                Visibility="Collapsed" />
                                         <Button x:Name="Maximize"
-                                                ToolTip="Maximize"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
-                                                ContentTemplate="{StaticResource MaximizeWhite}"
-                                                Style="{StaticResource TitleBarButtonStyle}"
-                                                IsTabStop="False" />
+                                                Style="{StaticResource MaximizeButtonStyle}" />
                                     </Grid>
                                     <Button x:Name="Close"
-                                            ToolTip="Close"
                                             Background="Red"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
-                                            ContentTemplate="{StaticResource CloseWhite}"
-                                            Style="{StaticResource TitleBarButtonStyle}"
-                                            IsTabStop="False" />
+                                            Style="{StaticResource CloseButtonStyle}" />
                                 </StackPanel>
                             </Grid>
                             <AdornerDecorator Grid.Row="1"

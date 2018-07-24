@@ -61,7 +61,7 @@ namespace Kino.Toolkit.Wpf
             if (target == null || newValue == false)
                 return;
 
-            var service = new WindowService(target);
+            var service = new WindowCommandHelper(target);
             service.ActiveCommands();
         }
 
@@ -73,69 +73,83 @@ namespace Kino.Toolkit.Wpf
         //    }
         //}
 
-        private Window _window;
 
-        private WindowService(Window window)
+
+
+        private class WindowCommandHelper
         {
-            _window = window;
+            private Window _window;
+
+            public WindowCommandHelper(Window window)
+            {
+                _window = window;
+            }
+
+            public void ActiveCommands()
+            {
+                _window.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseWindow));
+                _window.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeWindow, CanResizeWindow));
+                _window.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
+                _window.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreWindow, CanResizeWindow));
+                _window.CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
+            }
+
+            #region Window Commands
+
+            private void CanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
+            {
+                e.CanExecute = _window.ResizeMode == ResizeMode.CanResize || _window.ResizeMode == ResizeMode.CanResizeWithGrip;
+            }
+
+            private void CanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
+            {
+                e.CanExecute = _window.ResizeMode != ResizeMode.NoResize;
+            }
+
+            private void CloseWindow(object sender, ExecutedRoutedEventArgs e)
+            {
+                _window.Close();
+            }
+
+            private void MaximizeWindow(object sender, ExecutedRoutedEventArgs e)
+            {
+                SystemCommands.MaximizeWindow(_window);
+                e.Handled = true;
+            }
+
+            private void MinimizeWindow(object sender, ExecutedRoutedEventArgs e)
+            {
+                SystemCommands.MinimizeWindow(_window);
+                e.Handled = true;
+            }
+
+            private void RestoreWindow(object sender, ExecutedRoutedEventArgs e)
+            {
+                SystemCommands.RestoreWindow(_window);
+                e.Handled = true;
+            }
+
+            private void ShowSystemMenu(object sender, ExecutedRoutedEventArgs e)
+            {
+                Point point = _window.PointToScreen(new Point(0, 0));
+                if (_window.WindowState == WindowState.Maximized)
+                {
+                    var length = WindowService.PaddedBorder;
+                    var dpi = VisualTreeHelper.GetDpi(_window);
+                    var lengthWithScale = length / dpi.DpiScaleX;
+                    point.Y += SystemParameters.WindowCaptionHeight + lengthWithScale + SystemParameters.WindowResizeBorderThickness.Top;
+                    point.X += lengthWithScale + SystemParameters.WindowResizeBorderThickness.Left;
+                }
+                else
+                {
+                    point.X += _window.BorderThickness.Left;
+                    point.Y += SystemParameters.WindowCaptionHeight + _window.BorderThickness.Top;
+                }
+                CompositionTarget compositionTarget = PresentationSource.FromVisual(_window).CompositionTarget;
+                SystemCommands.ShowSystemMenu(_window, compositionTarget.TransformFromDevice.Transform(point));
+                e.Handled = true;
+            }
+            #endregion
         }
-
-        private void ActiveCommands()
-        {
-            _window.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseWindow));
-            _window.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeWindow, CanResizeWindow));
-            _window.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
-            _window.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreWindow, CanResizeWindow));
-            _window.CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
-        }
-
-        #region Window Commands
-
-        private void CanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = _window.ResizeMode == ResizeMode.CanResize || _window.ResizeMode == ResizeMode.CanResizeWithGrip;
-        }
-
-        private void CanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = _window.ResizeMode != ResizeMode.NoResize;
-        }
-
-        private void CloseWindow(object sender, ExecutedRoutedEventArgs e)
-        {
-            _window.Close();
-        }
-
-        private void MaximizeWindow(object sender, ExecutedRoutedEventArgs e)
-        {
-            SystemCommands.MaximizeWindow(_window);
-        }
-
-        private void MinimizeWindow(object sender, ExecutedRoutedEventArgs e)
-        {
-            SystemCommands.MinimizeWindow(_window);
-        }
-
-        private void RestoreWindow(object sender, ExecutedRoutedEventArgs e)
-        {
-            SystemCommands.RestoreWindow(_window);
-        }
-
-        private void ShowSystemMenu(object sender, ExecutedRoutedEventArgs e)
-        {
-            var element = e.OriginalSource as FrameworkElement;
-            if (element == null)
-                return;
-
-
-            Point point;
-            if (_window.WindowState == WindowState.Maximized)
-                point = new Point(0, SystemParameters.WindowCaptionHeight);
-            else
-                point = new Point(_window.Left + _window.BorderThickness.Left, SystemParameters.WindowNonClientFrameThickness.Top + _window.Top + _window.BorderThickness.Top);
-
-            SystemCommands.ShowSystemMenu(_window, point);
-        }
-        #endregion
     }
 }
