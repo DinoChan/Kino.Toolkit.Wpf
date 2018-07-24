@@ -107,12 +107,12 @@ namespace Kino.Toolkit.Wpf
                 DragMove();
         }
 
-        protected override void OnContentRendered(EventArgs e)
-        {
-            base.OnContentRendered(e);
-            if (SizeToContent == SizeToContent.WidthAndHeight)
-                InvalidateMeasure();
-        }
+        //protected override void OnContentRendered(EventArgs e)
+        //{
+        //    base.OnContentRendered(e);
+        //    if (SizeToContent == SizeToContent.WidthAndHeight)
+        //        InvalidateMeasure();
+        //}
 
        
     }
