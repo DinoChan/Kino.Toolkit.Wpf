@@ -11,7 +11,7 @@
         Height="450"
         Width="800">
 
-    <Grid>
+    <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="150"/>
             <ColumnDefinition />

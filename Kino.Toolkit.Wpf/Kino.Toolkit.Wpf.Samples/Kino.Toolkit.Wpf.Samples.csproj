@@ -37,8 +37,10 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -69,7 +71,10 @@
     <Compile Include="Samples\Resizer\ResizerSample.xaml.cs">
       <DependentUpon>ResizerSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SquareBox\SquareBoxSample.xaml.cs">
+    <Compile Include="Samples\Window\TestRibbonWindow.xaml.cs">
+      <DependentUpon>TestRibbonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\SquareBox\SquareBoxSample.xaml.cs">
       <DependentUpon>SquareBoxSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\StateIndicator\StateIndicatorSample.xaml.cs">
@@ -109,7 +114,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SquareBox\SquareBoxSample.xaml">
+    <Page Include="Samples\Window\TestRibbonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\SquareBox\SquareBoxSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +175,12 @@
       <Project>{f816c9bc-b890-4c91-8341-04f32ce64c17}</Project>
       <Name>Kino.Toolkit.Wpf</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\defaultsystemicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\defaulticon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

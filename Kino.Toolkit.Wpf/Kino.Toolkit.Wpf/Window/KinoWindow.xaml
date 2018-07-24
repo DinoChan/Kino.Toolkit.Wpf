@@ -1,8 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
-
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:classic="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+                    xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
+                    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Window/Ribbon.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="RestoreWhite">
         <Grid UseLayoutRounding="True">
@@ -42,7 +48,7 @@
 
     <DataTemplate x:Key="MinimizeWhite">
         <Grid>
-            <Path Data="M0,5 L12,5 L12,6 L0,6 z"
+            <Path Data="M0,6 L12,6 L12,7 L0,7 z"
                   Width="12"
                   Height="12"
                   UseLayoutRounding="True"
@@ -51,8 +57,6 @@
                   Fill="White" />
         </Grid>
     </DataTemplate>
-
-
 
     <Style x:Key="TitleBarButtonFocusVisual">
         <Setter Property="Control.Template">
@@ -68,18 +72,22 @@
         </Setter>
     </Style>
 
-    <Style x:Key="TitleBarButtonStyle"
+    <Style x:Key="WindowTitleBarButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Focusable"
                 Value="False" />
         <Setter Property="Background"
-                Value="#66FFFFFF" />
+                Value="#32FFFFFF" />
         <Setter Property="Width"
                 Value="36" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome"
+                Value="True" />
+        <Setter Property="IsTabStop"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -124,50 +132,85 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <!--<Style TargetType="{x:Type local:OmecWindow}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:OmecWindow}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
+
+    <Style x:Key="MinimizeButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolTip"
+                 Value="Minimize" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource MinimizeWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" />
+    </Style>
+
+    <Style x:Key="RestoreButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolBar.ToolTip"
+                 Value="Restore" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource RestoreWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" />
+    </Style>
+
+    <Style x:Key="MaximizeButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolTip"
+                 Value="Maximize" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource MaximizeWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" />
+    </Style>
+
+    <Style x:Key="CloseButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource WindowTitleBarButtonStyle}">
+        <Setter  Property="ToolTip"
+                 Value="Close" />
+        <Setter Property="ContentTemplate"
+                Value="{StaticResource CloseWhite}" />
+        <Setter Property="Command"
+                Value="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" />
+    </Style>
 
 
 
     <Style TargetType="{x:Type local:KinoWindow}">
+
         <Setter Property="Foreground"
                 Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
         <Setter Property="Background"
                 Value="#FFF1F1F1" />
         <Setter Property="BorderBrush"
-                Value="#FF0874AA" />
+                Value="#FF464775" />
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="ResizeMode"
                 Value="CanResizeWithGrip" />
-        <Setter Property="UseLayoutRounding"
-                Value="True" />
         <Setter Property="TextOptions.TextFormattingMode"
                 Value="Display" />
         <Setter Property="WindowStyle"
                 Value="SingleBorderWindow" />
         <Setter Property="FontFamily"
                 Value="Segoe UI" />
+        <Setter Property="Icon"
+                Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CornerRadius="0"
-                              GlassFrameThickness="1"
                               UseAeroCaptionButtons="False"
-                              NonClientFrameEdges="None" />
+                              NonClientFrameEdges="None"
+                              CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>
+        <Setter Property="local:WindowService.IsActiveCommands"
+                Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:KinoWindow}">
@@ -180,22 +223,18 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-
                             <Grid x:Name="PART_WindowTitleGrid"
-                                  Grid.Row="0"
-                                  Height="26.4"
-                                  Background="{TemplateBinding BorderBrush}">
+                                  Height="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
+                                  Background="{TemplateBinding BorderBrush}"
+                                  Margin="0,-1,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
+
                                 <StackPanel Orientation="Horizontal">
-                                    <!--<Image Source="{TemplateBinding Icon}"
-                                           Margin="7,0,5,0"
-                                           VerticalAlignment="Center"
-                                          />-->
                                     <Button VerticalAlignment="Center"
-                                            Margin="7,0,5,0"
+                                            Margin="5,0,5,0"
                                             Content="{TemplateBinding Icon}"
                                             Height="{x:Static SystemParameters.SmallIconHeight}"
                                             Width="{x:Static SystemParameters.SmallIconWidth}"
@@ -229,48 +268,28 @@
                                             Background="Transparent"
                                             Orientation="Horizontal"
                                             WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Margin="0,-1,-1,0">
+                                            Margin="0,0,-1,0">
+                                    <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                      Focusable="False" />
                                     <Button x:Name="Minimize"
-                                            ToolTip="Minimize"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
-                                            ContentTemplate="{StaticResource MinimizeWhite}"
-                                            Style="{StaticResource TitleBarButtonStyle}"
-                                            IsTabStop="False" />
+                                            Style="{StaticResource MinimizeButtonStyle}" />
                                     <Grid Margin="1,0,1,0">
                                         <Button x:Name="Restore"
-                                                ToolTip="Restore"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
-                                                ContentTemplate="{StaticResource RestoreWhite}"
-                                                Style="{StaticResource TitleBarButtonStyle}"
-                                                Visibility="Collapsed"
-                                                IsTabStop="False" />
+                                                Style="{StaticResource RestoreButtonStyle}"
+                                                Visibility="Collapsed" />
                                         <Button x:Name="Maximize"
-                                                ToolTip="Maximize"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
-                                                ContentTemplate="{StaticResource MaximizeWhite}"
-                                                Style="{StaticResource TitleBarButtonStyle}"
-                                                IsTabStop="False" />
+                                                Style="{StaticResource MaximizeButtonStyle}" />
                                     </Grid>
                                     <Button x:Name="Close"
-                                            ToolTip="Close"
                                             Background="Red"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
-                                            ContentTemplate="{StaticResource CloseWhite}"
-                                            Style="{StaticResource TitleBarButtonStyle}"
-                                            IsTabStop="False" />
+                                            Style="{StaticResource CloseButtonStyle}" />
                                 </StackPanel>
                             </Grid>
                             <AdornerDecorator Grid.Row="1"
                                               KeyboardNavigation.IsTabStop="False">
-                                <!--<ContentPresenter x:Name="MainContentPresenter"
-                                                  KeyboardNavigation.TabNavigation="Cycle" />-->
                                 <ContentPresenter Content="{TemplateBinding Content}"
-                                                                   x:Name="MainContentPresenter"
-                                                                   KeyboardNavigation.TabNavigation="Cycle" />
+                                                  x:Name="MainContentPresenter"
+                                                  KeyboardNavigation.TabNavigation="Cycle" />
                             </AdornerDecorator>
                             <ResizeGrip x:Name="ResizeGrip"
                                         HorizontalAlignment="Right"
@@ -281,7 +300,6 @@
                                         WindowChrome.ResizeGripDirection="BottomRight" />
                         </Grid>
                     </Border>
-
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive"
@@ -297,9 +315,15 @@
                             <Setter TargetName="Restore"
                                     Property="Visibility"
                                     Value="Visible" />
-                            <Setter TargetName="LayoutRoot"
-                                    Property="Margin"
-                                    Value="7" />
+                            <Setter TargetName="WindowBorder"
+                                    Property="BorderThickness"
+                                    Value="0" />
+                            <Setter TargetName="WindowBorder"
+                                    Property="Padding"
+                                    Value="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+                            <Setter Property="Margin"
+                                    TargetName="LayoutRoot"
+                                    Value="{Binding ExtraBorderPadding, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
@@ -341,4 +365,185 @@
 
     </Style>
 
+
+
+    <Style TargetType="{x:Type local:KinoRibbonWindow}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+        <Setter Property="Background"
+                Value="#FFF1F1F1" />
+        <Setter Property="BorderBrush"
+                Value="#FF464775" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="ResizeMode"
+                Value="CanResizeWithGrip" />
+        <Setter Property="TextOptions.TextFormattingMode"
+                Value="Display" />
+        <Setter Property="WindowStyle"
+                Value="SingleBorderWindow" />
+        <Setter Property="FontFamily"
+                Value="Segoe UI" />
+        <Setter Property="Icon"
+                Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CornerRadius="0"
+                              CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
+                              UseAeroCaptionButtons="False"
+                              NonClientFrameEdges="None" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="local:WindowService.IsActiveCommands"
+                Value="True" />
+        <Setter Property="RibbonStyle"
+                Value="{StaticResource RibbonStyle}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:KinoRibbonWindow}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            x:Name="WindowBorder">
+                        <Grid x:Name="LayoutRoot"
+                              Background="{TemplateBinding Background}">
+
+                            <Grid x:Name="PART_WindowTitleGrid"
+                                  VerticalAlignment="Top"
+                                  Height="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
+                                  Background="{TemplateBinding BorderBrush}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,-1,0,0">
+                                    <Button VerticalAlignment="Center"
+                                            Margin="5,0,5,0"
+                                            Content="{TemplateBinding Icon}"
+                                            Height="{x:Static SystemParameters.SmallIconHeight}"
+                                            Width="{x:Static SystemParameters.SmallIconWidth}"
+                                            WindowChrome.IsHitTestVisibleInChrome="True"
+                                            IsTabStop="False">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Image Source="{TemplateBinding Content}" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:InvokeCommandAction Command="{x:Static SystemCommands.CloseWindowCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel x:Name="WindowCommandButtonsStackPanel"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Stretch"
+                                            Background="Transparent"
+                                            Orientation="Horizontal"
+                                            WindowChrome.IsHitTestVisibleInChrome="True"
+                                            Margin="0,-1,-1,0">
+                                    <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                      Focusable="False" />
+                                    <Button x:Name="Minimize"
+                                            Style="{StaticResource MinimizeButtonStyle}" />
+                                    <Grid Margin="1,0,1,0">
+                                        <Button x:Name="Restore"
+                                                Style="{StaticResource RestoreButtonStyle}"
+                                                Visibility="Collapsed" />
+                                        <Button x:Name="Maximize"
+                                                Style="{StaticResource MaximizeButtonStyle}" />
+                                    </Grid>
+                                    <Button x:Name="Close"
+                                            Background="Red"
+                                            Style="{StaticResource CloseButtonStyle}" />
+                                </StackPanel>
+                            </Grid>
+                            <AdornerDecorator Grid.Row="1"
+                                              Margin="0,0,0,0"
+                                              KeyboardNavigation.IsTabStop="False">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  x:Name="MainContentPresenter"
+                                                  KeyboardNavigation.TabNavigation="Cycle" />
+                            </AdornerDecorator>
+                            <ResizeGrip x:Name="ResizeGrip"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Grid.Row="1"
+                                        IsTabStop="False"
+                                        Visibility="Hidden"
+                                        WindowChrome.ResizeGripDirection="BottomRight" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive"
+                                 Value="False">
+                            <Setter Property="BorderBrush"
+                                    Value="#FF6F7785" />
+                        </Trigger>
+                        <Trigger Property="WindowState"
+                                 Value="Maximized">
+                            <Setter TargetName="Maximize"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter TargetName="Restore"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="WindowBorder"
+                                    Property="BorderThickness"
+                                    Value="0" />
+                            <Setter TargetName="WindowBorder"
+                                    Property="Padding"
+                                    Value="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+                            <Setter Property="Margin"
+                                    TargetName="LayoutRoot"
+                                    Value="{Binding ExtraBorderPadding, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                        <Trigger Property="WindowState"
+                                 Value="Normal">
+                            <Setter TargetName="Maximize"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="Restore"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode"
+                                 Value="NoResize">
+                            <Setter TargetName="Minimize"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter TargetName="Maximize"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter TargetName="Restore"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode"
+                                           Value="CanResizeWithGrip" />
+                                <Condition Property="WindowState"
+                                           Value="Normal" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ResizeGrip"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
 </ResourceDictionary>
