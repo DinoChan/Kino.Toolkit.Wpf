@@ -132,18 +132,17 @@ namespace Kino.Toolkit.Wpf
             private void ShowSystemMenu(object sender, ExecutedRoutedEventArgs e)
             {
                 Point point = _window.PointToScreen(new Point(0, 0));
+                var dpi = VisualTreeHelper.GetDpi(_window);
                 if (_window.WindowState == WindowState.Maximized)
                 {
-                    var length = WindowService.PaddedBorder;
-                    var dpi = VisualTreeHelper.GetDpi(_window);
-                    var lengthWithScale = length / dpi.DpiScaleX;
-                    point.Y += SystemParameters.WindowCaptionHeight + lengthWithScale + SystemParameters.WindowResizeBorderThickness.Top;
-                    point.X += lengthWithScale + SystemParameters.WindowResizeBorderThickness.Left;
+                    ///因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度
+                    point.Y += SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX + WindowService.PaddedBorder + SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX;
+                    point.X += SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX + WindowService.PaddedBorder;
                 }
                 else
                 {
                     point.X += _window.BorderThickness.Left;
-                    point.Y += SystemParameters.WindowCaptionHeight + _window.BorderThickness.Top;
+                    point.Y += SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX;
                 }
                 CompositionTarget compositionTarget = PresentationSource.FromVisual(_window).CompositionTarget;
                 SystemCommands.ShowSystemMenu(_window, compositionTarget.TransformFromDevice.Transform(point));

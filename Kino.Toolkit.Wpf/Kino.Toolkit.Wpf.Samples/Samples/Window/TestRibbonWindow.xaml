@@ -8,11 +8,12 @@
                        Icon="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png"
                        xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
                        Title="TestWindow"
-                       
                        Height="450"
                        Width="800">
     <kino:KinoRibbonWindow.CommandBar>
         <kino:KinoWindowCommandBar>
+            <Button Content="Dino.C" />
+            <Separator />
             <Menu>
                 <MenuItem Header="发送反馈">
                     <MenuItem Header="报告问题"
