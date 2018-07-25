@@ -1,22 +1,23 @@
 ﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.TestWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+                 xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                  Title="TestWindow"
-                 
                  Icon="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png"
                  Width="400"
                  SizeToContent="Height"
-                 UseLayoutRounding="True"
-          >
+                 UseLayoutRounding="True">
     <kino:KinoWindow.CommandBar>
         <kino:KinoWindowCommandBar>
+            <Button Content="Dino.C" />
+            <Separator />
             <Menu>
                 <MenuItem Header="发送反馈">
-                    <MenuItem Header="报告问题" IsCheckable="True"/>
+                    <MenuItem Header="报告问题"
+                              IsCheckable="True" />
                     <MenuItem Header="提供反馈"
                               IsCheckable="True" />
                     <Separator />

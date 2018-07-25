@@ -8,8 +8,12 @@
                 Value="False" />
         <Setter Property="Background"
                 Value="#32FFFFFF" />
-        <Setter Property="Width"
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="MinWidth"
                 Value="36" />
+        <Setter Property="Padding"
+                Value="6,0" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
@@ -27,7 +31,7 @@
                                    Fill="{TemplateBinding Background}"
                                    Opacity="0" />
                         <Border x:Name="ButtonBorder"
-                                SnapsToDevicePixels="true">
+                                SnapsToDevicePixels="True">
                             <ContentPresenter x:Name="TitleBarButtonContentPresenter"
                                               Focusable="False"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -187,7 +191,6 @@
                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
                                    Content="{TemplateBinding Header}"
                                    TextBlock.Foreground="White"
-                                   Opacity="0.8"
                                    Grid.Column="1"
                                    ContentStringFormat="{TemplateBinding HeaderStringFormat}"
                                    ContentSource="Header"
@@ -259,9 +262,6 @@
                 <Setter Property="Opacity"
                         Value="0.2"
                         TargetName="ButtonBackground" />
-                <Setter Property="Opacity"
-                        Value="1"
-                        TargetName="ContentPresenter" />
             </Trigger>
             <Trigger Property="IsEnabled"
                      Value="False">
@@ -641,6 +641,32 @@
         </Setter>
     </Style>
 
+    <Style x:Key="WindowTitleBarSeparatorStyle"
+           TargetType="{x:Type Separator}">
+        <Setter Property="Background"
+                Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+        <Setter Property="BorderBrush"
+                Value="White" />
+        <Setter Property="Opacity"
+                Value="0.8" />
+        <Setter Property="Margin"
+                Value="5,6,5,6" />
+        <Setter Property="Focusable"
+                Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Separator}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Width="1"
+                            VerticalAlignment="Stretch"
+                            SnapsToDevicePixels="true" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type local:KinoWindowCommandBar}">
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
@@ -659,6 +685,8 @@
                                    TargetType="{x:Type MenuItem}" />
                             <Style BasedOn="{StaticResource WindowTitleBarMenuStyle}"
                                    TargetType="{x:Type Menu}" />
+                            <Style BasedOn="{StaticResource WindowTitleBarSeparatorStyle}"
+                                   TargetType="{x:Type Separator}" />
                         </ResourceDictionary>
                     </ControlTemplate.Resources>
                     <ItemsPresenter />

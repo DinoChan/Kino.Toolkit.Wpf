@@ -27,13 +27,13 @@ namespace Kino.Toolkit.Wpf
                 DragMove();
         }
 
-        protected override void OnContentRendered(EventArgs e)
+   
+        protected override void OnSourceInitialized(EventArgs e)
         {
-            base.OnContentRendered(e);
+            base.OnSourceInitialized(e);
             if (SizeToContent == SizeToContent.WidthAndHeight)
                 InvalidateMeasure();
         }
-
 
         /// <summary>
         /// 获取或设置CommandBar的值

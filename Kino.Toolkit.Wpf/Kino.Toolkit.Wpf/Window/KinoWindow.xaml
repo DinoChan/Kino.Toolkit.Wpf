@@ -233,27 +233,23 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <Button VerticalAlignment="Center"
-                                            Margin="5,0,5,0"
-                                            Content="{TemplateBinding Icon}"
-                                            Height="{x:Static SystemParameters.SmallIconHeight}"
-                                            Width="{x:Static SystemParameters.SmallIconWidth}"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            IsTabStop="False">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Image Source="{TemplateBinding Content}" />
-                                            </ControlTemplate>
-                                        </Button.Template>
+                                    <Image Source="{TemplateBinding Icon}"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,5,0"
+                                           Height="{x:Static SystemParameters.SmallIconHeight}"
+                                           Width="{x:Static SystemParameters.SmallIconWidth}"
+                                           WindowChrome.IsHitTestVisibleInChrome="True">
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="Click">
+                                            <i:EventTrigger EventName="MouseLeftButtonDown">
                                                 <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
-                                            <i:EventTrigger EventName="MouseDoubleClick">
-                                                <i:InvokeCommandAction Command="{x:Static SystemCommands.CloseWindowCommand}" />
+                                            <i:EventTrigger EventName="MouseRightButtonDown">
+                                                <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                    </Button>
+                                    </Image>
+                                               
+                                       
                                     <ContentControl IsTabStop="False"
                                                     Foreground="White"
                                                     HorizontalAlignment="Center"
@@ -393,7 +389,7 @@
                 <WindowChrome CornerRadius="0"
                               CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
                               UseAeroCaptionButtons="False"
-                              NonClientFrameEdges="None" />
+                              NonClientFrameEdges="Bottom" />
             </Setter.Value>
         </Setter>
         <Setter Property="local:WindowService.IsActiveCommands"
@@ -420,27 +416,21 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal"
                                             Margin="0,-1,0,0">
-                                    <Button VerticalAlignment="Center"
-                                            Margin="5,0,5,0"
-                                            Content="{TemplateBinding Icon}"
-                                            Height="{x:Static SystemParameters.SmallIconHeight}"
-                                            Width="{x:Static SystemParameters.SmallIconWidth}"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            IsTabStop="False">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Image Source="{TemplateBinding Content}" />
-                                            </ControlTemplate>
-                                        </Button.Template>
+                                    <Image Source="{TemplateBinding Icon}"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,5,0"
+                                           Height="{x:Static SystemParameters.SmallIconHeight}"
+                                           Width="{x:Static SystemParameters.SmallIconWidth}"
+                                           WindowChrome.IsHitTestVisibleInChrome="True">
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="Click">
+                                            <i:EventTrigger EventName="MouseLeftButtonDown">
                                                 <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
-                                            <i:EventTrigger EventName="MouseDoubleClick">
-                                                <i:InvokeCommandAction Command="{x:Static SystemCommands.CloseWindowCommand}" />
+                                            <i:EventTrigger EventName="MouseRightButtonDown">
+                                                <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                    </Button>
+                                    </Image>
                                 </StackPanel>
                                 <StackPanel x:Name="WindowCommandButtonsStackPanel"
                                             Grid.Column="1"
