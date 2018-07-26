@@ -206,6 +206,7 @@
                 <WindowChrome CornerRadius="0"
                               UseAeroCaptionButtons="False"
                               NonClientFrameEdges="None"
+                              GlassFrameThickness="-1"
                               CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>
@@ -387,9 +388,10 @@
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CornerRadius="0"
-                              CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
                               UseAeroCaptionButtons="False"
-                              NonClientFrameEdges="Bottom" />
+                              NonClientFrameEdges="None"
+                              GlassFrameThickness="-1"
+                              CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>
         <Setter Property="local:WindowService.IsActiveCommands"
