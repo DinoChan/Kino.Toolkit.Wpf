@@ -57,21 +57,58 @@ namespace Kino.Toolkit.Wpf
         private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
-            var target = obj as Window;
-            if (target == null || newValue == false)
+            var window = obj as Window;
+            if (window == null || newValue == false)
                 return;
 
-            var service = new WindowCommandHelper(target);
+            var service = new WindowCommandHelper(window);
             service.ActiveCommands();
         }
 
-        //public static double WindowCaptionHeightWithBorder
-        //{
-        //    get
-        //    {
-        //        return SystemParameters.WindowCaptionHeight + SystemParameters.ResizeFrameHorizontalBorderHeight;
-        //    }
-        //}
+        /// <summary>
+        /// 从指定元素获取 IsKeepInWorkArea 依赖项属性的值。
+        /// </summary>
+        /// <param name="obj">从中读取属性值的元素。</param>
+        /// <returns>从属性存储获取的属性值。</returns>
+        public static bool GetIsKeepInWorkArea(Window obj) => (bool)obj.GetValue(IsKeepInWorkAreaProperty);
+
+        /// <summary>
+        /// 将 IsKeepInWorkArea 依赖项属性的值设置为指定元素。
+        /// </summary>
+        /// <param name="obj">对其设置属性值的元素。</param>
+        /// <param name="value">要设置的值。</param>
+        public static void SetIsKeepInWorkArea(Window obj, bool value) => obj.SetValue(IsKeepInWorkAreaProperty, value);
+
+        /// <summary>
+        /// 标识 IsKeepInWorkArea 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty IsKeepInWorkAreaProperty =
+            DependencyProperty.RegisterAttached("IsKeepInWorkArea", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsKeepInWorkAreaChanged));
+
+
+        private static void OnIsKeepInWorkAreaChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var newValue = (bool)args.NewValue;
+            var window = obj as Window;
+            if (window == null || newValue == false)
+                return;
+
+            window.SizeChanged += (s, e) =>
+              {
+                  var point = window.PointToScreen(new Point(0, 0));
+
+                  var allScreens = System.Windows.Forms.Screen.AllScreens.ToList();
+                  var locationScreen = allScreens.SingleOrDefault(c => window.Left >= c.WorkingArea.Left && window.Left < c.WorkingArea.Right);
+                  if (locationScreen != null)
+                  {
+                      var bottom = point.Y + window.ActualHeight - locationScreen.WorkingArea.Height;
+                      if (bottom > 0)
+                          window.Top -= bottom;
+                  }
+              };
+            var service = new WindowCommandHelper(window);
+            service.ActiveCommands();
+        }
 
 
 
@@ -131,7 +168,7 @@ namespace Kino.Toolkit.Wpf
 
             private void ShowSystemMenu(object sender, ExecutedRoutedEventArgs e)
             {
-                Point point = _window.PointToScreen(new Point(0, 0));
+                var point = _window.PointToScreen(new Point(0, 0));
                 var dpi = VisualTreeHelper.GetDpi(_window);
                 if (_window.WindowState == WindowState.Maximized)
                 {
