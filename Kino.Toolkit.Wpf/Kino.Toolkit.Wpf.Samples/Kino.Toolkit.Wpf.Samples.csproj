@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Samples\Form\FormSample.xaml.cs">
+      <DependentUpon>FormSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\Button\ButtonSample.xaml.cs">
       <DependentUpon>ButtonSample.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
       <DependentUpon>WindowSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleTreeViewItem.cs" />
+    <Page Include="Samples\Form\FormSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -182,5 +189,6 @@
   <ItemGroup>
     <Resource Include="Assets\Images\defaulticon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
