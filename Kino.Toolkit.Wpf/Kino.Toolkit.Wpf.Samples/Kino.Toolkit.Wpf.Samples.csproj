@@ -74,6 +74,9 @@
     <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
       <DependentUpon>ProgressRingSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\RadioButtonMenuItem\RadioButtonMenuItemSample.xaml.cs">
+      <DependentUpon>RadioButtonMenuItemSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\Resizer\ResizerSample.xaml.cs">
       <DependentUpon>ResizerSample.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\ProgressRing\ProgressRingSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\RadioButtonMenuItem\RadioButtonMenuItemSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
