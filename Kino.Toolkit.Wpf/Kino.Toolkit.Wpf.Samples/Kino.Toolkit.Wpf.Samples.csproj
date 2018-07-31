@@ -68,6 +68,9 @@
     <Compile Include="Samples\Button\ButtonSample.xaml.cs">
       <DependentUpon>ButtonSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\Form\FormSampleWindow.xaml.cs">
+      <DependentUpon>FormSampleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
       <DependentUpon>ProgressRingSample.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Samples\Button\ButtonSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Form\FormSampleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

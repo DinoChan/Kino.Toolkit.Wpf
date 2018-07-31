@@ -58,9 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandBar\KinoCommandBar.cs" />
+    <Compile Include="CommandBar\KinoFormCommandBar.cs" />
     <Compile Include="CommandBar\KinoWindowCommandBar.cs" />
+    <Compile Include="Common\FunctionalProgramming.cs" />
     <Compile Include="Common\NativeMethods.cs" />
+    <Compile Include="Common\FrameworkElementService.cs" />
     <Compile Include="Common\VisualStates.cs" />
+    <Compile Include="Common\VisualTreeExtensions.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
     <Compile Include="Form\KinoForm.cs" />
@@ -84,6 +88,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CommandBar\KinoCommandBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommandBar\KinoFormCommandBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommandBar\KinoWindowCommandBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Kino.Toolkit.Wpf
 {
@@ -108,12 +109,51 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoForm);
         }
 
+
+
+        /// <summary>
+        /// 获取或设置CommandBar的值
+        /// </summary>  
+        public KinoFormCommandBar CommandBar
+        {
+            get => (KinoFormCommandBar)GetValue(CommandBarProperty);
+            set => SetValue(CommandBarProperty, value);
+        }
+
+        /// <summary>
+        /// 标识 CommandBar 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty CommandBarProperty =
+            DependencyProperty.Register(nameof(CommandBar), typeof(KinoFormCommandBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormCommandBar), OnCommandBarChanged));
+
+        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+
+            var oldValue = (KinoFormCommandBar)args.OldValue;
+            var newValue = (KinoFormCommandBar)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoForm;
+            target?.OnCommandBarChanged(oldValue, newValue);
+        }
+
+        /// <summary>
+        /// CommandBar 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">CommandBar 属性的旧值。</param>
+        /// <param name="newValue">CommandBar 属性的新值。</param>
+        protected virtual void OnCommandBarChanged(KinoFormCommandBar oldValue, KinoFormCommandBar newValue)
+        {
+        }
+
+
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             bool isItemItsOwnContainer = false;
             if (item is DependencyObject element)
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
-
+            
             return item is KinoFormItem || item is KinoFormTitle || item is KinoFormSeparator || isItemItsOwnContainer;
         }
 

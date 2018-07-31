@@ -25,9 +25,16 @@ namespace Kino.Toolkit.Wpf.Samples
             InitializeComponent();
         }
 
-     
+        private void OnOK(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("OK");
+        }
 
-      
+        private void OnShowNewDialog(object sender, RoutedEventArgs e)
+        {
+            var window = new FormSampleWindow();
+            window.Show();
+        }
     }
 
     public class FormTestModel
