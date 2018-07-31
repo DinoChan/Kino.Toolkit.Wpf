@@ -35,6 +35,8 @@
                                           SampleType="{x:Type local:SquareBoxSample}" />
                 <local:SampleTreeViewItem Header="Form"
                                           SampleType="{x:Type local:FormSample}" />
+                <local:SampleTreeViewItem Header="RadioButtonMenuItem"
+                                          SampleType="{x:Type local:RadioButtonMenuItemSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">
