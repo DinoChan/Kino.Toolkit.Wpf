@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -27,12 +28,25 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             InitializeComponent();
             WindowChrome c = new WindowChrome();
-            var d=SystemParameters.CaptionHeight;
+            var d = SystemParameters.CaptionHeight;
             var e = SystemParameters.WindowResizeBorderThickness;
             var f = SystemParameters.WindowNonClientFrameThickness;
             var g = SystemParameters.FixedFrameHorizontalBorderHeight;
+            GotFocus += MainWindow_GotFocus;
+
         }
 
+        private async void MainWindow_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+            while (true)
+            {
+              await  Task.Delay(1000);
+                var c = FocusManager.GetFocusedElement(this);
+                if (c != null)
+                    Debug.WriteLine(c);
+            }
+        }
 
         private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<Object> e)
         {

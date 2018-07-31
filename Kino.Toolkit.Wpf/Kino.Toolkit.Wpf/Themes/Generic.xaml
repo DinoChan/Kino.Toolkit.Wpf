@@ -11,5 +11,6 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Resizer/KinoResizer.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/SquareBox/KinoSquareBox.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/CommandBar/KinoCommandBar.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Form/KinoForm.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

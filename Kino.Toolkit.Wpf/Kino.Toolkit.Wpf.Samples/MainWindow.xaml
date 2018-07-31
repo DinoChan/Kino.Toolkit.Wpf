@@ -33,6 +33,8 @@
                                           SampleType="{x:Type local:ResizerSample}" />
                 <local:SampleTreeViewItem Header="SquareBox"
                                           SampleType="{x:Type local:SquareBoxSample}" />
+                <local:SampleTreeViewItem Header="Form"
+                                          SampleType="{x:Type local:FormSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

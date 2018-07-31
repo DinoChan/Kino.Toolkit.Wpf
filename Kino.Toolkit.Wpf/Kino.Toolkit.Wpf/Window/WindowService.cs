@@ -57,8 +57,7 @@ namespace Kino.Toolkit.Wpf
         private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
-            var window = obj as Window;
-            if (window == null || newValue == false)
+            if (!(obj is Window window) || newValue == false)
                 return;
 
             var service = new WindowCommandHelper(window);
@@ -89,8 +88,7 @@ namespace Kino.Toolkit.Wpf
         private static void OnIsKeepInWorkAreaChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
-            var window = obj as Window;
-            if (window == null || newValue == false)
+            if (!(obj is Window window) || newValue == false)
                 return;
 
             window.SizeChanged += (s, e) =>
