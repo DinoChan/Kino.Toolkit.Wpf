@@ -32,21 +32,9 @@ namespace Kino.Toolkit.Wpf.Samples
             var e = SystemParameters.WindowResizeBorderThickness;
             var f = SystemParameters.WindowNonClientFrameThickness;
             var g = SystemParameters.FixedFrameHorizontalBorderHeight;
-            GotFocus += MainWindow_GotFocus;
-
         }
 
-        private async void MainWindow_GotFocus(object sender, RoutedEventArgs e)
-        {
-
-            while (true)
-            {
-              await  Task.Delay(1000);
-                var c = FocusManager.GetFocusedElement(this);
-                if (c != null)
-                    Debug.WriteLine(c);
-            }
-        }
+      
 
         private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<Object> e)
         {

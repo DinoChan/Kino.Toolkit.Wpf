@@ -153,7 +153,7 @@ namespace Kino.Toolkit.Wpf
             bool isItemItsOwnContainer = false;
             if (item is DependencyObject element)
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
-            
+
             return item is KinoFormItem || item is KinoFormTitle || item is KinoFormSeparator || isItemItsOwnContainer;
         }
 
@@ -161,6 +161,22 @@ namespace Kino.Toolkit.Wpf
         {
             var item = new KinoFormItem();
             return item;
+        }
+
+        protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
+        {
+            base.PrepareContainerForItemOverride(element, item);
+
+            if (element is KinoFormItem kinoFormItem)
+            {
+                if (item is KinoFormItem == false && item is DependencyObject content)
+                {
+                    kinoFormItem.Header = GetHeader(content);
+                    kinoFormItem.Description = GetDescription(content);
+                    kinoFormItem.IsRequired = GetIsRequired(content);
+                }
+            }
+
         }
     }
 }
