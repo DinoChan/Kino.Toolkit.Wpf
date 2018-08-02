@@ -48,12 +48,12 @@
                 </StackPanel>
 
         
-            <!--<kino:KinoFormItem Header="备注"
+            <kino:KinoFormItem Header="备注"
                                HeaderTemplate="{StaticResource TopHeaderTemplate}">
                 <TextBox AcceptsReturn="True"
                          VerticalScrollBarVisibility="Auto"
                          Height="100" />
-            </kino:KinoFormItem>-->
+            </kino:KinoFormItem>
             <kino:KinoForm.CommandBar>
                 <kino:KinoFormCommandBar >
                     <kino:KinoButton Content="OK"
