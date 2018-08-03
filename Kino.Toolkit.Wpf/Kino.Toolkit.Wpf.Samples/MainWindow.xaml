@@ -37,6 +37,8 @@
                                           SampleType="{x:Type local:FormSample}" />
                 <local:SampleTreeViewItem Header="RadioButtonMenuItem"
                                           SampleType="{x:Type local:RadioButtonMenuItemSample}" />
+                <local:SampleTreeViewItem Header="DataPager"
+                                          SampleType="{x:Type local:DataPagerSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

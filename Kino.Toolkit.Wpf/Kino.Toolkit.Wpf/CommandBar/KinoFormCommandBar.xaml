@@ -35,8 +35,9 @@
                      Color="#FFADB2B5" />
     <SolidColorBrush x:Key="Button.Disabled.Foreground"
                      Color="#FF838383" />
-    
-    <Style x:Key="FormCommandBarKinoButton" TargetType="local:KinoButton">
+
+    <Style x:Key="FormCommandBarKinoButton"
+           TargetType="local:KinoButton">
         <Setter Property="FocusVisualStyle"
                 Value="{StaticResource FocusVisual}" />
         <Setter Property="Background"
@@ -154,7 +155,7 @@
                             <Setter Property="BorderBrush"
                                     TargetName="border"
                                     Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            
+
                         </Trigger>
                         <Trigger Property="IsDefault"
                                  Value="true">
@@ -285,7 +286,9 @@
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="Margin"
-                Value="0,4" />
+                Value="4,4,4,8" />
+        <Setter Property="Padding"
+                Value="8,0,4,0" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Right" />
         <Setter Property="Template">
@@ -299,7 +302,18 @@
                                    TargetType="{x:Type local:KinoButton}" />
                         </ResourceDictionary>
                     </ControlTemplate.Resources>
-                    <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="Header" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="IsRequired" />
+                        </Grid.ColumnDefinitions>
+                        <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        Grid.Column="1" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
