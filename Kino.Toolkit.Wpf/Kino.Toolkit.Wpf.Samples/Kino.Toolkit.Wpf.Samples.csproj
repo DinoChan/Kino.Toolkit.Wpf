@@ -37,6 +37,7 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -80,6 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Samples\DataGrid\DataGridSample.xaml.cs">
+      <DependentUpon>DataGridSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\DataPager\DataPagerSample.xaml.cs">
       <DependentUpon>DataPagerSample.xaml</DependentUpon>
     </Compile>
@@ -123,6 +127,10 @@
       <DependentUpon>WindowSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleTreeViewItem.cs" />
+    <Page Include="Samples\DataGrid\DataGridSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\DataPager\DataPagerSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

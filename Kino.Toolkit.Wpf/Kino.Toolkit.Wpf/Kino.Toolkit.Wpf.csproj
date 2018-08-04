@@ -34,6 +34,7 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -71,6 +72,8 @@
     <Compile Include="Common\WeakEventListener.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
+    <Compile Include="DataGrid\KinoDataGrid.cs" />
+    <Compile Include="DataGrid\KinoDataGridSelector.cs" />
     <Compile Include="DataPager\KinoDataPager.cs" />
     <Compile Include="DataPager\PagerDisplayMode.cs" />
     <Compile Include="DataPager\PagerResources.Designer.cs">
@@ -84,7 +87,7 @@
     <Compile Include="Form\KinoFormTitle.cs" />
     <Compile Include="ListBox\KinoListBox.cs" />
     <Compile Include="ListBox\KinoListBoxItem.cs" />
-    <Compile Include="ListBox\KinoSelectionCheckBox.cs" />
+    <Compile Include="ListBox\KinoListBoxSelector.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupRoot.cs" />
     <Compile Include="PagedCollectionView\IPagedCollectionView.cs" />
@@ -122,6 +125,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CommandBar\KinoWindowCommandBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataGrid\KinoDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

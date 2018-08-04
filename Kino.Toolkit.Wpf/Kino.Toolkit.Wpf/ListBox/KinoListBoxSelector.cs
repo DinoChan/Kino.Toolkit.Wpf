@@ -9,11 +9,11 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-    public class KinoSelectionCheckBox : CheckBox
+    public class KinoListBoxSelector : CheckBox
     {
         private bool _isUpdatingIsChecked;
 
-        public KinoSelectionCheckBox()
+        public KinoListBoxSelector()
         {
         }
 
@@ -30,11 +30,11 @@ namespace Kino.Toolkit.Wpf
         /// 标识 RelativeListBox 依赖属性。
         /// </summary>
         public static readonly DependencyProperty RelativeListBoxProperty =
-            DependencyProperty.Register("RelativeListBox", typeof(ListBox), typeof(KinoSelectionCheckBox), new PropertyMetadata(null, OnRelativeListBoxChanged));
+            DependencyProperty.Register("RelativeListBox", typeof(ListBox), typeof(KinoListBoxSelector), new PropertyMetadata(null, OnRelativeListBoxChanged));
 
         private static void OnRelativeListBoxChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            var target = obj as KinoSelectionCheckBox;
+            var target = obj as KinoListBoxSelector;
             var oldValue = (ListBox)args.OldValue;
             var newValue = (ListBox)args.NewValue;
             if (oldValue != newValue)
@@ -94,7 +94,7 @@ namespace Kino.Toolkit.Wpf
             base.OnChecked(e);
             if (_isUpdatingIsChecked || RelativeListBox == null)
                 return;
-
+            
             RelativeListBox.SelectAll();
         }
 
