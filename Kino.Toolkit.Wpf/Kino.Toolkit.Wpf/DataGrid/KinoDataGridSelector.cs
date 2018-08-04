@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,13 +7,6 @@ namespace Kino.Toolkit.Wpf
     public class KinoDataGridSelector : CheckBox
     {
         private bool _isUpdatingIsChecked;
-
-        public KinoDataGridSelector()
-        {
-        }
-
-
-
 
         /// <summary>
         /// 获取或设置RelativeDataGrid的值
@@ -90,7 +78,6 @@ namespace Kino.Toolkit.Wpf
             IsEnabled = RelativeDataGrid.Items.Count > 0;
         }
 
-
         protected override void OnChecked(RoutedEventArgs e)
         {
             base.OnChecked(e);
@@ -109,7 +96,6 @@ namespace Kino.Toolkit.Wpf
 
             RelativeDataGrid.UnselectAll();
         }
-
 
     }
 }

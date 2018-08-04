@@ -73,7 +73,6 @@
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
     <Compile Include="DataGrid\KinoDataGrid.cs" />
-    <Compile Include="DataGrid\KinoDataGridSelector.cs" />
     <Compile Include="DataPager\KinoDataPager.cs" />
     <Compile Include="DataPager\PagerDisplayMode.cs" />
     <Compile Include="DataPager\PagerResources.Designer.cs">
@@ -87,7 +86,6 @@
     <Compile Include="Form\KinoFormTitle.cs" />
     <Compile Include="ListBox\KinoListBox.cs" />
     <Compile Include="ListBox\KinoListBoxItem.cs" />
-    <Compile Include="ListBox\KinoListBoxSelector.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupRoot.cs" />
     <Compile Include="PagedCollectionView\IPagedCollectionView.cs" />
@@ -101,6 +99,9 @@
     <Compile Include="PagedCollectionView\TypeHelper.cs" />
     <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
     <Compile Include="Resizer\KinoResizer.cs" />
+    <Compile Include="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
+    <Compile Include="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
+    <Compile Include="SelectionCheckBox\SelectionCheckBox.cs" />
     <Compile Include="SquareBox\KinoSquareBox.cs" />
     <Compile Include="SquareBox\KinoSquareBoxTemplateSettings.cs" />
     <Compile Include="StateIndicator\KinoStateIndicator.cs" />
