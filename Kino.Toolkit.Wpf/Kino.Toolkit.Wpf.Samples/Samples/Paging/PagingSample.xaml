@@ -12,9 +12,17 @@
         <StackPanel x:Name="FirstDemoRoot">
             <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}">
                 <StackPanel>
-                    <ListBox DisplayMemberPath="Name"
-                             Height="200"
-                             ItemsSource="{Binding}" />
+                    <DataGrid Height="200"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name"
+                                            Binding="{Binding Name}"
+                                            Width="*" 
+                                            SortMemberPath="Name"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <kino:KinoDataPager Source="{Binding}"
                                         DisplayMode="FirstLastPreviousNextNumeric" />
                 </StackPanel>

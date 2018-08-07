@@ -44,6 +44,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnLoadCompleted(ILoadOperation loadOperation)
         {
+            //MessageBox.Show("LoadCompleted");
         }
     }
 }

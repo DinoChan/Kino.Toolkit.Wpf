@@ -130,15 +130,16 @@ namespace Kino.Toolkit.Wpf
 
         public override void Load(object userState)
         {
-            if (!this.CanLoad)
-            {
-                throw new InvalidOperationException(DomainServicesResources.CannotLoad);
-            }
+            this._currentUserState = userState;
+
+            if (IsBusy)
+                return;
+
 
             if (RemoteCollectionView.PageIndex < 0)
                 return;
 
-            this._currentUserState = userState;
+            
             IsBusy = true;
             if (LoadStarted != null)
                 LoadStarted(this, EventArgs.Empty);
