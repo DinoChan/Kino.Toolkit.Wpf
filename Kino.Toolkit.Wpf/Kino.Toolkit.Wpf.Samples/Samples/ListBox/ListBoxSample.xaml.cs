@@ -33,9 +33,6 @@ namespace Kino.Toolkit.Wpf.Samples
         }
 
 
-        public class TestModel
-        {
-            public string Name { get; set; }
-        }
+       
     }
 }

@@ -23,6 +23,7 @@ namespace Kino.Toolkit.Wpf.Samples
         public WindowSample()
         {
             InitializeComponent();
+            
         }
 
         private void OnShowTestWindow(object sender, RoutedEventArgs e)

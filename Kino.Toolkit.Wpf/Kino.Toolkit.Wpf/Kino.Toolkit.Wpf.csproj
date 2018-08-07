@@ -80,6 +80,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PagerResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="DomainServices\CollectionViewLoader.cs" />
+    <Compile Include="DomainServices\CollectionViewWrapper.cs" />
+    <Compile Include="DomainServices\DomainCollectionView.cs" />
+    <Compile Include="DomainServices\DomainServicesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainServicesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainServices\ILoadOperation.cs" />
+    <Compile Include="DomainServices\PagedCollectionViewBase.cs" />
+    <Compile Include="DomainServices\RemoteCollectionView.cs" />
+    <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
     <Compile Include="Form\KinoForm.cs" />
     <Compile Include="Form\KinoFormItem.cs" />
     <Compile Include="Form\KinoFormSeparator.cs" />
@@ -202,6 +214,11 @@
       <LastGenOutput>PagerResources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Kino.Toolkit.Wpf</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainServices\DomainServicesResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainServicesResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Kino.Toolkit.Wpf</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="PagedCollectionView\PagedCollectionViewResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

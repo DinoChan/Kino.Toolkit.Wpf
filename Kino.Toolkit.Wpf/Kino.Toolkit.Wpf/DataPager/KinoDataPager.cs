@@ -1876,7 +1876,7 @@ namespace Kino.Toolkit.Wpf
                             this.PageCount.ToString(CultureInfo.CurrentCulture));
                     }
 
-                    this._currentPagePrefixTextBlock.Text = textBlockCaption;
+                    //this._currentPagePrefixTextBlock.Text = textBlockCaption;
                     if (string.IsNullOrEmpty(textBlockCaption))
                     {
                         this._currentPagePrefixTextBlock.Visibility = Visibility.Collapsed;
@@ -1902,7 +1902,7 @@ namespace Kino.Toolkit.Wpf
                         this.PageCount.ToString(CultureInfo.CurrentCulture));
                 }
 
-                this._currentPageSuffixTextBlock.Text = textBlockCaption;
+                //this._currentPageSuffixTextBlock.Text = textBlockCaption;
                 if (string.IsNullOrEmpty(textBlockCaption))
                 {
                     this._currentPageSuffixTextBlock.Visibility = Visibility.Collapsed;

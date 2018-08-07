@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\TestModel.cs" />
     <Compile Include="Samples\DataGrid\DataGridSample.xaml.cs">
       <DependentUpon>DataGridSample.xaml</DependentUpon>
     </Compile>
@@ -99,6 +100,10 @@
     <Compile Include="Samples\ListBox\ListBoxSample.xaml.cs">
       <DependentUpon>ListBoxSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\Paging\PagingSample.xaml.cs">
+      <DependentUpon>PagingSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Paging\TestRemoteService.cs" />
     <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
       <DependentUpon>ProgressRingSample.xaml</DependentUpon>
     </Compile>
@@ -160,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\ListBox\ListBoxSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Paging\PagingSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
