@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* 
+    Copyright (c) 2013, The Outercurve Foundation. 
+    This software is released under the Apache License 2.0 (the "License");
+    you may not use the software except in compliance with the License. 
+    http://www.openriaservices.net/
+*/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
