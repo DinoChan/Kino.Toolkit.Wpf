@@ -37,6 +37,7 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -56,12 +57,37 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\TestModel.cs" />
+    <Compile Include="Samples\DataGrid\DataGridSample.xaml.cs">
+      <DependentUpon>DataGridSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\DataPager\DataPagerSample.xaml.cs">
+      <DependentUpon>DataPagerSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\Form\FormSample.xaml.cs">
       <DependentUpon>FormSample.xaml</DependentUpon>
     </Compile>
@@ -71,6 +97,13 @@
     <Compile Include="Samples\Form\FormSampleWindow.xaml.cs">
       <DependentUpon>FormSampleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\ListBox\ListBoxSample.xaml.cs">
+      <DependentUpon>ListBoxSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Paging\PagingSample.xaml.cs">
+      <DependentUpon>PagingSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Paging\TestRemoteService.cs" />
     <Compile Include="Samples\ProgressRing\ProgressRingSample.xaml.cs">
       <DependentUpon>ProgressRingSample.xaml</DependentUpon>
     </Compile>
@@ -99,6 +132,14 @@
       <DependentUpon>WindowSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleTreeViewItem.cs" />
+    <Page Include="Samples\DataGrid\DataGridSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\DataPager\DataPagerSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\Form\FormSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\Form\FormSampleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\ListBox\ListBoxSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Paging\PagingSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +252,8 @@
   <ItemGroup>
     <Resource Include="Assets\Images\defaulticon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

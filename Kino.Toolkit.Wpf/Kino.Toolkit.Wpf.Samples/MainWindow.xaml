@@ -13,12 +13,14 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="150"/>
+            <ColumnDefinition Width="Auto"
+                              MinWidth="150" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TreeView SelectedItemChanged="OnTreeViewSelectionChanged" >
+        <TreeView SelectedItemChanged="OnTreeViewSelectionChanged">
             <TreeViewItem Header="Kino" />
-            <TreeViewItem Header="Controls" IsExpanded="True">
+            <TreeViewItem Header="Controls"
+                          IsExpanded="True">
                 <local:SampleTreeViewItem Header="Button"
                                           SampleType="{x:Type local:ButtonSample}" />
                 <local:SampleTreeViewItem Header="TransitioningContentControl"
@@ -37,6 +39,14 @@
                                           SampleType="{x:Type local:FormSample}" />
                 <local:SampleTreeViewItem Header="RadioButtonMenuItem"
                                           SampleType="{x:Type local:RadioButtonMenuItemSample}" />
+                <local:SampleTreeViewItem Header="DataPager"
+                                          SampleType="{x:Type local:DataPagerSample}" />
+                <local:SampleTreeViewItem Header="ListBox"
+                                          SampleType="{x:Type local:ListBoxSample}" />
+                <local:SampleTreeViewItem Header="DataGrid"
+                                          SampleType="{x:Type local:DataGridSample}" />
+                <local:SampleTreeViewItem Header="Paging"
+                                          SampleType="{x:Type local:PagingSample}" />
             </TreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

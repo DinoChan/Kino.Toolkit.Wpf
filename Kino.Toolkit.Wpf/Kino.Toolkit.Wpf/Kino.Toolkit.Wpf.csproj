@@ -34,8 +34,10 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -60,19 +62,61 @@
     <Compile Include="CommandBar\KinoCommandBar.cs" />
     <Compile Include="CommandBar\KinoFormCommandBar.cs" />
     <Compile Include="CommandBar\KinoWindowCommandBar.cs" />
+    <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\FunctionalProgramming.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Common\FrameworkElementService.cs" />
+    <Compile Include="Common\TypeHelper.cs" />
     <Compile Include="Common\VisualStates.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
+    <Compile Include="Common\WeakEventListener.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
+    <Compile Include="DataGrid\KinoDataGrid.cs" />
+    <Compile Include="DataPager\KinoDataPager.cs" />
+    <Compile Include="DataPager\PagerDisplayMode.cs" />
+    <Compile Include="DataPager\PagerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainServices\AsyncRemoteCollectionViewLoader.cs" />
+    <Compile Include="DomainServices\CollectionViewLoader.cs" />
+    <Compile Include="DomainServices\CollectionViewWrapper.cs" />
+    <Compile Include="DomainServices\DomainCollectionView.cs" />
+    <Compile Include="DomainServices\DomainServicesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainServicesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainServices\ILoadOperation.cs" />
+    <Compile Include="DomainServices\ILoadResult.cs" />
+    <Compile Include="DomainServices\PagedCollectionViewBase.cs" />
+    <Compile Include="DomainServices\AsyncRemoteCollectionView.cs" />
+    <Compile Include="DomainServices\RemoteCollectionView.cs" />
+    <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
     <Compile Include="Form\KinoForm.cs" />
     <Compile Include="Form\KinoFormItem.cs" />
     <Compile Include="Form\KinoFormSeparator.cs" />
     <Compile Include="Form\KinoFormTitle.cs" />
+    <Compile Include="ListBox\KinoListBox.cs" />
+    <Compile Include="ListBox\KinoListBoxItem.cs" />
+    <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
+    <Compile Include="PagedCollectionView\CollectionViewGroupRoot.cs" />
+    <Compile Include="PagedCollectionView\IPagedCollectionView.cs" />
+    <Compile Include="PagedCollectionView\PageChangingEventArgs.cs" />
+    <Compile Include="PagedCollectionView\PagedCollectionView.cs" />
+    <Compile Include="PagedCollectionView\PagedCollectionViewResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagedCollectionViewResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PagedCollectionView\TypeHelper.cs" />
     <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
     <Compile Include="Resizer\KinoResizer.cs" />
+    <Compile Include="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
+    <Compile Include="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
+    <Compile Include="SelectionCheckBox\SelectionCheckBox.cs" />
     <Compile Include="SquareBox\KinoSquareBox.cs" />
     <Compile Include="SquareBox\KinoSquareBoxTemplateSettings.cs" />
     <Compile Include="StateIndicator\KinoStateIndicator.cs" />
@@ -100,7 +144,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DataGrid\KinoDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataPager\KinoDataPager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\KinoForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListBox\KinoListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +212,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="DataPager\PagerResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PagerResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Kino.Toolkit.Wpf</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainServices\DomainServicesResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainServicesResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Kino.Toolkit.Wpf</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagedCollectionView\PagedCollectionViewResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PagedCollectionViewResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>System.Windows.Data</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
