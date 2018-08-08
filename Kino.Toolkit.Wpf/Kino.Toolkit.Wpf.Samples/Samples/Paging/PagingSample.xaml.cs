@@ -21,18 +21,23 @@ namespace Kino.Toolkit.Wpf.Samples
     public partial class PagingSample : UserControl
     {
         private RemoteCollectionView _remoteCollectionView;
+        private AsyncRemoteCollectionView _asyncRemoteCollectionView;
 
         public PagingSample()
         {
             InitializeComponent();
             _remoteCollectionView = new RemoteCollectionView(Load, OnLoadCompleted);
             FirstDemoRoot.DataContext = _remoteCollectionView;
+
+            _asyncRemoteCollectionView = new AsyncRemoteCollectionView(LoadAsync, OnAsyncLoadCompleted);
+            AsyncDemoRoot.DataContext = _asyncRemoteCollectionView;
             Loaded += PagingSample_Loaded;
         }
 
         private void PagingSample_Loaded(object sender, RoutedEventArgs e)
         {
             _remoteCollectionView.EntirelyRefresh();
+            _asyncRemoteCollectionView.EntirelyRefresh();
         }
 
         private ILoadOperation Load()
@@ -43,6 +48,19 @@ namespace Kino.Toolkit.Wpf.Samples
         }
 
         private void OnLoadCompleted(ILoadOperation loadOperation)
+        {
+            //MessageBox.Show("LoadCompleted");
+        }
+
+
+        private async Task<ILoadResult> LoadAsync()
+        {
+            var service = new TestRemoteService();
+            var result = await service.LoadDataAsync(_asyncRemoteCollectionView.PageIndex, _asyncRemoteCollectionView.PageSize);
+            return result;
+        }
+
+        private void OnAsyncLoadCompleted(ILoadResult loadResult)
         {
             //MessageBox.Show("LoadCompleted");
         }

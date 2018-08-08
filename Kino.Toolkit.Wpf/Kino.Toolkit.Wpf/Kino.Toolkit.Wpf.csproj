@@ -80,6 +80,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PagerResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="DomainServices\AsyncRemoteCollectionViewLoader.cs" />
     <Compile Include="DomainServices\CollectionViewLoader.cs" />
     <Compile Include="DomainServices\CollectionViewWrapper.cs" />
     <Compile Include="DomainServices\DomainCollectionView.cs" />
@@ -89,7 +90,9 @@
       <DependentUpon>DomainServicesResources.resx</DependentUpon>
     </Compile>
     <Compile Include="DomainServices\ILoadOperation.cs" />
+    <Compile Include="DomainServices\ILoadResult.cs" />
     <Compile Include="DomainServices\PagedCollectionViewBase.cs" />
+    <Compile Include="DomainServices\AsyncRemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
     <Compile Include="Form\KinoForm.cs" />

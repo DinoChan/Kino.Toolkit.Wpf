@@ -9,18 +9,38 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
-        <StackPanel x:Name="FirstDemoRoot">
-            <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}">
+        <StackPanel>
+            <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
+                                x:Name="FirstDemoRoot">
                 <StackPanel>
                     <DataGrid Height="200"
                               AutoGenerateColumns="False"
                               IsReadOnly="True"
                               ItemsSource="{Binding}">
                         <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name"
-                                            Binding="{Binding Name}"
-                                            Width="*" 
-                                            SortMemberPath="Name"/>
+                            <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name}"
+                                                Width="*"
+                                                SortMemberPath="Name" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <kino:KinoDataPager Source="{Binding}"
+                                        DisplayMode="FirstLastPreviousNextNumeric" />
+                </StackPanel>
+            </xctk:BusyIndicator>
+
+            <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
+                                x:Name="AsyncDemoRoot">
+                <StackPanel>
+                    <DataGrid Height="200"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name}"
+                                                Width="*"
+                                                SortMemberPath="Name" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <kino:KinoDataPager Source="{Binding}"

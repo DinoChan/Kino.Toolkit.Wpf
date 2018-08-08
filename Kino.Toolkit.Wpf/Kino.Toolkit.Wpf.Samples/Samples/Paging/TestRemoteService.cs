@@ -53,12 +53,15 @@ namespace Kino.Toolkit.Wpf.Samples
             Result = new Collection<TestModel>(_source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
         }
 
-        //public async Task<Collection<TestModel>> LoadDataAsync(int pageIndex, int pageSize)
-        //{
-        //    Result = new Collection<TestModel>(_source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
-        //    await Task.Delay(TimeSpan.FromSeconds(2));
-        //    return Result;
-        //}
+        public async Task<ILoadResult> LoadDataAsync(int pageIndex, int pageSize)
+        {
+            var collection = new Collection<TestModel>(_source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
+            var result = new LoadResult();
+            result.Result = collection;
+            result.TotalCount = TotalCount;
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            return result;
+        }
 
         private void OnTmerTick(object sender, EventArgs e)
         {
@@ -85,5 +88,14 @@ namespace Kino.Toolkit.Wpf.Samples
     //    }
     //}
 
+    public class LoadResult : ILoadResult
+    {
+        public IEnumerable Result { get; set; }
 
+        public Exception Error { get; set; }
+
+        public int TotalCount { get; set; }
+
+        public bool IsCanceled { get; set; }
+    }
 }

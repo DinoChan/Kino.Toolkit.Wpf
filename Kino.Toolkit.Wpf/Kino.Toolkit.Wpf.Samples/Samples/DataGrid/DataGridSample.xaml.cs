@@ -22,7 +22,8 @@ namespace Kino.Toolkit.Wpf.Samples
     {
         public DataGridSample()
         {
-            InitializeComponent(); var list = new List<TestModel>();
+            InitializeComponent();
+            var list = new List<TestModel>();
             for (int i = 0; i < 10; i++)
             {
                 list.Add(new TestModel { Name = "this is " + i });

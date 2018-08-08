@@ -71,6 +71,17 @@
                     Margin="4">
             <ListBox ItemsSource="{Binding}"
                      DisplayMemberPath="Name" />
+            <DataGrid Height="200"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name"
+                                        Binding="{Binding Name}"
+                                        Width="*"
+                                        SortMemberPath="Name" />
+                </DataGrid.Columns>
+            </DataGrid>
 
         </StackPanel>
     </Grid>

@@ -8,19 +8,11 @@ using System.Threading.Tasks;
 
 namespace Kino.Toolkit.Wpf
 {
-    public interface ILoadOperation
+    public interface ILoadOperation : ILoadResult
     {
-        IEnumerable Result { get; }
-
         object UserState { get; }
 
-        Exception Error { get; }
-
-        int TotalCount { get; }
-
         event EventHandler Completed;
-
-        bool IsCanceled { get; set; }
 
         bool CanCancel { get; }
 
