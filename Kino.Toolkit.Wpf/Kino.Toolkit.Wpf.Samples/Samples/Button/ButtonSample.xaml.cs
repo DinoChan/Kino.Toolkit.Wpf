@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// ButtonSample.xaml 的交互逻辑
     /// </summary>
-    public partial class ButtonSample : UserControl
+    public partial class ButtonSample 
     {
         public ButtonSample()
         {
