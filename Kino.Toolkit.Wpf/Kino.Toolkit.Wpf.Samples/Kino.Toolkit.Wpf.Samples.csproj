@@ -81,6 +81,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\SampleSection.cs" />
+    <Compile Include="Controls\SourceCodeBox.cs" />
+    <Compile Include="Controls\SourceCodeItemsControl.cs" />
+    <Compile Include="Controls\SourceCodeModel.cs" />
+    <Compile Include="Controls\SourceCodeType.cs" />
+    <Compile Include="Controls\SourceCodeTypeConverter.cs" />
     <Compile Include="Core\CodeBox.cs" />
     <Compile Include="Common\TestModel.cs" />
     <Compile Include="Core\CodeFormatting\CSharpFormat.cs" />
@@ -266,6 +272,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

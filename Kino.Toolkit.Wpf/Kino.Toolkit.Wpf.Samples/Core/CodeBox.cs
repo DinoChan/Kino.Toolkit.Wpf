@@ -48,6 +48,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
     private string GetDataFromResource( string uriString )
     {
       Uri uri = new Uri( uriString, UriKind.Relative );
+            //MessageBox.Show(uri.ToString());
       StreamResourceInfo info = Application.GetResourceStream( uri );
 
       StreamReader reader = new StreamReader( info.Stream );

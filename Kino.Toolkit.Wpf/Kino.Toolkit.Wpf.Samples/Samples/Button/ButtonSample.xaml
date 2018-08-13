@@ -12,17 +12,25 @@
                   d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <kino:KinoButton Content="Test"
-                             Margin="8"
-                             HorizontalAlignment="Left"
-                             Width="75"
-                             State="{Binding SelectedItem,ElementName=StatesListBox}">
-                <!--<kino:KinoButton.Icon>
-                    <Rectangle Fill="Red" />
-                </kino:KinoButton.Icon>-->
-            </kino:KinoButton>
-            <ListBox Margin="8"
-                     x:Name="StatesListBox" />
+            <local:SampleSection>
+                <kino:KinoButton Content="Test"
+                                 Margin="8"
+                                 HorizontalAlignment="Left"
+                                 Width="75"
+                                 State="{Binding SelectedItem,ElementName=StatesListBox}" />
+                <local:SampleSection.ControlPanel>
+                    <ListBox Margin="8"
+                             x:Name="StatesListBox" />
+                </local:SampleSection.ControlPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="ButtonSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section1.txt"/>
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+                
+            
+            
         </StackPanel>
     </Grid>
 </local:SamplePage>

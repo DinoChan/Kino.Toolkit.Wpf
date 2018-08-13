@@ -1,8 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples">
-
-
+    <local:SourceCodeTypeConverter x:Key="SourceCodeTypeConverter" />
     <Style TargetType="{x:Type local:SamplePage}">
         <Setter Property="Background"
                 Value="White" />
@@ -38,6 +37,82 @@
                                           VerticalScrollBarVisibility="Auto">
                                 <ContentPresenter />
                             </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:SampleSection}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SampleSection}">
+                    <StackPanel>
+                        <ContentControl Content="{TemplateBinding Header}"
+                                        Foreground="#FF16325C"
+                                        FontSize="24"
+                                        Padding="24" />
+                        <ContentControl  Content="{TemplateBinding Description}"
+                                         Foreground="#FF1E437C" />
+                        <ContentPresenter Margin="0,8,0,0" />
+                        <ContentControl Content="{TemplateBinding ControlPanel}">
+                            <ContentControl.Template>
+                                <ControlTemplate TargetType="ContentControl">
+                                    <StackPanel>
+                                        <Rectangle Height="1"
+                                                   Margin="8"
+                                                   Fill="#FF54698D" />
+                                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </ContentControl.Template>
+                        </ContentControl>
+                        <local:SourceCodeItemsControl ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodes}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:SourceCodeBox}">
+        <Setter Property="Margin"
+                Value="0,4" />
+        <Setter Property="Background"
+                Value="#FFF9F9F9" />
+        <Setter Property="BorderBrush"
+                Value="#FFD3D6DB" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SourceCodeBox}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Foreground="#FF757575"
+                                           Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodeType,Converter={StaticResource SourceCodeTypeConverter}}" />
+                                <Rectangle Width="1"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           Fill="#FF757575" />
+                                <Button BorderThickness="0"
+                                        Grid.Column="1"
+                                        Background="Transparent"
+                                        Content="Copy"
+                                        Command="{x:Static ApplicationCommands.Copy}" />
+                                <ContentControl x:Name="SourceCodePlacement" />
+                            </Grid>
                         </Grid>
                     </Border>
                 </ControlTemplate>
