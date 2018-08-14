@@ -37,7 +37,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
     public void SetText( FlowDocument document, string text )
     {
       document.Blocks.Clear();
-      document.PageWidth = 2500;
+      //document.PageWidth = 100;
       XamlFormatter.ColorizeXAML( text, document );
     }
 

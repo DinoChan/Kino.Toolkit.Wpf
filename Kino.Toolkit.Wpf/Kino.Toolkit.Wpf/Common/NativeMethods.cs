@@ -14,7 +14,7 @@ namespace Kino.Toolkit.Wpf
     }
 
     /// <summary>
-    /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms724385%28v=vs.85%29.aspx?f=255&MSPPError=-2147217396
+    /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms724385(v=vs.85).aspx
     /// Retrieves the specified system metric or system configuration setting.
     /// Note that all dimensions retrieved by GetSystemMetrics are in pixels.
     /// </summary>

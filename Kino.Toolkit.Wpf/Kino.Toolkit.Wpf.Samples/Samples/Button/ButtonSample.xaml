@@ -14,13 +14,11 @@
         <StackPanel>
             <local:SampleSection>
                 <kino:KinoButton Content="Test"
-                                 Margin="8"
                                  HorizontalAlignment="Left"
                                  Width="75"
                                  State="{Binding SelectedItem,ElementName=StatesListBox}" />
                 <local:SampleSection.ControlPanel>
-                    <ListBox Margin="8"
-                             x:Name="StatesListBox" />
+                    <ListBox                              x:Name="StatesListBox" />
                 </local:SampleSection.ControlPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"

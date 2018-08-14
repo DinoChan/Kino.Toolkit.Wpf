@@ -23,50 +23,54 @@ using Xceed.Wpf.Toolkit.LiveExplorer.Core;
 
 namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
 {
-  public abstract class CodeBox : Xceed.Wpf.Toolkit.RichTextBox
-  {
-    protected CodeBox()
+    public abstract class CodeBox : Xceed.Wpf.Toolkit.RichTextBox
     {
-      this.IsReadOnly = true;
-      this.FontFamily = new FontFamily( "Courier New" );
-      this.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
-      this.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
-      this.Document.PageWidth = 2500;
+        protected CodeBox()
+        {
+            this.IsReadOnly = true;
+            this.FontFamily = new FontFamily("Consolas");
+            this.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            this.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            SizeChanged += OnControlSizeChanged;
+        }
+
+        private void OnControlSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.Document.PageWidth = Math.Max(1000, e.NewSize.Width - 10);
+        }
+
+        public string CodeSource
+        {
+            set
+            {
+                if (value == null)
+                    this.Text = null;
+
+                this.Text = this.GetDataFromResource(value);
+            }
+        }
+
+        private string GetDataFromResource(string uriString)
+        {
+            Uri uri = new Uri(uriString, UriKind.Relative);
+            StreamResourceInfo info = Application.GetResourceStream(uri);
+
+            StreamReader reader = new StreamReader(info.Stream);
+            string data = reader.ReadToEnd();
+            reader.Close();
+
+            return data;
+        }
+
     }
 
-    public string CodeSource
+    public class XamlBox : CodeBox
     {
-      set
-      {
-        if( value == null )
-          this.Text = null;
-
-        this.Text = this.GetDataFromResource( value );
-      }
+        public XamlBox() { this.TextFormatter = new Core.XamlFormatter(); }
     }
 
-    private string GetDataFromResource( string uriString )
+    public class CSharpBox : CodeBox
     {
-      Uri uri = new Uri( uriString, UriKind.Relative );
-            //MessageBox.Show(uri.ToString());
-      StreamResourceInfo info = Application.GetResourceStream( uri );
-
-      StreamReader reader = new StreamReader( info.Stream );
-      string data = reader.ReadToEnd();
-      reader.Close();
-
-      return data;
+        public CSharpBox() { this.TextFormatter = new Core.CSharpFormatter(); }
     }
-
-  }
-
-  public class XamlBox : CodeBox
-  {
-    public XamlBox() { this.TextFormatter = new Core.XamlFormatter(); }
-  }
-
-  public class CSharpBox : CodeBox
-  {
-    public CSharpBox() { this.TextFormatter = new Core.CSharpFormatter(); }
-  }
 }
