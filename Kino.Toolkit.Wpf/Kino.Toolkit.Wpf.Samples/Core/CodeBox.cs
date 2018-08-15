@@ -36,7 +36,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
 
         private void OnControlSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.Document.PageWidth = Math.Max(1000, e.NewSize.Width - 10);
+            this.Document.PageWidth = Math.Max(800, e.NewSize.Width - 10);
         }
 
         public string CodeSource

@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
 
     <local:TimesConverter x:Key="TimesConverter" />
+    <local:NullToValueConverter x:Key="NullToValueConverter" />
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -52,7 +53,7 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Padding"
-                Value="1" />
+                Value="2,1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoButton">
@@ -114,14 +115,18 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        >
                                 <local:KinoResizer VerticalContentAlignment="Stretch"
-                                                   HorizontalContentAlignment="Right"
+                                                   HorizontalContentAlignment="Left"
+                                                   FlowDirection="RightToLeft"
                                                    x:Name="Resizer">
                                     <local:KinoStateIndicator State="{TemplateBinding State}"
                                                               Height="Auto"
@@ -133,12 +138,14 @@
                                                               HorizontalContentAlignment="Stretch">
                                     </local:KinoStateIndicator>
                                 </local:KinoResizer>
-                                <Rectangle Width="{Binding ElementName=Resizer,Path=ActualWidth,Converter={StaticResource TimesConverter},ConverterParameter=0.4}" />
+                                <Rectangle Width="{Binding ElementName=Resizer,Path=ActualWidth,Converter={StaticResource TimesConverter},ConverterParameter=0.3}"
+                                           Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Content,Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}" />
                             </StackPanel>
+
+
                             <ContentPresenter x:Name="contentPresenter"
                                               Grid.Column="1"
                                               Focusable="False"
-                                              Margin="{TemplateBinding Padding}"
                                               RecognizesAccessKey="True"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />

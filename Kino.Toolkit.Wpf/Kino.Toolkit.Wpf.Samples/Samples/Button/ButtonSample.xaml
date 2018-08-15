@@ -8,27 +8,69 @@
                   Header="Button"
                   Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/Button"
                   mc:Ignorable="d"
-                  d:DesignHeight="450"
+                  d:DesignHeight="650"
                   d:DesignWidth="800">
     <Grid>
         <StackPanel>
             <local:SampleSection>
-                <kino:KinoButton Content="Test"
+                <kino:KinoButton Content="bookmark"
+                                 MinWidth="18"
+                                 x:Name="BookmarkButton"
                                  HorizontalAlignment="Left"
-                                 Width="75"
-                                 State="{Binding SelectedItem,ElementName=StatesListBox}" />
+                                 State="{Binding SelectedItem,ElementName=StatesListBox}">
+                    <kino:KinoButton.Icon>
+                        <TextBlock Style="{StaticResource FontAwesome}"
+                                   Text="&#xf02e;" />
+                        <!--<TextBlock Style="{StaticResource FontAwesome}"
+                                   Text="&#xf075;" />-->
+                    </kino:KinoButton.Icon>
+                </kino:KinoButton>
+
                 <local:SampleSection.ControlPanel>
-                    <ListBox                              x:Name="StatesListBox" />
+                    <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                        <StackPanel Orientation="Horizontal"
+                                    kino:KinoForm.Header="Content And Icon">
+                            <RadioButton Content="Content Only"
+                                         Checked="OnContentOnlyCheck" />
+                            <RadioButton Content="Icon Only"
+                                         Margin="8,0,0,0"
+                                         Checked="OnIcnOnlyCheck" />
+                            <RadioButton Content="Both"
+                                         Margin="8,0,0,0"
+                                         IsChecked="True"
+                                         Checked="OnBothCheck" />
+                        </StackPanel>
+                        <ListBox x:Name="StatesListBox"
+                                 kino:KinoForm.Header="State" />
+                    </kino:KinoForm>
                 </local:SampleSection.ControlPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
                                            Haader="ButtonSample.xaml"
-                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section1.txt"/>
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section1.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
-                
-            
-            
+            <local:SampleSection Header="IsEnabled and State">
+                <StackPanel>
+                    <TextBlock Text="Comment" />
+                    <TextBox Width="200"
+                             HorizontalAlignment="Left" />
+                    <kino:KinoButton Content="Comment"
+                                     x:Name="CommentButton"
+                                     HorizontalAlignment="Left"
+                                     Margin="0,4,0,0"
+                                     Width="100"
+                                     Click="OnComment"
+                                     IsDefault="True">
+                        <kino:KinoButton.Icon>
+                            <TextBlock Style="{StaticResource FontAwesome}"
+                                       Text="&#xf075;" Foreground="BlueViolet"/>
+                        </kino:KinoButton.Icon>
+                    </kino:KinoButton>
+                </StackPanel>
+            </local:SampleSection>
+
+
         </StackPanel>
     </Grid>
 </local:SamplePage>
