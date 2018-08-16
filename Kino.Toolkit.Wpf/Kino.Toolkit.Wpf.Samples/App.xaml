@@ -7,7 +7,8 @@
     <Application.Resources>
         <kino:NullToValueConverter x:Key="NullToValueConverter" />
 
-        <Style x:Key="FontAwesome" TargetType="TextBlock">
+        <Style x:Key="FontAwesome"
+               TargetType="TextBlock">
             <Setter Property="TextElement.FontFamily"
                     Value="/Kino.Toolkit.Wpf.Samples;component/Assets/#Font Awesome 5 Free Regular" />
         </Style>
@@ -49,5 +50,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <LinearGradientBrush x:Key="AccentBackground">
+            <GradientStop Color="#FF1F2022" />
+            <GradientStop Color="#FF434446"
+                          Offset="1" />
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="AccentForeground"
+                         Color="#FF68C0CA" />
     </Application.Resources>
 </Application>

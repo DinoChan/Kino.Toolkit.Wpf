@@ -81,7 +81,7 @@
                                 </ControlTemplate>
                             </ContentControl.Template>
                         </ContentControl>
-                        <local:SourceCodeItemsControl ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodes}" />
+                        <local:SourceCodeItemsControl Margin="0,4,0,0" ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodes}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

@@ -21,8 +21,6 @@
                     <kino:KinoButton.Icon>
                         <TextBlock Style="{StaticResource FontAwesome}"
                                    Text="&#xf02e;" />
-                        <!--<TextBlock Style="{StaticResource FontAwesome}"
-                                   Text="&#xf075;" />-->
                     </kino:KinoButton.Icon>
                 </kino:KinoButton>
 
@@ -41,6 +39,8 @@
                                          Checked="OnBothCheck" />
                         </StackPanel>
                         <ListBox x:Name="StatesListBox"
+                                 HorizontalAlignment="Left"
+                                 Width="250"
                                  kino:KinoForm.Header="State" />
                     </kino:KinoForm>
                 </local:SampleSection.ControlPanel>
@@ -48,6 +48,9 @@
                     <local:SourceCodeModel SourceCodeType="Xaml"
                                            Haader="ButtonSample.xaml"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section1.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="ButtonSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section2.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
             <local:SampleSection Header="IsEnabled and State">
@@ -64,10 +67,19 @@
                                      IsDefault="True">
                         <kino:KinoButton.Icon>
                             <TextBlock Style="{StaticResource FontAwesome}"
-                                       Text="&#xf075;" Foreground="BlueViolet"/>
+                                       Text="&#xf075;"
+                                       Foreground="BlueViolet" />
                         </kino:KinoButton.Icon>
                     </kino:KinoButton>
                 </StackPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="ButtonSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section3.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="ButtonSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section4.txt" />
+                </local:SampleSection.SourceCodes>
             </local:SampleSection>
 
 

@@ -1,0 +1,12 @@
+﻿private async void OnComment(object sender, RoutedEventArgs e)
+{
+    var button = sender as KinoButton;
+    button.IsEnabled = false;
+    button.State = ProgressState.Busy;
+
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    button.State = ProgressState.Completed;
+    await Task.Delay(TimeSpan.FromSeconds(1));
+    button.State = ProgressState.None;
+    button.IsEnabled = true;
+}

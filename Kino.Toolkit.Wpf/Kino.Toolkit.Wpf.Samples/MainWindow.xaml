@@ -9,18 +9,257 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Height="450"
-        Width="800">
+        Width="800"
+         >
+    <Window.Resources>
+        <Style x:Key="TreeViewItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Checked.Fill"
+                         Color="#FF595959" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Checked.Stroke"
+                         Color="#FF262626" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Stroke"
+                         Color="#FF27C7F7" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Fill"
+                         Color="#FFCCEEFB" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Checked.Stroke"
+                         Color="#FF1CC4F7" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Checked.Fill"
+                         Color="#FF82DFFB" />
+        <PathGeometry x:Key="TreeArrow"
+                      Figures="M0,0 L0,6 L6,0 z" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Fill"
+                         Color="#FFFFFFFF" />
+        <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Stroke"
+                         Color="#FF818181" />
+        <Style x:Key="ExpandCollapseToggleStyle"
+               TargetType="{x:Type ToggleButton}">
+            <Setter Property="Focusable"
+                    Value="False" />
+            <Setter Property="Width"
+                    Value="16" />
+            <Setter Property="Height"
+                    Value="16" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource AccentForeground}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="Transparent"
+                                Height="16"
+                                Padding="5,5,5,5"
+                                Width="16">
+                            <Path x:Name="ExpandPath"
+                                  Data="{StaticResource TreeArrow}"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Stroke="{TemplateBinding Foreground}" 
+                                  StrokeThickness="1"
+                                  >
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="135"
+                                                     CenterY="3"
+                                                     CenterX="3" />
+                                </Path.RenderTransform>
+                            </Path>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter Property="RenderTransform"
+                                        TargetName="ExpandPath">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="180"
+                                                         CenterY="3"
+                                                         CenterX="3" />
+                                    </Setter.Value>
+                                </Setter>
+                                <!--<Setter Property="Fill"
+                                        TargetName="ExpandPath"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />-->
+                            </Trigger>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Stroke"
+                                        TargetName="ExpandPath"
+                                        Value="{StaticResource TreeViewItem.TreeArrow.MouseOver.Stroke}" />
+                                <Setter Property="Fill"
+                                        TargetName="ExpandPath"
+                                        Value="{StaticResource TreeViewItem.TreeArrow.MouseOver.Fill}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver"
+                                               Value="True" />
+                                    <Condition Property="IsChecked"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Stroke"
+                                        TargetName="ExpandPath"
+                                        Value="{StaticResource TreeViewItem.TreeArrow.MouseOver.Checked.Stroke}" />
+                                <Setter Property="Fill"
+                                        TargetName="ExpandPath"
+                                        Value="{StaticResource TreeViewItem.TreeArrow.MouseOver.Checked.Fill}" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type local:SampleTreeViewItem}">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="Padding"
+                    Value="1,3,0,3" />
+            <Setter Property="FontSize"
+                    Value="14" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource AccentForeground}" />
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource TreeViewItemFocusVisual}" />
+            <Setter Property="FontFamily"
+                    Value="Segoe UI Light" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:SampleTreeViewItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19"
+                                                  Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                           Storyboard.TargetName="PART_Header">
+                                                <EasingDoubleKeyFrame KeyTime="0"
+                                                                      Value="0.85" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ToggleButton x:Name="Expander"
+                                          ClickMode="Press"
+                                          IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource ExpandCollapseToggleStyle}" />
+                            <Rectangle x:Name="Background"
+                                       Grid.ColumnSpan="3"
+                                       Opacity="0.6"
+                                       Fill="{TemplateBinding Background}" />
+                            <Border x:Name="Bd"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    Grid.Column="1"
+                                    Padding="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="true">
+                                <ContentPresenter x:Name="PART_Header"
+                                                  ContentSource="Header"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost"
+                                            Grid.ColumnSpan="2"
+                                            Grid.Column="1"
+                                            Grid.Row="1" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded"
+                                     Value="false">
+                                <Setter Property="Visibility"
+                                        TargetName="ItemsHost"
+                                        Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="HasItems"
+                                     Value="false">
+                                <Setter Property="Visibility"
+                                        TargetName="Expander"
+                                        Value="Hidden" />
+                            </Trigger>
+                            <Trigger Property="IsSelected"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="{StaticResource AccentForeground}" />
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected"
+                                               Value="true" />
+                                    <Condition Property="IsSelectionActive"
+                                               Value="false" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="{StaticResource AccentForeground}" />
+                                <Setter Property="Opacity"
+                                        TargetName="Background"
+                                        Value="0.5" />
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="false">
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="VirtualizingPanel.IsVirtualizing"
+                         Value="true">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+  
 
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"
-                              MinWidth="150" />
+                              MinWidth="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TreeView SelectedItemChanged="OnTreeViewSelectionChanged">
-            <TreeViewItem Header="Kino" />
-            <TreeViewItem Header="Controls"
-                          IsExpanded="True">
+        <TreeView SelectedItemChanged="OnTreeViewSelectionChanged"
+                  Background="{StaticResource AccentBackground}"
+                  Foreground="{StaticResource AccentForeground}"
+                  BorderThickness="0"
+                  Padding="4,8">
+            <local:SampleTreeViewItem Header="Kino" />
+            <local:SampleTreeViewItem Header="Controls"
+                                      IsExpanded="True">
                 <local:SampleTreeViewItem Header="Button"
                                           SampleType="{x:Type local:ButtonSample}" />
                 <local:SampleTreeViewItem Header="TransitioningContentControl"
@@ -47,7 +286,7 @@
                                           SampleType="{x:Type local:DataGridSample}" />
                 <local:SampleTreeViewItem Header="Paging"
                                           SampleType="{x:Type local:PagingSample}" />
-            </TreeViewItem>
+            </local:SampleTreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">
             <ContentControl HorizontalContentAlignment="Stretch"

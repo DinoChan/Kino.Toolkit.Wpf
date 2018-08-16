@@ -1,28 +1,41 @@
-﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.StateIndicatorSample"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
-             mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+﻿<local:SamplePage x:Class="Kino.Toolkit.Wpf.Samples.StateIndicatorSample"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  mc:Ignorable="d"
+                  Header="StateIndicator"
+                  d:DesignHeight="450"
+                  d:DesignWidth="800">
     <Grid>
-
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <kino:KinoStateIndicator Margin="8"
-                                         State="{Binding SelectedItem,ElementName=StatesListBox}"
-                                         HorizontalAlignment="Left" />
-                <kino:KinoStateIndicator Margin="8"
-                                         State="{Binding SelectedItem,ElementName=StatesListBox}"
-                                         HorizontalAlignment="Left">
-                    <Ellipse Fill="Gray" />
-                </kino:KinoStateIndicator>
-            </StackPanel>
-            <ListBox Margin="8"
-                     x:Name="StatesListBox" />
-        </StackPanel>
+        <local:SampleSection>
+            <kino:KinoStateIndicator x:Name="StateIndicator"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"
+                                     State="{Binding SelectedItem,ElementName=StatesListBox}"
+                                     HorizontalAlignment="Left" />
+            <local:SampleSection.ControlPanel>
+                <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                    <CheckBox kino:KinoForm.Header="Has Content"
+                              x:Name="HasContentCheckBox"
+                              Checked="OnHasContentChecked"
+                              Unchecked="OnHasContentUnchecked" />
+                    <ListBox x:Name="StatesListBox"
+                             HorizontalAlignment="Left"
+                             Width="250"
+                             kino:KinoForm.Header="State" />
+                </kino:KinoForm>
+            </local:SampleSection.ControlPanel>
+            <local:SampleSection.SourceCodes>
+                <local:SourceCodeModel SourceCodeType="Xaml"
+                                       Haader="StateIndicatorSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/StateIndicatorSample.Section1.txt" />
+                <local:SourceCodeModel SourceCodeType="CSharp"
+                                       Haader="StateIndicatorSample.xaml.cs"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/StateIndicatorSample.Section2.txt" />
+            </local:SampleSection.SourceCodes>
+        </local:SampleSection>
     </Grid>
-</UserControl>
+</local:SamplePage>

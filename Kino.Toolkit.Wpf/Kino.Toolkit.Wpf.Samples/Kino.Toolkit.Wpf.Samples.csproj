@@ -279,5 +279,35 @@
   <ItemGroup>
     <Resource Include="SourceFiles\ButtonSample.Section1.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ProgressRingSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\StateIndicatorSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\StateIndicatorSample.Section2.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
