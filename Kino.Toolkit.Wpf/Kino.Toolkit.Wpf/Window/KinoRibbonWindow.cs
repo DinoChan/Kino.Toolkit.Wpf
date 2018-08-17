@@ -80,15 +80,6 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// CommandBar 属性更改时调用此方法。
-        /// </summary>
-        /// <param name="oldValue">CommandBar 属性的旧值。</param>
-        /// <param name="newValue">CommandBar 属性的新值。</param>
-        protected virtual void OnCommandBarChanged(KinoWindowCommandBar oldValue, KinoWindowCommandBar newValue)
-        {
-        }
-
-        /// <summary>
         /// RibbonStyle 属性更改时调用此方法。
         /// </summary>
         /// <param name="oldValue">RibbonStyle 属性的旧值。</param>
@@ -98,6 +89,15 @@ namespace Kino.Toolkit.Wpf
             Resources.Remove(typeof(Ribbon));
             if (newValue != null)
                 Resources.Add(typeof(Ribbon), newValue);
+        }
+
+        /// <summary>
+        /// CommandBar 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">CommandBar 属性的旧值。</param>
+        /// <param name="newValue">CommandBar 属性的新值。</param>
+        protected virtual void OnCommandBarChanged(KinoWindowCommandBar oldValue, KinoWindowCommandBar newValue)
+        {
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

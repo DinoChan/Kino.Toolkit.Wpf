@@ -1,5 +1,4 @@
 ﻿<kino:KinoStateIndicator x:Name="StateIndicator"
-                         Margin="8"
                          VerticalContentAlignment="Center"
                          HorizontalContentAlignment="Center"
                          State="{Binding SelectedItem,ElementName=StatesListBox}"

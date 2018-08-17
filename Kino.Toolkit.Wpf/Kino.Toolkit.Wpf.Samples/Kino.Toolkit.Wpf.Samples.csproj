@@ -127,6 +127,9 @@
     <Compile Include="Samples\Resizer\ResizerSample.xaml.cs">
       <DependentUpon>ResizerSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\Window\TestSystemRibbonWindow.xaml.cs">
+      <DependentUpon>TestSystemRibbonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\Window\TestRibbonWindow.xaml.cs">
       <DependentUpon>TestRibbonWindow.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="Samples\StateIndicator\StateIndicatorSample.xaml.cs">
       <DependentUpon>StateIndicatorSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Window\TestSystemWindow.xaml.cs">
+      <DependentUpon>TestSystemWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\Window\TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
@@ -198,6 +204,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Samples\Window\TestSystemRibbonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Samples\Window\TestRibbonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +219,10 @@
     <Page Include="Samples\StateIndicator\StateIndicatorSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Window\TestSystemWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Samples\Window\TestWindow.xaml">
       <SubType>Designer</SubType>
@@ -308,6 +322,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\StateIndicatorSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\WindowSample.Section1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

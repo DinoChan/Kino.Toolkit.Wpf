@@ -1,0 +1,59 @@
+﻿<RibbonWindow x:Class="Kino.Toolkit.Wpf.Samples.TestSystemRibbonWindow"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                       mc:Ignorable="d"
+                       Icon="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png"
+                       xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
+                       Title="TestWindow"
+                       Height="450"
+                       Width="800">
+   
+
+    <Grid>
+        <Ribbon x:Name="RibbonMenu"
+                VerticalAlignment="Top">
+            <!--<Ribbon.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock TextAlignment="Center"
+                               HorizontalAlignment="Stretch"
+                               Text="sssssssdddddddddddddss"
+                               Margin="2, 2, 0, 0" />
+                </DataTemplate>
+            </Ribbon.TitleTemplate>-->
+
+            <RibbonTab Header="xxxxxxxxxx">
+                <RibbonGroup Header="dddddddddddddddd">
+                    <RibbonButton RibbonControlService.ToolTipTitle="dddddddddddddd"
+                                  RibbonControlService.ToolTipDescription="sssssssssss"
+                                  Label="ddddddddd" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="TestRibbonWindow"
+                       ContextualTabGroupHeader="TestRibbonWindow">
+                <RibbonGroup Header="dddddddddddddddd">
+                    <RibbonButton RibbonControlService.ToolTipTitle="dddddddddddddd"
+                                  RibbonControlService.ToolTipDescription="sssssssssss"
+                                  Label="ddddddddd" />
+                </RibbonGroup>
+            </RibbonTab>
+
+            <Ribbon.ContextualTabGroups>
+                <RibbonContextualTabGroup Header="TestRibbonWindow" 
+                                          Visibility="Visible" >
+                </RibbonContextualTabGroup>
+            </Ribbon.ContextualTabGroups>
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar >
+                    <RibbonButton SmallImageSource="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png" />
+                    <RibbonButton SmallImageSource="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png" />
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+        </Ribbon>
+        <Button VerticalAlignment="Center"
+                Content="test" />
+       
+    </Grid>
+</RibbonWindow>

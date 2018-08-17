@@ -1,18 +1,80 @@
-﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.WindowSample"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<local:SamplePage x:Class="Kino.Toolkit.Wpf.Samples.WindowSample"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  mc:Ignorable="d"
+                  Header="Window"
+                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  d:DesignHeight="450"
+                  d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-        <Button Margin="8"
-                Content="Show Window"
-                Click="OnShowTestWindow"/>
-            <Button Margin="8"
-                    Content="Show RibbonWindow"
-                    Click="OnShowTestRibbonWindow" />
-        </StackPanel>
+        <local:SampleSection>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Window Show"
+                        Click="OnTestWindowShow" />
+                <Button Margin="8,0,0,0"
+                        Content="Window ShowDialog"
+                        Click="OnTestWindowShowDalog" />
+                <Button Margin="16,0,0,0"
+                        Content="RibbonWindow Show"
+                        Click="OnTestRibbonWindowShow" />
+                <Button Margin="8,0,0,0"
+                        Content="RibbonWindow ShowDialog"
+                        Click="OnTestRibbonWindowShowDialog" />
+                <Button Margin="16,0,0,0"
+                        Content="SystemWindow Show"
+                        Click="OnSystemWindowShow" />
+                <Button Margin="8,0,0,0"
+                        Content="SystemWindow ShowDialog"
+                        Click="OnSystemWindowShowDialog" />
+
+                <Button Margin="16,0,0,0"
+                        Content="SystemRibbonWindow Show"
+                        Click="OnSystemRibbonWindowShow" />
+                <Button Margin="8,0,0,0"
+                        Content="SystemRibbonWindow ShowDialog"
+                        Click="OnSystemRibbonWindowShowDialog" />
+            </StackPanel>
+            <local:SampleSection.ControlPanel>
+                <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                    <ListBox kino:KinoForm.Header="WindowState"
+                             SelectedIndex="0"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             x:Name="WindowStateListBox">
+                        <WindowState>Normal</WindowState>
+                        <WindowState>Maximized</WindowState>
+                    </ListBox>
+                    <ListBox kino:KinoForm.Header="WindowStartupLocation"
+                             SelectedIndex="0"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             x:Name="WindowStartupLocationListBox">
+                        <WindowStartupLocation>Manual</WindowStartupLocation>
+                        <WindowStartupLocation>CenterScreen</WindowStartupLocation>
+                        <WindowStartupLocation>CenterOwner</WindowStartupLocation>
+                    </ListBox>
+                    <ListBox kino:KinoForm.Header="ResizeMode"
+                             SelectedIndex="0"
+                             Width="250"
+                             HorizontalAlignment="Left"
+                             x:Name="ResizeModeListBox">
+                        <ResizeMode>NoResize</ResizeMode>
+                        <ResizeMode>CanMinimize</ResizeMode>
+                        <ResizeMode>CanResize</ResizeMode>
+                        <ResizeMode>CanResizeWithGrip</ResizeMode>
+                    </ListBox>
+                </kino:KinoForm>
+            </local:SampleSection.ControlPanel>
+            <local:SampleSection.SourceCodes>
+                <local:SourceCodeModel SourceCodeType="Xaml"
+                                       Haader="WindowSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/WindowSample.Section1.txt" />
+            </local:SampleSection.SourceCodes>
+        </local:SampleSection>
+
     </Grid>
-</UserControl>
+</local:SamplePage>
+                  
