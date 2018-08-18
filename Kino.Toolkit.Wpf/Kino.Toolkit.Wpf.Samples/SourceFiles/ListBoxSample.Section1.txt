@@ -1,0 +1,9 @@
+﻿<StackPanel>
+    <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=ListBox}"
+                                       Content="全选" />
+    <kino:KinoListBox DisplayMemberPath="Name"
+                      ItemsSource="{Binding}"
+                      SelectionMode="Extended"
+                      Margin="0,4,0,0"
+                      x:Name="ListBox" />
+</StackPanel>

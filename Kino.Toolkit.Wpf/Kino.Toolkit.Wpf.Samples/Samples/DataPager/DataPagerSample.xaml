@@ -7,6 +7,7 @@
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                   xmlns:extend="http://schemas.xceed.com/wpf/xaml/toolkit"
                   mc:Ignorable="d"
+                  Header="DataPager"
                   SnapsToDevicePixels="True"
                   d:DesignHeight="450"
                   d:DesignWidth="800">

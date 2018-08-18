@@ -1,0 +1,18 @@
+﻿<xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
+                    x:Name="FirstDemoRoot">
+    <StackPanel>
+        <DataGrid Height="200"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"
+                                    Width="200"
+                                    SortMemberPath="Name" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <kino:KinoDataPager Source="{Binding}"
+                            DisplayMode="FirstLastPreviousNextNumeric" />
+    </StackPanel>
+</xctk:BusyIndicator>

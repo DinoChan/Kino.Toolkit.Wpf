@@ -365,5 +365,29 @@
   <ItemGroup>
     <Resource Include="SourceFiles\DataPagerSample.Section2.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ListBoxSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ListBoxSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataGridSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataGridSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section4.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

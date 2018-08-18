@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// DataGridSample.xaml 的交互逻辑
     /// </summary>
-    public partial class DataGridSample : UserControl
+    public partial class DataGridSample 
     {
         public DataGridSample()
         {

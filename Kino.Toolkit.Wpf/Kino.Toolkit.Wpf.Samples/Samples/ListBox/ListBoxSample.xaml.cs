@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// ListBoxSample.xaml 的交互逻辑
     /// </summary>
-    public partial class ListBoxSample : UserControl
+    public partial class ListBoxSample
     {
         public ListBoxSample()
         {
@@ -31,8 +31,5 @@ namespace Kino.Toolkit.Wpf.Samples
             }
             DataContext = list;
         }
-
-
-       
     }
 }

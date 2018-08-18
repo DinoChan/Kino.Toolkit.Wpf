@@ -1,52 +1,73 @@
-﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.PagingSample"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+﻿<local:SamplePage x:Class="Kino.Toolkit.Wpf.Samples.PagingSample"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  Header="Paging"
+                  mc:Ignorable="d"
+                  d:DesignHeight="450"
+                  d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
-                                x:Name="FirstDemoRoot">
-                <StackPanel>
-                    <DataGrid Height="200"
-                              AutoGenerateColumns="False"
-                              IsReadOnly="True"
-                              ItemsSource="{Binding}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Name}"
-                                                Width="*"
-                                                SortMemberPath="Name" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <kino:KinoDataPager Source="{Binding}"
-                                        DisplayMode="FirstLastPreviousNextNumeric" />
-                </StackPanel>
-            </xctk:BusyIndicator>
-
-            <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
-                                x:Name="AsyncDemoRoot">
-                <StackPanel>
-                    <DataGrid Height="200"
-                              AutoGenerateColumns="False"
-                              IsReadOnly="True"
-                              ItemsSource="{Binding}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Name}"
-                                                Width="*"
-                                                SortMemberPath="Name" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <kino:KinoDataPager Source="{Binding}"
-                                        DisplayMode="FirstLastPreviousNextNumeric" />
-                </StackPanel>
-            </xctk:BusyIndicator>
+            <local:SampleSection Header="RemoteCollectionView">
+                <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
+                                    x:Name="FirstDemoRoot">
+                    <StackPanel>
+                        <DataGrid Height="200"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name"
+                                                    Binding="{Binding Name}"
+                                                    Width="200"
+                                                    SortMemberPath="Name" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <kino:KinoDataPager Source="{Binding}"
+                                            DisplayMode="FirstLastPreviousNextNumeric" />
+                    </StackPanel>
+                </xctk:BusyIndicator>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="PagingSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/PagingSample.Section1.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="PagingSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/PagingSample.Section2.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+            <local:SampleSection Header="AsyncRemoteCollectionView">
+                <xctk:BusyIndicator IsBusy="{Binding IsRefreshing}"
+                                    x:Name="AsyncDemoRoot">
+                    <StackPanel>
+                        <DataGrid Height="200"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name"
+                                                    Binding="{Binding Name}"
+                                                    Width="200"
+                                                    SortMemberPath="Name" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <kino:KinoDataPager Source="{Binding}"
+                                            DisplayMode="FirstLastPreviousNextNumeric" />
+                    </StackPanel>
+                </xctk:BusyIndicator>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="PagingSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/PagingSample.Section3.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="PagingSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/PagingSample.Section4.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
         </StackPanel>
     </Grid>
-</UserControl>
+</local:SamplePage>
