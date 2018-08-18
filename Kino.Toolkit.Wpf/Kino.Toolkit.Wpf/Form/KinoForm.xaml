@@ -103,7 +103,7 @@
                         <ContentPresenter Grid.Row="1"
                                           Grid.Column="1"
                                           Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
-                                          Margin="4,2,0,0"
+                                          Margin="8,2,0,0"
                                           Content="{TemplateBinding Description}"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
                     </Grid>

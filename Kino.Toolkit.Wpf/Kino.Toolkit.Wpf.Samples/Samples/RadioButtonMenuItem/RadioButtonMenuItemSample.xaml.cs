@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// RadioButtonMenuItemSample.xaml 的交互逻辑
     /// </summary>
-    public partial class RadioButtonMenuItemSample : UserControl
+    public partial class RadioButtonMenuItemSample 
     {
         public RadioButtonMenuItemSample()
         {

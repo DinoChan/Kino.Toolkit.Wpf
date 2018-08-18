@@ -1,0 +1,28 @@
+﻿<Menu>
+    <kino:KinoRadioButtonMenuItem Header="Option A" />
+    <kino:KinoRadioButtonMenuItem Header="Option B" />
+    <kino:KinoRadioButtonMenuItem Header="Option C" />
+    <Separator />
+    <kino:KinoRadioButtonMenuItem Header="MoreOptions">
+        <kino:KinoRadioButtonMenuItem Header="Option 1"
+                                      GroupName="GroupA" />
+        <kino:KinoRadioButtonMenuItem Header="Option 2"
+                                      GroupName="GroupA" />
+        <kino:KinoRadioButtonMenuItem Header="Option 3"
+                                      GroupName="GroupA" />
+        <Separator />
+        <kino:KinoRadioButtonMenuItem Header="Option 4"
+                                      GroupName="GroupB" />
+        <kino:KinoRadioButtonMenuItem Header="Option 5"
+                                      GroupName="GroupB" />
+        <kino:KinoRadioButtonMenuItem Header="Option 6"
+                                      GroupName="GroupB" />
+        <Separator />
+        <MenuItem IsCheckable="True"
+                  Header="Option 7" />
+        <MenuItem IsCheckable="True"
+                  Header="Option 8" />
+        <MenuItem IsCheckable="True"
+                  Header="Option 9" />
+    </kino:KinoRadioButtonMenuItem>
+</Menu>

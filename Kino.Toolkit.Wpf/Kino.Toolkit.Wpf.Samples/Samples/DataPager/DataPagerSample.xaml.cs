@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// DataPagerSample.xaml 的交互逻辑
     /// </summary>
-    public partial class DataPagerSample : UserControl
+    public partial class DataPagerSample 
     {
         public DataPagerSample()
         {

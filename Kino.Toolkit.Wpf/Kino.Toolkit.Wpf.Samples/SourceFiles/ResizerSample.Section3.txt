@@ -1,0 +1,14 @@
+﻿<kino:KinoResizer HorizontalContentAlignment="Stretch">
+    <kino:KinoResizer.Animation>
+        <DoubleAnimation BeginTime="0:0:0"
+                         Duration="0:0:3">
+            <DoubleAnimation.EasingFunction>
+                <QuinticEase EasingMode="EaseOut" />
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </kino:KinoResizer.Animation>
+    <TextBox AcceptsReturn="True"
+             VerticalScrollBarVisibility="Disabled" />
+</kino:KinoResizer>
+<Button Content="Commit"
+        Margin="0,8,0,0" />

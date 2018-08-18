@@ -326,5 +326,44 @@
   <ItemGroup>
     <Resource Include="SourceFiles\WindowSample.Section1.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ButtonSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\SquareBoxSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Samples\Form\ButtonSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\RadioButtonMenuItemSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataPagerSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataPagerSample.Section2.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,14 +43,12 @@ namespace Kino.Toolkit.Wpf
         }
 
 
-        private RemoteCollectionViewLoader loader;
 
 
         protected override void OnLoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
             IsRefreshing = false;
-            if (Refreshed != null)
-                Refreshed(this, EventArgs.Empty);
+            Refreshed?.Invoke(this, EventArgs.Empty);
 
             var loader = CollectionViewLoader as AsyncRemoteCollectionViewLoader;
             var operation = loader.CurrentResult;
@@ -107,15 +105,13 @@ namespace Kino.Toolkit.Wpf
         private void RaiseRefreshing()
         {
             IsRefreshing = true;
-            if (Refreshing != null)
-                Refreshing(this, EventArgs.Empty);
+            Refreshing?.Invoke(this, EventArgs.Empty);
         }
 
         private void RaiseRefreshed()
         {
             IsRefreshing = false;
-            if (Refreshed != null)
-                Refreshed(this, EventArgs.Empty);
+            Refreshed?.Invoke(this, EventArgs.Empty);
         }
 
 

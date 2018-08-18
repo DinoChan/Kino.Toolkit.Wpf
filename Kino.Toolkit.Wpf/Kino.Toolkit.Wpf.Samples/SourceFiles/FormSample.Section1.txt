@@ -1,0 +1,48 @@
+﻿<kino:KinoForm Width="500"
+               HorizontalAlignment="Left">
+    <kino:KinoFormTitle Content="用户信息" />
+
+    <TextBox kino:KinoForm.Header="用户名"
+             kino:KinoForm.IsRequired="True"
+             Text="{Binding Name,Mode=TwoWay}" />
+    <PasswordBox kino:KinoForm.Header="密码"
+                 kino:KinoForm.IsRequired="True" />
+    <ComboBox kino:KinoForm.Header="国家" />
+
+    <kino:KinoFormSeparator />
+
+    <kino:KinoFormTitle Content="家庭信息"
+                        Description="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。" />
+
+    <TextBox kino:KinoForm.Header="父"
+             kino:KinoForm.Description="可以不填" />
+    <TextBox kino:KinoForm.Header="母"
+             kino:KinoForm.Description="可以不填" />
+    <CheckBox kino:KinoForm.Header="已婚"
+              Content="已婚" />
+    <StackPanel kino:KinoForm.Header="性别"
+                Orientation="Horizontal"
+                kino:KinoForm.IsRequired="True">
+        <RadioButton Content="男"
+                     GroupName="Sex" />
+        <RadioButton Content="女"
+                     GroupName="Sex"
+                     Margin="8,0,0,0" />
+    </StackPanel>
+    <kino:KinoFormItem Header="备注"
+                       HeaderTemplate="{StaticResource TopHeaderTemplate}">
+        <TextBox AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Auto"
+                 Height="100" />
+    </kino:KinoFormItem>
+    <kino:KinoForm.CommandBar>
+        <kino:KinoFormCommandBar>
+            <kino:KinoButton Content="OK"
+                             Click="OnOK"
+                             IsDefault="True" />
+            <kino:KinoButton Content="Cancel"
+                             IsCancel="True" />
+
+        </kino:KinoFormCommandBar>
+    </kino:KinoForm.CommandBar>
+</kino:KinoForm>

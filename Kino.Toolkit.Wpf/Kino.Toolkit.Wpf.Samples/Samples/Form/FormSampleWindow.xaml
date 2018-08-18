@@ -52,7 +52,8 @@
                 <RadioButton Content="男"
                              GroupName="Sex" />
                 <RadioButton Content="女"
-                             GroupName="Sex" />
+                             GroupName="Sex"
+                             Margin="8,0,0,0"/>
             </StackPanel>
 
             <CheckBox kino:KinoForm.Header="已婚" />

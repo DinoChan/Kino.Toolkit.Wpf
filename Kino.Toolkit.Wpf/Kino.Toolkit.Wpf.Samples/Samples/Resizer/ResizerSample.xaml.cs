@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// ResizingControlSample.xaml 的交互逻辑
     /// </summary>
-    public partial class ResizerSample : UserControl
+    public partial class ResizerSample 
     {
         public ResizerSample()
         {

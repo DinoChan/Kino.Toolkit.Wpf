@@ -1,0 +1,70 @@
+﻿<extend:ColorToSolidColorBrushConverter x:Key="ColorToSolidBrushConverter" />
+<Style TargetType="kino:KinoDataPager">
+    <Setter Property="NumericButtonCount"
+            Value="{Binding Value, ElementName=NumericButtonCount}" />
+    <Setter Property="AutoEllipsis"
+            Value="{Binding IsChecked, ElementName=AutoEllipsis}" />
+    <Setter Property="IsTotalItemCountFixed"
+            Value="{Binding IsChecked, ElementName=TotalItemCountFixed}" />
+    <Setter Property="Source"
+            Value="{Binding}" />
+    <Setter Property="HorizontalAlignment"
+            Value="Left" />
+    <Setter Property="Foreground"
+            Value="{Binding SelectedColor,ElementName=ColorPicker,Converter={StaticResource ColorToSolidBrushConverter}}" />
+</Style>
+
+
+<kino:KinoForm>
+    <kino:KinoDataPager DisplayMode="FirstLastNumeric"
+                        kino:KinoForm.Header="FirstLastNumeric" />
+    <kino:KinoDataPager DisplayMode="FirstLastPreviousNext"
+                        kino:KinoForm.Header="FirstLastPreviousNext" />
+    <kino:KinoDataPager DisplayMode="FirstLastPreviousNextNumeric"
+                        kino:KinoForm.Header="FirstLastPreviousNextNumeric" />
+    <kino:KinoDataPager DisplayMode="Numeric"
+                        kino:KinoForm.Header="Numeric" />
+    <kino:KinoDataPager DisplayMode="PreviousNext"
+                        kino:KinoForm.Header="PreviousNext" />
+    <kino:KinoDataPager DisplayMode="PreviousNextNumeric"
+                        kino:KinoForm.Header="PreviousNextNumeric" />
+</kino:KinoForm>
+<StackPanel Grid.Column="1">
+    <ListBox ItemsSource="{Binding}"
+             DisplayMemberPath="Name"
+             Margin="4"
+             Height="120" />
+    <DataGrid Height="120"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              ItemsSource="{Binding}"
+              Margin="4">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Name"
+                                Binding="{Binding Name}"
+                                Width="300"
+                                SortMemberPath="Name" />
+        </DataGrid.Columns>
+    </DataGrid>
+</StackPanel>
+
+
+<kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}"
+               HorizontalAlignment="Left">
+    <CheckBox x:Name="AutoEllipsis"
+              kino:KinoForm.Header="AutoEllipsis" />
+    <CheckBox x:Name="TotalItemCountFixed"
+              kino:KinoForm.Header="IsTotalItemCountFixed"
+              IsChecked="True" />
+    <extend:IntegerUpDown x:Name="NumericButtonCount"
+                          kino:KinoForm.Header="NumericButtonCount"
+                          Value="5"
+                          Minimum="0"
+                          Maximum="20" />
+    <extend:IntegerUpDown Value="{Binding PageSize, Mode=TwoWay}"
+                          kino:KinoForm.Header="PageSize"
+                          Minimum="1" />
+    <extend:ColorPicker SelectedColor="Black"
+                        kino:KinoForm.Header="Foreground"
+                        x:Name="ColorPicker" />
+</kino:KinoForm>
