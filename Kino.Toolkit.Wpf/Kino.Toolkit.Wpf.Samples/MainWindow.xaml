@@ -287,6 +287,10 @@
                 <local:SampleTreeViewItem Header="Paging"
                                           SampleType="{x:Type local:PagingSample}" />
             </local:SampleTreeViewItem>
+            <local:SampleTreeViewItem Header="模式"
+                                      ToolTip="Patterns"
+                                      IsExpanded="True">
+            </local:SampleTreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">
             <ContentControl HorizontalContentAlignment="Stretch"

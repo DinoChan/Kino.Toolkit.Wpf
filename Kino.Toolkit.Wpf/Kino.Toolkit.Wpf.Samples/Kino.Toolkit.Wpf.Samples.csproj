@@ -96,6 +96,12 @@
     <Compile Include="Core\LiveExplorerTreeViewItem.cs" />
     <Compile Include="Core\XamlFormatter.cs" />
     <Compile Include="Controls\SamplePage.cs" />
+    <Compile Include="Patterns\SignIn\SignInSample.xaml.cs">
+      <DependentUpon>SignInSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\SignIn\UserinfoDialog.xaml.cs">
+      <DependentUpon>UserinfoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\DataGrid\DataGridSample.xaml.cs">
       <DependentUpon>DataGridSample.xaml</DependentUpon>
     </Compile>
@@ -152,6 +158,14 @@
       <DependentUpon>WindowSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SampleTreeViewItem.cs" />
+    <Page Include="Patterns\SignIn\SignInSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\UserinfoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\DataGrid\DataGridSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
