@@ -23,5 +23,10 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             InitializeComponent();
         }
+
+        private void OnSignIn(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
