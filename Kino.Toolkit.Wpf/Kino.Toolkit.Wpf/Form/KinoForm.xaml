@@ -8,7 +8,7 @@
         <Setter Property="BorderBrush"
                 Value="DarkGray" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0,0,0,8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormSeparator">
@@ -25,7 +25,7 @@
         <Setter Property="FontSize"
                 Value="{Binding Source={x:Static SystemFonts.CaptionFontSize}}" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0,0,0,8" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="Focusable"
@@ -59,7 +59,7 @@
         <Setter Property="Focusable"
                 Value="False" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0,0,0,8" />
         <Setter Property="Padding"
                 Value="8,0,4,0" />
         <Setter Property="HeaderTemplate">
@@ -130,6 +130,7 @@
                 Value="True"/>
         <Setter Property="local:FrameworkElementService.IsAutoFocus"
                 Value="True"/>
+        <Setter Property="Margin" Value="8"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
