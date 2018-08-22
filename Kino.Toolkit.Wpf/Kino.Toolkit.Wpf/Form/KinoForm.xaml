@@ -14,8 +14,7 @@
                 <ControlTemplate TargetType="local:KinoFormSeparator">
                     <Rectangle VerticalAlignment="Bottom"
                                Fill="{TemplateBinding BorderBrush}"
-                               Height="1"
-                               />
+                               Height="1" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -23,7 +22,7 @@
 
     <Style TargetType="local:KinoFormTitle">
         <Setter Property="FontSize"
-                Value="{Binding Source={x:Static SystemFonts.CaptionFontSize}}" />
+                Value="14" />
         <Setter Property="Margin"
                 Value="0,0,0,8" />
         <Setter Property="HorizontalContentAlignment"
@@ -61,7 +60,7 @@
         <Setter Property="Margin"
                 Value="0,0,0,8" />
         <Setter Property="Padding"
-                Value="8,0,4,0" />
+                Value="8,0,0,0" />
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>

@@ -124,6 +124,7 @@
     <Compile Include="ProgressRing\KinoProgressRing.cs" />
     <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.cs" />
     <Compile Include="TransitioningContentControl\TransitionType.cs" />
+    <Compile Include="Validation\KinoValidationTooltip.cs" />
     <Compile Include="Window\KinoRibbonWindow.cs" />
     <Compile Include="Window\KinoWindow.cs" />
     <Compile Include="Window\RibbonService.cs" />
@@ -186,6 +187,10 @@
     </Page>
     <Compile Include="Button\KinoButton.cs" />
     <Page Include="TransitioningContentControl\KinoTransitioningContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Validation\KinoValidationTooltip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
