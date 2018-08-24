@@ -57,8 +57,9 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <FrameworkElement.Effect>
-                <DropShadowEffect  BlurRadius="12"
-                                   ShadowDepth="7" />
+                <DropShadowEffect  BlurRadius="10"
+                                   ShadowDepth="7"
+                                   Opacity="0.4" />
             </FrameworkElement.Effect>
             <Border Background="#FFDC000C">
                 <TextBlock Foreground="White"
