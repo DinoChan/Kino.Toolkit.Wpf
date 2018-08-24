@@ -5,10 +5,8 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <Style TargetType="local:KinoFormSeparator">
-        <Setter Property="BorderBrush"
-                Value="DarkGray" />
         <Setter Property="Margin"
-                Value="0,0,0,8" />
+                Value="0,8,0,8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormSeparator">
@@ -31,6 +29,8 @@
                 Value="False" />
         <Setter Property="IsTabStop"
                 Value="False" />
+        <Setter Property="BorderBrush"
+                Value="LightGray" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormTitle">
@@ -46,6 +46,10 @@
                                           Margin="0,2,0,0"
                                           Grid.Column="2"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
+                        <Rectangle VerticalAlignment="Bottom"
+                                   Margin="0,2,0,0"
+                                   Fill="{TemplateBinding BorderBrush}"
+                                   Height="1" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

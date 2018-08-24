@@ -25,7 +25,6 @@
             <kino:KinoForm Width="500"
                            HorizontalAlignment="Left">
                 <kino:KinoFormTitle Content="用户信息" />
-                <kino:KinoFormSeparator />
                 <TextBox kino:KinoForm.Header="用户名"
                          kino:KinoForm.IsRequired="True"
                          Text="{Binding Name,Mode=TwoWay}" />
