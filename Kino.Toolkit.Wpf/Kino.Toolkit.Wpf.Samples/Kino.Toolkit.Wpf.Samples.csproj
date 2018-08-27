@@ -365,9 +365,6 @@
     <Resource Include="SourceFiles\FormSample.Section2.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Samples\Form\ButtonSample.Section1.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="SourceFiles\FormSample.Section1.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +399,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\PagingSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FormSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

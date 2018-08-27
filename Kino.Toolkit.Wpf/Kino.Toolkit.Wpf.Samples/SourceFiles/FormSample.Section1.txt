@@ -12,6 +12,7 @@
 
     <kino:KinoFormTitle Content="家庭信息"
                         Description="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。" />
+
     <TextBox kino:KinoForm.Header="父"
              kino:KinoForm.Description="可以不填" />
     <TextBox kino:KinoForm.Header="母"
@@ -40,6 +41,7 @@
                              IsDefault="True" />
             <kino:KinoButton Content="Cancel"
                              IsCancel="True" />
+
         </kino:KinoFormCommandBar>
     </kino:KinoForm.CommandBar>
 </kino:KinoForm>

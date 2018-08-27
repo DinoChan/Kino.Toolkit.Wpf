@@ -40,11 +40,9 @@
                                           Content="{TemplateBinding Content}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <ContentPresenter Grid.Row="1"
-                                          Content="{TemplateBinding Description}"
+                        <ContentPresenter Content="{TemplateBinding Description}"
                                           Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
                                           Margin="0,2,0,0"
-                                          Grid.Column="2"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
                         <Rectangle VerticalAlignment="Bottom"
                                    Margin="0,2,0,0"
@@ -133,7 +131,8 @@
                 Value="True"/>
         <Setter Property="local:FrameworkElementService.IsAutoFocus"
                 Value="True"/>
-        <Setter Property="Margin" Value="8"/>
+        <Setter Property="Padding"
+                Value="8"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -147,6 +146,7 @@
                     <Border BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
                             SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -155,7 +155,7 @@
                             </Grid.RowDefinitions>
                         
                         <ScrollViewer Focusable="false" 
-                                      Padding="{TemplateBinding Padding}" >
+                                       >
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </ScrollViewer>
                           <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
