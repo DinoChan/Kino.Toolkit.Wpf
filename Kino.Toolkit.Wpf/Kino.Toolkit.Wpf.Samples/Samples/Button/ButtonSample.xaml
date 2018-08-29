@@ -13,17 +13,45 @@
     <Grid>
         <StackPanel>
             <local:SampleSection>
-                <kino:KinoButton Content="bookmark"
-                                 MinWidth="18"
-                                 x:Name="BookmarkButton"
-                                 HorizontalAlignment="Left"
-                                 State="{Binding SelectedItem,ElementName=StatesListBox}">
-                    <kino:KinoButton.Icon>
-                        <TextBlock Style="{StaticResource FontAwesome}"
-                                   Text="&#xf02e;" />
-                    </kino:KinoButton.Icon>
-                </kino:KinoButton>
-
+                <StackPanel>
+                    <kino:KinoButton Content="bookmark"
+                                     MinWidth="18"
+                                     x:Name="BookmarkButton"
+                                     HorizontalAlignment="Left"
+                                     State="{Binding SelectedItem,ElementName=StatesListBox}">
+                        <kino:KinoButton.Icon>
+                            <TextBlock Style="{StaticResource FontAwesome}"
+                                       Text="&#xf02e;" />
+                        </kino:KinoButton.Icon>
+                    </kino:KinoButton>
+                    <!--<kino:KinoHyperlinkButton Content="Bing" IsEnabled="False"
+                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1"/>
+                    <kino:KinoHyperlinkButton NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Height="20"
+                                       Width="20"
+                                       Fill="Red" />
+                            <TextBlock Text="Bing" Resources="{x:Null}"/>
+                        </StackPanel>
+                    </kino:KinoHyperlinkButton>
+                    <kino:KinoHyperlinkButton Content="Bing"
+                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1" />
+                    <kino:KinoHyperlinkButton Content="Bing"
+                                              VerticalContentAlignment="Center"
+                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
+                        <ButtonBase.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Height="30"
+                                               Width="20"
+                                               Fill="Red" />
+                                    <TextBlock Text="Bing"
+                                               Resources="{x:Null}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ButtonBase.ContentTemplate>
+                    </kino:KinoHyperlinkButton>-->
+                </StackPanel>
                 <local:SampleSection.ControlPanel>
                     <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
                         <StackPanel Orientation="Horizontal"

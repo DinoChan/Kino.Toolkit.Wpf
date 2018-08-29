@@ -30,6 +30,7 @@ namespace Kino.Toolkit.Wpf.Samples
             StatesListBox.Items.Add(ProgressState.Faulted);
             StatesListBox.Items.Add(ProgressState.Other);
             StatesListBox.SelectedIndex = 0;
+            
         }
 
         private void OnContentOnlyCheck(object sender, RoutedEventArgs e)
