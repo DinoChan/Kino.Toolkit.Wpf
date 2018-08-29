@@ -99,6 +99,9 @@
     <Compile Include="Patterns\SignIn\SignInSample.xaml.cs">
       <DependentUpon>SignInSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Patterns\SignIn\SignUpView.xaml.cs">
+      <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Patterns\SignIn\UserinfoDialog.xaml.cs">
       <DependentUpon>UserinfoDialog.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
     </Compile>
     <Compile Include="Controls\SampleTreeViewItem.cs" />
     <Page Include="Patterns\SignIn\SignInSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\SignUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
