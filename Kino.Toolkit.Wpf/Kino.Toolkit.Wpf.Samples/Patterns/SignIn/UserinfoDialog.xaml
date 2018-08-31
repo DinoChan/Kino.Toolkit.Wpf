@@ -6,91 +6,25 @@
                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                  mc:Ignorable="d"
+                 ResizeMode="NoResize"
                  Title="Userinfo"
                  SizeToContent="Height"
                  Width="300">
-    <kino:KinoWindow.Resources>
-        <Style TargetType="kino:KinoFormItem">
-            <Setter Property="Margin"
-                    Value="0,4,0,8" />
-            <Setter Property="Padding"
-                    Value="0,4,0,0" />
-            <Setter Property="HeaderTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"
-                                   Foreground="#FF555555"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" />
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
-                        <StackPanel x:Name="Root">
-                            <StackPanel Orientation="Horizontal">
-                                <ContentPresenter Content="{TemplateBinding Header}"
-                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                                <Grid ToolTip="{TemplateBinding Description}"
-                                      Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
-                                      Margin="8,0,0,0"
-                                      Background="Transparent">
-                                    <TextBlock Style="{StaticResource FontAwesome}"
-                                               Text="&#xf059;"
-                                               VerticalAlignment="Center"
-                                               Foreground="LightSeaGreen"
-                                               FontSize="14" />
-                                </Grid>
-                            </StackPanel>
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              x:Name="ContentPresenter" />
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
-        <Style TargetType="kino:KinoFormTitle">
-            <Setter Property="Margin"
-                    Value="0,4,4,8" />
-        </Style>
-
-        <Style TargetType="kino:KinoFormSeparator">
-            <Setter Property="Margin"
-                    Value="0,4,0,8" />
-        </Style>
-    </kino:KinoWindow.Resources>
     <kino:KinoResizer HorizontalContentAlignment="Stretch">
-        <Grid>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <kino:KinoForm Margin="8">
-                    <TextBox kino:KinoForm.Header="用户名" />
-                    <PasswordBox kino:KinoForm.Header="密码" />
-                    <kino:KinoForm.CommandBar>
-                        <kino:KinoFormCommandBar>
-                            <kino:KinoButton Content="Sign In"
-                                             IsDefault="True"
-                                             Click="OnSignIn" />
-                        </kino:KinoFormCommandBar>
-                    </kino:KinoForm.CommandBar>
-                </kino:KinoForm>
-                <Grid Grid.Row="1"
-                      Background="#FFDFDFDF">
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                Margin="8">
-                        <TextBlock Text="没有账号？"
-                                   VerticalAlignment="Center" />
-                        <kino:KinoHyperlinkButton Content="注册"
-                                MinWidth="64" />
-                    </StackPanel>
-                </Grid>
-            </Grid>
-        </Grid>
+        <kino:KinoResizer.Animation>
+            <DoubleAnimation BeginTime="0:0:0"
+                             Duration="0:0:0.15">
+                <DoubleAnimation.EasingFunction>
+                    <QuinticEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </kino:KinoResizer.Animation>
+        <kino:KinoTransitioningContentControl x:Name="ContentElement"
+                                              HorizontalContentAlignment="Stretch"
+                                              VerticalContentAlignment="Stretch">
+            <local:SignInView Finished="OnFinished"
+                              SignUp="OnSignUp" />
+        </kino:KinoTransitioningContentControl>
     </kino:KinoResizer>
 </kino:KinoWindow>

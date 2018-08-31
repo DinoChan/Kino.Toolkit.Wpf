@@ -39,6 +39,9 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -81,6 +84,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ModelBase.cs" />
+    <Compile Include="Common\PasswordBoxHelper.cs" />
     <Compile Include="Controls\SampleSection.cs" />
     <Compile Include="Controls\SourceCodeBox.cs" />
     <Compile Include="Controls\SourceCodeItemsControl.cs" />
@@ -99,8 +104,14 @@
     <Compile Include="Patterns\SignIn\SignInSample.xaml.cs">
       <DependentUpon>SignInSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Patterns\SignIn\SignInView.xaml.cs">
+      <DependentUpon>SignInView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Patterns\SignIn\SignUpView.xaml.cs">
       <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\SignIn\SimpleShell.xaml.cs">
+      <DependentUpon>SimpleShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Patterns\SignIn\UserinfoDialog.xaml.cs">
       <DependentUpon>UserinfoDialog.xaml</DependentUpon>
@@ -165,7 +176,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Patterns\SignIn\SignInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Patterns\SignIn\SignUpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\SimpleShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

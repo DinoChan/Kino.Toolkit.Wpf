@@ -77,6 +77,7 @@ namespace Kino.Toolkit.Wpf
         /// <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> property is set to a value that contains embedded whitespace.</exception>
         protected override void OnClick()
         {
+            base.OnClick();
             if (NavigateUri != null && NavigateUri.IsAbsoluteUri)
             {
                 try

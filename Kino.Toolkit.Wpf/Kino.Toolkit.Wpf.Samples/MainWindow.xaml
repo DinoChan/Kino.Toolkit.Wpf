@@ -290,6 +290,8 @@
             <local:SampleTreeViewItem Header="模式"
                                       ToolTip="Patterns"
                                       IsExpanded="True">
+                <local:SampleTreeViewItem Header="Sign in/Sign Up"
+                                          SampleType="{x:Type local:SignInSample}" />
             </local:SampleTreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">

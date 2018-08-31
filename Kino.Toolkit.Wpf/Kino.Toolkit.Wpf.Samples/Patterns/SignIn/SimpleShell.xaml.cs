@@ -10,33 +10,34 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Kino.Toolkit.Wpf.Samples
 {
     /// <summary>
-    /// SignUpView.xaml 的交互逻辑
+    /// SimpleShell.xaml 的交互逻辑
     /// </summary>
-    public partial class SignUpView : UserControl
+    public partial class SimpleShell 
     {
-        public SignUpView()
+        public SimpleShell()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
         }
 
-        public event EventHandler GoBack;
-
-        public event EventHandler<UserInfo> Finished;
-
-        private void OnSignUp(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Finished?.Invoke(this, null);
+            UsernameItem.Header = User.Username;
         }
 
-        private void OnBack(object sender, RoutedEventArgs e)
+        public UserInfo User { get; internal set; }
+
+        private void OnSignOut(object sender, RoutedEventArgs e)
         {
-            GoBack?.Invoke(this, EventArgs.Empty);
+            Close();
+            var dialog = new UserinfoDialog();
+            dialog.Owner = Owner;
+            dialog.ShowDialog();
         }
     }
 }

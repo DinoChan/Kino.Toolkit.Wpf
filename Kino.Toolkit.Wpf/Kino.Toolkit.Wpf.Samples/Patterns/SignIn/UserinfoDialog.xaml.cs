@@ -24,9 +24,32 @@ namespace Kino.Toolkit.Wpf.Samples
             InitializeComponent();
         }
 
-        private void OnSignIn(object sender, RoutedEventArgs e)
-        {
+     
 
+        private void OnSignUp(object sender, EventArgs e)
+        {
+            var signUpView = new SignUpView();
+            signUpView.Finished += OnFinished;
+            signUpView.GoBack += OnGoBack;
+            ContentElement.Content = signUpView;
+        }
+
+        private void OnGoBack(object sender, EventArgs e)
+        {
+            var signInView = new SignInView();
+            signInView.Finished += OnFinished;
+            signInView.SignUp += OnSignUp;
+            ContentElement.Content = signInView;
+        }
+
+    
+        private void OnFinished(object sender, UserInfo e)
+        {
+            Close();
+            var shell = new SimpleShell();
+            shell.User = e;
+            shell.Owner = Owner;
+            shell.ShowDialog();
         }
     }
 }

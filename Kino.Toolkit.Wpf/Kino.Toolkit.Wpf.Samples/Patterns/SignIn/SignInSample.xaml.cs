@@ -24,5 +24,12 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             InitializeComponent();
         }
+
+        private void OnShowSample(object sender, RoutedEventArgs e)
+        {
+            var dialog = new UserinfoDialog();
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+        }
     }
 }

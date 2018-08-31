@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.SignInView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+             mc:Ignorable="d"
+             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="kino:KinoFormItem">
+            <Setter Property="Margin"
+                    Value="0,4,0,8" />
+            <Setter Property="Padding"
+                    Value="0,4,0,0" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Foreground="#FF555555"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <StackPanel x:Name="Root">
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="{TemplateBinding Header}"
+                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                <Grid ToolTip="{TemplateBinding Description}"
+                                      Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                                      Margin="8,0,0,0"
+                                      Background="Transparent">
+                                    <TextBlock Style="{StaticResource FontAwesome}"
+                                               Text="&#xf059;"
+                                               VerticalAlignment="Center"
+                                               Foreground="LightSeaGreen"
+                                               FontSize="14" />
+                                </Grid>
+                            </StackPanel>
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              x:Name="ContentPresenter" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="kino:KinoFormTitle">
+            <Setter Property="Margin"
+                    Value="0,4,4,8" />
+        </Style>
+
+        <Style TargetType="kino:KinoFormSeparator">
+            <Setter Property="Margin"
+                    Value="0,4,0,8" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <kino:KinoForm Margin="8">
+            <TextBox kino:KinoForm.Header="用户名"
+                     x:Name="UsernameElement"
+                     Text="{Binding Username,Mode=TwoWay}" />
+            <PasswordBox kino:KinoForm.Header="密码"
+                         local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
+            <kino:KinoForm.CommandBar>
+                <kino:KinoFormCommandBar>
+                    <kino:KinoButton Content="Sign In"
+                                     IsDefault="True"
+                                     Click="OnSignIn"
+                                     x:Name="SignInButton" />
+                </kino:KinoFormCommandBar>
+            </kino:KinoForm.CommandBar>
+        </kino:KinoForm>
+        <Grid Grid.Row="1"
+              Background="#FFDFDFDF">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="8">
+                <TextBlock Text="没有账号？"
+                           VerticalAlignment="Center" />
+                <kino:KinoHyperlinkButton Content="注册"
+                                          MinWidth="64"
+                                          Click="OnSignUp" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
