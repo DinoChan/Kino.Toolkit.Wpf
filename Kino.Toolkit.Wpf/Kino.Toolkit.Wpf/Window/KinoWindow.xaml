@@ -199,6 +199,10 @@
                 Value="SingleBorderWindow" />
         <Setter Property="FontFamily"
                 Value="Segoe UI" />
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
         <Setter Property="Icon"
                 Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
         <Setter Property="WindowChrome.WindowChrome">
@@ -383,6 +387,10 @@
                 Value="SingleBorderWindow" />
         <Setter Property="FontFamily"
                 Value="Segoe UI" />
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
         <Setter Property="Icon"
                 Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
         <Setter Property="WindowChrome.WindowChrome">

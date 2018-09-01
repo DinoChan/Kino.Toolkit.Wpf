@@ -6,6 +6,8 @@
                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                  mc:Ignorable="d"
+                 UseLayoutRounding="True"
+                 WindowStartupLocation="CenterOwner"
                  ResizeMode="NoResize"
                  Title="Userinfo"
                  SizeToContent="Height"
