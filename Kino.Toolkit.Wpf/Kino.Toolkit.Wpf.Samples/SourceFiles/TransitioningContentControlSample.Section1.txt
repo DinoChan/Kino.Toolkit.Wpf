@@ -1,0 +1,27 @@
+﻿<StackPanel>
+    <kino:KinoTransitioningContentControl Margin="8"
+                                          x:Name="DefaultContent" 
+                                          HorizontalAlignment="Left"/>
+    <StackPanel Orientation="Horizontal">
+        <Button Content="Default"
+                Click="OnChangByDefault"
+                Margin="8"
+                Width="64" />
+        <Button Content="Left"
+                Click="OnChangeByLeft"
+                Margin="8"
+                Width="64" />
+        <Button Content="Up"
+                Click="OnChangeByUp"
+                Margin="8"
+                Width="64" />
+        <Button Content="Right"
+                Click="OnChangeByRight"
+                Margin="8"
+                Width="64" />
+        <Button Content="Down"
+                Click="OnChangeByDown"
+                Margin="8"
+                Width="64" />
+    </StackPanel>
+</StackPanel>

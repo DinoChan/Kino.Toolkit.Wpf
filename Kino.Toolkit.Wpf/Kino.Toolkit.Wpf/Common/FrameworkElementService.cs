@@ -70,5 +70,41 @@ namespace Kino.Toolkit.Wpf
                     return;
             } 
         }
+
+
+
+        /// <summary>
+        /// 从指定元素获取 Resources 依赖项属性的值。
+        /// </summary>
+        /// <param name="obj">从中读取属性值的元素。</param>
+        /// <returns>从属性存储获取的属性值。</returns>
+        public static ResourceDictionary GetResources(DependencyObject obj) => (ResourceDictionary)obj.GetValue(ResourcesProperty);
+
+        /// <summary>
+        /// 将 Resources 依赖项属性的值设置为指定元素。
+        /// </summary>
+        /// <param name="obj">对其设置属性值的元素。</param>
+        /// <param name="value">要设置的值。</param>
+        public static void SetResources(DependencyObject obj, ResourceDictionary value) => obj.SetValue(ResourcesProperty, value);
+
+        /// <summary>
+        /// 标识 Resources 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty ResourcesProperty =
+            DependencyProperty.RegisterAttached("Resources", typeof(ResourceDictionary), typeof(FrameworkElementService), new PropertyMetadata(default(ResourceDictionary), OnResourcesChanged));
+
+
+        private static void OnResourcesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (ResourceDictionary)args.OldValue;
+            var newValue = (ResourceDictionary)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as FrameworkElement;
+            target.Resources = newValue;
+        }
+
+
     }
 }

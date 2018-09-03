@@ -1,0 +1,50 @@
+﻿<Style TargetType="kino:KinoFormItem">
+    <Setter Property="Margin"
+            Value="0,4,0,8" />
+    <Setter Property="Padding"
+            Value="0,4,0,0" />
+    <Setter Property="HeaderTemplate">
+        <Setter.Value>
+            <DataTemplate>
+                <TextBlock Text="{Binding}"
+                           Foreground="#FF555555"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left" />
+            </DataTemplate>
+        </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="kino:KinoFormItem">
+                <StackPanel x:Name="Root">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentPresenter Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        <Grid ToolTip="{TemplateBinding Description}"
+                              Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                              Margin="8,0,0,0"
+                              Background="Transparent">
+                            <TextBlock Style="{StaticResource FontAwesome}"
+                                       Text="&#xf059;"
+                                       VerticalAlignment="Center"
+                                       Foreground="LightSeaGreen"
+                                       FontSize="14" />
+                        </Grid>
+                    </StackPanel>
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                                      x:Name="ContentPresenter" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+<Style TargetType="kino:KinoFormTitle">
+    <Setter Property="Margin"
+            Value="0,4,4,8" />
+</Style>
+
+<Style TargetType="kino:KinoFormSeparator">
+    <Setter Property="Margin"
+            Value="0,4,0,8" />
+</Style>

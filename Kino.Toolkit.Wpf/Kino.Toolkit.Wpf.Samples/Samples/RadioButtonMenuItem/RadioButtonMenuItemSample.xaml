@@ -1,34 +1,49 @@
-﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.RadioButtonMenuItemSample"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<local:SamplePage x:Class="Kino.Toolkit.Wpf.Samples.RadioButtonMenuItemSample"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  mc:Ignorable="d"
+                  Header="RadioButtonMenuItem"
+                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  d:DesignHeight="450"
+                  d:DesignWidth="800">
     <Grid>
-        <Menu>
-            <kino:KinoRadioButtonMenuItem Header="Option A"/>
-            <kino:KinoRadioButtonMenuItem Header="Option B" />
-            <kino:KinoRadioButtonMenuItem Header="Option C" />
-            <Separator />
-            <kino:KinoRadioButtonMenuItem Header="MoreOptions">
-                <kino:KinoRadioButtonMenuItem Header="Option 1" GroupName="GroupA"/>
-                <kino:KinoRadioButtonMenuItem Header="Option 2"
-                                              GroupName="GroupA" />
-                <kino:KinoRadioButtonMenuItem Header="Option 3"
-                                              GroupName="GroupA" />
+        <local:SampleSection>
+            <Menu>
+                <kino:KinoRadioButtonMenuItem Header="Option A" />
+                <kino:KinoRadioButtonMenuItem Header="Option B" />
+                <kino:KinoRadioButtonMenuItem Header="Option C" />
                 <Separator />
-                <kino:KinoRadioButtonMenuItem Header="Option 4"
-                                              GroupName="GroupB" />
-                <kino:KinoRadioButtonMenuItem Header="Option 5"
-                                              GroupName="GroupB" />
-                <kino:KinoRadioButtonMenuItem Header="Option 6"
-                                              GroupName="GroupB" />
-            </kino:KinoRadioButtonMenuItem>
-            <!--<kino ="Option A"/>
-            <RibbonRadioButton />
-            <RibbonRadioButton />-->
-        </Menu>  
+                <kino:KinoRadioButtonMenuItem Header="MoreOptions">
+                    <kino:KinoRadioButtonMenuItem Header="Option 1"
+                                                  GroupName="GroupA" />
+                    <kino:KinoRadioButtonMenuItem Header="Option 2"
+                                                  GroupName="GroupA" />
+                    <kino:KinoRadioButtonMenuItem Header="Option 3"
+                                                  GroupName="GroupA" />
+                    <Separator />
+                    <kino:KinoRadioButtonMenuItem Header="Option 4"
+                                                  GroupName="GroupB" />
+                    <kino:KinoRadioButtonMenuItem Header="Option 5"
+                                                  GroupName="GroupB" />
+                    <kino:KinoRadioButtonMenuItem Header="Option 6"
+                                                  GroupName="GroupB" />
+                    <Separator />
+                    <MenuItem IsCheckable="True"
+                              Header="Option 7" />
+                    <MenuItem IsCheckable="True"
+                              Header="Option 8" />
+                    <MenuItem IsCheckable="True"
+                              Header="Option 9" />
+                </kino:KinoRadioButtonMenuItem>
+            </Menu>
+            <local:SampleSection.SourceCodes>
+                <local:SourceCodeModel SourceCodeType="Xaml"
+                                       Haader="RadioButtonMenuItemSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/RadioButtonMenuItemSample.Section1.txt" />
+            </local:SampleSection.SourceCodes>
+        </local:SampleSection>
     </Grid>
-</UserControl>
+</local:SamplePage>

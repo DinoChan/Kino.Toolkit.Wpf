@@ -5,17 +5,14 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <Style TargetType="local:KinoFormSeparator">
-        <Setter Property="BorderBrush"
-                Value="DarkGray" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0,8,0,8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormSeparator">
                     <Rectangle VerticalAlignment="Bottom"
                                Fill="{TemplateBinding BorderBrush}"
-                               Height="1"
-                               />
+                               Height="1" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -23,15 +20,17 @@
 
     <Style TargetType="local:KinoFormTitle">
         <Setter Property="FontSize"
-                Value="{Binding Source={x:Static SystemFonts.CaptionFontSize}}" />
+                Value="14" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0,0,0,8" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="Focusable"
                 Value="False" />
         <Setter Property="IsTabStop"
                 Value="False" />
+        <Setter Property="BorderBrush"
+                Value="LightGray" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormTitle">
@@ -41,12 +40,14 @@
                                           Content="{TemplateBinding Content}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <ContentPresenter Grid.Row="1"
-                                          Content="{TemplateBinding Description}"
+                        <ContentPresenter Content="{TemplateBinding Description}"
                                           Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
                                           Margin="0,2,0,0"
-                                          Grid.Column="2"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
+                        <Rectangle VerticalAlignment="Bottom"
+                                   Margin="0,1,0,0"
+                                   Fill="{TemplateBinding BorderBrush}"
+                                   Height="1" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -59,9 +60,9 @@
         <Setter Property="Focusable"
                 Value="False" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0,0,0,8" />
         <Setter Property="Padding"
-                Value="8,0,4,0" />
+                Value="8,0,0,0" />
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -103,7 +104,7 @@
                         <ContentPresenter Grid.Row="1"
                                           Grid.Column="1"
                                           Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
-                                          Margin="4,2,0,0"
+                                          Margin="8,2,0,0"
                                           Content="{TemplateBinding Description}"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
                     </Grid>
@@ -114,7 +115,7 @@
 
     <Style TargetType="{x:Type local:KinoForm}">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-                Value="Auto" />
+                Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                 Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll"
@@ -130,6 +131,8 @@
                 Value="True"/>
         <Setter Property="local:FrameworkElementService.IsAutoFocus"
                 Value="True"/>
+        <Setter Property="Padding"
+                Value="8"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -143,6 +146,7 @@
                     <Border BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
                             SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -151,7 +155,7 @@
                             </Grid.RowDefinitions>
                         
                         <ScrollViewer Focusable="false" 
-                                      Padding="{TemplateBinding Padding}" >
+                                       >
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </ScrollViewer>
                           <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"

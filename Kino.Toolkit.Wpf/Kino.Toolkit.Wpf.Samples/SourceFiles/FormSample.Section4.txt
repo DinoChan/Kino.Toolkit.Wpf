@@ -1,0 +1,23 @@
+﻿<kino:KinoForm Width="500"
+               HorizontalAlignment="Left">
+    <kino:KinoForm.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </kino:KinoForm.Resources>
+    <CheckBox kino:KinoForm.Header="显示额外信息"
+              x:Name="ExtraInformationCheckBox" />
+    <Grid kino:KinoForm.IsItemItsOwnContainer="True"
+          Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
+        <kino:KinoForm Grid.IsSharedSizeScope="False"
+                       Padding="0">
+            <ComboBox kino:KinoForm.Header="国家" />
+            <TextBox kino:KinoForm.Header="父"
+                     kino:KinoForm.Description="可以不填" />
+            <TextBox kino:KinoForm.Header="母"
+                     kino:KinoForm.Description="可以不填" />
+        </kino:KinoForm>
+    </Grid>
+    <kino:KinoFormItem Header="备注"
+                       Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
+        <TextBox />
+    </kino:KinoFormItem>
+</kino:KinoForm>

@@ -36,249 +36,47 @@
     <SolidColorBrush x:Key="Button.Disabled.Foreground"
                      Color="#FF838383" />
 
-    <Style x:Key="FormCommandBarKinoButton"
-           TargetType="local:KinoButton">
-        <Setter Property="FocusVisualStyle"
-                Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background"
-                Value="{StaticResource Button.Static.Background}" />
-        <Setter Property="BorderBrush"
-                Value="{StaticResource Button.Static.Border}" />
-        <Setter Property="Foreground"
-                Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-        <Setter Property="BorderThickness"
-                Value="1" />
-        <Setter Property="HorizontalContentAlignment"
-                Value="Center" />
-        <Setter Property="VerticalContentAlignment"
-                Value="Center" />
-        <Setter Property="Padding"
-                Value="1" />
+
+    <Style TargetType="Button"
+           x:Key="FormCommandBarButtonBase">
         <Setter Property="MinWidth"
                 Value="48" />
         <Setter Property="Margin"
                 Value="4,0,0,0" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:KinoButton">
-                    <Border x:Name="border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            SnapsToDevicePixels="true">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.MouseOver.Background}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.MouseOver.Border}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Pressed.Border}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Pressed.Background}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)"
-                                                                       Storyboard.TargetName="contentPresenter">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Disabled.Foreground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Disabled.Background}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Disabled.Border}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal">
-                                <local:KinoResizer VerticalContentAlignment="Stretch"
-                                                   HorizontalContentAlignment="Right"
-                                                   x:Name="Resizer">
-                                    <local:KinoStateIndicator State="{TemplateBinding State}"
-                                                              Height="Auto"
-                                                              Width="Auto"
-                                                              MaxHeight="{TemplateBinding FontSize}"
-                                                              MaxWidth="{TemplateBinding FontSize}"
-                                                              Content="{TemplateBinding Icon}"
-                                                              VerticalContentAlignment="Stretch"
-                                                              HorizontalContentAlignment="Stretch">
-                                    </local:KinoStateIndicator>
-                                </local:KinoResizer>
-                                <Rectangle Width="{Binding ElementName=Resizer,Path=ActualWidth,Converter={StaticResource TimesConverter},ConverterParameter=0.4}" />
-                            </StackPanel>
-                            <ContentPresenter x:Name="contentPresenter"
-                                              Grid.Column="1"
-                                              Focusable="False"
-                                              Margin="{TemplateBinding Padding}"
-                                              RecognizesAccessKey="True"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted"
-                                 Value="true">
-                            <Setter Property="BorderBrush"
-                                    TargetName="border"
-                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-
-                        </Trigger>
-                        <Trigger Property="IsDefault"
-                                 Value="true">
-                            <Setter Property="MinWidth"
-                                    Value="96" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsDefaulted"
+                     Value="true">
+                <Setter Property="BorderBrush"
+                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+            </Trigger>
+            <Trigger Property="IsDefault"
+                     Value="true">
+                <Setter Property="MinWidth"
+                        Value="96" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
+
+    <Style x:Key="FormCommandBarKinoButton"
+           TargetType="local:KinoButton"
+           BasedOn="{StaticResource FormCommandBarButtonBase}" />
+
 
     <Style x:Key="FormCommandBarButton"
-           TargetType="Button">
-        <Setter Property="FocusVisualStyle"
-                Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background"
-                Value="{StaticResource Button.Static.Background}" />
-        <Setter Property="BorderBrush"
-                Value="{StaticResource Button.Static.Border}" />
-        <Setter Property="Foreground"
-                Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-        <Setter Property="BorderThickness"
-                Value="1" />
-        <Setter Property="HorizontalContentAlignment"
-                Value="Center" />
-        <Setter Property="VerticalContentAlignment"
-                Value="Center" />
-        <Setter Property="Padding"
-                Value="1" />
-        <Setter Property="MinWidth"
-                Value="48" />
-        <Setter Property="Margin"
-                Value="4,0,0,0" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            SnapsToDevicePixels="true">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.MouseOver.Background}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.MouseOver.Border}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Pressed.Border}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Pressed.Background}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)"
-                                                                       Storyboard.TargetName="contentPresenter">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Disabled.Foreground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Disabled.Background}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="border">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource Button.Disabled.Border}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <ContentPresenter x:Name="contentPresenter"
-                                              Focusable="False"
-                                              Margin="{TemplateBinding Padding}"
-                                              RecognizesAccessKey="True"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted"
-                                 Value="true">
-                            <Setter Property="BorderBrush"
-                                    TargetName="border"
-                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </Trigger>
-                        <Trigger Property="IsDefault"
-                                 Value="true">
-                            <Setter Property="MinWidth"
-                                    Value="96" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+           TargetType="Button"
+           BasedOn="{StaticResource FormCommandBarButtonBase}" />
+
+
 
     <Style TargetType="{x:Type local:KinoFormCommandBar}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <Style BasedOn="{StaticResource FormCommandBarButton}"
+                       TargetType="{x:Type Button}" />
+                <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
+                       TargetType="{x:Type local:KinoButton}" />
+            </ResourceDictionary>
+        </Style.Resources>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Focusable"
@@ -286,22 +84,14 @@
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="Margin"
-                Value="4,4,4,8" />
+                Value="0" />
         <Setter Property="Padding"
-                Value="8,0,4,0" />
+                Value="8,0,0,0" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Right" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormCommandBar">
-                    <ControlTemplate.Resources>
-                        <ResourceDictionary>
-                            <Style BasedOn="{StaticResource FormCommandBarButton}"
-                                   TargetType="{x:Type Button}" />
-                            <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
-                                   TargetType="{x:Type local:KinoButton}" />
-                        </ResourceDictionary>
-                    </ControlTemplate.Resources>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"

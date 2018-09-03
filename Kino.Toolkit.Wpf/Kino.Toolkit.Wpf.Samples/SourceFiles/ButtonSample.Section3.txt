@@ -1,0 +1,17 @@
+﻿<StackPanel>
+    <TextBlock Text="Comment" />
+    <TextBox Width="200"
+             HorizontalAlignment="Left" />
+    <kino:KinoButton Content="Comment"
+                     x:Name="CommentButton"
+                     HorizontalAlignment="Left"
+                     Margin="0,4,0,0"
+                     Width="100"
+                     Click="OnComment"
+                     IsDefault="True">
+        <kino:KinoButton.Icon>
+            <TextBlock Style="{StaticResource FontAwesome}"
+                       Text="&#xf075;" Foreground="BlueViolet"/>
+        </kino:KinoButton.Icon>
+    </kino:KinoButton>
+</StackPanel>

@@ -1,26 +1,116 @@
-﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.ButtonSample"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
-             mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+﻿<local:SamplePage x:Class="Kino.Toolkit.Wpf.Samples.ButtonSample"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  Header="Button"
+                  Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/Button"
+                  mc:Ignorable="d"
+                  d:DesignHeight="650"
+                  d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <kino:KinoButton Content="Test"
-                             Margin="8"
-                             HorizontalAlignment="Left"
-                             Width="75"
-                             State="{Binding SelectedItem,ElementName=StatesListBox}">
-                <!--<kino:KinoButton.Icon>
-                    <Rectangle Fill="Red" />
-                </kino:KinoButton.Icon>-->
-            </kino:KinoButton>
-            <ListBox Margin="8"
-                     x:Name="StatesListBox" />
+            <local:SampleSection>
+                <StackPanel>
+                    <kino:KinoButton Content="bookmark"
+                                     MinWidth="18"
+                                     x:Name="BookmarkButton"
+                                     HorizontalAlignment="Left"
+                                     State="{Binding SelectedItem,ElementName=StatesListBox}">
+                        <kino:KinoButton.Icon>
+                            <TextBlock Style="{StaticResource FontAwesome}"
+                                       Text="&#xf02e;" />
+                        </kino:KinoButton.Icon>
+                    </kino:KinoButton>
+                    <!--<kino:KinoHyperlinkButton Content="Bing" IsEnabled="False"
+                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1"/>
+                    <kino:KinoHyperlinkButton NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Height="20"
+                                       Width="20"
+                                       Fill="Red" />
+                            <TextBlock Text="Bing" Resources="{x:Null}"/>
+                        </StackPanel>
+                    </kino:KinoHyperlinkButton>
+                    <kino:KinoHyperlinkButton Content="Bing"
+                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1" />
+                    <kino:KinoHyperlinkButton Content="Bing"
+                                              VerticalContentAlignment="Center"
+                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
+                        <ButtonBase.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Height="30"
+                                               Width="20"
+                                               Fill="Red" />
+                                    <TextBlock Text="Bing"
+                                               Resources="{x:Null}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ButtonBase.ContentTemplate>
+                    </kino:KinoHyperlinkButton>-->
+                </StackPanel>
+                <local:SampleSection.ControlPanel>
+                    <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                        <StackPanel Orientation="Horizontal"
+                                    kino:KinoForm.Header="Content And Icon">
+                            <RadioButton Content="Content Only"
+                                         Checked="OnContentOnlyCheck" />
+                            <RadioButton Content="Icon Only"
+                                         Margin="8,0,0,0"
+                                         Checked="OnIcnOnlyCheck" />
+                            <RadioButton Content="Both"
+                                         Margin="8,0,0,0"
+                                         IsChecked="True"
+                                         Checked="OnBothCheck" />
+                        </StackPanel>
+                        <ListBox x:Name="StatesListBox"
+                                 HorizontalAlignment="Left"
+                                 Width="250"
+                                 kino:KinoForm.Header="State" />
+                    </kino:KinoForm>
+                </local:SampleSection.ControlPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="ButtonSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section1.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="ButtonSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section2.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+            <local:SampleSection Header="IsEnabled and State">
+                <StackPanel>
+                    <TextBlock Text="Comment" />
+                    <TextBox Width="200"
+                             HorizontalAlignment="Left" />
+                    <kino:KinoButton Content="Comment"
+                                     x:Name="CommentButton"
+                                     HorizontalAlignment="Left"
+                                     Margin="0,4,0,0"
+                                     Width="100"
+                                     Click="OnComment"
+                                     IsDefault="True">
+                        <kino:KinoButton.Icon>
+                            <TextBlock Style="{StaticResource FontAwesome}"
+                                       Text="&#xf075;"
+                                       Foreground="BlueViolet" />
+                        </kino:KinoButton.Icon>
+                    </kino:KinoButton>
+                </StackPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="ButtonSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section3.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="ButtonSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section4.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+
+
         </StackPanel>
     </Grid>
-</UserControl>
+</local:SamplePage>

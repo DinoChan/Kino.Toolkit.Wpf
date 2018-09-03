@@ -1,36 +1,39 @@
-﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.TransitioningContentControlSample"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid >
+﻿<local:SamplePage x:Class="Kino.Toolkit.Wpf.Samples.TransitioningContentControlSample"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  mc:Ignorable="d"
+                  Header="TransitioningContentControl"
+                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  d:DesignHeight="450"
+                  d:DesignWidth="800">
+    <Grid>
         <Grid.Resources>
-            <ControlTemplate x:Key="CustomTemplate" TargetType="kino:KinoTransitioningContentControl">
+            <ControlTemplate x:Key="CustomTemplate"
+                             TargetType="kino:KinoTransitioningContentControl">
                 <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="2">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="PresentationStates">
                             <VisualState x:Name="DefaultTransition">
                                 <Storyboard>
                                     <DoubleAnimation BeginTime="0:0:0.0"
-                                                             Duration="0:0:0.2"
-                                                             To="1"
-                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                             Storyboard.TargetName="CurrentContentPresentationSite">
+                                                     Duration="0:0:0.2"
+                                                     To="1"
+                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                     Storyboard.TargetName="CurrentContentPresentationSite">
                                         <DoubleAnimation.EasingFunction>
                                             <CubicEase EasingMode="EaseIn" />
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                     <DoubleAnimation BeginTime="0:0:0.0"
-                                                             Duration="0:0:0.2"
-                                                             To="0"
-                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                             Storyboard.TargetName="PreviousContentPresentationSite">
+                                                     Duration="0:0:0.2"
+                                                     To="0"
+                                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                     Storyboard.TargetName="PreviousContentPresentationSite">
                                         <DoubleAnimation.EasingFunction>
                                             <CubicEase EasingMode="EaseOut" />
                                         </DoubleAnimation.EasingFunction>
@@ -40,8 +43,8 @@
                             <VisualState x:Name="Normal">
                                 <Storyboard>
                                     <ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
-                                                                       Storyboard.TargetName="PreviousContentPresentationSite"
-                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                                   Storyboard.TargetName="PreviousContentPresentationSite"
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
                                         <DiscreteObjectKeyFrame KeyTime="00:00:00">
                                             <DiscreteObjectKeyFrame.Value>
                                                 <Visibility>Collapsed</Visibility>
@@ -82,17 +85,15 @@
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>
                             </VisualState>
-
-
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
 
                     <Grid>
                         <ContentPresenter x:Name="PreviousContentPresentationSite"
-                                              Content="{x:Null}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                          Content="{x:Null}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <ContentPresenter.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />
@@ -104,10 +105,10 @@
                         </ContentPresenter>
 
                         <ContentPresenter x:Name="CurrentContentPresentationSite"
-                                              Content="{x:Null}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                          Content="{x:Null}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <ContentPresenter.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />
@@ -120,26 +121,71 @@
                     </Grid>
                 </Border>
             </ControlTemplate>
-      
+
         </Grid.Resources>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" >
-                <kino:KinoTransitioningContentControl Margin="8" x:Name="DefaultContent" />
-                <Button Content="Default" Click="OnChangByDefault" Margin="8" Width="64"/>
-                <Button Content="Left" Click="OnChangeByLeft" Margin="8" Width="64"/>
-                <Button Content="Up" Click="OnChangeByUp" Margin="8" Width="64"/>
-                <Button Content="Right" Click="OnChangeByRight" Margin="8" Width="64"/>
-                <Button Content="Down" Click="OnChangeByDown" Margin="8" Width="64"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" >
-                <kino:KinoTransitioningContentControl Margin="8" x:Name="CustomContent"  Template="{StaticResource CustomTemplate}"/>
-                <Button Content="Custom" Click="OnChangByCustom" Margin="8" Width="64"/>
-                <Button Content="Custom2"
-                        Click="OnChangByCustom2"
-                        Margin="8"
-                        Width="64" />
-            </StackPanel>
+            <local:SampleSection Header="Default Transition">
+                <StackPanel>
+                    <kino:KinoTransitioningContentControl Margin="8"
+                                                          x:Name="DefaultContent"
+                                                          HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Default"
+                                Click="OnChangByDefault"
+                                Margin="8"
+                                Width="64" />
+                        <Button Content="Left"
+                                Click="OnChangeByLeft"
+                                Margin="8"
+                                Width="64" />
+                        <Button Content="Up"
+                                Click="OnChangeByUp"
+                                Margin="8"
+                                Width="64" />
+                        <Button Content="Right"
+                                Click="OnChangeByRight"
+                                Margin="8"
+                                Width="64" />
+                        <Button Content="Down"
+                                Click="OnChangeByDown"
+                                Margin="8"
+                                Width="64" />
+                    </StackPanel>
+                </StackPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="TransitioningContentControlSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/TransitioningContentControlSample.Section1.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="TransitioningContentControlSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/TransitioningContentControlSample.Section2.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+            <local:SampleSection Header="Custom Transition">
+                <StackPanel>
+                    <kino:KinoTransitioningContentControl Margin="8"
+                                                          x:Name="CustomContent"
+                                                          Template="{StaticResource CustomTemplate}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Custom"
+                                Click="OnChangByCustom"
+                                Margin="8"
+                                Width="64" />
+                        <Button Content="Custom2"
+                                Click="OnChangByCustom2"
+                                Margin="8"
+                                Width="64" />
+                    </StackPanel>
+                </StackPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="TransitioningContentControlSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/TransitioningContentControlSample.Section3.txt" />
+                    <local:SourceCodeModel SourceCodeType="CSharp"
+                                           Haader="TransitioningContentControlSample.xaml.cs"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/TransitioningContentControlSample.Section4.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
         </StackPanel>
     </Grid>
-</UserControl>
+</local:SamplePage>

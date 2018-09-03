@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// ProgressRingSample.xaml 的交互逻辑
     /// </summary>
-    public partial class ProgressRingSample : UserControl
+    public partial class ProgressRingSample 
     {
         public ProgressRingSample()
         {

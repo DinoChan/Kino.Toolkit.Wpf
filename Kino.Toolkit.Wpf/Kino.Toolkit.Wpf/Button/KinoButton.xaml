@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
 
     <local:TimesConverter x:Key="TimesConverter" />
+    <local:NullToValueConverter x:Key="NullToValueConverter" />
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -52,7 +53,7 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Padding"
-                Value="1" />
+                Value="2,1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoButton">
@@ -114,14 +115,17 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
                                 <local:KinoResizer VerticalContentAlignment="Stretch"
-                                                   HorizontalContentAlignment="Right"
+                                                   HorizontalContentAlignment="Left"
+                                                   FlowDirection="RightToLeft"
                                                    x:Name="Resizer">
                                     <local:KinoStateIndicator State="{TemplateBinding State}"
                                                               Height="Auto"
@@ -133,12 +137,14 @@
                                                               HorizontalContentAlignment="Stretch">
                                     </local:KinoStateIndicator>
                                 </local:KinoResizer>
-                                <Rectangle Width="{Binding ElementName=Resizer,Path=ActualWidth,Converter={StaticResource TimesConverter},ConverterParameter=0.4}" />
+                                <Rectangle Width="{Binding ElementName=Resizer,Path=ActualWidth,Converter={StaticResource TimesConverter},ConverterParameter=0.3}"
+                                           Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Content,Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}" />
                             </StackPanel>
+
+
                             <ContentPresenter x:Name="contentPresenter"
                                               Grid.Column="1"
                                               Focusable="False"
-                                              Margin="{TemplateBinding Padding}"
                                               RecognizesAccessKey="True"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -152,6 +158,83 @@
                                     Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ResourceDictionary x:Key="HyperlinkResources">
+        <Style TargetType="TextBlock">
+            <Setter Property="TextDecorations"
+                    Value="Underline" />
+        </Style>
+    </ResourceDictionary>
+
+    <Style TargetType="local:KinoHyperlinkButton">
+        <Setter Property="Foreground"
+                Value="#FF0097FB" />
+        <Setter Property="Padding"
+                Value="2,0,2,0" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Top" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:KinoHyperlinkButton">
+                    <Grid Cursor="{TemplateBinding Cursor}"
+                          Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="(local:FrameworkElementService.Resources)"
+                                                                       Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{StaticResource HyperlinkResources}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="(local:FrameworkElementService.Resources)"
+                                                                       Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{StaticResource HyperlinkResources}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="contentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0.8" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground)"
+                                                                       Storyboard.TargetName="contentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{StaticResource Button.Disabled.Foreground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

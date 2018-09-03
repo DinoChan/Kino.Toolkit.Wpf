@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
         mc:Ignorable="d"
+        SnapsToDevicePixels="True"
         Title="FormSampleWindow"
         Height="450"
         Width="800">
@@ -37,8 +38,12 @@
                          kino:KinoForm.IsRequired="True" />
             <ComboBox kino:KinoForm.Header="国家" />
             <kino:KinoFormSeparator />
-            <kino:KinoFormTitle Content="家庭信息"
-                                Description="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。" />
+            <kino:KinoFormTitle Content="家庭信息">
+                <kino:KinoFormTitle.Description>
+                    <TextBlock Text="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。"
+                               TextWrapping="Wrap" />
+                </kino:KinoFormTitle.Description>
+            </kino:KinoFormTitle>
             <TextBox kino:KinoForm.Header="父"
                      x:Name="FatherTextBox"
                      kino:KinoForm.Description="可以不填" />
@@ -52,7 +57,8 @@
                 <RadioButton Content="男"
                              GroupName="Sex" />
                 <RadioButton Content="女"
-                             GroupName="Sex" />
+                             GroupName="Sex"
+                             Margin="8,0,0,0" />
             </StackPanel>
 
             <CheckBox kino:KinoForm.Header="已婚" />

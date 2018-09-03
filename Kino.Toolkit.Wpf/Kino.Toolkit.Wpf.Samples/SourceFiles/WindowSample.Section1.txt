@@ -1,0 +1,27 @@
+﻿<ListBox kino:KinoForm.Header="WindowState"
+         SelectedIndex="0"
+         Width="250"
+         HorizontalAlignment="Left"
+         x:Name="WindowStateListBox">
+    <WindowState>Normal</WindowState>
+    <WindowState>Maximized</WindowState>
+</ListBox>
+<ListBox kino:KinoForm.Header="WindowStartupLocation"
+         SelectedIndex="0"
+         Width="250"
+         HorizontalAlignment="Left"
+         x:Name="WindowStartupLocationListBox">
+    <WindowStartupLocation>Manual</WindowStartupLocation>
+    <WindowStartupLocation>CenterScreen</WindowStartupLocation>
+    <WindowStartupLocation>CenterOwner</WindowStartupLocation>
+</ListBox>
+<ListBox kino:KinoForm.Header="ResizeMode"
+         SelectedIndex="0"
+         Width="250"
+         HorizontalAlignment="Left"
+         x:Name="ResizeModeListBox">
+    <ResizeMode>NoResize</ResizeMode>
+    <ResizeMode>CanMinimize</ResizeMode>
+    <ResizeMode>CanResize</ResizeMode>
+    <ResizeMode>CanResizeWithGrip</ResizeMode>
+</ListBox>

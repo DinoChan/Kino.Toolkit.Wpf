@@ -18,7 +18,6 @@ namespace Kino.Toolkit.Wpf
 
         public event EventHandler LoadStarted;
 
-        private ILoadOperation _currentOperation;
 
         private object _currentUserState;
 
@@ -62,11 +61,7 @@ namespace Kino.Toolkit.Wpf
 
         public AsyncRemoteCollectionViewLoader(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
         {
-            if (load == null)
-            {
-                throw new ArgumentNullException("load");
-            }
-            this._load = load;
+            this._load = load ?? throw new ArgumentNullException("load");
             this._onLoadCompleted = onLoadCompleted;
         }
 

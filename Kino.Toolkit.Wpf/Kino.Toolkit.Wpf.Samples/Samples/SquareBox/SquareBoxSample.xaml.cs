@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// SquareBoxSample.xaml 的交互逻辑
     /// </summary>
-    public partial class SquareBoxSample : UserControl
+    public partial class SquareBoxSample 
     {
         public SquareBoxSample()
         {

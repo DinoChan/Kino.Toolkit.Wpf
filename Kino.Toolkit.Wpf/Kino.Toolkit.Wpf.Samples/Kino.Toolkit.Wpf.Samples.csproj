@@ -39,6 +39,9 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -81,7 +84,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ModelBase.cs" />
+    <Compile Include="Common\PasswordBoxHelper.cs" />
+    <Compile Include="Controls\SampleSection.cs" />
+    <Compile Include="Controls\SourceCodeBox.cs" />
+    <Compile Include="Controls\SourceCodeItemsControl.cs" />
+    <Compile Include="Controls\SourceCodeModel.cs" />
+    <Compile Include="Controls\SourceCodeType.cs" />
+    <Compile Include="Controls\SourceCodeTypeConverter.cs" />
+    <Compile Include="Core\CodeBox.cs" />
     <Compile Include="Common\TestModel.cs" />
+    <Compile Include="Core\CodeFormatting\CSharpFormat.cs" />
+    <Compile Include="Core\CodeFormatting\XamlFormat.cs" />
+    <Compile Include="Core\Converters\ZeroToBoolConverter.cs" />
+    <Compile Include="Core\CSharpFormatter.cs" />
+    <Compile Include="Core\LiveExplorerTreeViewItem.cs" />
+    <Compile Include="Core\XamlFormatter.cs" />
+    <Compile Include="Controls\SamplePage.cs" />
+    <Compile Include="Patterns\SignIn\SignInSample.xaml.cs">
+      <DependentUpon>SignInSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\SignIn\SignInView.xaml.cs">
+      <DependentUpon>SignInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\SignIn\SignUpView.xaml.cs">
+      <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\SignIn\SimpleShell.xaml.cs">
+      <DependentUpon>SimpleShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\SignIn\UserinfoDialog.xaml.cs">
+      <DependentUpon>UserinfoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\DataGrid\DataGridSample.xaml.cs">
       <DependentUpon>DataGridSample.xaml</DependentUpon>
     </Compile>
@@ -113,6 +147,9 @@
     <Compile Include="Samples\Resizer\ResizerSample.xaml.cs">
       <DependentUpon>ResizerSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\Window\TestSystemRibbonWindow.xaml.cs">
+      <DependentUpon>TestSystemRibbonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\Window\TestRibbonWindow.xaml.cs">
       <DependentUpon>TestRibbonWindow.xaml</DependentUpon>
     </Compile>
@@ -121,6 +158,9 @@
     </Compile>
     <Compile Include="Samples\StateIndicator\StateIndicatorSample.xaml.cs">
       <DependentUpon>StateIndicatorSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Window\TestSystemWindow.xaml.cs">
+      <DependentUpon>TestSystemWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\Window\TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
@@ -131,7 +171,27 @@
     <Compile Include="Samples\Window\WindowSample.xaml.cs">
       <DependentUpon>WindowSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SampleTreeViewItem.cs" />
+    <Compile Include="Controls\SampleTreeViewItem.cs" />
+    <Page Include="Patterns\SignIn\SignInSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\SignInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\SignUpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\SimpleShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Patterns\SignIn\UserinfoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\DataGrid\DataGridSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Samples\Window\TestSystemRibbonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Samples\Window\TestRibbonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +260,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Samples\Window\TestSystemWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Samples\Window\TestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,6 +275,10 @@
     <Page Include="Samples\Window\WindowSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +299,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\FontAwesome.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -254,6 +329,114 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ProgressRingSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\StateIndicatorSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\StateIndicatorSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\WindowSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ButtonSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\SquareBoxSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\RadioButtonMenuItemSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataPagerSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataPagerSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ListBoxSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ListBoxSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataGridSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\DataGridSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\PagingSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FormSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormSample.Section5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

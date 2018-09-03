@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// TransitioningContentControlSample.xaml 的交互逻辑
     /// </summary>
-    public partial class TransitioningContentControlSample : UserControl
+    public partial class TransitioningContentControlSample
     {
         public TransitioningContentControlSample()
         {
@@ -70,7 +70,7 @@ namespace Kino.Toolkit.Wpf.Samples
         private void OnChangByCustom2(object sender, RoutedEventArgs e)
         {
             CustomContent.Transition = "CustomTransition";
-                CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
     }
 }

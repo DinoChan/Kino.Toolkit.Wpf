@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// StateIndicatorSample.xaml 的交互逻辑
     /// </summary>
-    public partial class StateIndicatorSample : UserControl
+    public partial class StateIndicatorSample 
     {
         public StateIndicatorSample()
         {
@@ -31,6 +31,28 @@ namespace Kino.Toolkit.Wpf.Samples
             StatesListBox.Items.Add(ProgressState.Faulted);
             StatesListBox.Items.Add(ProgressState.Other);
             StatesListBox.SelectedIndex = 0;
+            HasContentCheckBox.IsChecked = true;
+        }
+
+        private void OnHasContentChecked(object sender, RoutedEventArgs e)
+        {
+            StatesListBox.SelectedIndex = 0;
+            StateIndicator.Content = CreateIcon();
+        }
+
+        private void OnHasContentUnchecked(object sender, RoutedEventArgs e)
+        {
+            StatesListBox.SelectedIndex = 0;
+            StateIndicator.Content = null;
+        }
+
+        private object CreateIcon()
+        {
+            var textBlock = new TextBlock();
+            textBlock.Text = "\xf02e";
+            textBlock.Style = this.FindResource("FontAwesome") as Style;
+            textBlock.FontSize = 14;
+            return textBlock;
         }
     }
 }

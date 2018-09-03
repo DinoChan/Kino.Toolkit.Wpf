@@ -1,0 +1,19 @@
+﻿_asyncRemoteCollectionView = new AsyncRemoteCollectionView(LoadAsync, OnAsyncLoadCompleted);
+AsyncDemoRoot.DataContext = _asyncRemoteCollectionView;
+
+private void PagingSample_Loaded(object sender, RoutedEventArgs e)
+{
+    _asyncRemoteCollectionView.EntirelyRefresh();
+}
+
+private async Task<ILoadResult> LoadAsync()
+{
+    var service = new TestRemoteService();
+    var result = await service.LoadDataAsync(_asyncRemoteCollectionView.PageIndex, _asyncRemoteCollectionView.PageSize);
+    return result;
+}
+
+private void OnAsyncLoadCompleted(ILoadResult loadResult)
+{
+    //MessageBox.Show("LoadCompleted");
+}

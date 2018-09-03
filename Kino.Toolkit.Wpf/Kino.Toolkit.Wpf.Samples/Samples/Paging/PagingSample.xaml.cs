@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// PagingSample.xaml 的交互逻辑
     /// </summary>
-    public partial class PagingSample : UserControl
+    public partial class PagingSample 
     {
         private RemoteCollectionView _remoteCollectionView;
         private AsyncRemoteCollectionView _asyncRemoteCollectionView;
