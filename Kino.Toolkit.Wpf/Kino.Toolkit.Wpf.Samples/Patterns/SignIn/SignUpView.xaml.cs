@@ -20,18 +20,33 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class SignUpView : UserControl
     {
+        private UserInfo _user;
         public SignUpView()
         {
             InitializeComponent();
+            _user = new UserInfo();
+            DataContext = _user;
         }
 
         public event EventHandler GoBack;
 
         public event EventHandler<UserInfo> Finished;
 
-        private void OnSignUp(object sender, RoutedEventArgs e)
+        private async void OnSignUp(object sender, RoutedEventArgs e)
         {
-            Finished?.Invoke(this, null);
+            IsEnabled = false;
+            try
+            {
+                SignUpButton.State = ProgressState.Busy;
+                await Task.Delay(2000);
+                Finished?.Invoke(this, _user);
+            }
+            finally
+            {
+                IsEnabled = true;
+            }
+
+            await Task.Delay(2000);
         }
 
         private void OnBack(object sender, RoutedEventArgs e)

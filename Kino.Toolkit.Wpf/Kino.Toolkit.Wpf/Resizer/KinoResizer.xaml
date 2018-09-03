@@ -8,6 +8,8 @@
                 Value="Top" />
         <Setter Property="IsTabStop"
                 Value="False" />
+        <Setter Property="Focusable"
+                Value="False" />
         <Setter Property="Animation">
             <Setter.Value>
                 <DoubleAnimation BeginTime="0:0:0"

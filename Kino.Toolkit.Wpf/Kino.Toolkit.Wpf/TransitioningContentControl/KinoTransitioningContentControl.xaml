@@ -4,7 +4,9 @@
 
     <Style TargetType="local:KinoTransitioningContentControl">
         <Setter Property="IsTabStop"
-                Value="True" />
+                Value="False" />
+        <Setter Property="Focusable"
+                Value="False" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="VerticalContentAlignment"

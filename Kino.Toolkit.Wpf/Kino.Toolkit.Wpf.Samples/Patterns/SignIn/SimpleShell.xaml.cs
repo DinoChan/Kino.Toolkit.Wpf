@@ -28,6 +28,7 @@ namespace Kino.Toolkit.Wpf.Samples
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             UsernameItem.Header = User.Username;
+            UsernameElement.Text = User.Username;
         }
 
         public UserInfo User { get; internal set; }

@@ -67,12 +67,18 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <kino:KinoForm Margin="8">
-                    <TextBox kino:KinoForm.Header="用户名" />
-                    <TextBox kino:KinoForm.Header="昵称" />
-                    <PasswordBox kino:KinoForm.Header="密码" />
+                    <TextBox kino:KinoForm.Header="用户名"
+                             Text="{Binding Username,Mode=TwoWay}"
+                             Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                    <TextBox kino:KinoForm.Header="昵称"
+                             Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                    <PasswordBox kino:KinoForm.Header="密码"
+                                 Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
+                                  local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
                     <kino:KinoForm.CommandBar>
                         <kino:KinoFormCommandBar>
                             <kino:KinoButton Content="Sign Up"
+                                             x:Name="SignUpButton"
                                              IsDefault="True"
                                              Click="OnSignUp" />
                         </kino:KinoFormCommandBar>

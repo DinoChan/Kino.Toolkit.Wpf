@@ -68,9 +68,11 @@
         <kino:KinoForm Margin="8">
             <TextBox kino:KinoForm.Header="用户名"
                      x:Name="UsernameElement"
-                     Text="{Binding Username,Mode=TwoWay}" />
+                     Text="{Binding Username,Mode=TwoWay}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplate}"/>
             <PasswordBox kino:KinoForm.Header="密码"
-                         local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
+                         local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}"
+                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
             <kino:KinoForm.CommandBar>
                 <kino:KinoFormCommandBar>
                     <kino:KinoButton Content="Sign In"
@@ -88,7 +90,6 @@
                 <TextBlock Text="没有账号？"
                            VerticalAlignment="Center" />
                 <kino:KinoHyperlinkButton Content="注册"
-                                          MinWidth="64"
                                           Click="OnSignUp" />
             </StackPanel>
         </Grid>
