@@ -45,7 +45,7 @@
                                           Margin="0,2,0,0"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
                         <Rectangle VerticalAlignment="Bottom"
-                                   Margin="0,2,0,0"
+                                   Margin="0,1,0,0"
                                    Fill="{TemplateBinding BorderBrush}"
                                    Height="1" />
                     </StackPanel>
