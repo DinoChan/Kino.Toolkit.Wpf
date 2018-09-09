@@ -84,8 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\LoadResult.cs" />
     <Compile Include="Common\ModelBase.cs" />
     <Compile Include="Common\PasswordBoxHelper.cs" />
+    <Compile Include="Common\TestCurdService.cs" />
     <Compile Include="Controls\SampleSection.cs" />
     <Compile Include="Controls\SourceCodeBox.cs" />
     <Compile Include="Controls\SourceCodeItemsControl.cs" />
@@ -101,6 +103,9 @@
     <Compile Include="Core\LiveExplorerTreeViewItem.cs" />
     <Compile Include="Core\XamlFormatter.cs" />
     <Compile Include="Controls\SamplePage.cs" />
+    <Compile Include="Patterns\Curd\CurdSample.xaml.cs">
+      <DependentUpon>CurdSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Patterns\SignIn\SignInSample.xaml.cs">
       <DependentUpon>SignInSample.xaml</DependentUpon>
     </Compile>
@@ -172,6 +177,10 @@
       <DependentUpon>WindowSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SampleTreeViewItem.cs" />
+    <Page Include="Patterns\Curd\CurdSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Patterns\SignIn\SignInSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

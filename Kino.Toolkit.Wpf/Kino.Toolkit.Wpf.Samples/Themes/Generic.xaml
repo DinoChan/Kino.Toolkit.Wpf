@@ -3,11 +3,11 @@
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                     xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                     xmlns:liveExplorer="clr-namespace:Xceed.Wpf.Toolkit.LiveExplorer.Core">
-    
+
     <local:SourceCodeTypeConverter x:Key="SourceCodeTypeConverter" />
-    
+
     <kino:NullToValueConverter x:Key="NullToValueConverter" />
-    
+
     <Style TargetType="{x:Type local:SamplePage}">
         <Setter Property="Background"
                 Value="White" />
@@ -15,6 +15,10 @@
                 Value="True" />
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Auto" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:SamplePage}">
@@ -42,9 +46,7 @@
                             </Grid>
                             <ScrollViewer BorderThickness="0"
                                           Padding="8"
-                                          Grid.Row="1"
-                                          HorizontalScrollBarVisibility="Auto"
-                                          VerticalScrollBarVisibility="Auto">
+                                          Grid.Row="1">
                                 <ContentPresenter />
                             </ScrollViewer>
                         </Grid>
@@ -76,12 +78,13 @@
                                         <Rectangle Height="1"
                                                    Margin="0,4"
                                                    Fill="#FFD3D6DB" />
-                                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
                                     </StackPanel>
                                 </ControlTemplate>
                             </ContentControl.Template>
                         </ContentControl>
-                        <local:SourceCodeItemsControl Margin="0,4,0,0" ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodes}" />
+                        <local:SourceCodeItemsControl Margin="0,4,0,0"
+                                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodes}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -121,7 +124,7 @@
                                                VerticalAlignment="Center"
                                                Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SourceCodeType,Converter={StaticResource SourceCodeTypeConverter}}" />
                                 </Grid>
-                                
+
                                 <Rectangle Width="1"
                                            Grid.Column="1"
                                            HorizontalAlignment="Left"
@@ -134,7 +137,7 @@
                                         Background="Transparent"
                                         Content="Copy"
                                         Command="{x:Static ApplicationCommands.Copy}" />
-                                
+
                             </Grid>
                             <Rectangle Height="1"
                                        VerticalAlignment="Bottom"

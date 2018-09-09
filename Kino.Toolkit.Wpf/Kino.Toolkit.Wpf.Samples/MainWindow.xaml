@@ -292,6 +292,8 @@
                                       IsExpanded="True">
                 <local:SampleTreeViewItem Header="Sign in/Sign Up"
                                           SampleType="{x:Type local:SignInSample}" />
+                <local:SampleTreeViewItem Header="Curd"
+                                          SampleType="{x:Type local:CurdSample}" />
             </local:SampleTreeViewItem>
         </TreeView>
         <Grid Grid.Column="1">
