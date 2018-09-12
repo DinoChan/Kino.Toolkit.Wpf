@@ -61,7 +61,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnAsyncLoadCompleted(ILoadResult loadResult)
         {
-            
+
         }
 
         private async void OnDelete(object sender, RoutedEventArgs e)
@@ -78,7 +78,15 @@ namespace Kino.Toolkit.Wpf.Samples
                 _asyncRemoteCollectionView.IsRefreshing = false;
                 throw;
             }
-            
+
+        }
+
+        private void OnCreate(object sender, RoutedEventArgs e)
+        {
+            var window = new TestModelWindow(_service);
+            window.ShowDialog();
+            if (window.DialogResult == true)
+                _asyncRemoteCollectionView.Refresh();
         }
     }
 }

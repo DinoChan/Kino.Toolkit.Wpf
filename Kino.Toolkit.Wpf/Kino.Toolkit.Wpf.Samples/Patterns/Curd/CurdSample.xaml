@@ -25,27 +25,29 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="300" 
-                             x:Name="FilterTextBox"/>
+                    <TextBox Width="300"
+                             x:Name="FilterTextBox" />
                     <Button IsDefault="True"
                             Margin="4,0,0,0"
-                            Content="Search" 
-                            Click="OnSearch"/>
+                            Content="Search"
+                            Click="OnSearch" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="1">
-                    <Button Content="Create" />
+                    <Button Content="Create"
+                            Click="OnCreate" />
                     <Button Content="Delete"
                             Click="OnDelete"
                             Margin="4,0,1,0">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=DataElement,Path=SelectedItems.Count}" Value="0" >
+                                    <DataTrigger Binding="{Binding ElementName=DataElement,Path=SelectedItems.Count}"
+                                                 Value="0">
                                         <DataTrigger.Setters>
                                             <Setter Property="IsEnabled"
                                                     Value="False" />
-                                        </DataTrigger.Setters>  
+                                        </DataTrigger.Setters>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
