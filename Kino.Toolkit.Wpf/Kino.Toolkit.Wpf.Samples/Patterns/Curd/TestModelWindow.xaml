@@ -7,7 +7,7 @@
                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                  mc:Ignorable="d"
-                 WindowStartupLocation="CenterOwner"
+                 WindowStartupLocation="CenterScreen"
                  ResizeMode="NoResize"
                  SizeToContent="WidthAndHeight"
                  Title="TestModelWindow"

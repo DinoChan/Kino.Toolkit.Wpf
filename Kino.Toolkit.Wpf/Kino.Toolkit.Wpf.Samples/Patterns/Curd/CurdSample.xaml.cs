@@ -88,5 +88,17 @@ namespace Kino.Toolkit.Wpf.Samples
             if (window.DialogResult == true)
                 _asyncRemoteCollectionView.Refresh();
         }
+
+        private void OnEdit(object sender, MouseButtonEventArgs e)
+        {
+            var testModel = (e.OriginalSource as FrameworkElement).DataContext as TestModel;
+            if (testModel == null)
+                return;
+
+            var window = new TestModelWindow(_service, testModel);
+            window.ShowDialog();
+            if (window.DialogResult == true)
+                _asyncRemoteCollectionView.Refresh();
+        }
     }
 }

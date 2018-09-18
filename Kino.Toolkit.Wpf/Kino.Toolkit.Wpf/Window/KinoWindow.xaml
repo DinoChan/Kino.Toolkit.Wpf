@@ -210,7 +210,6 @@
                 <WindowChrome CornerRadius="0"
                               UseAeroCaptionButtons="False"
                               NonClientFrameEdges="None"
-                              GlassFrameThickness="-1"
                               CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>
@@ -398,7 +397,6 @@
                 <WindowChrome CornerRadius="0"
                               UseAeroCaptionButtons="False"
                               NonClientFrameEdges="None"
-                              GlassFrameThickness="-1"
                               CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>

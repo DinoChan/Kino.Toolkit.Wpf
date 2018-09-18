@@ -60,7 +60,8 @@
                                IsReadOnly="True"
                                AutoGenerateColumns="False"
                                x:Name="DataElement"
-                               ItemsSource="{Binding}">
+                               ItemsSource="{Binding}"
+                               MouseDoubleClick="OnEdit">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name"
                                         Binding="{Binding Name}"

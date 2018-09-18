@@ -7,6 +7,7 @@
                   Header="DataGrid"
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                   xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/DataGrid"
                   d:DesignHeight="450"
                   d:DesignWidth="800">
     <local:SampleSection>

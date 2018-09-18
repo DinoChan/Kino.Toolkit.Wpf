@@ -44,11 +44,6 @@
         <Setter Property="Margin"
                 Value="4,0,0,0" />
         <Style.Triggers>
-            <Trigger Property="IsDefaulted"
-                     Value="true">
-                <Setter Property="BorderBrush"
-                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-            </Trigger>
             <Trigger Property="IsDefault"
                      Value="true">
                 <Setter Property="MinWidth"
