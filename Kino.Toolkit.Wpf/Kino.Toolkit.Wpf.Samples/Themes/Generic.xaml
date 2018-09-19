@@ -35,14 +35,11 @@
                                                 Foreground="#FF54698D"
                                                 FontSize="36"
                                                 Margin="24" />
-                                <!--<TextBlock HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           Margin="24">
-                                    <Hyperlink  NavigateUri="{Binding Link ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SamplePage}}"
-                                                Foreground="#FF34496D">
-                                        Source Code
-                                    </Hyperlink>
-                                </TextBlock>-->
+                                <kino:KinoHyperlinkButton HorizontalAlignment="Right"
+                                                          VerticalAlignment="Bottom"
+                                                          NavigateUri="{TemplateBinding Link}"
+                                                          Margin="0,0,24,30" 
+                                                          Content="Github"/>
                             </Grid>
                             <ScrollViewer BorderThickness="0"
                                           Padding="8"

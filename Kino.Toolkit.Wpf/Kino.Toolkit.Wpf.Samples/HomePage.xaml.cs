@@ -23,6 +23,15 @@ namespace Kino.Toolkit.Wpf.Samples
         public HomePage()
         {
             InitializeComponent();
+            foreach (var button in ControlsPanel.Children.OfType<KinoHyperlinkButton>())
+            {
+                button.Click += (s, e) =>
+                {
+                    NavigateTo?.Invoke(this, button.Tag as Type);
+                };
+            }
         }
+
+        public event EventHandler<Type> NavigateTo;
     }
 }

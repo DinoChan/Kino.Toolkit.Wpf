@@ -1,12 +1,200 @@
 ﻿<UserControl x:Class="Kino.Toolkit.Wpf.Samples.HomePage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <FrameworkElement.Resources>
+        <Style TargetType="kino:KinoHyperlinkButton">
+            <Setter Property="Margin"
+                    Value="0,10,20,10" />
+            <Setter Property="MinWidth"
+                    Value="200" />
+            <Setter Property="Padding"
+                    Value="0" />
+        </Style>
+    </FrameworkElement.Resources>
+    <Grid Background="White">
+        <Grid>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0.499,1"
+                                         EndPoint="0.5,1"
+                                         x:Name="BasicBrush">
+                        <GradientStop Color="#08000000"
+                                      Offset="0.0" />
+                        <GradientStop Color="#03000000"
+                                      Offset="1.0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="Rectangle.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation Storyboard.TargetName="BasicBrush"
+                                                Storyboard.TargetProperty="StartPoint"
+                                                From="0.0,1"
+                                                To="1,1"
+                                                Duration="0:0:40"
+                                                FillBehavior="HoldEnd"
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever" />
+                                <PointAnimation Storyboard.TargetName="BasicBrush"
+                                                Storyboard.TargetProperty="EndPoint"
+                                                From="0.001,1"
+                                                To="1,1"
+                                                Duration="0:0:40"
+                                                FillBehavior="HoldEnd"
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0.499,1"
+                                         EndPoint="0.5,1"
+                                         x:Name="ThirdBrush">
+                        <GradientStop Color="#08000000"
+                                      Offset="0.0" />
+                        <GradientStop Color="#03000000"
+                                      Offset="1.0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="Rectangle.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation Storyboard.TargetName="ThirdBrush"
+                                                Storyboard.TargetProperty="StartPoint"
+                                                From="1,1"
+                                                To="0.0,1"
+                                                Duration="0:0:15"
+                                                FillBehavior="HoldEnd"
+                                                RepeatBehavior="Forever" />
+                                <PointAnimation Storyboard.TargetName="ThirdBrush"
+                                                Storyboard.TargetProperty="EndPoint"
+                                                From="1,1"
+                                                To="0.001,1"
+                                                Duration="0:0:15"
+                                                FillBehavior="HoldEnd"
+                                                RepeatBehavior="Forever" />
+                                <PointAnimation Storyboard.TargetName="ThirdBrush"
+                                                Storyboard.TargetProperty="EndPoint"
+                                                From="1,1"
+                                                To="0.0,1"
+                                                BeginTime="0:0:15"
+                                                Duration="0:0:15"
+                                                FillBehavior="HoldEnd"
+                                                RepeatBehavior="Forever" />
+                                <PointAnimation Storyboard.TargetName="ThirdBrush"
+                                                Storyboard.TargetProperty="StartPoint"
+                                                From="1,1"
+                                                To="0.001,1"
+                                                BeginTime="0:0:15"
+                                                Duration="0:0:15"
+                                                FillBehavior="HoldEnd"
+                                                RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="1,0.499"
+                                         EndPoint="1,0.5"
+                                         x:Name="SecondBrush">
+                        <GradientStop Color="#02000000"
+                                      Offset="0.0" />
+                        <GradientStop Color="#07000000"
+                                      Offset="1.0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="Rectangle.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation Storyboard.TargetName="SecondBrush"
+                                                Storyboard.TargetProperty="StartPoint"
+                                                From="1,1"
+                                                To="1,0"
+                                                Duration="0:0:20"
+                                                FillBehavior="HoldEnd"
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever" />
+                                <PointAnimation Storyboard.TargetName="SecondBrush"
+                                                Storyboard.TargetProperty="EndPoint"
+                                                From="1,1"
+                                                To="1,0.001"
+                                                Duration="0:0:20"
+                                                FillBehavior="HoldEnd"
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        MaxWidth="1000">
+                <TextBlock Text="Kino Wpf Toolkit"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
+                           Margin="0,0,0,30" />
+                <TextBlock Text="Controls"
+                           FontSize="20"
+                           Foreground="#FF333333" />
+                <WrapPanel x:Name="ControlsPanel">
+                    <kino:KinoHyperlinkButton Content="Button"
+                                              Tag="{x:Type local:ButtonSample}" />
+                    <kino:KinoHyperlinkButton Content="TransitioningContentControl"
+                                              Tag="{x:Type local:TransitioningContentControlSample}" />
+                    <kino:KinoHyperlinkButton Content="ProgressRing"
+                                              Tag="{x:Type local:ProgressRingSample}" />
+                    <kino:KinoHyperlinkButton Content="StateIndicator"
+                                              Tag="{x:Type local:StateIndicatorSample}" />
+                    <kino:KinoHyperlinkButton Content="Window"
+                                              Tag="{x:Type local:WindowSample}" />
+                    <kino:KinoHyperlinkButton Content="ResizingControl"
+                                              Tag="{x:Type local:ResizerSample}" />
+                    <kino:KinoHyperlinkButton Content="SquareBox"
+                                              Tag="{x:Type local:SquareBoxSample}" />
+                    <kino:KinoHyperlinkButton Content="Form"
+                                              Tag="{x:Type local:FormSample}" />
+                    <kino:KinoHyperlinkButton Content="RadioButtonMenuItem"
+                                              Tag="{x:Type local:RadioButtonMenuItemSample}" />
+                    <kino:KinoHyperlinkButton Content="DataPager"
+                                              Tag="{x:Type local:DataPagerSample}" />
+                    <kino:KinoHyperlinkButton Content="ListBox"
+                                              Tag="{x:Type local:ListBoxSample}" />
+                    <kino:KinoHyperlinkButton Content="DataGrid"
+                                              Tag="{x:Type local:DataGridSample}" />
+                    <kino:KinoHyperlinkButton Content="Paging"
+                                              Tag="{x:Type local:PagingSample}" />
+                </WrapPanel>
+                <Rectangle Height="1"
+                           Margin="0,30"
+                           Fill="LightGray" />
+
+                <TextBlock Text="About"
+                           FontSize="20"
+                           Foreground="#FF333333" />
+                <TextBlock Text="Version 1.0.0"
+                           Margin="0,10" />
+                <kino:KinoHyperlinkButton Content="Github"
+                                          NavigateUri="https://github.com/DinoChan/Kino.Toolkit.Wpf" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

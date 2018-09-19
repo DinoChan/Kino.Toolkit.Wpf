@@ -27,14 +27,13 @@ namespace Kino.Toolkit.Wpf.Samples
         public MainWindow()
         {
             InitializeComponent();
-            WindowChrome c = new WindowChrome();
-            var d = SystemParameters.CaptionHeight;
-            var e = SystemParameters.WindowResizeBorderThickness;
-            var f = SystemParameters.WindowNonClientFrameThickness;
-            var g = SystemParameters.FixedFrameHorizontalBorderHeight;
+            Loaded += OnLoaded;
         }
 
-      
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            HomeItem.IsSelected = true;
+        }
 
         private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<Object> e)
         {
@@ -52,9 +51,41 @@ namespace Kino.Toolkit.Wpf.Samples
 
                     Assembly assembly = GetType().Assembly;
                     Type sampleType = assembly.GetType(name);
-
-                    SampleContentControl.Content = (FrameworkElement)Activator.CreateInstance(sampleType);
+                    var page = (FrameworkElement)Activator.CreateInstance(sampleType);
+                    SampleContentControl.Content = page;
+                    if (page is HomePage homePage)
+                    {
+                        homePage.NavigateTo += OnNavigateTo;
+                    }
                 }
+            }
+        }
+
+        private void OnNavigateTo(object sender, Type type)
+        {
+            foreach (var item in TreeView.Items.OfType<SampleTreeViewItem>())
+            {
+                SelectItem(item, type);
+            }
+        }
+
+        private void SelectItem(SampleTreeViewItem item, Type type)
+        {
+            if (item.SampleType == type)
+            {
+                item.IsSelected = true;
+                return;
+            }
+
+            foreach (var subItem in item.Items.OfType<SampleTreeViewItem>())
+            {
+                if (subItem.SampleType == type)
+                {
+                    subItem.IsSelected = true;
+                    return;
+                }
+
+                SelectItem(subItem, type);
             }
         }
     }
