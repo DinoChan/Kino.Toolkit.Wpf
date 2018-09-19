@@ -1,0 +1,37 @@
+﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.TestModelWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                 xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                 mc:Ignorable="d"
+                 WindowStartupLocation="CenterScreen"
+                 ResizeMode="NoResize"
+                 SizeToContent="WidthAndHeight"
+                 Title="TestModelWindow"
+                 Height="450"
+                 Width="800">
+    <Grid Width="400">
+        <xctk:BusyIndicator x:Name="BusyIndicator">
+            <kino:KinoForm>
+                <kino:KinoFormTitle Content="TestModel" />
+                <TextBox kino:KinoForm.Header="Name"
+                         Text="{Binding Name}" />
+                <xctk:IntegerUpDown kino:KinoForm.Header="Age"
+                                    Value="{Binding Age,Mode=TwoWay}" />
+                <kino:KinoForm.CommandBar>
+                    <kino:KinoFormCommandBar>
+                        <Button Content="Save"
+                                IsDefault="True"
+                                Click="OnSave" />
+                        <Button Content="Cancel"
+                                IsCancel="True"
+                                Click="OnCancel" />
+                    </kino:KinoFormCommandBar>
+                </kino:KinoForm.CommandBar>
+            </kino:KinoForm>
+        </xctk:BusyIndicator>
+    </Grid>
+</kino:KinoWindow>

@@ -6,6 +6,7 @@
                   xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                   mc:Ignorable="d"
                   Header="RadioButtonMenuItem"
+                  Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/RadioButtonMenuItem"
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                   d:DesignHeight="450"
                   d:DesignWidth="800">

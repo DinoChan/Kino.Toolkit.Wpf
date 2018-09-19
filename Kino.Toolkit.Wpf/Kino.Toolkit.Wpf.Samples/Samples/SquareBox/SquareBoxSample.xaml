@@ -6,6 +6,7 @@
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
                   mc:Ignorable="d"
                   Header="SquareBox"
+                  Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/SquareBox"
                   xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                   d:DesignHeight="450"
                   d:DesignWidth="800">

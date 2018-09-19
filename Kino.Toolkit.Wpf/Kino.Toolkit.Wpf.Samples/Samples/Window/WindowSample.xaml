@@ -6,6 +6,7 @@
                   mc:Ignorable="d"
                   Header="Window"
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/Window"
                   xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                   d:DesignHeight="450"
                   d:DesignWidth="800">

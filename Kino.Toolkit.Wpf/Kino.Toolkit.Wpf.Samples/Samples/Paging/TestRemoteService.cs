@@ -88,14 +88,5 @@ namespace Kino.Toolkit.Wpf.Samples
     //    }
     //}
 
-    public class LoadResult : ILoadResult
-    {
-        public IEnumerable Result { get; set; }
-
-        public Exception Error { get; set; }
-
-        public int TotalCount { get; set; }
-
-        public bool IsCanceled { get; set; }
-    }
+  
 }
