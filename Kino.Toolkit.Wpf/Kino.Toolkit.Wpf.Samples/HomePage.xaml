@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
              xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
              mc:Ignorable="d"
+             FontSize="14"
              d:DesignHeight="450"
              d:DesignWidth="800">
     <FrameworkElement.Resources>
@@ -148,7 +149,7 @@
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         MaxWidth="1000">
-                <TextBlock Text="Kino Wpf Toolkit"
+                <TextBlock Text="Kino Toolkit Wpf"
                            HorizontalAlignment="Center"
                            FontSize="30"
                            Margin="0,0,0,30" />
