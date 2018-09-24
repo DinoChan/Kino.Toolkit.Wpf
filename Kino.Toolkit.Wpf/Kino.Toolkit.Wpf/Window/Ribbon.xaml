@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:classic="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
                     xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
                     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
