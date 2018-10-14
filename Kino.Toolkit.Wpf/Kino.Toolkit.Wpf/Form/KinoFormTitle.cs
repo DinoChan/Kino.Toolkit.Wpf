@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-   public class KinoFormTitle: ContentControl
+   public class KinoFormTitle : ContentControl
     {
         public KinoFormTitle()
         {

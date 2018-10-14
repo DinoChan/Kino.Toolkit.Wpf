@@ -74,7 +74,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Private accessor for the Monitor we use to prevent recursion
         /// </summary>
-        private SimpleMonitor _currentChangedMonitor = new SimpleMonitor();
+        private readonly SimpleMonitor _currentChangedMonitor = new SimpleMonitor();
 
         /// <summary>
         /// Private accessor for the CurrentItem
@@ -158,7 +158,7 @@ namespace System.Windows.Data
         /// Whether the source needs to poll for changes
         /// (if it did not implement INotifyCollectionChanged)
         /// </summary>
-        private bool _pollForChanges;
+        private readonly bool _pollForChanges;
 
         /// <summary>
         /// Private accessor for the SortDescriptions
@@ -168,7 +168,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Private accessor for the SourceCollection
         /// </summary>
-        private IEnumerable _sourceCollection;
+        private readonly IEnumerable _sourceCollection;
 
         /// <summary>
         /// Private accessor for the Grouping data on the entire collection
@@ -215,12 +215,7 @@ namespace System.Windows.Data
         [SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily", Justification = "Cannot use underscore in name to differentiate")]
         public PagedCollectionView(IEnumerable source, bool isDataSorted, bool isDataInGroupOrder)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException("source");
-            }
-
-            this._sourceCollection = source;
+            this._sourceCollection = source ?? throw new ArgumentNullException("source");
 
             this.SetFlag(CollectionViewFlags.IsDataSorted, isDataSorted);
             this.SetFlag(CollectionViewFlags.IsDataInGroupOrder, isDataInGroupOrder);
@@ -686,7 +681,7 @@ namespace System.Windows.Data
                 }
 
                 CollectionViewGroupRoot group = this.RootGroup;
-                return group != null ? group.Items : null;
+                return group?.Items;
             }
         }
 
@@ -801,7 +796,7 @@ namespace System.Windows.Data
                 {
                     throw new ArgumentException(
                         string.Format(CultureInfo.InvariantCulture, 
-                            PagedCollectionViewResources.InvalidEnumArgument, 
+                            PagedCollectionViewResources.InvalidEnumArgument,
                             "value",
                             value.ToString(),
                             typeof(NewItemPlaceholderPosition).Name));
@@ -1953,7 +1948,7 @@ namespace System.Windows.Data
             if (this.IsGrouping)
             {
                 CollectionViewGroupRoot group = this.RootGroup;
-                return group != null ? group.GetLeafEnumerator() : null;
+                return group?.GetLeafEnumerator();
             }
 
             // if we are paging
@@ -2014,9 +2009,7 @@ namespace System.Windows.Data
             if (this.IsGrouping)
             {
                 CollectionViewGroupRoot group = this.RootGroup;
-                return group != null ?
-                    group.LeafAt(this._isUsingTemporaryGroup ? this.ConvertToInternalIndex(index) : index) :
-                    null;
+                return group?.LeafAt(this._isUsingTemporaryGroup ? this.ConvertToInternalIndex(index) : index);
             }
 
             if (this.IsAddingNew && this.UsesLocalArray && index == this.Count - 1)
@@ -2524,8 +2517,7 @@ namespace System.Windows.Data
         /// <returns>child object</returns>
         private static object InvokePath(object item, string propertyPath, Type propertyType)
         {
-            Exception exception;
-            object propertyValue = TypeHelper.GetNestedPropertyValue(item, propertyPath, propertyType, out exception);
+            object propertyValue = TypeHelper.GetNestedPropertyValue(item, propertyPath, propertyType, out Exception exception);
             if (exception != null)
             {
                 throw exception;
@@ -3063,10 +3055,7 @@ namespace System.Windows.Data
                 return;
             }
 
-            if (this.CurrentChanging != null)
-            {
-                this.CurrentChanging(this, args);
-            }
+            CurrentChanging?.Invoke(this, args);
         }
 
         /// <summary>
@@ -3488,8 +3477,8 @@ namespace System.Windows.Data
                 return;
             }
 
-            object addedItem = (args.NewItems != null) ? args.NewItems[0] : null;
-            object removedItem = (args.OldItems != null) ? args.OldItems[0] : null;
+            object addedItem = args.NewItems?[0];
+            object removedItem = args.OldItems?[0];
 
             // fire notifications for removes
             if (args.Action == NotifyCollectionChangedAction.Remove ||
@@ -3681,11 +3670,7 @@ namespace System.Windows.Data
         /// </summary>
         private void RaisePageChanged()
         {
-            EventHandler<EventArgs> handler = this.PageChanged;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            PageChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -4355,7 +4340,7 @@ namespace System.Windows.Data
             /// <summary>
             /// Timestamp to let us know whether there have been updates to the collection
             /// </summary>
-            private int _timestamp;
+            private readonly int _timestamp;
         }
 
         /// <summary>
@@ -4533,7 +4518,7 @@ namespace System.Windows.Data
                 }
             }
 
-            private ICollectionView _collectionView;
+            private readonly ICollectionView _collectionView;
             private SortPropertyInfo[] _fields;
             private SortDescriptionCollection _sortFields;
             private IComparer<object> _comparer;

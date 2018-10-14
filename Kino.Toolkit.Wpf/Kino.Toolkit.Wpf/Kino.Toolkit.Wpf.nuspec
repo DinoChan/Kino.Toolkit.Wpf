@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0</version>
+    <title>Kino.Toolkit.Wpf</title>
+    <authors>dino.c</authors>
+    <owners>dino.c</owners>
+    <licenseUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf</projectUrl>
+    <iconUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/logo.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of wpf toolkit.</description>
+    <releaseNotes>1.0版本.</releaseNotes>
+    <copyright>Copyright 2018 dino.c</copyright>
+    <tags>WPF Control Toolkit Xaml</tags>
+  </metadata>
+</package>

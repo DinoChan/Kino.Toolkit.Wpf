@@ -52,7 +52,6 @@ namespace Kino.Toolkit.Wpf
         {
         }
 
-
         /// <summary>
         /// 获取或设置State的值
         /// </summary>  

@@ -1640,8 +1640,10 @@ namespace Kino.Toolkit.Wpf
                 // add new
                 while (this._numericButtonPanel.Children.Count < buttonCount)
                 {
-                    ToggleButton button = new ToggleButton();
-                    button.Style = this.NumericButtonStyle;
+                    ToggleButton button = new ToggleButton
+                    {
+                        Style = this.NumericButtonStyle
+                    };
                     button.Checked += new RoutedEventHandler(this.ToggleButton_Checked);
                     button.Unchecked += new RoutedEventHandler(this.ToggleButton_Unchecked);
                     button.GotFocus += new RoutedEventHandler(this.ToggleButton_GotFocus);
@@ -1915,8 +1917,6 @@ namespace Kino.Toolkit.Wpf
 
             VisualStateManager.GoToState(this, needTotalPageCountUnknownState ? DATAPAGER_stateTotalPageCountUnknown : DATAPAGER_stateTotalPageCountKnown, true);
         }
-
-       
 
         /// <summary>
         /// Updates the visual display to show the current page mode

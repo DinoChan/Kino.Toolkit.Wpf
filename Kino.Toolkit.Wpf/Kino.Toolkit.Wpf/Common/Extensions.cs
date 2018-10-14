@@ -29,8 +29,7 @@ namespace Kino.Toolkit.Wpf
             "AreHandlersSuspended",
             typeof(Boolean),
             typeof(ExtensionProperties),
-            new PropertyMetadata(false)
-        );
+            new PropertyMetadata(false));
         public static void SetAreHandlersSuspended(DependencyObject obj, Boolean value)
         {
             obj.SetValue(AreHandlersSuspended, value);
@@ -187,8 +186,7 @@ namespace Kino.Toolkit.Wpf
 
             return position.X > 0 && position.X < targetElement.ActualWidth
                 && (ignoreVertical
-                    || (position.Y > 0 && position.Y < targetElement.ActualHeight)
-                );
+                    || (position.Y > 0 && position.Y < targetElement.ActualHeight));
         }
     }
 }

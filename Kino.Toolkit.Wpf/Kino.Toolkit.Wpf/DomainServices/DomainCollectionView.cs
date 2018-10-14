@@ -73,16 +73,12 @@ namespace Kino.Toolkit.Wpf
         /// </param>
         public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable source)
         {
-            if (collectionViewLoader == null)
-            {
-                throw new ArgumentNullException("collectionViewLoader");
-            }
             if (source == null)
             {
                 throw new ArgumentNullException("source");
             }
 
-            this._collectionViewLoader = collectionViewLoader;
+            this._collectionViewLoader = collectionViewLoader ?? throw new ArgumentNullException("collectionViewLoader");
             this._collectionViewLoader.CanLoadChanged += this.OnCollectionViewLoaderCanLoadChanged;
             this._collectionViewLoader.LoadCompleted += this.OnLoadCompleted;
 
@@ -106,8 +102,10 @@ namespace Kino.Toolkit.Wpf
         /// <returns>A view over the specified source</returns>
         private static ICollectionView CreateView(IEnumerable source)
         {
-            CollectionViewSource cvs = new CollectionViewSource();
-            cvs.Source = source;
+            CollectionViewSource cvs = new CollectionViewSource
+            {
+                Source = source
+            };
             return cvs.View;
         }
 
