@@ -12,18 +12,20 @@ namespace Kino.Toolkit.Wpf
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
             double times = 1;
             if (parameter is string parameterString)
             {
                 if (Double.TryParse(parameterString, out times) == false)
+                {
                     return 0;
+                }
             }
 
             if (value is double length)
             {
                 return length * times;
             }
+
             return 0;
         }
 

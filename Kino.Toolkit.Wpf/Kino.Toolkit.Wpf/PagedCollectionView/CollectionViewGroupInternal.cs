@@ -16,7 +16,7 @@ namespace System.Windows.Data
     using System.Windows;
 
     /// <summary>
-    /// A CollectionViewGroupInternal, as created by a PagedCollectionView 
+    /// A CollectionViewGroupInternal, as created by a PagedCollectionView
     /// according to a GroupDescription.
     /// </summary>
     internal class CollectionViewGroupInternal : CollectionViewGroup
@@ -55,7 +55,7 @@ namespace System.Windows.Data
         //------------------------------------------------------
 
         /// <summary>
-        /// Initializes a new instance of the CollectionViewGroupInternal class.
+        /// Initializes a new instance of the <see cref="CollectionViewGroupInternal"/> class.
         /// </summary>
         /// <param name="name">Name of the CollectionViewGroupInternal</param>
         /// <param name="parent">Parent node of the CollectionViewGroup</param>
@@ -76,7 +76,7 @@ namespace System.Windows.Data
         //------------------------------------------------------
 
         /// <summary>
-        /// Gets a value indicating whether this group 
+        /// Gets a value indicating whether this group
         /// is at the bottom level (not further sub-grouped).
         /// </summary>
         public override bool IsBottomLevel
@@ -151,8 +151,7 @@ namespace System.Windows.Data
                     // look for first item, child by child
                     for (int k = 0, n = Items.Count; k < n; ++k)
                     {
-                        CollectionViewGroupInternal subgroup = this.Items[k] as CollectionViewGroupInternal;
-                        if (subgroup == null)
+                        if (!(Items[k] is CollectionViewGroupInternal subgroup))
                         {
                             // child is an item - return it
                             return this.Items[k];
@@ -162,6 +161,7 @@ namespace System.Windows.Data
                             // child is a nonempty subgroup - ask it
                             return subgroup.SeedItem;
                         }
+
                         //// otherwise child is an empty subgroup - go to next child
                     }
 
@@ -241,8 +241,7 @@ namespace System.Windows.Data
 
             if (comparer != null)
             {
-                ListComparer listComparer = comparer as ListComparer;
-                if (listComparer != null)
+                if (comparer is ListComparer listComparer)
                 {
                     // reset the IListComparer before each search. This cannot be done
                     // any less frequently (e.g. in Root.AddToSubgroups), due to the
@@ -250,8 +249,7 @@ namespace System.Windows.Data
                     listComparer.Reset();
                 }
 
-                CollectionViewGroupComparer groupComparer = comparer as CollectionViewGroupComparer;
-                if (groupComparer != null)
+                if (comparer is CollectionViewGroupComparer groupComparer)
                 {
                     // reset the CollectionViewGroupComparer before each search. This cannot be done
                     // any less frequently (e.g. in Root.AddToSubgroups), due to the
@@ -261,12 +259,12 @@ namespace System.Windows.Data
 
                 for (index = low; index < high; ++index)
                 {
-                    CollectionViewGroupInternal subgroup = this.ProtectedItems[index] as CollectionViewGroupInternal;
-                    object seed1 = (subgroup != null) ? subgroup.SeedItem : this.ProtectedItems[index];
+                    object seed1 = this.ProtectedItems[index] is CollectionViewGroupInternal subgroup ? subgroup.SeedItem : this.ProtectedItems[index];
                     if (seed1 == DependencyProperty.UnsetValue)
                     {
                         continue;
                     }
+
                     if (comparer.Compare(seed, seed1) < 0)
                     {
                         break;
@@ -323,8 +321,7 @@ namespace System.Windows.Data
         {
             for (int k = 0, n = this.Items.Count; k < n; ++k)
             {
-                CollectionViewGroupInternal subgroup = this.Items[k] as CollectionViewGroupInternal;
-                if (subgroup != null)
+                if (this.Items[k] is CollectionViewGroupInternal subgroup)
                 {
                     // current item is a group - either drill in, or skip over
                     if (index < subgroup.ItemCount)
@@ -375,7 +372,7 @@ namespace System.Windows.Data
                 for (int k = 0, n = group.Items.Count; k < n; ++k)
                 {
                     // if we've reached the item, move up to the next level
-                    if ((index < 0 && Object.Equals(item, group.Items[k])) ||
+                    if ((index < 0 && object.Equals(item, group.Items[k])) ||
                         index == k)
                     {
                         break;
@@ -401,8 +398,7 @@ namespace System.Windows.Data
             int leaves = 0;         // number of leaves we've passed over so far
             for (int k = 0, n = Items.Count; k < n; ++k)
             {
-                CollectionViewGroupInternal subgroup = Items[k] as CollectionViewGroupInternal;
-                if (subgroup != null)
+                if (Items[k] is CollectionViewGroupInternal subgroup)
                 {
                     int subgroupIndex = subgroup.LeafIndexOf(item);
                     if (subgroupIndex < 0)
@@ -417,7 +413,7 @@ namespace System.Windows.Data
                 else
                 {
                     // current item is a leaf - compare it directly
-                    if (Object.Equals(item, Items[k]))
+                    if (object.Equals(item, Items[k]))
                     {
                         return leaves;
                     }
@@ -433,7 +429,7 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// The group's description has changed - notify parent 
+        /// The group's description has changed - notify parent
         /// </summary>
         protected virtual void OnGroupByChanged()
         {
@@ -480,11 +476,12 @@ namespace System.Windows.Data
         /// of items as the second argument that appear in the IList in the same sequence.
         /// This makes the total search time linear in the size of the IList.  (To give
         /// the correct answer regardless of the sequence of arguments would involve
-        /// calling IndexOf and leads to O(N^2) total search time.) 
+        /// calling IndexOf and leads to O(N^2) total search time.)
         /// </summary>
         internal class ListComparer : IComparer
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="ListComparer"/> class.
             /// Constructor for the ListComparer that takes
             /// in an IList.
             /// </summary>
@@ -524,7 +521,7 @@ namespace System.Windows.Data
             /// <returns>-1 if x is less than y, +1 otherwise</returns>
             public int Compare(object x, object y)
             {
-                if (Object.Equals(x, y))
+                if (object.Equals(x, y))
                 {
                     return 0;
                 }
@@ -534,11 +531,11 @@ namespace System.Windows.Data
                 for (; this._index < n; ++this._index)
                 {
                     object z = this._list[this._index];
-                    if (Object.Equals(x, z))
+                    if (object.Equals(x, z))
                     {
                         return -1;  // x occurs first, so x < y
                     }
-                    else if (Object.Equals(y, z))
+                    else if (object.Equals(y, z))
                     {
                         return +1;  // y occurs first, so x > y
                     }
@@ -563,6 +560,7 @@ namespace System.Windows.Data
         internal class CollectionViewGroupComparer : IComparer
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="CollectionViewGroupComparer"/> class.
             /// Constructor for the CollectionViewGroupComparer that takes
             /// in an CollectionViewGroupRoot.
             /// </summary>
@@ -602,7 +600,7 @@ namespace System.Windows.Data
             /// <returns>-1 if x is less than y, +1 otherwise</returns>
             public int Compare(object x, object y)
             {
-                if (Object.Equals(x, y))
+                if (object.Equals(x, y))
                 {
                     return 0;
                 }
@@ -612,11 +610,11 @@ namespace System.Windows.Data
                 for (; this._index < n; ++this._index)
                 {
                     object z = this._group.LeafAt(this._index);
-                    if (Object.Equals(x, z))
+                    if (object.Equals(x, z))
                     {
                         return -1;  // x occurs first, so x < y
                     }
-                    else if (Object.Equals(y, z))
+                    else if (object.Equals(y, z))
                     {
                         return +1;  // y occurs first, so x > y
                     }
@@ -719,14 +717,15 @@ namespace System.Windows.Data
         /// </summary>
         private class LeafEnumerator : IEnumerator
         {
+            private readonly CollectionViewGroupInternal _group; // parent group
             private object _current;   // current item
-            private CollectionViewGroupInternal _group; // parent group
+
             private int _index;     // current index into Items
             private IEnumerator _subEnum;   // enumerator over current subgroup
             private int _version;   // parent group's version at ctor
 
             /// <summary>
-            /// Initializes a new instance of the LeafEnumerator class.
+            /// Initializes a new instance of the <see cref="LeafEnumerator"/> class.
             /// </summary>
             /// <param name="group">CollectionViewGroupInternal that uses the enumerator</param>
             public LeafEnumerator(CollectionViewGroupInternal group)
@@ -780,8 +779,7 @@ namespace System.Windows.Data
                         return false;
                     }
 
-                    CollectionViewGroupInternal subgroup = this._group.Items[this._index] as CollectionViewGroupInternal;
-                    if (subgroup == null)
+                    if (!(this._group.Items[this._index] is CollectionViewGroupInternal subgroup))
                     {
                         // current item is a leaf - it's the new Current
                         this._current = this._group.Items[this._index];

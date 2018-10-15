@@ -17,18 +17,20 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         protected Selector Selector
         {
-            get { return _selector; }
+            get => _selector;
             set
             {
                 if (_selector == value)
+                {
                     return;
+                }
 
                 var oldValue = _selector;
                 _selector = value;
                 OnSelectorChanged(oldValue, value);
             }
         }
-        
+
         protected virtual void OnSelectorChanged(Selector oldValue, Selector newValue)
         {
             if (oldValue != null)
@@ -49,17 +51,25 @@ namespace Kino.Toolkit.Wpf
         private void OnRelativeListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Selector == null)
+            {
                 return;
+            }
 
             _isUpdatingIsChecked = true;
             try
             {
                 if (SelectedItems.Count == 0)
+                {
                     IsChecked = false;
+                }
                 else if (SelectedItems.Count == Selector.Items.Count)
+                {
                     IsChecked = true;
+                }
                 else
+                {
                     IsChecked = null;
+                }
             }
             finally
             {
@@ -70,7 +80,9 @@ namespace Kino.Toolkit.Wpf
         private void OnRelativeListBoxItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (Selector == null)
+            {
                 return;
+            }
 
             IsEnabled = Selector.Items.Count > 0;
         }
@@ -79,7 +91,9 @@ namespace Kino.Toolkit.Wpf
         {
             base.OnChecked(e);
             if (_isUpdatingIsChecked || Selector == null)
+            {
                 return;
+            }
 
             SelectAll();
         }
@@ -89,7 +103,9 @@ namespace Kino.Toolkit.Wpf
             base.OnUnchecked(e);
 
             if (_isUpdatingIsChecked || Selector == null)
+            {
                 return;
+            }
 
             UnselectAll();
         }

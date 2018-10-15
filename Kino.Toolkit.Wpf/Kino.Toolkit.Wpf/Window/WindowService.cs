@@ -17,7 +17,7 @@ namespace Kino.Toolkit.Wpf
         private static double? _paddedBorder;
 
         /// <summary>
-        ///  returns the amount of extra border padding around captioned windows 
+        ///  returns the amount of extra border padding around captioned windows
         /// </summary>
         public static double PaddedBorder
         {
@@ -31,7 +31,6 @@ namespace Kino.Toolkit.Wpf
                 return _paddedBorder.Value;
             }
         }
-
 
         /// <summary>
         /// 从指定元素获取 IsActiveCommands 依赖项属性的值。
@@ -53,12 +52,13 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty IsActiveCommandsProperty =
             DependencyProperty.RegisterAttached("IsActiveCommands", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsActiveCommandsChanged));
 
-
         private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
             if (!(obj is Window window) || newValue == false)
+            {
                 return;
+            }
 
             var service = new WindowCommandHelper(window);
             service.ActiveCommands();
@@ -84,12 +84,13 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty IsKeepInWorkAreaProperty =
             DependencyProperty.RegisterAttached("IsKeepInWorkArea", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsKeepInWorkAreaChanged));
 
-
         private static void OnIsKeepInWorkAreaChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
             if (!(obj is Window window) || newValue == false)
+            {
                 return;
+            }
 
             window.SizeChanged += (s, e) =>
               {
@@ -101,15 +102,14 @@ namespace Kino.Toolkit.Wpf
                   {
                       var bottom = point.Y + window.ActualHeight - locationScreen.WorkingArea.Height;
                       if (bottom > 0)
+                      {
                           window.Top -= bottom;
+                      }
                   }
               };
             var service = new WindowCommandHelper(window);
             service.ActiveCommands();
         }
-
-
-
 
         private class WindowCommandHelper
         {
@@ -170,15 +170,16 @@ namespace Kino.Toolkit.Wpf
                 var dpi = VisualTreeHelper.GetDpi(_window);
                 if (_window.WindowState == WindowState.Maximized)
                 {
-                    ///因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度
-                    point.Y += SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX + WindowService.PaddedBorder + SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX;
-                    point.X += SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX + WindowService.PaddedBorder;
+                    // 因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度
+                    point.Y += (SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX) + PaddedBorder + (SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX);
+                    point.X += (SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX) + PaddedBorder;
                 }
                 else
                 {
                     point.X += _window.BorderThickness.Left;
                     point.Y += SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX;
                 }
+
                 CompositionTarget compositionTarget = PresentationSource.FromVisual(_window).CompositionTarget;
                 SystemCommands.ShowSystemMenu(_window, compositionTarget.TransformFromDevice.Transform(point));
                 e.Handled = true;

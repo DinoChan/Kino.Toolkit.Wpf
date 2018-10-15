@@ -385,7 +385,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// This method tries to get the named VisualStateGroup for the 
+        /// This method tries to get the named VisualStateGroup for the
         /// dependency object. The provided object's ImplementationRoot will be 
         /// looked up in this call.
         /// </summary>

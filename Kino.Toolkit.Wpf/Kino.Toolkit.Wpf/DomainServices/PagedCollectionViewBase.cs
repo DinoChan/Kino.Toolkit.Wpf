@@ -76,6 +76,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return this._canChangePage;
             }
+
             protected set
             {
                 if (this._canChangePage != value)
@@ -145,6 +146,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     return -1;
                 }
+
                 return (this.TotalItemCount + this.PageSize - 1) / this.PageSize;
             }
         }
@@ -156,8 +158,9 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._pageIndex;
+                return _pageIndex;
             }
+
             private set
             {
                 if (this._pageIndex != value)
@@ -196,6 +199,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return this._totalItemCount;
             }
+
             protected set
             {
                 if (this._totalItemCount != value)
@@ -229,6 +233,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return false;
             }
+
             return this.MoveToPage(this.PageCount - 1);
         }
 
@@ -361,6 +366,7 @@ namespace Kino.Toolkit.Wpf
             {
                 throw new ArgumentNullException("propertyName");
             }
+
             this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
 

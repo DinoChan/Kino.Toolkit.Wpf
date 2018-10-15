@@ -24,7 +24,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置SourceCodeType的值
-        /// </summary>  
+        /// </summary>
         public SourceCodeType SourceCodeType
         {
             get => (SourceCodeType)GetValue(SourceCodeTypeProperty);
@@ -63,7 +63,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置CodeSource的值
-        /// </summary>  
+        /// </summary>
         public string CodeSource
         {
             get => (string)GetValue(CodeSourceProperty);

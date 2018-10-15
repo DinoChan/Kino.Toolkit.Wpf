@@ -31,11 +31,17 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public bool IsRefreshing
         {
-            get { return _isRefreshing; }
+            get
+            {
+                return _isRefreshing;
+            }
+
             set
             {
                 if (_isRefreshing == value)
+                {
                     return;
+                }
 
                 _isRefreshing = value;
                 RaisePropertyChanged("IsRefreshing");
@@ -43,7 +49,7 @@ namespace Kino.Toolkit.Wpf
         }
 
 
-      
+
         protected override void OnLoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
             IsRefreshing = false;
@@ -52,7 +58,9 @@ namespace Kino.Toolkit.Wpf
             var loader = CollectionViewLoader as RemoteCollectionViewLoader;
             var operation = loader.CurrentOperation as ILoadOperation;
             if (operation.Error != null || operation.IsCanceled)
+            {
                 return;
+            }
 
             var result = operation.Result.Cast<object>();
             var source = CollectionView.SourceCollection as List<Object>;
@@ -61,6 +69,7 @@ namespace Kino.Toolkit.Wpf
             {
                 source.Add(item);
             }
+
             base.SetTotalItemCount(operation.TotalCount);
             base.OnLoadCompleted(sender, e);
         }
@@ -88,17 +97,16 @@ namespace Kino.Toolkit.Wpf
         public override bool MoveToPreviousPage()
         {
             if (PageIndex <= 0)
+            {
                 return false;
+            }
 
             if ((CollectionViewLoader as RemoteCollectionViewLoader).IsBusy)
+            {
                 return false;
+            }
 
             return base.MoveToPreviousPage();
-        }
-
-        private void OnLoaderLoadCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            RaiseRefreshed();
         }
 
         private void RaiseRefreshing()
@@ -112,7 +120,5 @@ namespace Kino.Toolkit.Wpf
             IsRefreshing = false;
             Refreshed?.Invoke(this, EventArgs.Empty);
         }
-
-
     }
 }

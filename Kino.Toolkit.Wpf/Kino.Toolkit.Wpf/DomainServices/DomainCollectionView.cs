@@ -1,7 +1,7 @@
-﻿/* 
-    Copyright (c) 2013, The Outercurve Foundation. 
+﻿/*
+    Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
-    you may not use the software except in compliance with the License. 
+    you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
 
@@ -59,7 +59,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="source">The source collection for this view. All updates to the
         /// source will be reflected in the view.
         /// </param>
-        //public DomainCollectionView(Func<LoadOperation> load, IEnumerable source)
+        // public DomainCollectionView(Func<LoadOperation> load, IEnumerable source)
         //    : this(new DomainCollectionViewLoader(load), source)
         //{
         //}
@@ -88,6 +88,7 @@ namespace Kino.Toolkit.Wpf
             {
                 throw new InvalidOperationException(DomainServicesResources.MustImplementIecv);
             }
+
             this.PagedCollectionView = new DomainPagedCollectionView(this.LoadPage);
 
             this.SetPageIndex(this.PagedCollectionView.PageIndex);
@@ -237,12 +238,13 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         protected void Load()
         {
-            if (this.IsRefreshDeferred)
+            if (IsRefreshDeferred)
             {
                 return;
             }
-            this._currentLoadToken = new object();
-            this.CollectionViewLoader.Load(this._currentLoadToken);
+
+            _currentLoadToken = new object();
+            CollectionViewLoader.Load(this._currentLoadToken);
         }
 
         /// <summary>
@@ -413,11 +415,12 @@ namespace Kino.Toolkit.Wpf
                     itemCount = Math.Max(this.ItemCount, (this.PageIndex * this.PageSize) + count);
                 }
             }
+
             this.UpdateItemCounts(totalItemCount, itemCount);
         }
 
         /// <summary>
-        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and 
+        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and
         /// <see cref="IPagedCollectionView.ItemCount"/> properties based on the
         /// specified <paramref name="totalItemCount"/> and <paramref name="itemCount"/>
         /// </summary>
@@ -581,58 +584,6 @@ namespace Kino.Toolkit.Wpf
                 this.TotalItemCount = totalItemCount;
                 this.ItemCount = itemCount;
             }
-        }
-
-        #endregion
-    }
-
-    /// <summary>
-    /// Collection view implementation that allows the view to be updated asynchronously
-    /// via a <see cref="DomainServices.CollectionViewLoader"/>. In conjunction with the
-    /// <see cref="DomainCollectionViewLoader"/>, this allows collection view properties
-    /// like sorting, grouping, and paging to be applied on the server.
-    /// </summary>
-    /// <typeparam name="TItem">The item type of this view</typeparam>
-    public class DomainCollectionView<TItem> : DomainCollectionView, IEnumerable<TItem>
-    {
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/> that
-        /// uses the specified callback for loading data.
-        /// </summary>
-        /// <param name="load">The callback to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        //public DomainCollectionView(Func<LoadOperation> load, IEnumerable<TItem> source)
-        //    : base(load, source)
-        //{
-        //}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/>
-        /// </summary>
-        /// <param name="collectionViewLoader">The <see cref="CollectionViewLoader"/> to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable<TItem> source)
-            : base(collectionViewLoader, source)
-        {
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}"/> that can be used to iterate through the collection.</returns>
-        public new IEnumerator<TItem> GetEnumerator()
-        {
-            return this.CollectionView.Cast<TItem>().GetEnumerator();
         }
 
         #endregion

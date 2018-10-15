@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf
 
         /// <summary>
         /// 获取或设置AdornedElementPlaceholder的值
-        /// </summary>  
+        /// </summary>
         public AdornedElementPlaceholder AdornedElementPlaceholder
         {
             get => (AdornedElementPlaceholder)GetValue(AdornedElementPlaceholderProperty);
@@ -33,11 +33,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnAdornedElementPlaceholderChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (AdornedElementPlaceholder)args.OldValue;
             var newValue = (AdornedElementPlaceholder)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoValidationTooltip;
             target?.OnAdornedElementPlaceholderChanged(oldValue, newValue);

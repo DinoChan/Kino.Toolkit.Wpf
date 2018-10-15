@@ -12,7 +12,7 @@ namespace Kino.Toolkit.Wpf
     internal static partial class FunctionalProgramming
     {
         /// <summary>
-        /// Traverses a tree by accepting an initial value and a function that 
+        /// Traverses a tree by accepting an initial value and a function that
         /// retrieves the child nodes of a node.
         /// </summary>
         /// <typeparam name="T">The type of the stream.</typeparam>

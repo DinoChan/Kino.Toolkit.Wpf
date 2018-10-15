@@ -32,6 +32,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     return type;
                 }
+
                 if (definition.IsInterface)
                 {
                     foreach (Type type2 in type.GetInterfaces())
@@ -43,8 +44,10 @@ namespace Kino.Toolkit.Wpf
                         }
                     }
                 }
+
                 type = type.BaseType;
             }
+
             return null;
         }
 
@@ -141,6 +144,7 @@ namespace Kino.Toolkit.Wpf
                     }
                 }
             }
+
             return null;
         }
 
@@ -151,6 +155,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return type.GetGenericArguments()[0];
             }
+
             return enumerableType;
         }
 
@@ -161,6 +166,7 @@ namespace Kino.Toolkit.Wpf
                 object item = null;
                 return parentType.GetNestedProperty(propertyPath, ref item);
             }
+
             return null;
         }
 
@@ -179,6 +185,7 @@ namespace Kino.Toolkit.Wpf
                 item = null;
                 return null;
             }
+
             PropertyInfo propertyInfo = null;
             Type propertyType = parentType;
             List<string> propertyNames = SplitPropertyPath(propertyPath);
@@ -196,8 +203,10 @@ namespace Kino.Toolkit.Wpf
                 {
                     item = propertyInfo.GetValue(item, index);
                 }
+
                 propertyType = propertyInfo.PropertyType.GetNonNullableType();
             }
+
             return propertyInfo;
         }
 
@@ -213,6 +222,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return propertyInfo.PropertyType;
             }
+
             return null;
         }
 
@@ -238,6 +248,7 @@ namespace Kino.Toolkit.Wpf
                     return nestedValue;
                 }
             }
+
             return null;
         }
 
@@ -247,6 +258,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return type.GetGenericArguments()[0];
             }
+
             return type;
         }
 
@@ -332,6 +344,7 @@ namespace Kino.Toolkit.Wpf
                     }
                 }
             }
+
             return property;
         }
 
@@ -352,6 +365,7 @@ namespace Kino.Toolkit.Wpf
                     return property.Substring(leftIndexerToken);
                 }
             }
+
             return property;
         }
 
@@ -386,6 +400,7 @@ namespace Kino.Toolkit.Wpf
                     }
                 }
             }
+
             return propertyPaths;
         }
     }

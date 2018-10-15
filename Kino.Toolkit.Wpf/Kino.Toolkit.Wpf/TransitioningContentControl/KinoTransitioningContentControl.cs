@@ -140,17 +140,19 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private Storyboard CurrentTransition
         {
-            get { return _currentTransition; }
+            get
+            {
+                return _currentTransition;
+            }
+
             set
             {
-                // decouple event
                 if (_currentTransition != null)
                 {
                     _currentTransition.Completed -= OnTransitionCompleted;
                 }
 
                 _currentTransition = value;
-
                 if (_currentTransition != null)
                 {
                     _currentTransition.Completed += OnTransitionCompleted;
@@ -222,10 +224,9 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-
         /// <summary>
         /// 获取或设置TransitionType的值
-        /// </summary>  
+        /// </summary>
         public TransitionType TransitionType
         {
             get => (TransitionType)GetValue(TransitionTypeProperty);
@@ -240,11 +241,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnTransitionTypeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (TransitionType)args.OldValue;
             var newValue = (TransitionType)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoTransitioningContentControl;
             target?.OnTransitionTypeChanged(oldValue, newValue);
@@ -337,7 +339,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Builds the visual tree for the TransitioningContentControl control 
+        /// Builds the visual tree for the TransitioningContentControl control
         /// when a new template is applied.
         /// </summary>
         public override void OnApplyTemplate()
@@ -446,11 +448,7 @@ namespace Kino.Toolkit.Wpf
         {
             AbortTransition();
 
-            RoutedEventHandler handler = TransitionCompleted;
-            if (handler != null)
-            {
-                handler(this, new RoutedEventArgs());
-            }
+            TransitionCompleted?.Invoke(this, new RoutedEventArgs());
         }
 
         /// <summary>
@@ -484,6 +482,7 @@ namespace Kino.Toolkit.Wpf
                     .Select(state => state.Storyboard)
                     .FirstOrDefault();
             }
+
             return newStoryboard;
         }
     }

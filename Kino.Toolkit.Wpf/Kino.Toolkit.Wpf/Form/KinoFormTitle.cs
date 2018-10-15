@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf
 
         /// <summary>
         /// 获取或设置Description的值
-        /// </summary>  
+        /// </summary>
         public object Description
         {
             get => (object)GetValue(DescriptionProperty);
@@ -33,11 +33,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnDescriptionChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (object)args.OldValue;
             var newValue = (object)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoFormTitle;
             target?.OnDescriptionChanged(oldValue, newValue);

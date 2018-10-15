@@ -19,25 +19,28 @@ namespace Kino.Toolkit.Wpf
 
         public Thickness ExtraBorderPadding { get; }
 
-
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
             if (e.ButtonState == MouseButtonState.Pressed)
+            {
                 DragMove();
+            }
         }
 
-   
+
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
             if (SizeToContent == SizeToContent.WidthAndHeight)
+            {
                 InvalidateMeasure();
+            }
         }
 
         /// <summary>
         /// 获取或设置CommandBar的值
-        /// </summary>  
+        /// </summary>
         public KinoWindowCommandBar CommandBar
         {
             get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
@@ -52,11 +55,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (KinoWindowCommandBar)args.OldValue;
             var newValue = (KinoWindowCommandBar)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoWindow;
             target?.OnCommandBarChanged(oldValue, newValue);

@@ -9,7 +9,6 @@ namespace Kino.Toolkit.Wpf
 {
     public class RemoteCollectionViewLoader : CollectionViewLoader
     {
-
         private readonly Func<ILoadOperation> _load;
 
         private readonly Action<ILoadOperation> _onLoadCompleted;
@@ -88,8 +87,11 @@ namespace Kino.Toolkit.Wpf
                     {
                         this._currentOperation.Completed += OnLoadCompleted;
                     }
+
                     if (_currentOperation == null)
+                    {
                         IsBusy = false;
+                    }
                 }
             }
         }
@@ -101,10 +103,7 @@ namespace Kino.Toolkit.Wpf
             IsBusy = false;
             var op = (ILoadOperation)sender;
 
-            if (this._onLoadCompleted != null)
-            {
-                this._onLoadCompleted(op);
-            }
+            _onLoadCompleted?.Invoke(op);
 
             if (op == this.CurrentOperation)
             {
@@ -120,11 +119,7 @@ namespace Kino.Toolkit.Wpf
 
         public RemoteCollectionViewLoader(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted)
         {
-            if (load == null)
-            {
-                throw new ArgumentNullException("load");
-            }
-            this._load = load;
+            this._load = load ?? throw new ArgumentNullException("load");
             this._onLoadCompleted = onLoadCompleted;
         }
 
@@ -133,16 +128,17 @@ namespace Kino.Toolkit.Wpf
             this._currentUserState = userState;
 
             if (IsBusy)
+            {
                 return;
-
+            }
 
             if (RemoteCollectionView.PageIndex < 0)
+            {
                 return;
+            }
 
-            
             IsBusy = true;
-            if (LoadStarted != null)
-                LoadStarted(this, EventArgs.Empty);
+            LoadStarted?.Invoke(this, EventArgs.Empty);
 
             try
             {

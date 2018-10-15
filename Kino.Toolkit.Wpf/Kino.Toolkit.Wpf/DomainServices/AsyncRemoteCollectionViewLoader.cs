@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Kino.Toolkit.Wpf
 {
-    class AsyncRemoteCollectionViewLoader : CollectionViewLoader
+    public class AsyncRemoteCollectionViewLoader : CollectionViewLoader
     {
-
         private readonly Func<Task<ILoadResult>> _load;
 
         private readonly Action<ILoadResult> _onLoadCompleted;
@@ -17,7 +16,6 @@ namespace Kino.Toolkit.Wpf
         private bool _isBusy;
 
         public event EventHandler LoadStarted;
-
 
         private object _currentUserState;
 
@@ -44,6 +42,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return this._isBusy;
             }
+
             set
             {
                 if (this._isBusy != value)
@@ -58,7 +57,6 @@ namespace Kino.Toolkit.Wpf
 
         public AsyncRemoteCollectionView AsyncRemoteCollectionView { get; internal set; }
 
-
         public AsyncRemoteCollectionViewLoader(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
         {
             this._load = load ?? throw new ArgumentNullException("load");
@@ -70,11 +68,14 @@ namespace Kino.Toolkit.Wpf
             _currentUserState = userState;
 
             if (IsBusy)
+            {
                 return;
-
+            }
 
             if (AsyncRemoteCollectionView.PageIndex < 0)
+            {
                 return;
+            }
 
             IsBusy = true;
             LoadStarted?.Invoke(this, EventArgs.Empty);
@@ -88,7 +89,6 @@ namespace Kino.Toolkit.Wpf
             }
             catch (Exception ex)
             {
-
                 this.OnLoadCompleted(new AsyncCompletedEventArgs(ex, false, null));
             }
             finally

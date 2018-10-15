@@ -1,7 +1,7 @@
-﻿/* 
-    Copyright (c) 2013, The Outercurve Foundation. 
+﻿/*
+    Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
-    you may not use the software except in compliance with the License. 
+    you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
 
@@ -23,7 +23,7 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionViewLoader"/>
+        /// Initializes a new instance of the <see cref="CollectionViewLoader"/> class.
         /// </summary>
         protected CollectionViewLoader()
         {
@@ -74,11 +74,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         protected virtual void OnCanLoadChanged()
         {
-            EventHandler handler = this.CanLoadChanged;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            CanLoadChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -87,11 +83,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event to raise</param>
         protected virtual void OnLoadCompleted(AsyncCompletedEventArgs e)
         {
-            AsyncCompletedEventHandler handler = this.LoadCompleted;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            LoadCompleted?.Invoke(this, e);
         }
 
         #endregion

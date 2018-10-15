@@ -19,7 +19,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置ControlPanel的值
-        /// </summary>  
+        /// </summary>
         public Object ControlPanel
         {
             get => (Object)GetValue(ControlPanelProperty);
@@ -57,7 +57,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置Description的值
-        /// </summary>  
+        /// </summary>
         public object Description
         {
             get => (object)GetValue(DescriptionProperty);

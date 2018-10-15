@@ -33,7 +33,7 @@ namespace Kino.Toolkit.Wpf
 
         /// <summary>
         /// 获取或设置State的值
-        /// </summary>  
+        /// </summary>
         public ProgressState State
         {
             get => (ProgressState)GetValue(StateProperty);
@@ -52,7 +52,9 @@ namespace Kino.Toolkit.Wpf
             ProgressState oldValue = (ProgressState)args.OldValue;
             ProgressState newValue = (ProgressState)args.NewValue;
             if (oldValue != newValue)
+            {
                 target.OnStateChanged(oldValue, newValue);
+            }
         }
 
         public override void OnApplyTemplate()
@@ -93,6 +95,7 @@ namespace Kino.Toolkit.Wpf
                     progressState = NoneStateName;
                     break;
             }
+
             VisualStateManager.GoToState(this, progressState, useTransitions);
         }
     }

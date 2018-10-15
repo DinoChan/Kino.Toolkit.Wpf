@@ -12,6 +12,7 @@ namespace Kino.Toolkit.Wpf
     public class KinoForm : ItemsControl
     {
         #region Dependency Properties
+
         /// <summary>
         /// 从指定元素获取 IsRequired 依赖项属性的值。
         /// </summary>
@@ -79,8 +80,7 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty DescriptionProperty =
             DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
 
-
-
+        /// <summary>
         /// 从指定元素获取 IsItemItsOwnContainer 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
@@ -109,11 +109,9 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoForm);
         }
 
-
-
         /// <summary>
         /// 获取或设置CommandBar的值
-        /// </summary>  
+        /// </summary>
         public KinoFormCommandBar CommandBar
         {
             get => (KinoFormCommandBar)GetValue(CommandBarProperty);
@@ -128,11 +126,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (KinoFormCommandBar)args.OldValue;
             var newValue = (KinoFormCommandBar)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoForm;
             target?.OnCommandBarChanged(oldValue, newValue);
@@ -147,12 +146,13 @@ namespace Kino.Toolkit.Wpf
         {
         }
 
-
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             bool isItemItsOwnContainer = false;
             if (item is DependencyObject element)
+            {
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
+            }
 
             return item is KinoFormItem || item is KinoFormTitle || item is KinoFormSeparator || isItemItsOwnContainer;
         }
@@ -176,7 +176,6 @@ namespace Kino.Toolkit.Wpf
                     kinoFormItem.IsRequired = GetIsRequired(content);
                 }
             }
-
         }
     }
 }

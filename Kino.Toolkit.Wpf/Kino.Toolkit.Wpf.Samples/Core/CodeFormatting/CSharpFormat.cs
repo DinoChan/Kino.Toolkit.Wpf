@@ -223,34 +223,42 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
 
         if( !string.IsNullOrEmpty( sb.ToString() ) )
         {
-          Run r = new Run( sb.ToString() );
-          r.Foreground = new SolidColorBrush( Color.FromRgb( 0, 128, 0 ) );
-          CodeParagraphGlobal.Add( r );
+                    Run r = new Run(sb.ToString())
+                    {
+                        Foreground = new SolidColorBrush(Color.FromRgb(0, 128, 0))
+                    };
+                    CodeParagraphGlobal.Add( r );
         }
         return "::::::";
       }
       else if( match.Groups[ 2 ].Success ) //string literal
       {
-        Run r = new Run( match.ToString() );
-        r.Foreground = new SolidColorBrush( Color.FromRgb( 0, 96, 128 ) );
+                Run r = new Run(match.ToString())
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(0, 96, 128))
+                };
 
-        CodeParagraphGlobal.Add( r );
+                CodeParagraphGlobal.Add( r );
         return "::::::";
       }
       else if( match.Groups[ 3 ].Success ) //preprocessor keyword
       {
-        Run r = new Run( match.ToString() );
-        r.Foreground = new SolidColorBrush( Color.FromRgb( 204, 102, 51 ) );
+                Run r = new Run(match.ToString())
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(204, 102, 51))
+                };
 
-        CodeParagraphGlobal.Add( r );
+                CodeParagraphGlobal.Add( r );
         return "::::::";
       }
       else if( match.Groups[ 4 ].Success ) //keyword
       {
-        Run r = new Run( match.ToString() );
-        r.Foreground = new SolidColorBrush( Color.FromRgb( 0, 0, 255 ) );
+                Run r = new Run(match.ToString())
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 255))
+                };
 
-        CodeParagraphGlobal.Add( r );
+                CodeParagraphGlobal.Add( r );
         return "::::::";
       }
       else

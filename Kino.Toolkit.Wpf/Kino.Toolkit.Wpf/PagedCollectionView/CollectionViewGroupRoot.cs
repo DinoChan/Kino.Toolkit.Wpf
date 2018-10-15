@@ -18,7 +18,7 @@ namespace System.Windows.Data
     using System.Globalization;
 
     /// <summary>
-    /// PagedCollectionView classes use this class as the manager 
+    /// PagedCollectionView classes use this class as the manager
     /// of all Grouping functionality
     /// </summary>
     internal class CollectionViewGroupRoot : CollectionViewGroupInternal, INotifyCollectionChanged
@@ -59,18 +59,12 @@ namespace System.Windows.Data
         /// <summary>
         /// Private accessor for an ObservableCollection containing group descriptions
         /// </summary>
-        private ObservableCollection<GroupDescription> _groupBy = new ObservableCollection<GroupDescription>();
-
-        /// <summary>
-        /// Indicates whether the list of items (after applying the sort and filters, if any) 
-        /// is already in the correct order for grouping.
-        /// </summary>
-        private bool _isDataInGroupOrder;
+        private readonly ObservableCollection<GroupDescription> _groupBy = new ObservableCollection<GroupDescription>();
 
         /// <summary>
         /// Private accessor for the owning ICollectionView
         /// </summary>
-        private ICollectionView _view;
+        private readonly ICollectionView _view;
 
         #endregion Private Fields
 
@@ -83,7 +77,7 @@ namespace System.Windows.Data
         //------------------------------------------------------
 
         /// <summary>
-        /// Initializes a new instance of the CollectionViewGroupRoot class.
+        /// Initializes a new instance of the <see cref="CollectionViewGroupRoot"/> class.
         /// </summary>
         /// <param name="view">PagedCollectionView that contains this grouping</param>
         /// <param name="isDataInGroupOrder">True if items are already in correct order for grouping</param>
@@ -91,7 +85,7 @@ namespace System.Windows.Data
             : base(RootName, null)
         {
             this._view = view;
-            this._isDataInGroupOrder = isDataInGroupOrder;
+            this.IsDataInGroupOrder = isDataInGroupOrder;
         }
 
         #endregion Constructors
@@ -125,7 +119,7 @@ namespace System.Windows.Data
         //------------------------------------------------------
 
         /// <summary>
-        /// Gets or sets a delegate to select the group description as a 
+        /// Gets or sets a delegate to select the group description as a
         /// function of the parent group and its level.
         /// </summary>
         public virtual GroupDescriptionSelectorCallback GroupBySelector { get; set; }
@@ -168,11 +162,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets or sets a value indicating whether the data is in group order
         /// </summary>
-        internal bool IsDataInGroupOrder
-        {
-            get { return this._isDataInGroupOrder; }
-            set { this._isDataInGroupOrder = value; }
-        }
+        internal bool IsDataInGroupOrder { get; set; }
 
         #endregion Internal Properties
 
@@ -206,8 +196,7 @@ namespace System.Windows.Data
         protected override int FindIndex(object item, object seed, IComparer comparer, int low, int high)
         {
             // root group needs to adjust the bounds of the search to exclude the new item (if any)
-            IEditableCollectionView iecv = this._view as IEditableCollectionView;
-            if (iecv != null && iecv.IsAddingNew)
+            if (this._view is IEditableCollectionView iecv && iecv.IsAddingNew)
             {
                 --high;
             }
@@ -260,7 +249,7 @@ namespace System.Windows.Data
 
             if (this.CollectionChanged != null)
             {
-                this.CollectionChanged(this, args);
+                CollectionChanged(this, args);
             }
         }
 
@@ -269,10 +258,7 @@ namespace System.Windows.Data
         /// </summary>
         protected override void OnGroupByChanged()
         {
-            if (this.GroupDescriptionChanged != null)
-            {
-                this.GroupDescriptionChanged(this, EventArgs.Empty);
-            }
+            GroupDescriptionChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -302,7 +288,7 @@ namespace System.Windows.Data
         /// <param name="loading">Whether we are currently loading</param>
         internal void RemoveSpecialItem(int index, object item, bool loading)
         {
-            Debug.Assert(Object.Equals(item, ProtectedItems[index]), "RemoveSpecialItem finds inconsistent data");
+            Debug.Assert(object.Equals(item, ProtectedItems[index]), "RemoveSpecialItem finds inconsistent data");
             int globalIndex = -1;
 
             if (!loading)
@@ -340,7 +326,7 @@ namespace System.Windows.Data
         private void AddToSubgroup(object item, CollectionViewGroupInternal group, int level, object name, bool loading)
         {
             CollectionViewGroupInternal subgroup;
-            int index = (this._isDataInGroupOrder) ? group.LastIndex : 0;
+            int index = this.IsDataInGroupOrder ? group.LastIndex : 0;
 
             // find the desired subgroup
             for (int n = group.Items.Count; index < n; ++index)
@@ -362,7 +348,6 @@ namespace System.Windows.Data
             // the item didn't match any subgroups.  Create a new subgroup and add the item.
             subgroup = new CollectionViewGroupInternal(name, group);
             this.InitializeGroup(subgroup, level + 1, item);
-
 
             if (loading)
             {
@@ -480,8 +465,7 @@ namespace System.Windows.Data
             group.GroupBy = groupDescription;
 
             // create subgroups for each of the explicit names
-            ObservableCollection<object> explicitNames =
-                (groupDescription != null) ? groupDescription.GroupNames : null;
+            ObservableCollection<object> explicitNames = groupDescription?.GroupNames;
             if (explicitNames != null)
             {
                 for (int k = 0, n = explicitNames.Count; k < n; ++k)
@@ -613,8 +597,7 @@ namespace System.Windows.Data
                 // (loop runs backwards in case an entire group is deleted)
                 for (int k = group.Items.Count - 1; k >= 0; --k)
                 {
-                    CollectionViewGroupInternal subgroup = group.Items[k] as CollectionViewGroupInternal;
-                    if (subgroup != null)
+                    if (group.Items[k] is CollectionViewGroupInternal subgroup)
                     {
                         this.RemoveItemFromSubgroupsByExhaustiveSearch(subgroup, item);
                     }
@@ -638,7 +621,7 @@ namespace System.Windows.Data
         private class TopLevelGroupDescription : GroupDescription
         {
             /// <summary>
-            /// Initializes a new instance of the TopLevelGroupDescription class.
+            /// Initializes a new instance of the <see cref="TopLevelGroupDescription"/> class.
             /// </summary>
             public TopLevelGroupDescription()
             {

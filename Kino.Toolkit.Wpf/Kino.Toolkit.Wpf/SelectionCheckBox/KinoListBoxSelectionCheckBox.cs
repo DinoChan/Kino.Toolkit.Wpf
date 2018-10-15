@@ -9,7 +9,7 @@ namespace Kino.Toolkit.Wpf
     {
         /// <summary>
         /// 获取或设置RelativeListBox的值
-        /// </summary>  
+        /// </summary>
         public ListBox RelativeListBox
         {
             get { return (ListBox)GetValue(RelativeListBoxProperty); }
@@ -28,7 +28,9 @@ namespace Kino.Toolkit.Wpf
             var oldValue = (ListBox)args.OldValue;
             var newValue = (ListBox)args.NewValue;
             if (oldValue != newValue)
+            {
                 target.OnRelativeListBoxChanged(oldValue, newValue);
+            }
         }
 
         protected virtual void OnRelativeListBoxChanged(ListBox oldValue, ListBox newValue)
@@ -41,22 +43,30 @@ namespace Kino.Toolkit.Wpf
             get
             {
                 if (RelativeListBox == null)
+                {
                     return new List<object>();
+                }
                 else
+                {
                     return RelativeListBox.SelectedItems;
+                }
             }
         }
 
         protected override void SelectAll()
         {
             if (RelativeListBox != null)
+            {
                 RelativeListBox.SelectAll();
+            }
         }
 
         protected override void UnselectAll()
         {
             if (RelativeListBox != null)
+            {
                 RelativeListBox.UnselectAll();
+            }
         }
     }
 }

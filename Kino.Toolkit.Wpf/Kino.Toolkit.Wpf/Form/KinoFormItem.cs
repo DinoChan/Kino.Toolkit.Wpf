@@ -16,10 +16,9 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoFormItem);
         }
 
-
         /// <summary>
         /// 获取或设置Description的值
-        /// </summary>  
+        /// </summary>
         public object Description
         {
             get => (object)GetValue(DescriptionProperty);
@@ -32,10 +31,9 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty DescriptionProperty =
             DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormItem), new PropertyMetadata(default(object)));
 
-
         /// <summary>
         /// 获取或设置IsRequired的值
-        /// </summary>  
+        /// </summary>
         public bool IsRequired
         {
             get => (bool)GetValue(IsRequiredProperty);

@@ -48,8 +48,10 @@ namespace System.Windows.Common
                         }
                     }
                 }
+
                 type = type.BaseType;
             }
+
             return null;
         }
 
@@ -79,6 +81,7 @@ namespace System.Windows.Common
             {
                 return type.GetGenericArguments()[0];
             }
+
             return enumerableType;
         }
 
@@ -124,6 +127,7 @@ namespace System.Windows.Common
                 {
                     item = propertyInfo.GetValue(item, index);
                 }
+
                 type = propertyInfo.PropertyType.GetNonNullableType();
             }
 
@@ -186,6 +190,7 @@ namespace System.Windows.Common
                     return null;
                 }
             }
+
             return propertyValue;
         }
 
@@ -267,6 +272,7 @@ namespace System.Windows.Common
                     }
                 }
             }
+
             return indexer;
         }
 
@@ -283,6 +289,7 @@ namespace System.Windows.Common
             {
                 s += '?';
             }
+
             return s;
         }
 
@@ -293,7 +300,7 @@ namespace System.Windows.Common
 
         internal static bool IsNullableType(this Type type)
         {
-            return (((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>)));
+            return ((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>));
         }
 
         /// <summary>
@@ -327,6 +334,7 @@ namespace System.Windows.Common
                     }
                 }
             }
+
             return propertyPaths;
         }
     }

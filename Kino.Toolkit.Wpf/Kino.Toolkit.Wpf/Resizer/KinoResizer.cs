@@ -19,8 +19,10 @@ namespace Kino.Toolkit.Wpf
         {
             DefaultStyleKey = typeof(KinoResizer);
             //SizeChanged += OnControlSizeChanged;
-            _resizingStoryboard = new Storyboard();
-            _resizingStoryboard.FillBehavior = FillBehavior.HoldEnd;
+            _resizingStoryboard = new Storyboard
+            {
+                FillBehavior = FillBehavior.HoldEnd
+            };
             _resizingStoryboard.Completed += OnResizingCompleted;
             _defaultHeightAnimation = new DoubleAnimation() { Duration = new Duration(TimeSpan.Zero) };
             Storyboard.SetTarget(_defaultHeightAnimation, this);
@@ -53,25 +55,29 @@ namespace Kino.Toolkit.Wpf
             set
             {
                 if (_contentPreseter != null)
+                {
                     _contentPreseter.SizeChanged -= OnContentSizeChanged;
+                }
 
                 _contentPreseter = value;
 
                 if (_contentPreseter != null)
+                {
                     _contentPreseter.SizeChanged += OnContentSizeChanged;
+                }
             }
         }
 
         private Storyboard _resizingStoryboard;
-        private DoubleAnimation _defaultHeightAnimation;
-        private DoubleAnimation _defaultWidthAnimation;
+        private readonly DoubleAnimation _defaultHeightAnimation;
+        private readonly DoubleAnimation _defaultWidthAnimation;
         private bool _isResizing;
 
         private bool _hasFirstSizeChanged;
 
         /// <summary>
         /// 获取或设置Animation的值
-        /// </summary>  
+        /// </summary>
         public DoubleAnimation Animation
         {
             get => (DoubleAnimation)GetValue(AnimationProperty);
@@ -86,11 +92,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnAnimationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (DoubleAnimation)args.OldValue;
             var newValue = (DoubleAnimation)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoResizer;
             target?.OnAnimationChanged(oldValue, newValue);
@@ -120,6 +127,7 @@ namespace Kino.Toolkit.Wpf
             {
                 child.Measure(constraint);
             }
+
             return desiredSize;
         }
 
@@ -137,9 +145,10 @@ namespace Kino.Toolkit.Wpf
 
         private void ChangeSize(bool useAnimation)
         {
-
             if (ContentPresenter == null)
+            {
                 return;
+            }
 
             if (useAnimation == false)
             {
@@ -149,7 +158,9 @@ namespace Kino.Toolkit.Wpf
             else
             {
                 if (_isResizing)
+                {
                     ResizingStoryboard.Stop();
+                }
 
                 _isResizing = true;
                 ResizingStoryboard.Begin();
@@ -177,6 +188,7 @@ namespace Kino.Toolkit.Wpf
                     heightAnimation = _defaultHeightAnimation;
                     widthAnimation = _defaultWidthAnimation;
                 }
+
                 heightAnimation.From = this.ActualHeight;
                 heightAnimation.To = ContentPresenter.ActualHeight;
                 widthAnimation.From = this.ActualWidth;
@@ -188,7 +200,5 @@ namespace Kino.Toolkit.Wpf
                 return _resizingStoryboard;
             }
         }
-
-
     }
 }

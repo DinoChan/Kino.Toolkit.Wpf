@@ -1,7 +1,7 @@
-﻿/* 
-    Copyright (c) 2013, The Outercurve Foundation. 
+﻿/*
+    Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
-    you may not use the software except in compliance with the License. 
+    you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
 
@@ -104,6 +104,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     throw new NotSupportedException(DomainServicesResources.IcvNotSupported);
                 }
+
                 return this.CollectionView;
             }
         }
@@ -147,10 +148,11 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                if (this.EditableCollectionView == null)
+                if (EditableCollectionView == null)
                 {
                     throw new NotSupportedException(DomainServicesResources.IecvNotSupported);
                 }
+
                 return this.EditableCollectionView;
             }
         }
@@ -204,6 +206,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     throw new NotSupportedException(DomainServicesResources.IpcvNotSupported);
                 }
+
                 return this.PagedCollectionView;
             }
         }
@@ -245,11 +248,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            NotifyCollectionChangedEventHandler handler = this.CollectionChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CollectionChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -268,11 +267,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCurrentChanged(EventArgs e)
         {
-            EventHandler handler = this.CurrentChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CurrentChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -291,11 +286,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCurrentChanging(CurrentChangingEventArgs e)
         {
-            CurrentChangingEventHandler handler = this.CurrentChanging;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CurrentChanging?.Invoke(this, e);
         }
 
         #endregion
@@ -756,11 +747,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPageChanged(EventArgs e)
         {
-            EventHandler<EventArgs> handler = this.PageChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PageChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -779,11 +766,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPageChanging(PageChangingEventArgs e)
         {
-            EventHandler<PageChangingEventArgs> handler = this.PageChanging;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PageChanging?.Invoke(this, e);
         }
 
         #endregion
@@ -920,8 +903,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="view">The view to add a handler to</param>
         private void AddPropertyChangedIfNeeded(object view)
         {
-            INotifyPropertyChanged notifyingView = view as INotifyPropertyChanged;
-            if ((notifyingView != null) && (this.GetViewMatches(view) == 1) /* evaluated after adding */)
+            if (view is INotifyPropertyChanged notifyingView && (this.GetViewMatches(view) == 1) /* evaluated after adding */)
             {
                 notifyingView.PropertyChanged += this.OnViewPropertyChanged;
             }
@@ -933,8 +915,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="view">The view to remove a handler from</param>
         private void RemovePropertyChangedIfNeeded(object view)
         {
-            INotifyPropertyChanged notifyingView = view as INotifyPropertyChanged;
-            if ((notifyingView != null) && (this.GetViewMatches(view) == 1) /* evaluated before removing */)
+            if (view is INotifyPropertyChanged notifyingView && (this.GetViewMatches(view) == 1) /* evaluated before removing */)
             {
                 notifyingView.PropertyChanged -= this.OnViewPropertyChanged;
             }
@@ -957,11 +938,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PropertyChanged?.Invoke(this, e);
         }
 
         #endregion

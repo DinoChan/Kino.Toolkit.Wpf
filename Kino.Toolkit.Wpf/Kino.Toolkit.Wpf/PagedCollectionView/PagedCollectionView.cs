@@ -50,7 +50,7 @@ namespace System.Windows.Data
         ////
         ////  Private Fields
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Private Fields
 
@@ -119,7 +119,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Keeps track of whether groups have been applied to the
         /// collection already or not. Note that this can still be set
-        /// to false even though we specify a GroupDescription, as the 
+        /// to false even though we specify a GroupDescription, as the
         /// collection may not have gone through the PrepareGroups function.
         /// </summary>
         private bool _isGrouping;
@@ -176,7 +176,7 @@ namespace System.Windows.Data
         private CollectionViewGroupRoot _temporaryGroup;
 
         /// <summary>
-        /// Timestamp used to see if there was a collection change while 
+        /// Timestamp used to see if there was a collection change while
         /// processing enumerator changes
         /// </summary>
         private int _timestamp;
@@ -248,7 +248,7 @@ namespace System.Windows.Data
             // If we implement INotifyCollectionChanged
             if (!this._pollForChanges)
             {
-                (source as INotifyCollectionChanged).CollectionChanged += new NotifyCollectionChangedEventHandler(delegate(object sender, NotifyCollectionChangedEventArgs args) { this.ProcessCollectionChanged(args); });
+                (source as INotifyCollectionChanged).CollectionChanged += new NotifyCollectionChangedEventHandler(delegate (object sender, NotifyCollectionChangedEventArgs args) { this.ProcessCollectionChanged(args); });
             }
         }
 
@@ -343,8 +343,8 @@ namespace System.Windows.Data
         private enum CollectionViewFlags
         {
             /// <summary>
-            /// Whether the list of items (after applying the sort and filters, if any) 
-            /// is already in the correct order for grouping. 
+            /// Whether the list of items (after applying the sort and filters, if any)
+            /// is already in the correct order for grouping.
             /// </summary>
             IsDataInGroupOrder = 0x01,
 
@@ -417,10 +417,10 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Gets a value indicating whether the view supports the notion of "pending changes" 
+        /// Gets a value indicating whether the view supports the notion of "pending changes"
         /// on the current edit item.  This may vary, depending on the view and the particular
         /// item.  For example, a view might return true if the current edit item
-        /// implements IEditableObject, or if the view has special knowledge about 
+        /// implements IEditableObject, or if the view has special knowledge about
         /// the item that it can use to support rollback of pending changes.
         /// </summary>
         public bool CanCancelEdit
@@ -474,7 +474,7 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Gets the number of records in the view after 
+        /// Gets the number of records in the view after
         /// filtering, sorting, and paging.
         /// </summary>
         public int Count
@@ -593,8 +593,8 @@ namespace System.Windows.Data
             }
         }
 
-        /// <summary> 
-        /// Gets the "current item" for this view 
+        /// <summary>
+        /// Gets the "current item" for this view
         /// </summary>
         public object CurrentItem
         {
@@ -606,7 +606,7 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Gets the ordinal position of the CurrentItem within the 
+        /// Gets the ordinal position of the CurrentItem within the
         /// (optionally sorted and filtered) view.
         /// </summary>
         public int CurrentPosition
@@ -622,7 +622,7 @@ namespace System.Windows.Data
         /// Gets or sets the Filter, which is a callback set by the consumer of the ICollectionView
         /// and used by the implementation of the ICollectionView to determine if an
         /// item is suitable for inclusion in the view.
-        /// </summary>        
+        /// </summary>
         /// <exception cref="NotSupportedException">
         /// Simpler implementations do not support filtering and will throw a NotSupportedException.
         /// Use <seealso cref="CanFilter"/> property to test if filtering is supported before
@@ -663,7 +663,7 @@ namespace System.Windows.Data
         {
             get
             {
-                return this._group != null ? this._group.GroupDescriptions : null;
+                return _group != null ? _group.GroupDescriptions : null;
             }
         }
 
@@ -693,8 +693,8 @@ namespace System.Windows.Data
             get { return this._newItem != null; }
         }
 
-        /// <summary> 
-        /// Gets a value indicating whether currency is beyond the end (End-Of-File). 
+        /// <summary>
+        /// Gets a value indicating whether currency is beyond the end (End-Of-File).
         /// </summary>
         /// <returns>Whether IsCurrentAfterLast</returns>
         public bool IsCurrentAfterLast
@@ -706,8 +706,8 @@ namespace System.Windows.Data
             }
         }
 
-        /// <summary> 
-        /// Gets a value indicating whether currency is before the beginning (Beginning-Of-File). 
+        /// <summary>
+        /// Gets a value indicating whether currency is before the beginning (Beginning-Of-File).
         /// </summary>
         /// <returns>Whether IsCurrentBeforeFirst</returns>
         public bool IsCurrentBeforeFirst
@@ -795,7 +795,7 @@ namespace System.Windows.Data
                 if ((NewItemPlaceholderPosition)value != NewItemPlaceholderPosition.None)
                 {
                     throw new ArgumentException(
-                        string.Format(CultureInfo.InvariantCulture, 
+                        string.Format(CultureInfo.InvariantCulture,
                             PagedCollectionViewResources.InvalidEnumArgument,
                             "value",
                             value.ToString(),
@@ -818,7 +818,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets or sets the number of items to display on a page. If the
         /// PageSize = 0, then we are not paging, and will display all items
-        /// in the collection. Otherwise, we will have separate pages for 
+        /// in the collection. Otherwise, we will have separate pages for
         /// the items to display.
         /// </summary>
         public int PageSize
@@ -867,7 +867,7 @@ namespace System.Windows.Data
                             throw new InvalidOperationException(PagedCollectionViewResources.ChangingPageSizeNotAllowedDuringAddOrEdit);
                         }
 
-                        // Currently CommitNew()/CommitEdit()/CancelNew()/CancelEdit() can't handle committing or 
+                        // Currently CommitNew()/CommitEdit()/CancelNew()/CancelEdit() can't handle committing or
                         // cancelling an item that is no longer on the current page. That's acceptable and means that
                         // the potential this._newItem or this._editItem needs to be committed before this PageSize change.
                         // The reason why we temporarily reset currency here is to give a chance to the bound
@@ -876,8 +876,8 @@ namespace System.Windows.Data
                         this.SetCurrentToPosition(-1);
                         this.RaiseCurrencyChanges(true /*fireChangedEvent*/, oldCurrentItem, oldCurrentPosition, oldIsCurrentBeforeFirst, oldIsCurrentAfterLast);
 
-                        // If the bound controls did not successfully end their potential item editing/addition, we 
-                        // need to throw an exception to show that the PageSize change failed. 
+                        // If the bound controls did not successfully end their potential item editing/addition, we
+                        // need to throw an exception to show that the PageSize change failed.
                         if (this.CurrentAddItem != null || this.CurrentEditItem != null)
                         {
                             throw new InvalidOperationException(PagedCollectionViewResources.ChangingPageSizeNotAllowedDuringAddOrEdit);
@@ -919,7 +919,7 @@ namespace System.Windows.Data
                             // entire collection as well as the current page
                             this.PrepareTemporaryGroups();
                         }
-                        
+
                         // update the groups for the current page
                         this.PrepareGroupsForCurrentPage();
                     }
@@ -1015,7 +1015,7 @@ namespace System.Windows.Data
 
                 return this._itemConstructor != null;
             }
-        }        
+        }
 
         /// <summary>
         /// Gets the private count without taking paging or
@@ -1069,7 +1069,7 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Gets a value indicating whether or not we have grouping 
+        /// Gets a value indicating whether or not we have grouping
         /// taking place in this collection.
         /// </summary>
         private bool IsGrouping
@@ -1160,9 +1160,9 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Gets a value indicating whether a private copy of the data 
-        /// is needed for sorting, filtering, and paging. We want any deriving 
-        /// classes to also be able to access this value to see whether or not 
+        /// Gets a value indicating whether a private copy of the data
+        /// is needed for sorting, filtering, and paging. We want any deriving
+        /// classes to also be able to access this value to see whether or not
         /// to use the default source collection, or the internal list.
         /// </summary>
         private bool UsesLocalArray
@@ -1250,7 +1250,7 @@ namespace System.Windows.Data
                 this.SetFlag(CollectionViewFlags.ShouldProcessCollectionChanged, true);
             }
 
-            // Modify our _trackingEnumerator so that it shows that our collection is "up to date" 
+            // Modify our _trackingEnumerator so that it shows that our collection is "up to date"
             // and will not refresh for now.
             this._trackingEnumerator = this._sourceCollection.GetEnumerator();
 
@@ -1269,7 +1269,7 @@ namespace System.Windows.Data
             }
             else
             {
-                // for non-paged lists, we want to insert the item 
+                // for non-paged lists, we want to insert the item
                 // as the last item in the view
                 addIndex = this.Count;
             }
@@ -1325,7 +1325,7 @@ namespace System.Windows.Data
             this.MoveCurrentTo(newItem);
 
             // if the new item is editable, call BeginEdit on it
-            IEditableObject editableObject = newItem as IEditableObject;
+            var editableObject = newItem as IEditableObject;
             if (editableObject != null)
             {
                 editableObject.BeginEdit();
@@ -1359,8 +1359,7 @@ namespace System.Windows.Data
             object editItem = this.CurrentEditItem;
             this.CurrentEditItem = null;
 
-            System.ComponentModel.IEditableObject ieo = editItem as System.ComponentModel.IEditableObject;
-            if (ieo != null)
+            if (editItem is IEditableObject ieo)
             {
                 ieo.CancelEdit();
             }
@@ -1409,7 +1408,7 @@ namespace System.Windows.Data
                 this.SetFlag(CollectionViewFlags.ShouldProcessCollectionChanged, true);
             }
 
-            // Modify our _trackingEnumerator so that it shows that our collection is "up to date" 
+            // Modify our _trackingEnumerator so that it shows that our collection is "up to date"
             // and will not refresh for now.
             this._trackingEnumerator = this._sourceCollection.GetEnumerator();
 
@@ -1428,7 +1427,7 @@ namespace System.Windows.Data
                     addIndex = this.Count - 1;
                 }
 
-                // remove the new item from the internal list 
+                // remove the new item from the internal list
                 this.InternalList.Remove(newItem);
 
                 if (this.IsGrouping)
@@ -1504,8 +1503,7 @@ namespace System.Windows.Data
             object editItem = this.CurrentEditItem;
             this.CurrentEditItem = null;
 
-            System.ComponentModel.IEditableObject ieo = editItem as System.ComponentModel.IEditableObject;
-            if (ieo != null)
+            if (editItem is IEditableObject ieo)
             {
                 ieo.EndEdit();
             }
@@ -1553,7 +1551,7 @@ namespace System.Windows.Data
                 bool passedFilter = this.PassesFilter(editItem);
 
                 // if we removed all items from the current page,
-                // move to the previous page. we do not need to 
+                // move to the previous page. we do not need to
                 // fire additional notifications, as moving the page will
                 // trigger a reset.
                 if (this.NeedToMoveToPreviousPage && !passedFilter)
@@ -1691,7 +1689,7 @@ namespace System.Windows.Data
             // keep track of the current item
             object previousCurrentItem = this.CurrentItem;
 
-            // Modify our _trackingEnumerator so that it shows that our collection is "up to date" 
+            // Modify our _trackingEnumerator so that it shows that our collection is "up to date"
             // and will not refresh for now.
             this._trackingEnumerator = this._sourceCollection.GetEnumerator();
 
@@ -1798,7 +1796,7 @@ namespace System.Windows.Data
                             {
                                 this._group.AddToSubgroups(addItem, false /*loading*/);
                                 addIndex = this.IndexOf(addItem);
-                                
+
                                 // adjust currency to either the previous current item if possible
                                 // or to the item at the end of the list where the new item was.
                                 if (previousCurrentItem != null)
@@ -1901,8 +1899,8 @@ namespace System.Windows.Data
 
         /// <summary>
         /// Begins an editing transaction on the given item.  The transaction is
-        /// completed by calling either CommitEdit or CancelEdit.  Any changes made 
-        /// to the item during the transaction are considered "pending", provided 
+        /// completed by calling either CommitEdit or CancelEdit.  Any changes made
+        /// to the item during the transaction are considered "pending", provided
         /// that the view supports the notion of "pending changes" for the given item.
         /// </summary>
         /// <param name="item">Item we want to edit</param>
@@ -1927,14 +1925,13 @@ namespace System.Windows.Data
 
             this.CurrentEditItem = item;
 
-            System.ComponentModel.IEditableObject ieo = item as System.ComponentModel.IEditableObject;
-            if (ieo != null)
+            if (item is System.ComponentModel.IEditableObject ieo)
             {
                 ieo.BeginEdit();
             }
         }
 
-        /// <summary> 
+        /// <summary>
         /// Implementation of IEnumerable.GetEnumerator().
         /// This provides a way to enumerate the members of the collection
         /// without changing the currency.
@@ -2020,7 +2017,7 @@ namespace System.Windows.Data
             return this.InternalItemAt(this.ConvertToInternalIndex(index));
         }
 
-        /// <summary> 
+        /// <summary>
         /// Return the index where the given item appears, or -1 if doesn't appear.
         /// </summary>
         /// <param name="item">Item we are searching for</param>
@@ -2035,6 +2032,7 @@ namespace System.Windows.Data
                 CollectionViewGroupRoot group = this.RootGroup;
                 return group != null ? group.LeafIndexOf(item) : -1;
             }
+
             if (this.IsAddingNew && Object.Equals(item, this.CurrentAddItem) && this.UsesLocalArray)
             {
                 return this.Count - 1;
@@ -2060,8 +2058,8 @@ namespace System.Windows.Data
             }
         }
 
-        /// <summary> 
-        /// Move to the given item. 
+        /// <summary>
+        /// Move to the given item.
         /// </summary>
         /// <param name="item">Item we want to move the currency to</param>
         /// <returns>Whether the operation was successful</returns>
@@ -2085,8 +2083,8 @@ namespace System.Windows.Data
             return this.MoveCurrentToPosition(this.IndexOf(item));
         }
 
-        /// <summary> 
-        /// Move to the first item. 
+        /// <summary>
+        /// Move to the first item.
         /// </summary>
         /// <returns>Whether the operation was successful</returns>
         public bool MoveCurrentToFirst()
@@ -2096,8 +2094,8 @@ namespace System.Windows.Data
             return this.MoveCurrentToPosition(0);
         }
 
-        /// <summary> 
-        /// Move to the last item. 
+        /// <summary>
+        /// Move to the last item.
         /// </summary>
         /// <returns>Whether the operation was successful</returns>
         public bool MoveCurrentToLast()
@@ -2109,8 +2107,8 @@ namespace System.Windows.Data
             return this.MoveCurrentToPosition(index);
         }
 
-        /// <summary> 
-        /// Move to the next item. 
+        /// <summary>
+        /// Move to the next item.
         /// </summary>
         /// <returns>Whether the operation was successful</returns>
         public bool MoveCurrentToNext()
@@ -2359,8 +2357,7 @@ namespace System.Windows.Data
         /// </summary>
         public void Refresh()
         {
-            IEditableCollectionView ecv = this as IEditableCollectionView;
-            if (ecv != null && (ecv.IsAddingNew || ecv.IsEditingItem))
+            if (this is IEditableCollectionView ecv && (ecv.IsAddingNew || ecv.IsEditingItem))
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, PagedCollectionViewResources.OperationNotAllowedDuringAddOrEdit, "Refresh"));
             }
@@ -2446,6 +2443,7 @@ namespace System.Windows.Data
                 {
                     this._temporaryGroup.RemoveFromSubgroups(item);
                 }
+
                 this._group.RemoveFromSubgroups(item);
             }
 
@@ -2522,6 +2520,7 @@ namespace System.Windows.Data
             {
                 throw exception;
             }
+
             return propertyValue;
         }
 
@@ -2553,6 +2552,7 @@ namespace System.Windows.Data
                     this.OnCurrentChanging();
                     this.SetCurrent(newCurrentItem, newItemIndex);
                 }
+
                 return;
             }
 
@@ -2580,6 +2580,7 @@ namespace System.Windows.Data
                     // keep currency on last item.
                     newPosition = this.Count - 1;
                 }
+
                 this.SetCurrent(this.GetItemAt(newPosition), newPosition);
             }
         }
@@ -2761,8 +2762,7 @@ namespace System.Windows.Data
 
             this.CurrentAddItem = null;    // leave "adding-new" mode
 
-            System.ComponentModel.IEditableObject ieo = newItem as System.ComponentModel.IEditableObject;
-            if (ieo != null)
+            if (newItem is System.ComponentModel.IEditableObject ieo)
             {
                 if (cancel)
                 {
@@ -2788,7 +2788,7 @@ namespace System.Windows.Data
             {
                 if (this.CheckFlag(CollectionViewFlags.IsUpdatePageSizeDeferred))
                 {
-                    this.SetFlag(CollectionViewFlags.IsUpdatePageSizeDeferred, false); 
+                    this.SetFlag(CollectionViewFlags.IsUpdatePageSizeDeferred, false);
                     this.PageSize = this._cachedPageSize;
                 }
 
@@ -3133,8 +3133,7 @@ namespace System.Windows.Data
         {
             if (groupRoot == this._temporaryGroup || this.PageSize == 0)
             {
-                CollectionViewGroupInternal.ListComparer listComparer = groupRoot.ActiveComparer as CollectionViewGroupInternal.ListComparer;
-                if (listComparer != null)
+                if (groupRoot.ActiveComparer is CollectionViewGroupInternal.ListComparer listComparer)
                 {
                     listComparer.ResetList(this.InternalList);
                 }
@@ -3179,6 +3178,7 @@ namespace System.Windows.Data
                         this._group.AddToSubgroups(item, true /*loading*/);
                     }
                 }
+
                 if (this.IsAddingNew)
                 {
                     this._group.InsertSpecialItem(this._group.Items.Count, this.CurrentAddItem, true);
@@ -3229,6 +3229,7 @@ namespace System.Windows.Data
                         this._temporaryGroup.AddToSubgroups(item, true /*loading*/);
                     }
                 }
+
                 if (this.IsAddingNew)
                 {
                     this._temporaryGroup.InsertSpecialItem(this._temporaryGroup.Items.Count, this.CurrentAddItem, true);
@@ -3269,6 +3270,7 @@ namespace System.Windows.Data
                         this._group.AddToSubgroups(item, true /*loading*/);
                     }
                 }
+
                 if (this.IsAddingNew)
                 {
                     this._group.InsertSpecialItem(this._group.Items.Count, this.CurrentAddItem, true);
@@ -3330,7 +3332,7 @@ namespace System.Windows.Data
             object removeNotificationItem = null;
             if (this.PageSize > 0 && !this.IsGrouping)
             {
-                removeNotificationItem = (this.Count == this.PageSize) ? 
+                removeNotificationItem = (this.Count == this.PageSize) ?
                     this.GetItemAt(this.PageSize - 1) : null;
             }
 
@@ -3350,6 +3352,7 @@ namespace System.Windows.Data
                 {
                     this.PrepareGroupingComparer(this._temporaryGroup);
                 }
+
                 this.PrepareGroupingComparer(this._group);
             }
 
@@ -3494,6 +3497,7 @@ namespace System.Windows.Data
             {
                 this.ProcessAddEvent(addedItem, args.NewStartingIndex);
             }
+
             if (args.Action != NotifyCollectionChangedAction.Replace)
             {
                 this.OnPropertyChanged("ItemCount");
@@ -3647,18 +3651,22 @@ namespace System.Windows.Data
             {
                 this.OnCurrentChanged();
             }
+
             if (this.CurrentItem != oldCurrentItem)
             {
                 this.OnPropertyChanged("CurrentItem");
             }
+
             if (this.CurrentPosition != oldCurrentPosition)
             {
                 this.OnPropertyChanged("CurrentPosition");
             }
+
             if (this.IsCurrentAfterLast != oldIsCurrentAfterLast)
             {
                 this.OnPropertyChanged("IsCurrentAfterLast");
             }
+
             if (this.IsCurrentBeforeFirst != oldIsCurrentBeforeFirst)
             {
                 this.OnPropertyChanged("IsCurrentBeforeFirst");
@@ -4088,7 +4096,7 @@ namespace System.Windows.Data
             /// <summary>
             /// Private accessor for the CultureInfo of our comparer
             /// </summary>
-            private CultureInfo _culture;
+            private readonly CultureInfo _culture;
 
             /// <summary>
             /// Creates a comparer which will respect the CultureInfo
@@ -4120,8 +4128,10 @@ namespace System.Windows.Data
                     {
                         return -1;
                     }
+
                     return 0;
                 }
+
                 if (y == null)
                 {
                     return 1;
@@ -4140,7 +4150,7 @@ namespace System.Windows.Data
 
             #endregion
         }
-    
+
         /// <summary>
         /// Used to keep track of Defer calls on the PagedCollectionView, which
         /// will prevent the user from calling Refresh() on the view. In order
@@ -4173,6 +4183,7 @@ namespace System.Windows.Data
                     this.collectionView.EndDefer();
                     this.collectionView = null;
                 }
+
                 GC.SuppressFinalize(this);
             }
         }
@@ -4286,6 +4297,7 @@ namespace System.Windows.Data
                         {
                             return false;
                         }
+
                         return true;
                 }
 
@@ -4320,12 +4332,12 @@ namespace System.Windows.Data
             /// <summary>
             /// CollectionView that we are creating the enumerator for
             /// </summary>
-            private PagedCollectionView _collectionView;
+            private readonly PagedCollectionView _collectionView;
 
             /// <summary>
             /// The Base Enumerator that we are passing in
             /// </summary>
-            private IEnumerator _baseEnumerator;
+            private readonly IEnumerator _baseEnumerator;
 
             /// <summary>
             /// The position we are appending items to the enumerator
@@ -4335,7 +4347,7 @@ namespace System.Windows.Data
             /// <summary>
             /// Reference to any new item that we want to add to the collection
             /// </summary>
-            private object _newItem;
+            private readonly object _newItem;
 
             /// <summary>
             /// Timestamp to let us know whether there have been updates to the collection
@@ -4395,6 +4407,7 @@ namespace System.Windows.Data
                             this._fields[k].PropertyType = x.GetType().GetNestedPropertyType(this._fields[k].PropertyPath);
                             propertyType = this._fields[k].PropertyType;
                         }
+
                         if (this._fields[k].PropertyType == null && y != null)
                         {
                             this._fields[k].PropertyType = y.GetType().GetNestedPropertyType(this._fields[k].PropertyPath);
@@ -4488,6 +4501,7 @@ namespace System.Windows.Data
                     fields[k].PropertyPath = sortFields[k].PropertyName;
                     fields[k].Descending = (sortFields[k].Direction == ListSortDirection.Descending);
                 }
+
                 return fields;
             }
 
@@ -4519,9 +4533,9 @@ namespace System.Windows.Data
             }
 
             private readonly ICollectionView _collectionView;
-            private SortPropertyInfo[] _fields;
-            private SortDescriptionCollection _sortFields;
-            private IComparer<object> _comparer;
+            private readonly SortPropertyInfo[] _fields;
+            private readonly SortDescriptionCollection _sortFields;
+            private readonly IComparer<object> _comparer;
 
             #endregion
         }

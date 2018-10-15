@@ -10,7 +10,7 @@ namespace Kino.Toolkit.Wpf.Samples
 {
     /// <summary>  
     /// 为PasswordBox Password增加绑定功能  
-    /// </summary>  
+    /// </summary>
     public static class PasswordBoxHelper
     {
         /// <summary>
