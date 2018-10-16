@@ -28,7 +28,7 @@ namespace Kino.Toolkit.Wpf
         protected override void OnClick()
         {
             base.OnClick();
-            this.IsChecked = true;
+            IsChecked = true;
         }
 
 
@@ -55,7 +55,7 @@ namespace Kino.Toolkit.Wpf
                 return;
             }
 
-            if (VisualTreeHelper.GetParent(this) is FrameworkElement parent )
+            if (VisualTreeHelper.GetParent(this) is FrameworkElement parent)
             {
                 var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
                 for (int i = 0; i < childrenCount; i++)

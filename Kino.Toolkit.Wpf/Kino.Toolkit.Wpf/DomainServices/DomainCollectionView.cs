@@ -398,7 +398,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and 
+        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and
         /// <see cref="IPagedCollectionView.ItemCount"/> properties based on the
         /// specified <paramref name="totalItemCount"/> and values in the view
         /// </summary>

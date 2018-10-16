@@ -23,17 +23,17 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public static readonly DependencyProperty AreHandlersSuspended = DependencyProperty.RegisterAttached(
             "AreHandlersSuspended",
-            typeof(Boolean),
+            typeof(bool),
             typeof(ExtensionProperties),
             new PropertyMetadata(false));
-        public static void SetAreHandlersSuspended(DependencyObject obj, Boolean value)
+        public static void SetAreHandlersSuspended(DependencyObject obj, bool value)
         {
             obj.SetValue(AreHandlersSuspended, value);
         }
 
-        public static Boolean GetAreHandlersSuspended(DependencyObject obj)
+        public static bool GetAreHandlersSuspended(DependencyObject obj)
         {
-            return (Boolean)obj.GetValue(AreHandlersSuspended);
+            return (bool)obj.GetValue(AreHandlersSuspended);
         }
     }
 }

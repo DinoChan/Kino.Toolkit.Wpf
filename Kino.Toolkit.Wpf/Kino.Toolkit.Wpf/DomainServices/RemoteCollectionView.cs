@@ -10,7 +10,7 @@ namespace Kino.Toolkit.Wpf
 {
     public class RemoteCollectionView : DomainCollectionView
     {
-        public RemoteCollectionView(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted) : base(new RemoteCollectionViewLoader(load, onLoadCompleted), new List<Object>())
+        public RemoteCollectionView(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted) : base(new RemoteCollectionViewLoader(load, onLoadCompleted), new List<object>())
         {
             PageSize = 50;
             (CollectionViewLoader as RemoteCollectionViewLoader).LoadStarted += OnLoadStarted;

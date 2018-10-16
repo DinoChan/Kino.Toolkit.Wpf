@@ -52,9 +52,8 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private static void OnPasswordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var passwordBox = sender as PasswordBox;
 
-            if (passwordBox == null)
+            if (!(sender is PasswordBox passwordBox))
             {
                 return;
             }

@@ -75,9 +75,7 @@ namespace Kino.Toolkit.Wpf
             var oldValue = (ProgressState)args.OldValue;
             var newValue = (ProgressState)args.NewValue;
             if (oldValue != newValue)
-            {
                 target.OnStateChanged(oldValue, newValue);
-            }
         }
 
         protected virtual void OnStateChanged(ProgressState oldValue, ProgressState newValue)

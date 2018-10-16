@@ -15,7 +15,7 @@ namespace Kino.Toolkit.Wpf
             double times = 1;
             if (parameter is string parameterString)
             {
-                if (Double.TryParse(parameterString, out times) == false)
+                if (double.TryParse(parameterString, out times) == false)
                 {
                     return 0;
                 }

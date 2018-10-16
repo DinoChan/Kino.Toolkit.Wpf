@@ -17,7 +17,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// SimpleShell.xaml 的交互逻辑
     /// </summary>
-    public partial class SimpleShell 
+    public partial class SimpleShell
     {
         public SimpleShell()
         {
@@ -36,8 +36,10 @@ namespace Kino.Toolkit.Wpf.Samples
         private void OnSignOut(object sender, RoutedEventArgs e)
         {
             Close();
-            var dialog = new UserinfoDialog();
-            dialog.Owner = Owner;
+            var dialog = new UserinfoDialog
+            {
+                Owner = Owner
+            };
             dialog.ShowDialog();
         }
     }

@@ -12,8 +12,8 @@ using System.Windows.Media.Animation;
 namespace Kino.Toolkit.Wpf
 {
     /// <summary>
-    /// Represents a control with a single piece of content and when that content 
-    /// changes performs a transition animation. 
+    /// Represents a control with a single piece of content and when that content
+    /// changes performs a transition animation.
     /// </summary>
     /// <QualityBand>Experimental</QualityBand>
     /// <remarks>The API for this control will change considerably in the future.</remarks>

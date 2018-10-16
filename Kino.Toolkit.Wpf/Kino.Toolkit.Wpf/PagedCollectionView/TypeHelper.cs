@@ -104,8 +104,7 @@ namespace System.Windows.Common
             {
                 // if we can't find the property or it is not of the correct type,
                 // treat it as a null value
-                object[] index = null;
-                propertyInfo = type.GetPropertyOrIndexer(propertyNames[i], out index);
+                propertyInfo = type.GetPropertyOrIndexer(propertyNames[i], out object[] index);
                 if (propertyInfo == null)
                 {
                     item = null;
@@ -149,8 +148,7 @@ namespace System.Windows.Common
             }
 
             object item = null;
-            Exception exception = null;
-            PropertyInfo propertyInfo = parentType.GetNestedProperty(propertyPath, out exception, ref item);
+            PropertyInfo propertyInfo = parentType.GetNestedProperty(propertyPath, out Exception exception, ref item);
             return propertyInfo == null ? null : propertyInfo.PropertyType;
         }
 
@@ -175,7 +173,7 @@ namespace System.Windows.Common
             }
 
             // if the propertyPath is null or empty, return the item
-            if (String.IsNullOrEmpty(propertyPath))
+            if (string.IsNullOrEmpty(propertyPath))
             {
                 return item;
             }
@@ -254,7 +252,7 @@ namespace System.Windows.Common
                         if (parameterInfos[0].ParameterType == typeof(int))
                         {
                             int intIndex = -1;
-                            if (Int32.TryParse(stringIndex.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out intIndex))
+                            if (int.TryParse(stringIndex.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out intIndex))
                             {
                                 indexer = propertyInfo;
                                 index = new object[] { intIndex };

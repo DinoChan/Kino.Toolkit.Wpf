@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf
 
         public KinoProgressRing()
         {
-            this.DefaultStyleKey = typeof(KinoProgressRing);
+            DefaultStyleKey = typeof(KinoProgressRing);
             TemplateSettings = new TemplateSettingValues(60);
         }
 
@@ -26,10 +26,10 @@ namespace Kino.Toolkit.Wpf
         {
             base.OnApplyTemplate();
             hasAppliedTemplate = true;
-            UpdateState(this.IsActive);
+            UpdateState(IsActive);
         }
 
-        void UpdateState(bool isActive)
+        private void UpdateState(bool isActive)
         {
             if (hasAppliedTemplate)
             {
@@ -44,8 +44,8 @@ namespace Kino.Toolkit.Wpf
             var height = 20d;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this) == false)
             {
-                width = double.IsNaN(this.Width) == false ? this.Width : availableSize.Width;
-                height = double.IsNaN(this.Height) == false ? this.Height : availableSize.Height;
+                width = double.IsNaN(Width) == false ? Width : availableSize.Width;
+                height = double.IsNaN(Height) == false ? Height : availableSize.Height;
             }
 
             TemplateSettings = new TemplateSettingValues(Math.Min(width, height));
@@ -127,7 +127,7 @@ namespace Kino.Toolkit.Wpf
 
             // Using a DependencyProperty as the backing store for EllipseOffset.  This enables animation, styling, binding, etc...
             public static readonly DependencyProperty EllipseOffsetProperty =
-                DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(new Thickness()));
+                DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(default(Thickness)));
         }
     }
 

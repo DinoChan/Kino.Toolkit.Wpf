@@ -39,7 +39,7 @@ namespace Kino.Toolkit.Wpf
 
         protected virtual void OnRelativeDataGridChanged(DataGrid oldValue, DataGrid newValue)
         {
-            base.Selector = newValue;
+            Selector = newValue;
         }
 
         protected override IList SelectedItems

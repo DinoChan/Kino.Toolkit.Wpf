@@ -22,8 +22,8 @@ namespace Kino.Toolkit.Wpf
     {
         /// <summary>
         /// The amount of border padding for captioned windows, in pixels.
-        /// Returns the amount of extra border padding around captioned windows 
-        ///Windows XP/2000:  This value is not supported.
+        /// Returns the amount of extra border padding around captioned windows
+        /// Windows XP/2000:  This value is not supported.
         /// </summary>
         CXPADDEDBORDER = 92,
     }

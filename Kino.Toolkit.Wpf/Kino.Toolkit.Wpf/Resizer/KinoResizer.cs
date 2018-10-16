@@ -55,16 +55,12 @@ namespace Kino.Toolkit.Wpf
             set
             {
                 if (_contentPreseter != null)
-                {
                     _contentPreseter.SizeChanged -= OnContentSizeChanged;
-                }
 
                 _contentPreseter = value;
 
                 if (_contentPreseter != null)
-                {
                     _contentPreseter.SizeChanged += OnContentSizeChanged;
-                }
             }
         }
 
@@ -120,9 +116,9 @@ namespace Kino.Toolkit.Wpf
 
         protected override Size MeasureOverride(Size constraint)
         {
-            int count = this.VisualChildrenCount;
-            UIElement child = (count > 0) ? this.GetVisualChild(0) as UIElement : null;
-            Size desiredSize = new Size();
+            int count = VisualChildrenCount;
+            UIElement child = (count > 0) ? GetVisualChild(0) as UIElement : null;
+            Size desiredSize = default(Size);
             if (child != null)
             {
                 child.Measure(constraint);
@@ -189,9 +185,9 @@ namespace Kino.Toolkit.Wpf
                     widthAnimation = _defaultWidthAnimation;
                 }
 
-                heightAnimation.From = this.ActualHeight;
+                heightAnimation.From = ActualHeight;
                 heightAnimation.To = ContentPresenter.ActualHeight;
-                widthAnimation.From = this.ActualWidth;
+                widthAnimation.From = ActualWidth;
                 widthAnimation.To = ContentPresenter.ActualWidth;
 
                 _resizingStoryboard.Children.Clear();

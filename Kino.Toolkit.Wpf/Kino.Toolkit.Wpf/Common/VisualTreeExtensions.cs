@@ -351,7 +351,7 @@ namespace Kino.Toolkit.Wpf
                 }
             }
 
-            // If control is an items control return all children using the 
+            // If control is an items control return all children using the
             // Item container generator.
             if (parent is ItemsControl itemsControl)
             {

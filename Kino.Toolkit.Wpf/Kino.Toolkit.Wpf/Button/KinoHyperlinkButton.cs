@@ -24,7 +24,7 @@ namespace Kino.Toolkit.Wpf
 
         /// <summary>Identifies the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</summary>
         /// <returns>The identifier for the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</returns>
-        public readonly static DependencyProperty TargetNameProperty;
+        public static readonly DependencyProperty TargetNameProperty;
 
         /// <summary>Gets or sets the URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked. </summary>
         /// <returns>The URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked.</returns>
@@ -52,10 +52,10 @@ namespace Kino.Toolkit.Wpf
         /// <summary>Initializes a new instance of the <see cref="KinoHyperlinkButton"/> class.</summary>
         public KinoHyperlinkButton()
         {
-            base.DefaultStyleKey = typeof(KinoHyperlinkButton);
+            DefaultStyleKey = typeof(KinoHyperlinkButton);
             if (IsPermissionGranted() == false)
             {
-                this.IsEnabled = false;
+                IsEnabled = false;
             }
         }
 

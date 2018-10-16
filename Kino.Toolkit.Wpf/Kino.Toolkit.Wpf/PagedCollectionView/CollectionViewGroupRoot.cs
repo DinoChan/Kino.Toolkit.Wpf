@@ -588,7 +588,7 @@ namespace System.Windows.Data
         /// <param name="item">Item to remove</param>
         private void RemoveItemFromSubgroupsByExhaustiveSearch(CollectionViewGroupInternal group, object item)
         {
-            // try to remove the item from the direct children 
+            // try to remove the item from the direct children
             // this function only returns true if it failed to remove from group directly
             // in which case we will step through and search exhaustively
             if (this.RemoveFromGroupDirectly(group, item))

@@ -379,14 +379,14 @@ namespace Kino.Toolkit.Wpf
         public static FrameworkElement GetImplementationRoot(DependencyObject dependencyObject)
         {
             Debug.Assert(dependencyObject != null, "DependencyObject should not be null.");
-            return (1 == VisualTreeHelper.GetChildrenCount(dependencyObject)) ?
+            return (VisualTreeHelper.GetChildrenCount(dependencyObject) == 1) ?
                 VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement :
                 null;
         }
 
         /// <summary>
         /// This method tries to get the named VisualStateGroup for the
-        /// dependency object. The provided object's ImplementationRoot will be 
+        /// dependency object. The provided object's ImplementationRoot will be
         /// looked up in this call.
         /// </summary>
         /// <param name="dependencyObject">The dependency object.</param>

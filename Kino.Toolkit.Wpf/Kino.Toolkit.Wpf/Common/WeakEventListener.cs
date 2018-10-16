@@ -22,7 +22,8 @@ namespace Kino.Toolkit.Wpf
     /// <typeparam name="TInstance">Type of instance listening for the event.</typeparam>
     /// <typeparam name="TSource">Type of source for the event.</typeparam>
     /// <typeparam name="TEventArgs">Type of event arguments for the event.</typeparam>
-    internal class WeakEventListener<TInstance, TSource, TEventArgs> where TInstance : class
+    internal class WeakEventListener<TInstance, TSource, TEventArgs>
+        where TInstance : class
     {
         /// <summary>
         /// WeakReference to the instance listening for the event.
@@ -60,15 +61,10 @@ namespace Kino.Toolkit.Wpf
         /// <param name="eventArgs">Event arguments.</param>
         public void OnEvent(TSource source, TEventArgs eventArgs)
         {
-            TInstance target = _weakInstance.Target as TInstance;
-
-            if (target != null)
+            if (_weakInstance.Target is TInstance target)
             {
                 // Call the registered action.
-                if (this.OnEventAction != null)
-                {
-                    this.OnEventAction(target, source, eventArgs);
-                }
+                OnEventAction?.Invoke(target, source, eventArgs);
             }
             else
             {

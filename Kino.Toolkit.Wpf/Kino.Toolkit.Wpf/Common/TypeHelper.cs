@@ -83,7 +83,7 @@ namespace Kino.Toolkit.Wpf
                 if (parameters[0].ParameterType == typeof(int))
                 {
                     int intIndex = -1;
-                    if (Int32.TryParse(stringIndex.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out intIndex))
+                    if (int.TryParse(stringIndex.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out intIndex))
                     {
                         index = new object[] { intIndex };
                         return pi;
@@ -137,7 +137,7 @@ namespace Kino.Toolkit.Wpf
                 if (attributes != null && attributes.Length > 0)
                 {
                     Debug.Assert(attributes.Length == 1);
-                    DisplayAttribute displayAttribute = attributes[0] as DisplayAttribute;
+                    var displayAttribute = attributes[0] as DisplayAttribute;
                     if (displayAttribute != null)
                     {
                         return displayAttribute.GetShortName();
@@ -180,7 +180,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns>The PropertyInfo.</returns>
         internal static PropertyInfo GetNestedProperty(this Type parentType, string propertyPath, ref object item)
         {
-            if (parentType == null || String.IsNullOrEmpty(propertyPath))
+            if (parentType == null || string.IsNullOrEmpty(propertyPath))
             {
                 item = null;
                 return null;
@@ -191,8 +191,7 @@ namespace Kino.Toolkit.Wpf
             List<string> propertyNames = SplitPropertyPath(propertyPath);
             for (int i = 0; i < propertyNames.Count; i++)
             {
-                object[] index = null;
-                propertyInfo = propertyType.GetPropertyOrIndexer(propertyNames[i], out index);
+                propertyInfo = propertyType.GetPropertyOrIndexer(propertyNames[i], out object[] index);
                 if (propertyInfo == null)
                 {
                     item = null;
@@ -212,7 +211,7 @@ namespace Kino.Toolkit.Wpf
 
         internal static Type GetNestedPropertyType(this Type parentType, string propertyPath)
         {
-            if (parentType == null || String.IsNullOrEmpty(propertyPath))
+            if (parentType == null || string.IsNullOrEmpty(propertyPath))
             {
                 return parentType;
             }
@@ -237,7 +236,7 @@ namespace Kino.Toolkit.Wpf
             if (item != null)
             {
                 Type parentType = item.GetType();
-                if (String.IsNullOrEmpty(propertyPath))
+                if (string.IsNullOrEmpty(propertyPath))
                 {
                     return item;
                 }
@@ -307,12 +306,12 @@ namespace Kino.Toolkit.Wpf
 
         internal static bool IsEnumerableType(this Type enumerableType)
         {
-            return (FindGenericType(typeof(IEnumerable<>), enumerableType) != null);
+            return FindGenericType(typeof(IEnumerable<>), enumerableType) != null;
         }
 
         internal static bool IsNullableType(this Type type)
         {
-            return (((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>)));
+            return ((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>));
         }
 
         internal static bool IsNullableEnum(this Type type)
