@@ -37,6 +37,7 @@ namespace System.Windows.Common
                 {
                     return type;
                 }
+
                 if (definition.IsInterface)
                 {
                     foreach (Type type2 in type.GetInterfaces())
@@ -93,7 +94,7 @@ namespace System.Windows.Common
         /// <param name="propertyPath">Property path</param>
         /// <param name="exception">Potential exception</param>
         /// <param name="item">Parent item which will be set to the property value if non-null.</param>
-        /// <returns></returns>
+        /// <returns>PropertyInfo</returns>
         private static PropertyInfo GetNestedProperty(this Type parentType, string propertyPath, out Exception exception, ref object item)
         {
             exception = null;

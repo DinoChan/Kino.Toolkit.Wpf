@@ -10,48 +10,30 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoButton : Button
     {
-        public KinoButton()
-        {
-            DefaultStyleKey = typeof(KinoButton);
-        }
-
-
-        /// <summary>
-        /// 获取或设置Icon的值
-        /// </summary>
-        public object Icon
-        {
-            get => (object)GetValue(IconProperty);
-            set => SetValue(IconProperty, value);
-        }
-
         /// <summary>
         /// 标识 Icon 依赖属性。
         /// </summary>
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register(nameof(Icon), typeof(object), typeof(KinoButton), new PropertyMetadata(null, OnIconChanged));
 
-        private static void OnIconChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        /// <summary>
+        /// 标识 State 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty StateProperty =
+            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoButton), new PropertyMetadata(ProgressState.None, OnStateChanged));
+
+        public KinoButton()
         {
-
-            var oldValue = (object)args.OldValue;
-            var newValue = (object)args.NewValue;
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            var target = obj as KinoButton;
-            target?.OnIconChanged(oldValue, newValue);
+            DefaultStyleKey = typeof(KinoButton);
         }
 
         /// <summary>
-        /// Icon 属性更改时调用此方法。
+        /// 获取或设置Icon的值
         /// </summary>
-        /// <param name="oldValue">Icon 属性的旧值。</param>
-        /// <param name="newValue">Icon 属性的新值。</param>
-        protected virtual void OnIconChanged(object oldValue, object newValue)
+        public object Icon
         {
+            get => GetValue(IconProperty);
+            set => SetValue(IconProperty, value);
         }
 
         /// <summary>
@@ -64,10 +46,30 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// 标识 State 依赖属性。
+        /// Icon 属性更改时调用此方法。
         /// </summary>
-        public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoButton), new PropertyMetadata(ProgressState.None, OnStateChanged));
+        /// <param name="oldValue">Icon 属性的旧值。</param>
+        /// <param name="newValue">Icon 属性的新值。</param>
+        protected virtual void OnIconChanged(object oldValue, object newValue)
+        {
+        }
+
+        protected virtual void OnStateChanged(ProgressState oldValue, ProgressState newValue)
+        {
+        }
+
+        private static void OnIconChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = args.OldValue;
+            var newValue = args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoButton;
+            target?.OnIconChanged(oldValue, newValue);
+        }
 
         private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -76,10 +78,6 @@ namespace Kino.Toolkit.Wpf
             var newValue = (ProgressState)args.NewValue;
             if (oldValue != newValue)
                 target.OnStateChanged(oldValue, newValue);
-        }
-
-        protected virtual void OnStateChanged(ProgressState oldValue, ProgressState newValue)
-        {
         }
     }
 }

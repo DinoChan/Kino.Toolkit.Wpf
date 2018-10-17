@@ -55,13 +55,11 @@ namespace Kino.Toolkit.Wpf
         private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
-            if (!(obj is Window window) || newValue == false)
+            if (obj is Window window && newValue)
             {
-                return;
+                var service = new WindowCommandHelper(window);
+                service.ActiveCommands();
             }
-
-            var service = new WindowCommandHelper(window);
-            service.ActiveCommands();
         }
 
         /// <summary>
@@ -87,28 +85,26 @@ namespace Kino.Toolkit.Wpf
         private static void OnIsKeepInWorkAreaChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
-            if (!(obj is Window window) || newValue == false)
+            if (obj is Window window && newValue)
             {
-                return;
+                window.SizeChanged += (s, e) =>
+                {
+                    var point = window.PointToScreen(new Point(0, 0));
+
+                    var allScreens = System.Windows.Forms.Screen.AllScreens.ToList();
+                    var locationScreen = allScreens.SingleOrDefault(c => window.Left >= c.WorkingArea.Left && window.Left < c.WorkingArea.Right);
+                    if (locationScreen != null)
+                    {
+                        var bottom = point.Y + window.ActualHeight - locationScreen.WorkingArea.Height;
+                        if (bottom > 0)
+                        {
+                            window.Top -= bottom;
+                        }
+                    }
+                };
+                var service = new WindowCommandHelper(window);
+                service.ActiveCommands();
             }
-
-            window.SizeChanged += (s, e) =>
-              {
-                  var point = window.PointToScreen(new Point(0, 0));
-
-                  var allScreens = System.Windows.Forms.Screen.AllScreens.ToList();
-                  var locationScreen = allScreens.SingleOrDefault(c => window.Left >= c.WorkingArea.Left && window.Left < c.WorkingArea.Right);
-                  if (locationScreen != null)
-                  {
-                      var bottom = point.Y + window.ActualHeight - locationScreen.WorkingArea.Height;
-                      if (bottom > 0)
-                      {
-                          window.Top -= bottom;
-                      }
-                  }
-              };
-            var service = new WindowCommandHelper(window);
-            service.ActiveCommands();
         }
 
         private class WindowCommandHelper

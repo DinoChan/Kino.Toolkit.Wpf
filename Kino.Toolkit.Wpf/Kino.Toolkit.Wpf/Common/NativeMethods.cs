@@ -28,4 +28,3 @@ namespace Kino.Toolkit.Wpf
         CXPADDEDBORDER = 92,
     }
 }
-

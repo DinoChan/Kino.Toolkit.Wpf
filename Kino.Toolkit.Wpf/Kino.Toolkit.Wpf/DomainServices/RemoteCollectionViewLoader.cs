@@ -24,14 +24,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// Gets or sets a value that indicates whether a <see cref="M:Microsoft.Windows.Data.DomainServices.DomainCollectionViewLoader.Load(System.Object)" /> can be successfully invoked
         /// </summary>
-        public override bool CanLoad
-        {
-            get
-            {
-                return !this.IsBusy;
-            }
-        }
-
+        public override bool CanLoad => !IsBusy;
 
         /// <summary>
         /// Gets or sets a value that indicates whether the loader is busy
@@ -43,14 +36,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._isBusy;
+                return _isBusy;
             }
+
             set
             {
-                if (this._isBusy != value)
+                if (_isBusy != value)
                 {
-                    this._isBusy = value;
-                    this.OnCanLoadChanged();
+                    _isBusy = value;
+                    OnCanLoadChanged();
                 }
             }
         }
@@ -66,26 +60,26 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._currentOperation;
+                return _currentOperation;
             }
 
             set
             {
-                if (this._currentOperation != value)
+                if (_currentOperation != value)
                 {
-                    if (this._currentOperation != null)
+                    if (_currentOperation != null)
                     {
-                        if (this._currentOperation.CanCancel)
+                        if (_currentOperation.CanCancel)
                         {
-                            this._currentOperation.Cancel();
+                            _currentOperation.Cancel();
                         }
                     }
 
-                    this._currentOperation = value;
+                    _currentOperation = value;
 
-                    if (this._currentOperation != null)
+                    if (_currentOperation != null)
                     {
-                        this._currentOperation.Completed += OnLoadCompleted;
+                        _currentOperation.Completed += OnLoadCompleted;
                     }
 
                     if (_currentOperation == null)
@@ -105,27 +99,27 @@ namespace Kino.Toolkit.Wpf
 
             _onLoadCompleted?.Invoke(op);
 
-            if (op == this.CurrentOperation)
+            if (op == CurrentOperation)
             {
-                this.OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, this._currentUserState));
-                this._currentUserState = null;
-                this.CurrentOperation = null;
+                OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, _currentUserState));
+                _currentUserState = null;
+                CurrentOperation = null;
             }
             else
             {
-                this.OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, null));
+                OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, null));
             }
         }
 
         public RemoteCollectionViewLoader(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted)
         {
-            this._load = load ?? throw new ArgumentNullException("load");
-            this._onLoadCompleted = onLoadCompleted;
+            _load = load ?? throw new ArgumentNullException("load");
+            _onLoadCompleted = onLoadCompleted;
         }
 
         public override void Load(object userState)
         {
-            this._currentUserState = userState;
+            _currentUserState = userState;
 
             if (IsBusy)
             {
@@ -142,7 +136,7 @@ namespace Kino.Toolkit.Wpf
 
             try
             {
-                this.CurrentOperation = this._load();
+                CurrentOperation = _load();
             }
             catch (Exception)
             {

@@ -63,7 +63,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns>An <see cref="IEnumerator{T}"/> that can be used to iterate through the collection.</returns>
         public new IEnumerator<TItem> GetEnumerator()
         {
-            return this.CollectionView.Cast<TItem>().GetEnumerator();
+            return CollectionView.Cast<TItem>().GetEnumerator();
         }
 
         #endregion

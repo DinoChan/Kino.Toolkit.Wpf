@@ -13,10 +13,7 @@ namespace Kino.Toolkit.Wpf.Samples
     {
         private ErrorsContainer<string> _errorsContainer;
 
-        public bool HasErrors
-        {
-            get { return ErrorsContainer.HasErrors; }
-        }
+        public bool HasErrors => ErrorsContainer.HasErrors;
 
         public ErrorsContainer<string> ErrorsContainer
         {

@@ -6,7 +6,10 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -407,7 +410,6 @@ namespace Kino.Toolkit.Wpf
 
             // Listening to the IsEnabled changes so the DataPager states can be updated accordingly.
             IsEnabledChanged += new DependencyPropertyChangedEventHandler(OnDataPagerIsEnabledChanged);
-
         }
 
         #endregion Constructors
@@ -701,28 +703,14 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// Gets the TextBox holding the current PageIndex value, if any.
         /// </summary>
-        internal TextBox CurrentPageTextBox
-        {
-            get
-            {
-                return _currentPageTextBox;
-            }
-        }
+        internal TextBox CurrentPageTextBox => _currentPageTextBox;
 
         /// <summary>
         /// Gets the Source as an IPagedCollectionView
         /// </summary>
-        internal IPagedCollectionView PagedSource
-        {
-            get
-            {
-                return Source as IPagedCollectionView;
-            }
-        }
+        internal IPagedCollectionView PagedSource => Source as IPagedCollectionView;
 
         #endregion Internal Properties
-
-
 
         ////------------------------------------------------------
         ////
@@ -840,14 +828,6 @@ namespace Kino.Toolkit.Wpf
 
         #region Protected Methods
 
-        /// <summary>
-        /// Creates an AutomationPeer (<see cref="UIElement.OnCreateAutomationPeer"/>)
-        /// </summary>
-        /// <returns>Automation Peer for this <see cref="T:System.Windows.Controls.DataPager" /> control</returns>
-        // protected override AutomationPeer OnCreateAutomationPeer()
-        // {
-        //    return new DataPagerAutomationPeer(this);
-        //}
         #endregion Protected Methods
 
         ////------------------------------------------------------
@@ -882,7 +862,8 @@ namespace Kino.Toolkit.Wpf
                 {
                     pager.SetValueNoCallback(e.Property, e.OldValue);
                     throw new ArgumentException(
-                        string.Format(CultureInfo.InvariantCulture,
+                        string.Format(
+                            CultureInfo.InvariantCulture,
                             PagerResources.InvalidEnumArgumentException_InvalidEnumArgument,
                             "value",
                             e.NewValue.ToString(),
@@ -1064,7 +1045,6 @@ namespace Kino.Toolkit.Wpf
                 pager.UpdateControl();
             }
         }
-
 
         /// <summary>
         /// Called when a Read-Only dependency property is changed
@@ -1370,6 +1350,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     // Revert back to old value, since operation failed
                     this.SetValueNoCallback(KinoDataPager.PageIndexProperty, oldPageIndex);
+
                     // The PageIndexChanged needs to be raised even though no move occurred,
                     // because of the PageIndexChanging notification above.
                     RaisePageIndexChanged();
@@ -1529,6 +1510,7 @@ namespace Kino.Toolkit.Wpf
                     try
                     {
                         _ignoreToggleButtonUncheckedNotification = true;
+
                         // The toggle button that was checked must remain unchecked
                         // while the page move occurs, or because the page move initiation failed.
                         button.IsChecked = false;
@@ -1552,6 +1534,7 @@ namespace Kino.Toolkit.Wpf
             {
                 ToggleButton button = sender as ToggleButton;
                 int uiIndex = _numericButtonPanel.Children.IndexOf(button);
+
                 // Remember which toggle button got focus so the same page index can
                 // regain focus when the numeric buttons are shifted.
                 _focusedToggleButtonIndex = GetButtonStartIndex() + uiIndex - 1;
@@ -1584,6 +1567,7 @@ namespace Kino.Toolkit.Wpf
                 try
                 {
                     _ignoreToggleButtonCheckedNotification = true;
+
                     // Attempts to uncheck a numeric toggle button, other than willingly
                     // by internal logic, must fail.
                     ToggleButton button = sender as ToggleButton;
@@ -1678,6 +1662,7 @@ namespace Kino.Toolkit.Wpf
                         if (PagedSource == null)
                         {
                             Debug.Assert(index == 1, "Unexpected index value for IEnumerable Source");
+
                             // The single toggle button needs to be checked.
                             button.IsChecked = true;
                         }
@@ -1686,6 +1671,7 @@ namespace Kino.Toolkit.Wpf
                             try
                             {
                                 _ignoreToggleButtonCheckedNotification = true;
+
                                 // The toggle button corresponding to the Source's current page
                                 // needs to be checked.
                                 button.IsChecked = true;
@@ -1702,6 +1688,7 @@ namespace Kino.Toolkit.Wpf
                                 try
                                 {
                                     _ignoreToggleButtonUncheckedNotification = true;
+
                                     // All other toggle buttons needs to be unchecked.
                                     button.IsChecked = false;
                                 }
@@ -1930,3 +1917,7 @@ namespace Kino.Toolkit.Wpf
         #endregion Private Methods
     }
 }
+#pragma warning restore SA1201
+#pragma warning restore SA1202
+#pragma warning restore SA1214
+#pragma warning restore SA1311

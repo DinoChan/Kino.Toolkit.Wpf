@@ -15,7 +15,6 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoValidationTooltip);
         }
 
-
         /// <summary>
         /// 获取或设置AdornedElementPlaceholder的值
         /// </summary>
@@ -63,7 +62,6 @@ namespace Kino.Toolkit.Wpf
         {
             UpdateVisualState();
         }
-
 
         private void OnAdornedElementLostFocus(object sender, System.Windows.RoutedEventArgs e)
         {

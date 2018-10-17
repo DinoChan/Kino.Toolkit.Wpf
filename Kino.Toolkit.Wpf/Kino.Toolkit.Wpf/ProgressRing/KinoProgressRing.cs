@@ -69,7 +69,6 @@ namespace Kino.Toolkit.Wpf
             pr.UpdateState(isActive);
         }
 
-
         public TemplateSettingValues TemplateSettings
         {
             get { return (TemplateSettingValues)GetValue(TemplateSettingsProperty); }
@@ -79,7 +78,6 @@ namespace Kino.Toolkit.Wpf
         // Using a DependencyProperty as the backing store for TemplateSettings.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TemplateSettingsProperty =
             DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(KinoProgressRing), new PropertyMetadata(null));
-
 
         public class TemplateSettingValues : System.Windows.DependencyObject
         {

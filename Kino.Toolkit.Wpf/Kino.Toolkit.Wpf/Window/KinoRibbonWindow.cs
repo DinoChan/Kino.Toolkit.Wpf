@@ -120,6 +120,5 @@ namespace Kino.Toolkit.Wpf
                 InvalidateMeasure();
             }
         }
-
     }
 }

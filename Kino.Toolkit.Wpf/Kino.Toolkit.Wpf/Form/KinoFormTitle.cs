@@ -15,7 +15,6 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoFormTitle);
         }
 
-
         /// <summary>
         /// 获取或设置Description的值
         /// </summary>

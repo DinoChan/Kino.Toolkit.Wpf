@@ -10,6 +10,8 @@ namespace Kino.Toolkit.Wpf
 {
     public class AsyncRemoteCollectionView : DomainCollectionView
     {
+        private bool _isRefreshing;
+
         public AsyncRemoteCollectionView(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
             : base(new AsyncRemoteCollectionViewLoader(load, onLoadCompleted), new List<object>())
         {
@@ -22,8 +24,6 @@ namespace Kino.Toolkit.Wpf
         public event EventHandler Refreshing;
 
         public event EventHandler Refreshed;
-
-        private bool _isRefreshing;
 
         /// <summary>
         /// 获取或设置 IsRefreshing 的值
@@ -54,11 +54,11 @@ namespace Kino.Toolkit.Wpf
 
         public void EntirelyRefresh()
         {
-            using (this.DeferRefresh())
+            using (DeferRefresh())
             {
                 // This will lead us to re-query for the total count
-                this.SetTotalItemCount(-1);
-                this.MoveToFirstPage();
+                SetTotalItemCount(-1);
+                MoveToFirstPage();
             }
         }
 

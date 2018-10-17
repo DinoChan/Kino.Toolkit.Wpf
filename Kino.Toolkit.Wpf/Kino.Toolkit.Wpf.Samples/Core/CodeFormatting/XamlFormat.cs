@@ -21,10 +21,10 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
     public List<XmlToken> Tokenize( string input, ref XmlTokenizerMode _mode )
     {
       this.input = input;
-      this.mode = _mode;
-      this.position = 0;
+      mode = _mode;
+      position = 0;
       List<XmlToken> result = Tokenize();
-      _mode = this.mode;
+      _mode = mode;
       return result;
     }
     private List<XmlToken> Tokenize()
@@ -53,15 +53,9 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
       }
       return output;
     }
-    // debugging function
-    public string RemainingText
-    {
-      get
-      {
-        return input.Substring( position );
-      }
-    }
-    private XmlToken NextToken()
+        // debugging function
+        public string RemainingText => input.Substring(position);
+        private XmlToken NextToken()
     {
       if( position >= input.Length )
         return new XmlToken( XmlTokenKind.EOF, 0 );

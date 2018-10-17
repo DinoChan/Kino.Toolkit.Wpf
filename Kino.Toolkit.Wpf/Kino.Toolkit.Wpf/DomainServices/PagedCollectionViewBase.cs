@@ -4,7 +4,10 @@
     you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,10 +93,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// Gets a value that indicates whether the <see cref="PageCount"/> is valid
         /// </summary>
-        protected bool IsPageCountKnown
-        {
-            get { return (TotalItemCount != -1) && (PageSize > 0); }
-        }
+        protected bool IsPageCountKnown => (TotalItemCount != -1) && (PageSize > 0);
 
         /// <summary>
         /// Gets a value that indicates whether the page index is changing.
@@ -180,6 +180,7 @@ namespace Kino.Toolkit.Wpf
             {
                 return _pageSize;
             }
+
             set
             {
                 if (_pageSize != value)
@@ -378,3 +379,7 @@ namespace Kino.Toolkit.Wpf
         #endregion
     }
 }
+#pragma warning restore SA1201
+#pragma warning restore SA1202
+#pragma warning restore SA1214
+#pragma warning restore SA1311

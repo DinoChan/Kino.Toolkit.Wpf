@@ -87,7 +87,7 @@
     <Compile Include="DomainServices\CollectionViewLoader.cs" />
     <Compile Include="DomainServices\CollectionViewWrapper.cs" />
     <Compile Include="DomainServices\DomainCollectionView.cs" />
-    <Compile Include="DomainServices\DomainCollectionView`1.cs" />
+    <Compile Include="DomainServices\DomainCollectionView{TItem}.cs" />
     <Compile Include="DomainServices\DomainServicesResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -6,7 +6,10 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
 namespace System.Windows.Data
 {
     using System;
@@ -84,8 +87,8 @@ namespace System.Windows.Data
         internal CollectionViewGroupRoot(ICollectionView view, bool isDataInGroupOrder)
             : base(RootName, null)
         {
-            this._view = view;
-            this.IsDataInGroupOrder = isDataInGroupOrder;
+            _view = view;
+            IsDataInGroupOrder = isDataInGroupOrder;
         }
 
         #endregion Constructors
@@ -127,10 +130,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets the description of grouping, indexed by level.
         /// </summary>
-        public virtual ObservableCollection<GroupDescription> GroupDescriptions
-        {
-            get { return this._groupBy; }
-        }
+        public virtual ObservableCollection<GroupDescription> GroupDescriptions => _groupBy;
 
         #endregion Public Properties
 
@@ -154,8 +154,8 @@ namespace System.Windows.Data
         {
             get
             {
-                Debug.Assert(this._view != null, "this._view should have been set from the constructor");
-                return this._view.Culture;
+                Debug.Assert(_view != null, "this._view should have been set from the constructor");
+                return _view.Culture;
             }
         }
 
@@ -181,7 +181,7 @@ namespace System.Windows.Data
         /// <param name="loading">Whether we are currently loading</param>
         internal void AddToSubgroups(object item, bool loading)
         {
-            this.AddToSubgroups(item, this, 0, loading);
+            AddToSubgroups(item, this, 0, loading);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace System.Windows.Data
                 topLevelGroupDescription = new TopLevelGroupDescription();
             }
 
-            this.InitializeGroup(this, 0, null);
+            InitializeGroup(this, 0, null);
         }
 
         /// <summary>
@@ -225,13 +225,13 @@ namespace System.Windows.Data
         /// <param name="loading">Whether we are currently loading</param>
         internal void InsertSpecialItem(int index, object item, bool loading)
         {
-            this.ChangeCounts(item, +1);
-            this.ProtectedItems.Insert(index, item);
+            ChangeCounts(item, +1);
+            ProtectedItems.Insert(index, item);
 
             if (!loading)
             {
-                int globalIndex = this.LeafIndexFromItem(item, index);
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, globalIndex));
+                int globalIndex = LeafIndexFromItem(item, index);
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, globalIndex));
             }
         }
 
@@ -247,7 +247,7 @@ namespace System.Windows.Data
         {
             Debug.Assert(args != null, "Arguments passed in should not be null");
 
-            if (this.CollectionChanged != null)
+            if (CollectionChanged != null)
             {
                 CollectionChanged(this, args);
             }
@@ -268,7 +268,7 @@ namespace System.Windows.Data
         /// <returns>Whether the operation was successful</returns>
         internal bool RemoveFromSubgroups(object item)
         {
-            return this.RemoveFromSubgroups(item, this, 0);
+            return RemoveFromSubgroups(item, this, 0);
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace System.Windows.Data
         /// <param name="item">Item to remove</param>
         internal void RemoveItemFromSubgroupsByExhaustiveSearch(object item)
         {
-            this.RemoveItemFromSubgroupsByExhaustiveSearch(this, item);
+            RemoveItemFromSubgroupsByExhaustiveSearch(this, item);
         }
 
         /// <summary>
@@ -293,15 +293,15 @@ namespace System.Windows.Data
 
             if (!loading)
             {
-                globalIndex = this.LeafIndexFromItem(item, index);
+                globalIndex = LeafIndexFromItem(item, index);
             }
 
-            this.ChangeCounts(item, -1);
-            this.ProtectedItems.RemoveAt(index);
+            ChangeCounts(item, -1);
+            ProtectedItems.RemoveAt(index);
 
             if (!loading)
             {
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, globalIndex));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, globalIndex));
             }
         }
 
@@ -326,7 +326,7 @@ namespace System.Windows.Data
         private void AddToSubgroup(object item, CollectionViewGroupInternal group, int level, object name, bool loading)
         {
             CollectionViewGroupInternal subgroup;
-            int index = this.IsDataInGroupOrder ? group.LastIndex : 0;
+            int index = IsDataInGroupOrder ? group.LastIndex : 0;
 
             // find the desired subgroup
             for (int n = group.Items.Count; index < n; ++index)
@@ -340,14 +340,14 @@ namespace System.Windows.Data
                 if (group.GroupBy.NamesMatch(subgroup.Name, name))
                 {
                     group.LastIndex = index;
-                    this.AddToSubgroups(item, subgroup, level + 1, loading);
+                    AddToSubgroups(item, subgroup, level + 1, loading);
                     return;
                 }
             }
 
             // the item didn't match any subgroups.  Create a new subgroup and add the item.
             subgroup = new CollectionViewGroupInternal(name, group);
-            this.InitializeGroup(subgroup, level + 1, item);
+            InitializeGroup(subgroup, level + 1, item);
 
             if (loading)
             {
@@ -359,10 +359,10 @@ namespace System.Windows.Data
                 // using insert will find the correct sort index to
                 // place the subgroup, and will default to the last
                 // position if no ActiveComparer is specified
-                group.Insert(subgroup, item, this.ActiveComparer);
+                group.Insert(subgroup, item, ActiveComparer);
             }
 
-            this.AddToSubgroups(item, subgroup, level + 1, loading);
+            AddToSubgroups(item, subgroup, level + 1, loading);
         }
 
         /// <summary>
@@ -374,7 +374,7 @@ namespace System.Windows.Data
         /// <param name="loading">Whether we are currently loading</param>
         private void AddToSubgroups(object item, CollectionViewGroupInternal group, int level, bool loading)
         {
-            object name = this.GetGroupName(item, group.GroupBy, level);
+            object name = GetGroupName(item, group.GroupBy, level);
             ICollection nameList;
 
             if (name == UseAsItemDirectly)
@@ -386,22 +386,22 @@ namespace System.Windows.Data
                 }
                 else
                 {
-                    int localIndex = group.Insert(item, item, this.ActiveComparer);
+                    int localIndex = group.Insert(item, item, ActiveComparer);
                     int index = group.LeafIndexFromItem(item, localIndex);
-                    this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
+                    OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
                 }
             }
             else if ((nameList = name as ICollection) == null)
             {
                 // the item belongs to one subgroup
-                this.AddToSubgroup(item, group, level, name, loading);
+                AddToSubgroup(item, group, level, name, loading);
             }
             else
             {
                 // the item belongs to multiple subgroups
                 foreach (object o in nameList)
                 {
-                    this.AddToSubgroup(item, group, level, o, loading);
+                    AddToSubgroup(item, group, level, o, loading);
                 }
             }
         }
@@ -420,14 +420,14 @@ namespace System.Windows.Data
                 group = null;
             }
 
-            if (result == null && this.GroupBySelector != null)
+            if (result == null && GroupBySelector != null)
             {
-                result = this.GroupBySelector(group, level);
+                result = GroupBySelector(group, level);
             }
 
-            if (result == null && level < this.GroupDescriptions.Count)
+            if (result == null && level < GroupDescriptions.Count)
             {
-                result = this.GroupDescriptions[level];
+                result = GroupDescriptions[level];
             }
 
             return result;
@@ -444,7 +444,7 @@ namespace System.Windows.Data
         {
             if (groupDescription != null)
             {
-                return groupDescription.GroupNameFromItem(item, level, this.Culture);
+                return groupDescription.GroupNameFromItem(item, level, Culture);
             }
             else
             {
@@ -461,7 +461,7 @@ namespace System.Windows.Data
         private void InitializeGroup(CollectionViewGroupInternal group, int level, object seedItem)
         {
             // set the group description for dividing the group into subgroups
-            GroupDescription groupDescription = this.GetGroupDescription(group, level);
+            GroupDescription groupDescription = GetGroupDescription(group, level);
             group.GroupBy = groupDescription;
 
             // create subgroups for each of the explicit names
@@ -471,7 +471,7 @@ namespace System.Windows.Data
                 for (int k = 0, n = explicitNames.Count; k < n; ++k)
                 {
                     CollectionViewGroupInternal subgroup = new CollectionViewGroupInternal(explicitNames[k], group);
-                    this.InitializeGroup(subgroup, level + 1, seedItem);
+                    InitializeGroup(subgroup, level + 1, seedItem);
                     group.Add(subgroup);
                 }
             }
@@ -490,7 +490,7 @@ namespace System.Windows.Data
             int leafIndex = group.Remove(item, true);
             if (leafIndex >= 0)
             {
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, leafIndex));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, leafIndex));
                 return false;
             }
             else
@@ -523,7 +523,7 @@ namespace System.Windows.Data
 
                 if (group.GroupBy.NamesMatch(subgroup.Name, name))
                 {
-                    if (this.RemoveFromSubgroups(item, subgroup, level + 1))
+                    if (RemoveFromSubgroups(item, subgroup, level + 1))
                     {
                         itemIsMissing = true;
                     }
@@ -546,18 +546,18 @@ namespace System.Windows.Data
         private bool RemoveFromSubgroups(object item, CollectionViewGroupInternal group, int level)
         {
             bool itemIsMissing = false;
-            object name = this.GetGroupName(item, group.GroupBy, level);
+            object name = GetGroupName(item, group.GroupBy, level);
             ICollection nameList;
 
             if (name == UseAsItemDirectly)
             {
                 // the item belongs to the group itself (not to any subgroups)
-                itemIsMissing = this.RemoveFromGroupDirectly(group, item);
+                itemIsMissing = RemoveFromGroupDirectly(group, item);
             }
             else if ((nameList = name as ICollection) == null)
             {
                 // the item belongs to one subgroup
-                if (this.RemoveFromSubgroup(item, group, level, name))
+                if (RemoveFromSubgroup(item, group, level, name))
                 {
                     itemIsMissing = true;
                 }
@@ -567,7 +567,7 @@ namespace System.Windows.Data
                 // the item belongs to multiple subgroups
                 foreach (object o in nameList)
                 {
-                    if (this.RemoveFromSubgroup(item, group, level, o))
+                    if (RemoveFromSubgroup(item, group, level, o))
                     {
                         itemIsMissing = true;
                     }
@@ -591,7 +591,7 @@ namespace System.Windows.Data
             // try to remove the item from the direct children
             // this function only returns true if it failed to remove from group directly
             // in which case we will step through and search exhaustively
-            if (this.RemoveFromGroupDirectly(group, item))
+            if (RemoveFromGroupDirectly(group, item))
             {
                 // if that didn't work, recurse into each subgroup
                 // (loop runs backwards in case an entire group is deleted)
@@ -599,7 +599,7 @@ namespace System.Windows.Data
                 {
                     if (group.Items[k] is CollectionViewGroupInternal subgroup)
                     {
-                        this.RemoveItemFromSubgroupsByExhaustiveSearch(subgroup, item);
+                        RemoveItemFromSubgroupsByExhaustiveSearch(subgroup, item);
                     }
                 }
             }
@@ -644,3 +644,7 @@ namespace System.Windows.Data
         #endregion Private Classes
     }
 }
+#pragma warning restore SA1201
+#pragma warning restore SA1202
+#pragma warning restore SA1214
+#pragma warning restore SA1311

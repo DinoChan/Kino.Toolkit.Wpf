@@ -11,6 +11,50 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoForm : ItemsControl
     {
+        /// <summary>
+        /// 标识 CommandBar 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty CommandBarProperty =
+            DependencyProperty.Register(nameof(CommandBar), typeof(KinoFormCommandBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormCommandBar), OnCommandBarChanged));
+
+        /// <summary>
+        /// 标识 Description 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty DescriptionProperty =
+            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// 标识 Header 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty HeaderProperty =
+            DependencyProperty.RegisterAttached("Header", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
+
+        /// <summary>
+        /// 标识 IsItemItsOwnContainer 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty IsItemItsOwnContainerProperty =
+            DependencyProperty.RegisterAttached("IsItemItsOwnContainer", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
+
+        /// <summary>
+        /// 标识 IsRequired 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty IsRequiredProperty =
+            DependencyProperty.RegisterAttached("IsRequired", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
+
+        public KinoForm()
+        {
+            DefaultStyleKey = typeof(KinoForm);
+        }
+
+        /// <summary>
+        /// 获取或设置CommandBar的值
+        /// </summary>
+        public KinoFormCommandBar CommandBar
+        {
+            get => (KinoFormCommandBar)GetValue(CommandBarProperty);
+            set => SetValue(CommandBarProperty, value);
+        }
+
         #region Dependency Properties
 
         /// <summary>
@@ -30,13 +74,6 @@ namespace Kino.Toolkit.Wpf
         public static void SetIsRequired(DependencyObject obj, bool value) => obj.SetValue(IsRequiredProperty, value);
 
         /// <summary>
-        /// 标识 IsRequired 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsRequiredProperty =
-            DependencyProperty.RegisterAttached("IsRequired", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
-
-
-        /// <summary>
         /// 从指定元素获取 Header 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
@@ -51,12 +88,6 @@ namespace Kino.Toolkit.Wpf
         /// <param name="value">要设置的值。</param>
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static void SetHeader(DependencyObject obj, object value) => obj.SetValue(HeaderProperty, value);
-
-        /// <summary>
-        /// 标识 Header 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty HeaderProperty =
-            DependencyProperty.RegisterAttached("Header", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// 从指定元素获取 Description 依赖项属性的值。
@@ -75,12 +106,6 @@ namespace Kino.Toolkit.Wpf
         public static void SetDescription(DependencyObject obj, object value) => obj.SetValue(DescriptionProperty, value);
 
         /// <summary>
-        /// 标识 Description 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
-
-        /// <summary>
         /// 从指定元素获取 IsItemItsOwnContainer 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
@@ -95,47 +120,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="value">要设置的值。</param>
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static void SetIsItemItsOwnContainer(DependencyObject obj, bool value) => obj.SetValue(IsItemItsOwnContainerProperty, value);
-
-        /// <summary>
-        /// 标识 IsItemItsOwnContainer 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsItemItsOwnContainerProperty =
-            DependencyProperty.RegisterAttached("IsItemItsOwnContainer", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
-
         #endregion
-
-        public KinoForm()
-        {
-            DefaultStyleKey = typeof(KinoForm);
-        }
-
-        /// <summary>
-        /// 获取或设置CommandBar的值
-        /// </summary>
-        public KinoFormCommandBar CommandBar
-        {
-            get => (KinoFormCommandBar)GetValue(CommandBarProperty);
-            set => SetValue(CommandBarProperty, value);
-        }
-
-        /// <summary>
-        /// 标识 CommandBar 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty CommandBarProperty =
-            DependencyProperty.Register(nameof(CommandBar), typeof(KinoFormCommandBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormCommandBar), OnCommandBarChanged));
-
-        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var oldValue = (KinoFormCommandBar)args.OldValue;
-            var newValue = (KinoFormCommandBar)args.NewValue;
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            var target = obj as KinoForm;
-            target?.OnCommandBarChanged(oldValue, newValue);
-        }
 
         /// <summary>
         /// CommandBar 属性更改时调用此方法。
@@ -176,6 +161,19 @@ namespace Kino.Toolkit.Wpf
                     kinoFormItem.IsRequired = GetIsRequired(content);
                 }
             }
+        }
+
+        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (KinoFormCommandBar)args.OldValue;
+            var newValue = (KinoFormCommandBar)args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoForm;
+            target?.OnCommandBarChanged(oldValue, newValue);
         }
     }
 }

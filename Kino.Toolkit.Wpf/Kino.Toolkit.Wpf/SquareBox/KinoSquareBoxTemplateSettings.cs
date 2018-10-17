@@ -9,6 +9,9 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoSquareBoxTemplateSettings : System.Windows.DependencyObject
     {
+        public static readonly DependencyProperty MaxSideLengthProperty =
+              DependencyProperty.Register("MaxSideLength", typeof(double), typeof(KinoSquareBoxTemplateSettings), new PropertyMetadata(0D));
+
         public KinoSquareBoxTemplateSettings(double width)
         {
             MaxSideLength = width;
@@ -20,8 +23,5 @@ namespace Kino.Toolkit.Wpf
             set { SetValue(MaxSideLengthProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxSideLengthProperty =
-            DependencyProperty.Register("MaxSideLength", typeof(double), typeof(KinoSquareBoxTemplateSettings), new PropertyMetadata(0D));
     }
 }
-

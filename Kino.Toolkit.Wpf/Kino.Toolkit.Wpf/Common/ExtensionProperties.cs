@@ -26,6 +26,7 @@ namespace Kino.Toolkit.Wpf
             typeof(bool),
             typeof(ExtensionProperties),
             new PropertyMetadata(false));
+
         public static void SetAreHandlersSuspended(DependencyObject obj, bool value)
         {
             obj.SetValue(AreHandlersSuspended, value);

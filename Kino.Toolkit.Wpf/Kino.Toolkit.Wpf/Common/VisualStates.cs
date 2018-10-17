@@ -16,6 +16,7 @@ namespace Kino.Toolkit.Wpf
     internal static class VisualStates
     {
         #region GroupCommon
+
         /// <summary>
         /// Common state group.
         /// </summary>
@@ -48,6 +49,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupCommon
 
         #region GroupFocus
+
         /// <summary>
         /// Focus state group.
         /// </summary>
@@ -65,6 +67,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupFocus
 
         #region GroupSelection
+
         /// <summary>
         /// Selection state group.
         /// </summary>
@@ -87,6 +90,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupSelection
 
         #region GroupExpansion
+
         /// <summary>
         /// Expansion state group.
         /// </summary>
@@ -104,6 +108,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupExpansion
 
         #region GroupPopup
+
         /// <summary>
         /// Popup state group.
         /// </summary>
@@ -121,6 +126,7 @@ namespace Kino.Toolkit.Wpf
         #endregion
 
         #region GroupValidation
+
         /// <summary>
         /// ValidationStates state group.
         /// </summary>
@@ -143,6 +149,7 @@ namespace Kino.Toolkit.Wpf
         #endregion
 
         #region GroupExpandDirection
+
         /// <summary>
         /// ExpandDirection state group.
         /// </summary>
@@ -170,6 +177,7 @@ namespace Kino.Toolkit.Wpf
         #endregion
 
         #region GroupHasItems
+
         /// <summary>
         /// HasItems state group.
         /// </summary>
@@ -187,6 +195,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupHasItems
 
         #region GroupIncrease
+
         /// <summary>
         /// Increment state group.
         /// </summary>
@@ -204,6 +213,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupIncrease
 
         #region GroupDecrease
+
         /// <summary>
         /// Decrement state group.
         /// </summary>
@@ -221,6 +231,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupDecrease
 
         #region GroupIteractionMode
+
         /// <summary>
         /// InteractionMode state group.
         /// </summary>
@@ -238,6 +249,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupIteractionMode
 
         #region GroupLocked
+
         /// <summary>
         /// DisplayMode state group.
         /// </summary>
@@ -255,6 +267,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupLocked
 
         #region GroupActive
+
         /// <summary>
         /// Active state.
         /// </summary>
@@ -272,6 +285,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupActive
 
         #region GroupWatermark
+
         /// <summary>
         /// Non-watermarked state.
         /// </summary>
@@ -289,6 +303,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupWatermark
 
         #region GroupCalendarButtonFocus
+
         /// <summary>
         /// Unfocused state for Calendar Buttons.
         /// </summary>
@@ -306,6 +321,7 @@ namespace Kino.Toolkit.Wpf
         #endregion GroupCalendarButtonFocus
 
         #region GroupBusyStatus
+
         /// <summary>
         /// Busy state for BusyIndicator.
         /// </summary>
@@ -323,6 +339,7 @@ namespace Kino.Toolkit.Wpf
         #endregion
 
         #region GroupVisibility
+
         /// <summary>
         /// Visible state name for BusyIndicator.
         /// </summary>

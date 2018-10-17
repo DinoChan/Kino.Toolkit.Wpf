@@ -25,10 +25,9 @@ namespace Kino.Toolkit.Wpf
         private const string NoneStateName = "None";
         private const string OtherStateName = "Other";
 
-
         public KinoStateIndicator()
         {
-            this.DefaultStyleKey = typeof(KinoStateIndicator);
+            DefaultStyleKey = typeof(KinoStateIndicator);
         }
 
         /// <summary>

@@ -90,6 +90,5 @@ namespace Kino.Toolkit.Wpf
                 return false;
             }
         }
-
     }
 }

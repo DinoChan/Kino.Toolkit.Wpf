@@ -51,7 +51,7 @@ namespace Kino.Toolkit.Wpf
                 throw new ArgumentNullException("instance");
             }
 
-            this._weakInstance = new WeakReference(instance);
+            _weakInstance = new WeakReference(instance);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Kino.Toolkit.Wpf
             else
             {
                 // Detach from the event.
-                this.Detach();
+                Detach();
             }
         }
 
@@ -78,10 +78,10 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public void Detach()
         {
-            if (this.OnDetachAction != null)
+            if (OnDetachAction != null)
             {
-                this.OnDetachAction(this);
-                this.OnDetachAction = null;
+                OnDetachAction(this);
+                OnDetachAction = null;
             }
         }
     }

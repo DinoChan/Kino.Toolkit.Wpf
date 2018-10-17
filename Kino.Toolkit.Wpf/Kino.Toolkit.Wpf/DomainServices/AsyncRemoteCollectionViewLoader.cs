@@ -15,20 +15,14 @@ namespace Kino.Toolkit.Wpf
 
         private bool _isBusy;
 
-        public event EventHandler LoadStarted;
-
         private object _currentUserState;
+
+        public event EventHandler LoadStarted;
 
         /// <summary>
         /// Gets or sets a value that indicates whether a <see cref="M:Microsoft.Windows.Data.DomainServices.DomainCollectionViewLoader.Load(System.Object)" /> can be successfully invoked
         /// </summary>
-        public override bool CanLoad
-        {
-            get
-            {
-                return !this.IsBusy;
-            }
-        }
+        public override bool CanLoad => !IsBusy;
 
         /// <summary>
         /// Gets or sets a value that indicates whether the loader is busy
@@ -40,27 +34,27 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._isBusy;
+                return _isBusy;
             }
 
             set
             {
-                if (this._isBusy != value)
+                if (_isBusy != value)
                 {
-                    this._isBusy = value;
-                    this.OnCanLoadChanged();
+                    _isBusy = value;
+                    OnCanLoadChanged();
                 }
             }
         }
 
-        internal ILoadResult CurrentResult { get; private set; }
+        
 
         public AsyncRemoteCollectionView AsyncRemoteCollectionView { get; internal set; }
 
         public AsyncRemoteCollectionViewLoader(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
         {
-            this._load = load ?? throw new ArgumentNullException("load");
-            this._onLoadCompleted = onLoadCompleted;
+            _load = load ?? throw new ArgumentNullException("load");
+            _onLoadCompleted = onLoadCompleted;
         }
 
         public async override void Load(object userState)
@@ -89,12 +83,14 @@ namespace Kino.Toolkit.Wpf
             }
             catch (Exception ex)
             {
-                this.OnLoadCompleted(new AsyncCompletedEventArgs(ex, false, null));
+                OnLoadCompleted(new AsyncCompletedEventArgs(ex, false, null));
             }
             finally
             {
                 IsBusy = false;
             }
         }
+
+        internal ILoadResult CurrentResult { get; private set; }
     }
 }

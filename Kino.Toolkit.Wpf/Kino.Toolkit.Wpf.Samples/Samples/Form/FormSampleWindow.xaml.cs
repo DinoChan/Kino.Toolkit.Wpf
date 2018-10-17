@@ -26,7 +26,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnOK(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

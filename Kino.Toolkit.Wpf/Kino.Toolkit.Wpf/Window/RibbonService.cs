@@ -9,12 +9,6 @@ namespace Kino.Toolkit.Wpf
 {
     public static class RibbonService
     {
-        public static double RibbonContextualTabGroupHeight
-        {
-            get
-            {
-                return SystemParameters.WindowNonClientFrameThickness.Top + 1;
-            }
-        }
+        public static double RibbonContextualTabGroupHeight => SystemParameters.WindowNonClientFrameThickness.Top + 1;
     }
 }

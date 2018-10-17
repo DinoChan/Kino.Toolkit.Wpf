@@ -22,15 +22,13 @@ namespace Kino.Toolkit.Wpf
             var height = 20d;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this) == false)
             {
-                width = double.IsNaN(this.Width) == false ? this.Width : constraint.Width;
-                height = double.IsNaN(this.Height) == false ? this.Height : constraint.Height;
+                width = double.IsNaN(Width) == false ? Width : constraint.Width;
+                height = double.IsNaN(Height) == false ? Height : constraint.Height;
             }
 
             TemplateSettings = new KinoSquareBoxTemplateSettings(Math.Min(width, height));
             return base.MeasureOverride(constraint);
         }
-
-
 
         /// <summary>
         /// 获取或设置TemplateSettings的值

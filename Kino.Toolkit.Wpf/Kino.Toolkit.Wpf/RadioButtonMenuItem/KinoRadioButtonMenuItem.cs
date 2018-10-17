@@ -31,7 +31,6 @@ namespace Kino.Toolkit.Wpf
             IsChecked = true;
         }
 
-
         /// <summary>
         /// 获取或设置GroupName的值
         /// </summary>
@@ -46,7 +45,6 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public static readonly DependencyProperty GroupNameProperty =
             DependencyProperty.Register(nameof(GroupName), typeof(string), typeof(KinoRadioButtonMenuItem), new PropertyMetadata(default(string)));
-
 
         private void OnChecked(object sender, RoutedEventArgs e)
         {
@@ -67,7 +65,6 @@ namespace Kino.Toolkit.Wpf
                 }
             }
         }
-
 
         /// <inheritdoc />
         protected override DependencyObject GetContainerForItemOverride()

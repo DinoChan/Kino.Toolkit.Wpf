@@ -34,7 +34,6 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty IsAutoFocusProperty =
             DependencyProperty.RegisterAttached("IsAutoFocus", typeof(bool), typeof(FrameworkElementService), new PropertyMetadata(default(bool), OnIsAutoFocusChanged));
 
-
         private static void OnIsAutoFocusChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var oldValue = (bool)args.OldValue;

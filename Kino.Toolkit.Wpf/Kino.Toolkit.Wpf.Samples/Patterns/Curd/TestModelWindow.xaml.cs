@@ -31,7 +31,7 @@ namespace Kino.Toolkit.Wpf.Samples
             else
                 TestModel = new TestModel { Age = testModel.Age, Name = testModel.Name, Id = testModel.Id };
 
-            this.DataContext = TestModel;
+            DataContext = TestModel;
             _curdService = curdService;
         }
 

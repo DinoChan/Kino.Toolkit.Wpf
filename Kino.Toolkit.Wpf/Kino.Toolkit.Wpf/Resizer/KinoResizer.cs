@@ -13,11 +13,24 @@ namespace Kino.Toolkit.Wpf
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     public class KinoResizer : ContentControl
     {
+        /// <summary>
+        /// 标识 Animation 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty AnimationProperty =
+            DependencyProperty.Register(nameof(Animation), typeof(DoubleAnimation), typeof(KinoResizer), new PropertyMetadata(default(DoubleAnimation), OnAnimationChanged));
+
         private const string ContentPresenterName = "ContentPresenter";
+        private readonly DoubleAnimation _defaultHeightAnimation;
+        private readonly DoubleAnimation _defaultWidthAnimation;
+        private ContentPresenter _contentPreseter;
+        private Storyboard _resizingStoryboard;
+        private bool _isResizing;
+        private bool _hasFirstSizeChanged;
 
         public KinoResizer()
         {
             DefaultStyleKey = typeof(KinoResizer);
+
             //SizeChanged += OnControlSizeChanged;
             _resizingStoryboard = new Storyboard
             {
@@ -33,44 +46,6 @@ namespace Kino.Toolkit.Wpf
             Storyboard.SetTargetProperty(_defaultWidthAnimation, new PropertyPath(MinWidthProperty));
         }
 
-        private void OnResizingCompleted(object sender, EventArgs e)
-        {
-            _isResizing = false;
-        }
-
-        //private void OnControlSizeChanged(object sender, SizeChangedEventArgs e)
-        //{
-        //    Clip = new System.Windows.Media.RectangleGeometry(new Rect(e.NewSize));
-        //}
-
-
-        private ContentPresenter _contentPreseter;
-
-        protected ContentPresenter ContentPresenter
-        {
-            get
-            {
-                return _contentPreseter;
-            }
-            set
-            {
-                if (_contentPreseter != null)
-                    _contentPreseter.SizeChanged -= OnContentSizeChanged;
-
-                _contentPreseter = value;
-
-                if (_contentPreseter != null)
-                    _contentPreseter.SizeChanged += OnContentSizeChanged;
-            }
-        }
-
-        private Storyboard _resizingStoryboard;
-        private readonly DoubleAnimation _defaultHeightAnimation;
-        private readonly DoubleAnimation _defaultWidthAnimation;
-        private bool _isResizing;
-
-        private bool _hasFirstSizeChanged;
-
         /// <summary>
         /// 获取或设置Animation的值
         /// </summary>
@@ -80,86 +55,22 @@ namespace Kino.Toolkit.Wpf
             set => SetValue(AnimationProperty, value);
         }
 
-        /// <summary>
-        /// 标识 Animation 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty AnimationProperty =
-            DependencyProperty.Register(nameof(Animation), typeof(DoubleAnimation), typeof(KinoResizer), new PropertyMetadata(default(DoubleAnimation), OnAnimationChanged));
-
-        private static void OnAnimationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        protected ContentPresenter ContentPresenter
         {
-            var oldValue = (DoubleAnimation)args.OldValue;
-            var newValue = (DoubleAnimation)args.NewValue;
-            if (oldValue == newValue)
+            get
             {
-                return;
+                return _contentPreseter;
             }
 
-            var target = obj as KinoResizer;
-            target?.OnAnimationChanged(oldValue, newValue);
-        }
-
-        /// <summary>
-        /// Animation 属性更改时调用此方法。
-        /// </summary>
-        /// <param name="oldValue">Animation 属性的旧值。</param>
-        /// <param name="newValue">Animation 属性的新值。</param>
-        protected virtual void OnAnimationChanged(DoubleAnimation oldValue, DoubleAnimation newValue)
-        {
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-            ContentPresenter = GetTemplateChild(ContentPresenterName) as ContentPresenter;
-        }
-
-        protected override Size MeasureOverride(Size constraint)
-        {
-            int count = VisualChildrenCount;
-            UIElement child = (count > 0) ? GetVisualChild(0) as UIElement : null;
-            Size desiredSize = default(Size);
-            if (child != null)
+            set
             {
-                child.Measure(constraint);
-            }
+                if (_contentPreseter != null)
+                    _contentPreseter.SizeChanged -= OnContentSizeChanged;
 
-            return desiredSize;
-        }
+                _contentPreseter = value;
 
-        private void OnContentSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ChangeSize(_hasFirstSizeChanged);
-            _hasFirstSizeChanged = true;
-        }
-
-        protected override void OnContentChanged(object oldContent, object newContent)
-        {
-            base.OnContentChanged(oldContent, newContent);
-            ChangeSize(_hasFirstSizeChanged);
-        }
-
-        private void ChangeSize(bool useAnimation)
-        {
-            if (ContentPresenter == null)
-            {
-                return;
-            }
-
-            if (useAnimation == false)
-            {
-                MinHeight = ContentPresenter.ActualHeight;
-                MinWidth = ContentPresenter.ActualWidth;
-            }
-            else
-            {
-                if (_isResizing)
-                {
-                    ResizingStoryboard.Stop();
-                }
-
-                _isResizing = true;
-                ResizingStoryboard.Begin();
+                if (_contentPreseter != null)
+                    _contentPreseter.SizeChanged += OnContentSizeChanged;
             }
         }
 
@@ -195,6 +106,88 @@ namespace Kino.Toolkit.Wpf
                 _resizingStoryboard.Children.Add(widthAnimation);
                 return _resizingStoryboard;
             }
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            ContentPresenter = GetTemplateChild(ContentPresenterName) as ContentPresenter;
+        }
+
+        /// <summary>
+        /// Animation 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">Animation 属性的旧值。</param>
+        /// <param name="newValue">Animation 属性的新值。</param>
+        protected virtual void OnAnimationChanged(DoubleAnimation oldValue, DoubleAnimation newValue)
+        {
+        }
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            int count = VisualChildrenCount;
+            UIElement child = (count > 0) ? GetVisualChild(0) as UIElement : null;
+            Size desiredSize = default(Size);
+            if (child != null)
+            {
+                child.Measure(constraint);
+            }
+
+            return desiredSize;
+        }
+
+        protected override void OnContentChanged(object oldContent, object newContent)
+        {
+            base.OnContentChanged(oldContent, newContent);
+            ChangeSize(_hasFirstSizeChanged);
+        }
+
+        private static void OnAnimationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (DoubleAnimation)args.OldValue;
+            var newValue = (DoubleAnimation)args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoResizer;
+            target?.OnAnimationChanged(oldValue, newValue);
+        }
+
+        private void OnContentSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ChangeSize(_hasFirstSizeChanged);
+            _hasFirstSizeChanged = true;
+        }
+
+        private void ChangeSize(bool useAnimation)
+        {
+            if (ContentPresenter == null)
+            {
+                return;
+            }
+
+            if (useAnimation == false)
+            {
+                MinHeight = ContentPresenter.ActualHeight;
+                MinWidth = ContentPresenter.ActualWidth;
+            }
+            else
+            {
+                if (_isResizing)
+                {
+                    ResizingStoryboard.Stop();
+                }
+
+                _isResizing = true;
+                ResizingStoryboard.Begin();
+            }
+        }
+
+        private void OnResizingCompleted(object sender, EventArgs e)
+        {
+            _isResizing = false;
         }
     }
 }
