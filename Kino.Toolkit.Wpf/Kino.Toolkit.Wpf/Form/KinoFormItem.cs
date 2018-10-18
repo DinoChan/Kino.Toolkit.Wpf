@@ -11,6 +11,12 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoFormItem : HeaderedContentControl
     {
+        /// <summary>
+        /// 标识 IsRequired 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty IsRequiredProperty =
+            DependencyProperty.Register(nameof(IsRequired), typeof(bool), typeof(KinoFormItem), new PropertyMetadata(default(bool)));
+
         public KinoFormItem()
         {
             DefaultStyleKey = typeof(KinoFormItem);
@@ -39,11 +45,5 @@ namespace Kino.Toolkit.Wpf
             get => (bool)GetValue(IsRequiredProperty);
             set => SetValue(IsRequiredProperty, value);
         }
-
-        /// <summary>
-        /// 标识 IsRequired 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty IsRequiredProperty =
-            DependencyProperty.Register(nameof(IsRequired), typeof(bool), typeof(KinoFormItem), new PropertyMetadata(default(bool)));
     }
 }

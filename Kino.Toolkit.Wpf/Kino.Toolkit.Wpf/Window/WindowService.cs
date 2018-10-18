@@ -125,8 +125,6 @@ namespace Kino.Toolkit.Wpf
                 _window.CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
             }
 
-            #region Window Commands
-
             private void CanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
             {
                 e.CanExecute = _window.ResizeMode == ResizeMode.CanResize || _window.ResizeMode == ResizeMode.CanResizeWithGrip;
@@ -180,7 +178,6 @@ namespace Kino.Toolkit.Wpf
                 SystemCommands.ShowSystemMenu(_window, compositionTarget.TransformFromDevice.Transform(point));
                 e.Handled = true;
             }
-            #endregion
         }
     }
 }

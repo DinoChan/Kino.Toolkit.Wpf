@@ -26,36 +26,15 @@ namespace Kino.Toolkit.Wpf
     /// <typeparam name="TItem">The item type of this view</typeparam>
     public class DomainCollectionView<TItem> : DomainCollectionView, IEnumerable<TItem>
     {
-        #region Constructors
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/> that
-        /// uses the specified callback for loading data.
-        /// </summary>
-        /// <param name="load">The callback to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        //public DomainCollectionView(Func<LoadOperation> load, IEnumerable<TItem> source)
-        //    : base(load, source)
-        //{
-        //}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/>
+        /// Initializes a new instance of the <see cref="DomainCollectionView{TItem}"/> class.
         /// </summary>
         /// <param name="collectionViewLoader">The <see cref="CollectionViewLoader"/> to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
+        /// <param name="source">The source collection for this view. All updates to the source will be reflected in the view.</param>
         public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable<TItem> source)
             : base(collectionViewLoader, source)
         {
         }
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -65,7 +44,5 @@ namespace Kino.Toolkit.Wpf
         {
             return CollectionView.Cast<TItem>().GetEnumerator();
         }
-
-        #endregion
     }
 }

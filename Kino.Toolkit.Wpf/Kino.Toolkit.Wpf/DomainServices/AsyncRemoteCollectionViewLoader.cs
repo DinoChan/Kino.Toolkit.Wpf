@@ -17,6 +17,12 @@ namespace Kino.Toolkit.Wpf
 
         private object _currentUserState;
 
+        public AsyncRemoteCollectionViewLoader(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
+        {
+            _load = load ?? throw new ArgumentNullException("load");
+            _onLoadCompleted = onLoadCompleted;
+        }
+
         public event EventHandler LoadStarted;
 
         /// <summary>
@@ -47,15 +53,7 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        
-
         public AsyncRemoteCollectionView AsyncRemoteCollectionView { get; internal set; }
-
-        public AsyncRemoteCollectionViewLoader(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
-        {
-            _load = load ?? throw new ArgumentNullException("load");
-            _onLoadCompleted = onLoadCompleted;
-        }
 
         public async override void Load(object userState)
         {

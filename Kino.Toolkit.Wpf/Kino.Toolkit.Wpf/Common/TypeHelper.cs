@@ -15,13 +15,9 @@ namespace Kino.Toolkit.Wpf
 {
     internal static class TypeHelper
     {
-        #region Internal Fields
-
         internal const char LeftIndexerToken = '[';
         internal const char PropertyNameSeparator = '.';
         internal const char RightIndexerToken = ']';
-
-        #endregion
 
         // Methods
         private static Type FindGenericType(Type definition, Type type)
@@ -136,9 +132,8 @@ namespace Kino.Toolkit.Wpf
                 object[] attributes = propertyInfo.GetCustomAttributes(typeof(DisplayAttribute), true);
                 if (attributes != null && attributes.Length > 0)
                 {
-                    Debug.Assert(attributes.Length == 1);
-                    var displayAttribute = attributes[0] as DisplayAttribute;
-                    if (displayAttribute != null)
+                    Debug.Assert(attributes.Length == 1, "attributes.Length must be 1");
+                    if (attributes[0] is DisplayAttribute displayAttribute)
                     {
                         return displayAttribute.GetShortName();
                     }

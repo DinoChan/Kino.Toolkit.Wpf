@@ -27,8 +27,6 @@ namespace Kino.Toolkit.Wpf
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
     public class KinoTransitioningContentControl : ContentControl
     {
-        #region Visual state names
-
         /// <summary>
         /// The name of the group that holds the presentation states.
         /// </summary>
@@ -53,10 +51,6 @@ namespace Kino.Toolkit.Wpf
 
         public const string DownTransitionState = "DownTransition";
 
-        #endregion Visual state names
-
-        #region Template part names
-
         /// <summary>
         /// The name of the control that will display the previous content.
         /// </summary>
@@ -66,10 +60,6 @@ namespace Kino.Toolkit.Wpf
         /// The name of the control that will display the current content.
         /// </summary>
         internal const string CurrentContentPresentationSitePartName = "CurrentContentPresentationSite";
-
-        #endregion Template part names
-
-        #region TemplateParts
 
         /// <summary>
         /// Gets or sets the current content presentation site.
@@ -82,9 +72,6 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <value>The previous content presentation site.</value>
         private ContentPresenter PreviousContentPresentationSite { get; set; }
-        #endregion TemplateParts
-
-        #region public bool IsTransitioning
 
         /// <summary>
         /// Indicates whether the control allows writing IsTransitioning.
@@ -135,7 +122,6 @@ namespace Kino.Toolkit.Wpf
                 throw new InvalidOperationException(Properties.Resources.TransitiotioningContentControl_IsTransitioningReadOnly);
             }
         }
-        #endregion public bool IsTransitioning
 
         /// <summary>
         /// The storyboard that is used to transition old and new content.
@@ -166,8 +152,6 @@ namespace Kino.Toolkit.Wpf
                 }
             }
         }
-
-        #region public string Transition
 
         /// <summary>
         /// Gets or sets the name of the transition to use. These correspond
@@ -288,9 +272,6 @@ namespace Kino.Toolkit.Wpf
                     break;
             }
         }
-        #endregion public string Transition
-
-        #region public bool RestartTransitionOnContentChange
 
         /// <summary>
         /// Gets or sets a value indicating whether the current transition
@@ -330,15 +311,11 @@ namespace Kino.Toolkit.Wpf
         protected virtual void OnRestartTransitionOnContentChangeChanged(bool oldValue, bool newValue)
         {
         }
-        #endregion public bool RestartTransitionOnContentChange
-
-        #region Events
 
         /// <summary>
         /// Occurs when the current transition has completed.
         /// </summary>
         public event RoutedEventHandler TransitionCompleted;
-        #endregion Events
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KinoTransitioningContentControl"/> class.

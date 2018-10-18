@@ -12,6 +12,7 @@ namespace Kino.Toolkit.Wpf
     {
         private bool _isRefreshing;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = ".")]
         public AsyncRemoteCollectionView(Func<Task<ILoadResult>> load, Action<ILoadResult> onLoadCompleted)
             : base(new AsyncRemoteCollectionViewLoader(load, onLoadCompleted), new List<object>())
         {

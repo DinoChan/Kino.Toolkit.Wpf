@@ -10,6 +10,7 @@
 #pragma warning disable SA1202
 #pragma warning disable SA1214
 #pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 namespace System.Windows.Data
 {
     using System.Collections;
@@ -210,7 +211,7 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Initializes a new instance of the PagedCollectionView class.
+        /// Initializes a new instance of the <see cref="PagedCollectionView"/> class.
         /// </summary>
         /// <param name="source">The source for the collection</param>
         /// <param name="isDataSorted">Determines whether the source is already sorted</param>
@@ -4005,8 +4006,7 @@ namespace System.Windows.Data
             private readonly CultureInfo _culture;
 
             /// <summary>
-            /// Creates a comparer which will respect the CultureInfo
-            /// that is passed in when comparing strings.
+            /// Initializes a new instance of the <see cref="CultureSensitiveComparer"/> class.
             /// </summary>
             /// <param name="culture">The CultureInfo to use in string comparisons</param>
             public CultureSensitiveComparer(CultureInfo culture)
@@ -4071,7 +4071,7 @@ namespace System.Windows.Data
             private PagedCollectionView collectionView;
 
             /// <summary>
-            /// Initializes a new instance of the DeferHelper class
+            /// Initializes a new instance of the <see cref="DeferHelper"/> class.
             /// </summary>
             /// <param name="collectionView">CollectionView that created this DeferHelper</param>
             public DeferHelper(PagedCollectionView collectionView)
@@ -4158,7 +4158,7 @@ namespace System.Windows.Data
             }
 
             /// <summary>
-            /// Initializes a new instance of the NewItemAwareEnumerator class.
+            /// Initializes a new instance of the <see cref="NewItemAwareEnumerator"/> class.
             /// </summary>
             /// <param name="collectionView">The PagedCollectionView we are creating the enumerator for</param>
             /// <param name="baseEnumerator">The baseEnumerator that we pass in</param>
@@ -4230,7 +4230,6 @@ namespace System.Windows.Data
                               /// CollectionView that we are creating the enumerator for
                               /// </summary>
             private readonly PagedCollectionView _collectionView;
- 
 
             /// <summary>
             /// The Base Enumerator that we are passing in
@@ -4443,17 +4442,9 @@ namespace System.Windows.Data
 
         #endregion Private Classes
     }
-
-    ///// <summary>
-    ///// Represents a method that is used to provide custom logic to select
-    ///// the GroupDescription based on the parent group and its level.
-    ///// </summary>
-    ///// <param name="group">The parent group.</param>
-    ///// <param name="level">The level of group.</param>
-    ///// <returns>The GroupDescription chosen based on the parent group and its level.</returns>
-    //public delegate GroupDescription GroupDescriptionSelectorCallback(CollectionViewGroup group, int level);
 }
 #pragma warning restore SA1201
 #pragma warning restore SA1202
 #pragma warning restore SA1214
 #pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

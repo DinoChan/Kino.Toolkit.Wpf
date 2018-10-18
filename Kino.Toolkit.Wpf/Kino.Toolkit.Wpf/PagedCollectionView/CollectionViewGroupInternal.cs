@@ -10,6 +10,7 @@
 #pragma warning disable SA1202
 #pragma warning disable SA1214
 #pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 namespace System.Windows.Data
 {
     using System;
@@ -827,3 +828,4 @@ namespace System.Windows.Data
 #pragma warning restore SA1202
 #pragma warning restore SA1214
 #pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

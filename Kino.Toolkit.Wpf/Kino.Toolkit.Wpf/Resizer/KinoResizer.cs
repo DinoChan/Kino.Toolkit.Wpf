@@ -31,7 +31,7 @@ namespace Kino.Toolkit.Wpf
         {
             DefaultStyleKey = typeof(KinoResizer);
 
-            //SizeChanged += OnControlSizeChanged;
+            // SizeChanged += OnControlSizeChanged;
             _resizingStoryboard = new Storyboard
             {
                 FillBehavior = FillBehavior.HoldEnd

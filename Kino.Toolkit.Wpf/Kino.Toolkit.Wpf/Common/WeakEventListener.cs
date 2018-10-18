@@ -31,17 +31,7 @@ namespace Kino.Toolkit.Wpf
         private WeakReference _weakInstance;
 
         /// <summary>
-        /// Gets or sets the method to call when the event fires.
-        /// </summary>
-        public Action<TInstance, TSource, TEventArgs> OnEventAction { get; set; }
-
-        /// <summary>
-        /// Gets or sets the method to call when detaching from the event.
-        /// </summary>
-        public Action<WeakEventListener<TInstance, TSource, TEventArgs>> OnDetachAction { get; set; }
-
-        /// <summary>
-        /// Initializes a new instances of the WeakEventListener class.
+        /// Initializes a new instance of the <see cref="WeakEventListener{TInstance, TSource, TEventArgs}"/> class.
         /// </summary>
         /// <param name="instance">Instance subscribing to the event.</param>
         public WeakEventListener(TInstance instance)
@@ -53,6 +43,16 @@ namespace Kino.Toolkit.Wpf
 
             _weakInstance = new WeakReference(instance);
         }
+
+        /// <summary>
+        /// Gets or sets the method to call when the event fires.
+        /// </summary>
+        public Action<TInstance, TSource, TEventArgs> OnEventAction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the method to call when detaching from the event.
+        /// </summary>
+        public Action<WeakEventListener<TInstance, TSource, TEventArgs>> OnDetachAction { get; set; }
 
         /// <summary>
         /// Handler for the subscribed event calls OnEventAction to handle it.

@@ -86,7 +86,7 @@ namespace Kino.Toolkit.Wpf
                 if (attributes != null && attributes.Length > 0)
                 {
                     ReadOnlyAttribute readOnlyAttribute = attributes[0] as ReadOnlyAttribute;
-                    Debug.Assert(readOnlyAttribute != null);
+                    Debug.Assert(readOnlyAttribute != null, "readOnlyAttribute must not by null");
                     return readOnlyAttribute.IsReadOnly;
                 }
             }

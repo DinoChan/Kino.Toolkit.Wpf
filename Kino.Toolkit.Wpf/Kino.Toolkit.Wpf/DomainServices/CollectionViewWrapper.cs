@@ -8,6 +8,7 @@
 #pragma warning disable SA1202
 #pragma warning disable SA1214
 #pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionViewWrapper"/>
+        /// Initializes a new instance of the <see cref="CollectionViewWrapper"/> class.
         /// </summary>
         protected CollectionViewWrapper()
         {
@@ -913,3 +914,4 @@ namespace Kino.Toolkit.Wpf
 #pragma warning restore SA1202
 #pragma warning restore SA1214
 #pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

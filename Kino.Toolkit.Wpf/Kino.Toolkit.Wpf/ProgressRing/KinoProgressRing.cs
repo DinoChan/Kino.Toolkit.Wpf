@@ -1,4 +1,4 @@
-﻿//Thanks: http://briandunnington.github.io/progressring-wp8.html
+﻿// Thanks: http://briandunnington.github.io/progressring-wp8.html
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +20,12 @@ namespace Kino.Toolkit.Wpf
         {
             DefaultStyleKey = typeof(KinoProgressRing);
             TemplateSettings = new TemplateSettingValues(60);
+        }
+
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
         }
 
         public override void OnApplyTemplate()
@@ -50,12 +56,6 @@ namespace Kino.Toolkit.Wpf
 
             TemplateSettings = new TemplateSettingValues(Math.Min(width, height));
             return base.MeasureOverride(availableSize);
-        }
-
-        public bool IsActive
-        {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for IsActive.  This enables animation, styling, binding, etc...
@@ -128,5 +128,4 @@ namespace Kino.Toolkit.Wpf
                 DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(default(Thickness)));
         }
     }
-
 }

@@ -10,6 +10,7 @@
 #pragma warning disable SA1202
 #pragma warning disable SA1214
 #pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -402,7 +403,7 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the DataPager class.
+        /// Initializes a new instance of the <see cref="KinoDataPager"/> class.
         /// </summary>
         public KinoDataPager()
         {
@@ -1378,15 +1379,8 @@ namespace Kino.Toolkit.Wpf
 
                 case "PageIndex":
                     int oldPageIndex = PageIndex;
-
                     PageIndex = PagedSource.PageIndex;
                     RaisePageIndexChanged();
-
-                    //DataPagerAutomationPeer peer = DataPagerAutomationPeer.FromElement(this) as DataPagerAutomationPeer;
-                    //if (peer != null && oldPageIndex != this.PageIndex)
-                    //{
-                    //    peer.RefreshPageIndex(oldPageIndex);
-                    //}
                     break;
 
                 case "PageSize":
@@ -1796,12 +1790,6 @@ namespace Kino.Toolkit.Wpf
                 UpdateCanPageFirstAndPrevious();
                 UpdateCanPageNextAndLast();
             }
-
-            //DataPagerAutomationPeer peer = DataPagerAutomationPeer.FromElement(this) as DataPagerAutomationPeer;
-            //if (peer != null)
-            //{
-            //    peer.RefreshProperties();
-            //}
         }
 
         /// <summary>
@@ -1850,7 +1838,7 @@ namespace Kino.Toolkit.Wpf
                             PageCount.ToString(CultureInfo.CurrentCulture));
                     }
 
-                    //this._currentPagePrefixTextBlock.Text = textBlockCaption;
+                    // this._currentPagePrefixTextBlock.Text = textBlockCaption;
                     if (string.IsNullOrEmpty(textBlockCaption))
                     {
                         _currentPagePrefixTextBlock.Visibility = Visibility.Collapsed;
@@ -1876,7 +1864,6 @@ namespace Kino.Toolkit.Wpf
                         PageCount.ToString(CultureInfo.CurrentCulture));
                 }
 
-                //this._currentPageSuffixTextBlock.Text = textBlockCaption;
                 if (string.IsNullOrEmpty(textBlockCaption))
                 {
                     _currentPageSuffixTextBlock.Visibility = Visibility.Collapsed;
@@ -1921,3 +1908,4 @@ namespace Kino.Toolkit.Wpf
 #pragma warning restore SA1202
 #pragma warning restore SA1214
 #pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

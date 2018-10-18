@@ -10,7 +10,10 @@ namespace Kino.Toolkit.Wpf
 {
     public class RemoteCollectionView : DomainCollectionView
     {
-        public RemoteCollectionView(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted) 
+        private bool _isRefreshing;
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = ".")]
+        public RemoteCollectionView(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted)
             : base(new RemoteCollectionViewLoader(load, onLoadCompleted), new List<object>())
         {
             PageSize = 50;
@@ -22,8 +25,6 @@ namespace Kino.Toolkit.Wpf
         public event EventHandler Refreshing;
 
         public event EventHandler Refreshed;
-
-        private bool _isRefreshing;
 
         /// <summary>
         /// 获取或设置 IsRefreshing 的值

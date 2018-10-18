@@ -4,7 +4,7 @@
     you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,3 +89,4 @@ namespace Kino.Toolkit.Wpf
         #endregion
     }
 }
+#pragma warning restore SA1124 // Do not use regions

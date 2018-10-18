@@ -8,6 +8,7 @@
 #pragma warning disable SA1202
 #pragma warning disable SA1214
 #pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,25 +56,13 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/> that
-        /// uses the specified callback for loading data.
-        /// </summary>
-        /// <param name="load">The callback to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        // public DomainCollectionView(Func<LoadOperation> load, IEnumerable source)
-        //    : this(new DomainCollectionViewLoader(load), source)
-        //{
-        //}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/>
+        /// Initializes a new instance of the <see cref="DomainCollectionView"/> class.
         /// </summary>
         /// <param name="collectionViewLoader">The <see cref="CollectionViewLoader"/> to use for loading data</param>
         /// <param name="source">The source collection for this view. All updates to the
         /// source will be reflected in the view.
         /// </param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = ".")]
         public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable source)
         {
             if (source == null)
@@ -572,3 +561,4 @@ namespace Kino.Toolkit.Wpf
 #pragma warning disable SA1202
 #pragma warning disable SA1214
 #pragma warning disable SA1311
+#pragma warning restore SA1124 // Do not use regions``

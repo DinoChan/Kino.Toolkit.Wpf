@@ -55,8 +55,6 @@ namespace Kino.Toolkit.Wpf
             set => SetValue(CommandBarProperty, value);
         }
 
-        #region Dependency Properties
-
         /// <summary>
         /// 从指定元素获取 IsRequired 依赖项属性的值。
         /// </summary>
@@ -120,7 +118,6 @@ namespace Kino.Toolkit.Wpf
         /// <param name="value">要设置的值。</param>
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static void SetIsItemItsOwnContainer(DependencyObject obj, bool value) => obj.SetValue(IsItemItsOwnContainerProperty, value);
-        #endregion
 
         /// <summary>
         /// CommandBar 属性更改时调用此方法。

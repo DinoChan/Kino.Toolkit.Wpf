@@ -21,6 +21,12 @@ namespace Kino.Toolkit.Wpf
 
         private object _currentUserState;
 
+        public RemoteCollectionViewLoader(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted)
+        {
+            _load = load ?? throw new ArgumentNullException("load");
+            _onLoadCompleted = onLoadCompleted;
+        }
+
         /// <summary>
         /// Gets or sets a value that indicates whether a <see cref="M:Microsoft.Windows.Data.DomainServices.DomainCollectionViewLoader.Load(System.Object)" /> can be successfully invoked
         /// </summary>
@@ -109,12 +115,6 @@ namespace Kino.Toolkit.Wpf
             {
                 OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, null));
             }
-        }
-
-        public RemoteCollectionViewLoader(Func<ILoadOperation> load, Action<ILoadOperation> onLoadCompleted)
-        {
-            _load = load ?? throw new ArgumentNullException("load");
-            _onLoadCompleted = onLoadCompleted;
         }
 
         public override void Load(object userState)

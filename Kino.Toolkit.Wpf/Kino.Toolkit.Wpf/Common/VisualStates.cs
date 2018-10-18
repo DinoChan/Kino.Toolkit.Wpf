@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable SA1124 // Do not use regions
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -424,3 +425,4 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
+#pragma warning restore SA1124 // Do not use regions

@@ -22,12 +22,10 @@ namespace System.Windows.Common
     /// </summary>
     internal static class TypeHelper
     {
-        #region Internal Fields
         internal const char IndexParameterSeparator = ',';
         internal const char LeftIndexerToken = '[';
         internal const char PropertyNameSeparator = '.';
         internal const char RightIndexerToken = ']';
-        #endregion
 
         private static Type FindGenericType(Type definition, Type type)
         {
@@ -150,7 +148,7 @@ namespace System.Windows.Common
 
             object item = null;
             PropertyInfo propertyInfo = parentType.GetNestedProperty(propertyPath, out Exception exception, ref item);
-            return propertyInfo == null ? null : propertyInfo.PropertyType;
+            return propertyInfo?.PropertyType;
         }
 
         /// <summary>

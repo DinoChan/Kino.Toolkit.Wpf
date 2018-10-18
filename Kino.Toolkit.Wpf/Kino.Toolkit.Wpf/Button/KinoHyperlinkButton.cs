@@ -26,6 +26,22 @@ namespace Kino.Toolkit.Wpf
         /// <returns>The identifier for the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</returns>
         public static readonly DependencyProperty TargetNameProperty;
 
+        static KinoHyperlinkButton()
+        {
+            NavigateUriProperty = DependencyProperty.Register("NavigateUri", typeof(Uri), typeof(KinoHyperlinkButton), null);
+            TargetNameProperty = DependencyProperty.Register("TargetName", typeof(string), typeof(KinoHyperlinkButton), null);
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="KinoHyperlinkButton"/> class.</summary>
+        public KinoHyperlinkButton()
+        {
+            DefaultStyleKey = typeof(KinoHyperlinkButton);
+            if (IsPermissionGranted() == false)
+            {
+                IsEnabled = false;
+            }
+        }
+
         /// <summary>Gets or sets the URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked. </summary>
         /// <returns>The URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked.</returns>
         [TypeConverter(typeof(UriTypeConverter))]
@@ -41,22 +57,6 @@ namespace Kino.Toolkit.Wpf
         {
             get => GetValue(TargetNameProperty) as string;
             set => SetValue(KinoHyperlinkButton.TargetNameProperty, value);
-        }
-
-        static KinoHyperlinkButton()
-        {
-            NavigateUriProperty = DependencyProperty.Register("NavigateUri", typeof(Uri), typeof(KinoHyperlinkButton), null);
-            TargetNameProperty = DependencyProperty.Register("TargetName", typeof(string), typeof(KinoHyperlinkButton), null);
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="KinoHyperlinkButton"/> class.</summary>
-        public KinoHyperlinkButton()
-        {
-            DefaultStyleKey = typeof(KinoHyperlinkButton);
-            if (IsPermissionGranted() == false)
-            {
-                IsEnabled = false;
-            }
         }
 
         /// <summary>Provides handling for the <see cref="E:System.Windows.Controls.Primitives.ButtonBase.Click" /> event.</summary>

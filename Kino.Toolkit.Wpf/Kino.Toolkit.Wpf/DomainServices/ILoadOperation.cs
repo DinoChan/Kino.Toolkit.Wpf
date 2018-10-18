@@ -10,9 +10,9 @@ namespace Kino.Toolkit.Wpf
 {
     public interface ILoadOperation : ILoadResult
     {
-        object UserState { get; }
-
         event EventHandler Completed;
+
+        object UserState { get; }
 
         bool CanCancel { get; }
 

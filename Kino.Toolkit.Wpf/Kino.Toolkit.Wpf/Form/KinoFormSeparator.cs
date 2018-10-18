@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-   public class KinoFormSeparator: Separator
+    public class KinoFormSeparator : Separator
     {
         public KinoFormSeparator()
         {

@@ -22,6 +22,5 @@ namespace Kino.Toolkit.Wpf
             get { return (double)GetValue(MaxSideLengthProperty); }
             set { SetValue(MaxSideLengthProperty, value); }
         }
-
     }
 }

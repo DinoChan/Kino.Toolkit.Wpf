@@ -8,8 +8,14 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-   public class KinoFormTitle : ContentControl
+    public class KinoFormTitle : ContentControl
     {
+        /// <summary>
+        /// 标识 Description 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty DescriptionProperty =
+            DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormTitle), new PropertyMetadata(default(object), OnDescriptionChanged));
+
         public KinoFormTitle()
         {
             DefaultStyleKey = typeof(KinoFormTitle);
@@ -20,20 +26,14 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public object Description
         {
-            get => (object)GetValue(DescriptionProperty);
+            get => GetValue(DescriptionProperty);
             set => SetValue(DescriptionProperty, value);
         }
 
-        /// <summary>
-        /// 标识 Description 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormTitle), new PropertyMetadata(default(object), OnDescriptionChanged));
-
         private static void OnDescriptionChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            var oldValue = (object)args.OldValue;
-            var newValue = (object)args.NewValue;
+            var oldValue = args.OldValue;
+            var newValue = args.NewValue;
             if (oldValue == newValue)
             {
                 return;
