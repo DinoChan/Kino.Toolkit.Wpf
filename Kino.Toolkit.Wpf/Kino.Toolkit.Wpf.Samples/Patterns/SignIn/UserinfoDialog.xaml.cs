@@ -17,14 +17,14 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// UserinfoDialog.xaml 的交互逻辑
     /// </summary>
-    public partial class UserinfoDialog 
+    public partial class UserinfoDialog
     {
         public UserinfoDialog()
         {
             InitializeComponent();
         }
 
-     
+
 
         private void OnSignUp(object sender, EventArgs e)
         {
@@ -42,13 +42,15 @@ namespace Kino.Toolkit.Wpf.Samples
             ContentElement.Content = signInView;
         }
 
-    
+
         private void OnFinished(object sender, UserInfo e)
         {
             Close();
-            var shell = new SimpleShell();
-            shell.User = e;
-            shell.Owner = Owner;
+            var shell = new SimpleShell
+            {
+                User = e,
+                Owner = Owner
+            };
             shell.ShowDialog();
         }
     }

@@ -15,10 +15,9 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoValidationTooltip);
         }
 
-
         /// <summary>
         /// 获取或设置AdornedElementPlaceholder的值
-        /// </summary>  
+        /// </summary>
         public AdornedElementPlaceholder AdornedElementPlaceholder
         {
             get => (AdornedElementPlaceholder)GetValue(AdornedElementPlaceholderProperty);
@@ -33,11 +32,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnAdornedElementPlaceholderChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (AdornedElementPlaceholder)args.OldValue;
             var newValue = (AdornedElementPlaceholder)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoValidationTooltip;
             target?.OnAdornedElementPlaceholderChanged(oldValue, newValue);
@@ -62,7 +62,6 @@ namespace Kino.Toolkit.Wpf
         {
             UpdateVisualState();
         }
-
 
         private void OnAdornedElementLostFocus(object sender, System.Windows.RoutedEventArgs e)
         {

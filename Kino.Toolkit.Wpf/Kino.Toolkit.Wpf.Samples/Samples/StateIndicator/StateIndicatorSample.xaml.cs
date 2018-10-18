@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// StateIndicatorSample.xaml 的交互逻辑
     /// </summary>
-    public partial class StateIndicatorSample 
+    public partial class StateIndicatorSample
     {
         public StateIndicatorSample()
         {
@@ -48,10 +48,12 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private object CreateIcon()
         {
-            var textBlock = new TextBlock();
-            textBlock.Text = "\xf02e";
-            textBlock.Style = this.FindResource("FontAwesome") as Style;
-            textBlock.FontSize = 14;
+            var textBlock = new TextBlock
+            {
+                Text = "\xf02e",
+                Style = FindResource("FontAwesome") as Style,
+                FontSize = 14
+            };
             return textBlock;
         }
     }

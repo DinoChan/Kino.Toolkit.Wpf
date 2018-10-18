@@ -1,10 +1,14 @@
-﻿/* 
-    Copyright (c) 2013, The Outercurve Foundation. 
+﻿/*
+    Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
-    you may not use the software except in compliance with the License. 
+    you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +41,7 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PagedCollectionViewBase"/>
+        /// Initializes a new instance of the <see cref="PagedCollectionViewBase"/> class.
         /// </summary>
         protected PagedCollectionViewBase()
         {
@@ -74,14 +78,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._canChangePage;
+                return _canChangePage;
             }
+
             protected set
             {
-                if (this._canChangePage != value)
+                if (_canChangePage != value)
                 {
-                    this._canChangePage = value;
-                    this.RaisePropertyChanged("CanChangePage");
+                    _canChangePage = value;
+                    RaisePropertyChanged("CanChangePage");
                 }
             }
         }
@@ -89,10 +94,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// Gets a value that indicates whether the <see cref="PageCount"/> is valid
         /// </summary>
-        protected bool IsPageCountKnown
-        {
-            get { return (this.TotalItemCount != -1) && (this.PageSize > 0); }
-        }
+        protected bool IsPageCountKnown => (TotalItemCount != -1) && (PageSize > 0);
 
         /// <summary>
         /// Gets a value that indicates whether the page index is changing.
@@ -101,15 +103,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._isPageChanging;
+                return _isPageChanging;
             }
 
             private set
             {
-                if (this._isPageChanging != value)
+                if (_isPageChanging != value)
                 {
-                    this._isPageChanging = value;
-                    this.RaisePropertyChanged("IsPageChanging");
+                    _isPageChanging = value;
+                    RaisePropertyChanged("IsPageChanging");
                 }
             }
         }
@@ -121,15 +123,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._itemCount;
+                return _itemCount;
             }
 
             protected set
             {
-                if (this._itemCount != value)
+                if (_itemCount != value)
                 {
-                    this._itemCount = value;
-                    this.RaisePropertyChanged("ItemCount");
+                    _itemCount = value;
+                    RaisePropertyChanged("ItemCount");
                 }
             }
         }
@@ -141,11 +143,12 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                if (!this.IsPageCountKnown)
+                if (!IsPageCountKnown)
                 {
                     return -1;
                 }
-                return (this.TotalItemCount + this.PageSize - 1) / this.PageSize;
+
+                return (TotalItemCount + PageSize - 1) / PageSize;
             }
         }
 
@@ -156,14 +159,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._pageIndex;
+                return _pageIndex;
             }
+
             private set
             {
-                if (this._pageIndex != value)
+                if (_pageIndex != value)
                 {
-                    this._pageIndex = value;
-                    this.RaisePropertyChanged("PageIndex");
+                    _pageIndex = value;
+                    RaisePropertyChanged("PageIndex");
                 }
             }
         }
@@ -175,14 +179,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._pageSize;
+                return _pageSize;
             }
+
             set
             {
-                if (this._pageSize != value)
+                if (_pageSize != value)
                 {
-                    this._pageSize = value;
-                    this.RaisePropertyChanged("PageSize");
+                    _pageSize = value;
+                    RaisePropertyChanged("PageSize");
                 }
             }
         }
@@ -194,14 +199,15 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._totalItemCount;
+                return _totalItemCount;
             }
+
             protected set
             {
-                if (this._totalItemCount != value)
+                if (_totalItemCount != value)
                 {
-                    this._totalItemCount = value;
-                    this.RaisePropertyChanged("TotalItemCount");
+                    _totalItemCount = value;
+                    RaisePropertyChanged("TotalItemCount");
                 }
             }
         }
@@ -216,7 +222,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public bool MoveToFirstPage()
         {
-            return this.MoveToPage(0);
+            return MoveToPage(0);
         }
 
         /// <summary>
@@ -225,11 +231,12 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public bool MoveToLastPage()
         {
-            if (!this.IsPageCountKnown)
+            if (!IsPageCountKnown)
             {
                 return false;
             }
-            return this.MoveToPage(this.PageCount - 1);
+
+            return MoveToPage(PageCount - 1);
         }
 
         /// <summary>
@@ -238,7 +245,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public bool MoveToNextPage()
         {
-            return this.MoveToPage(this.PageIndex + 1);
+            return MoveToPage(PageIndex + 1);
         }
 
         /// <summary>
@@ -247,7 +254,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public bool MoveToPreviousPage()
         {
-            return this.MoveToPage(this.PageIndex - 1);
+            return MoveToPage(PageIndex - 1);
         }
 
         /// <summary>
@@ -257,15 +264,15 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public bool MoveToPage(int pageIndex)
         {
-            if ((this.PageIndex == pageIndex) ||
+            if ((PageIndex == pageIndex) ||
                 (pageIndex < -1) ||
-                (this.IsPageCountKnown && (pageIndex >= this.PageCount)) ||
-                !this.CanChangePage)
+                (IsPageCountKnown && (pageIndex >= PageCount)) ||
+                !CanChangePage)
             {
                 return false;
             }
 
-            return this.BeginMoveToPage(pageIndex);
+            return BeginMoveToPage(pageIndex);
         }
 
         /// <summary>
@@ -281,15 +288,15 @@ namespace Kino.Toolkit.Wpf
         protected bool BeginMoveToPage(int pageIndex)
         {
             PageChangingEventArgs e = new PageChangingEventArgs(pageIndex);
-            this.OnPageChanging(e); // re-entrant
+            OnPageChanging(e); // re-entrant
             if (e.Cancel)
             {
                 return false;
             }
 
-            this.IsPageChanging = true; // re-entrant
+            IsPageChanging = true; // re-entrant
 
-            this.BeginMoveToPageCore(pageIndex);
+            BeginMoveToPageCore(pageIndex);
 
             return true;
         }
@@ -301,13 +308,13 @@ namespace Kino.Toolkit.Wpf
         /// <param name="pageIndex">The index of the page that was moved to</param>
         protected void EndMoveToPage(int pageIndex)
         {
-            if (this.IsPageChanging)
+            if (IsPageChanging)
             {
-                this.EndMoveToPageCore(pageIndex);
+                EndMoveToPageCore(pageIndex);
 
-                this.PageIndex = pageIndex; // re-entrant
-                this.IsPageChanging = false; // re-entrant
-                this.OnPageChanged(EventArgs.Empty);
+                PageIndex = pageIndex; // re-entrant
+                IsPageChanging = false; // re-entrant
+                OnPageChanged(EventArgs.Empty);
             }
         }
 
@@ -331,11 +338,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPageChanged(EventArgs e)
         {
-            EventHandler<EventArgs> handler = this.PageChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PageChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -344,11 +347,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPageChanging(PageChangingEventArgs e)
         {
-            EventHandler<PageChangingEventArgs> handler = this.PageChanging;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PageChanging?.Invoke(this, e);
         }
 
         /// <summary>
@@ -361,7 +360,8 @@ namespace Kino.Toolkit.Wpf
             {
                 throw new ArgumentNullException("propertyName");
             }
-            this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
@@ -370,13 +370,14 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PropertyChanged?.Invoke(this, e);
         }
 
         #endregion
     }
 }
+#pragma warning restore SA1201
+#pragma warning restore SA1202
+#pragma warning restore SA1214
+#pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

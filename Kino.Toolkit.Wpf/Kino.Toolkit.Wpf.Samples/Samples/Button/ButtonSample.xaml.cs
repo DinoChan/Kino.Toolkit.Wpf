@@ -30,7 +30,7 @@ namespace Kino.Toolkit.Wpf.Samples
             StatesListBox.Items.Add(ProgressState.Faulted);
             StatesListBox.Items.Add(ProgressState.Other);
             StatesListBox.SelectedIndex = 0;
-            
+
         }
 
         private void OnContentOnlyCheck(object sender, RoutedEventArgs e)
@@ -55,9 +55,11 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private object CreateIcon()
         {
-            var textBlock = new TextBlock();
-            textBlock.Text = "\xf02e";
-            textBlock.Style = this.FindResource("FontAwesome") as Style;
+            var textBlock = new TextBlock
+            {
+                Text = "\xf02e",
+                Style = FindResource("FontAwesome") as Style
+            };
             return textBlock;
         }
 

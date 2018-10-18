@@ -6,7 +6,11 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +30,7 @@ using System.Windows.Data;
 namespace Kino.Toolkit.Wpf
 {
     /// <summary>
-    /// Handles paging for an <see cref="T:System.ComponentModel.IPagedCollectionView" />. 
+    /// Handles paging for an <see cref="T:System.ComponentModel.IPagedCollectionView" />.
     /// </summary>
     /// <QualityBand>Preview</QualityBand>
     [TemplatePart(Name = DATAPAGER_elementFirstPageButton, Type = typeof(ButtonBase))]
@@ -64,7 +68,7 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Static Fields and Constants
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Constants
 
@@ -89,37 +93,37 @@ namespace Kino.Toolkit.Wpf
         // Styles constants
         private const string DATAPAGER_styleNumericButton = "NumericButtonStyle";
 
-        // Common states constants        
+        // Common states constants
         private const string DATAPAGER_groupCommon = "CommonStates";
         private const string DATAPAGER_stateNormal = "Normal";
         private const string DATAPAGER_stateDisabled = "Disabled";
 
-        // Move states constants        
+        // Move states constants
         private const string DATAPAGER_groupMove = "MoveStates";
         private const string DATAPAGER_stateMoveEnabled = "MoveEnabled";
         private const string DATAPAGER_stateMoveDisabled = "MoveDisabled";
 
-        // MoveFirst states constants        
+        // MoveFirst states constants
         private const string DATAPAGER_groupMoveFirst = "MoveFirstStates";
         private const string DATAPAGER_stateMoveFirstEnabled = "MoveFirstEnabled";
         private const string DATAPAGER_stateMoveFirstDisabled = "MoveFirstDisabled";
 
-        // MovePrevious states constants        
+        // MovePrevious states constants
         private const string DATAPAGER_groupMovePrevious = "MovePreviousStates";
         private const string DATAPAGER_stateMovePreviousEnabled = "MovePreviousEnabled";
         private const string DATAPAGER_stateMovePreviousDisabled = "MovePreviousDisabled";
 
-        // MovePrevious states constants        
+        // MovePrevious states constants
         private const string DATAPAGER_groupMoveNext = "MoveNextStates";
         private const string DATAPAGER_stateMoveNextEnabled = "MoveNextEnabled";
         private const string DATAPAGER_stateMoveNextDisabled = "MoveNextDisabled";
 
-        // MovePrevious states constants        
+        // MovePrevious states constants
         private const string DATAPAGER_groupMoveLast = "MoveLastStates";
         private const string DATAPAGER_stateMoveLastEnabled = "MoveLastEnabled";
         private const string DATAPAGER_stateMoveLastDisabled = "MoveLastDisabled";
 
-        // TotalPageCountKnown states constants        
+        // TotalPageCountKnown states constants
         private const string DATAPAGER_groupTotalPageCountKnown = "TotalPageCountKnownStates";
         private const string DATAPAGER_stateTotalPageCountKnown = "TotalPageCountKnown";
         private const string DATAPAGER_stateTotalPageCountUnknown = "TotalPageCountUnknown";
@@ -298,7 +302,7 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Private Fields
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Private Fields
 
@@ -334,7 +338,7 @@ namespace Kino.Toolkit.Wpf
         private bool _ignoreToggleButtonCheckedNotification;
 
         /// <summary>
-        /// Set to True when the ToggleButton_GotFocus and ToggleButton_LostFocus 
+        /// Set to True when the ToggleButton_GotFocus and ToggleButton_LostFocus
         /// notifications need to be ignored.
         /// </summary>
         private bool _ignoreToggleButtonFocusNotification;
@@ -394,20 +398,19 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Constructors
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the DataPager class.
+        /// Initializes a new instance of the <see cref="KinoDataPager"/> class.
         /// </summary>
         public KinoDataPager()
         {
-            this.DefaultStyleKey = typeof(KinoDataPager);
+            DefaultStyleKey = typeof(KinoDataPager);
 
             // Listening to the IsEnabled changes so the DataPager states can be updated accordingly.
-            this.IsEnabledChanged += new DependencyPropertyChangedEventHandler(this.OnDataPagerIsEnabledChanged);
-
+            IsEnabledChanged += new DependencyPropertyChangedEventHandler(OnDataPagerIsEnabledChanged);
         }
 
         #endregion Constructors
@@ -416,7 +419,7 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Events
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Events
 
@@ -436,7 +439,7 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Public Properties
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Public Properties
 
@@ -473,8 +476,8 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" /> will 
-        /// allow the user to attempt to move to the first page if <see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true. 
+        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" /> will
+        /// allow the user to attempt to move to the first page if <see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true.
         /// </summary>
         public bool CanMoveToFirstPage
         {
@@ -490,8 +493,8 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" /> 
-        /// will allow the user to attempt to move to the last page if <see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true. 
+        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" />
+        /// will allow the user to attempt to move to the last page if <see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true.
         /// </summary>
         public bool CanMoveToLastPage
         {
@@ -507,8 +510,8 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" /> 
-        /// will allow the user to attempt to move to the next page if<see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true. 
+        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" />
+        /// will allow the user to attempt to move to the next page if<see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true.
         /// </summary>
         public bool CanMoveToNextPage
         {
@@ -524,7 +527,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" /> 
+        /// Gets a value that indicates whether or not the <see cref="T:System.Windows.Controls.DataPager" />
         /// will allow the user to attempt to move to the previous page if <see cref="P:System.Windows.Controls.DataPager.CanChangePage" /> is true.
         /// </summary>
         public bool CanMoveToPreviousPage
@@ -541,7 +544,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates how the 
+        /// Gets or sets a value that indicates how the
         /// <see cref="T:System.Windows.Controls.DataPager" /> user interface is displayed
         /// </summary>
         public PagerDisplayMode DisplayMode
@@ -574,7 +577,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets the current number of known items in the <see cref="T:System.ComponentModel.IPagedCollectionView" /> . 
+        /// Gets the current number of known items in the <see cref="T:System.ComponentModel.IPagedCollectionView" /> .
         /// </summary>
         public int ItemCount
         {
@@ -590,7 +593,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.ComponentModel.IPagedCollectionView" /> . 
+        /// Gets or sets the <see cref="T:System.ComponentModel.IPagedCollectionView" /> .
         /// </summary>
         public IEnumerable Source
         {
@@ -606,8 +609,8 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates the number of page buttons shown 
-        /// on the <see cref="T:System.Windows.Controls.DataPager" /> user interface. 
+        /// Gets or sets a value that indicates the number of page buttons shown
+        /// on the <see cref="T:System.Windows.Controls.DataPager" /> user interface.
         /// </summary>
         public int NumericButtonCount
         {
@@ -639,7 +642,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets the current number of known pages in the <see cref="T:System.ComponentModel.IPagedCollectionView" /> . 
+        /// Gets the current number of known pages in the <see cref="T:System.ComponentModel.IPagedCollectionView" /> .
         /// </summary>
         public int PageCount
         {
@@ -655,8 +658,8 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Gets or sets the current <see cref="P:System.ComponentModel.IPagedCollectionView.PageIndex" /> 
-        /// in the <see cref="T:System.ComponentModel.IPagedCollectionView" /> . 
+        /// Gets or sets the current <see cref="P:System.ComponentModel.IPagedCollectionView.PageIndex" />
+        /// in the <see cref="T:System.ComponentModel.IPagedCollectionView" /> .
         /// </summary>
         [DefaultValueAttribute(-1)]
         public int PageIndex
@@ -694,42 +697,27 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Internal Properties
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Internal Properties
 
         /// <summary>
         /// Gets the TextBox holding the current PageIndex value, if any.
         /// </summary>
-        internal TextBox CurrentPageTextBox
-        {
-            get
-            {
-                return this._currentPageTextBox;
-            }
-        }
+        internal TextBox CurrentPageTextBox => _currentPageTextBox;
 
         /// <summary>
         /// Gets the Source as an IPagedCollectionView
         /// </summary>
-        internal IPagedCollectionView PagedSource
-        {
-            get
-            {
-                return this.Source as IPagedCollectionView;
-            }
-        }
+        internal IPagedCollectionView PagedSource => Source as IPagedCollectionView;
 
         #endregion Internal Properties
-
-
-    
 
         ////------------------------------------------------------
         ////
         ////  Public Methods
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Public Methods
 
@@ -742,93 +730,93 @@ namespace Kino.Toolkit.Wpf
             base.OnApplyTemplate();
 
             // unsubscribe event handlers for previous template parts
-            if (this._firstPageButtonBase != null)
+            if (_firstPageButtonBase != null)
             {
-                this._firstPageButtonBase.Click -= new RoutedEventHandler(this.OnFirstPageButtonBaseClick);
+                _firstPageButtonBase.Click -= new RoutedEventHandler(OnFirstPageButtonBaseClick);
             }
 
-            if (this._previousPageButtonBase != null)
+            if (_previousPageButtonBase != null)
             {
-                this._previousPageButtonBase.Click -= new RoutedEventHandler(this.OnPreviousPageButtonBaseClick);
+                _previousPageButtonBase.Click -= new RoutedEventHandler(OnPreviousPageButtonBaseClick);
             }
 
-            if (this._nextPageButtonBase != null)
+            if (_nextPageButtonBase != null)
             {
-                this._nextPageButtonBase.Click -= new RoutedEventHandler(this.OnNextPageButtonBaseClick);
+                _nextPageButtonBase.Click -= new RoutedEventHandler(OnNextPageButtonBaseClick);
             }
 
-            if (this._lastPageButtonBase != null)
+            if (_lastPageButtonBase != null)
             {
-                this._lastPageButtonBase.Click -= new RoutedEventHandler(this.OnLastPageButtonBaseClick);
+                _lastPageButtonBase.Click -= new RoutedEventHandler(OnLastPageButtonBaseClick);
             }
 
-            if (this._currentPageTextBox != null)
+            if (_currentPageTextBox != null)
             {
-                this._currentPageTextBox.KeyDown -= new System.Windows.Input.KeyEventHandler(this.OnCurrentPageTextBoxKeyDown);
-                this._currentPageTextBox.LostFocus -= new RoutedEventHandler(this.OnCurrentPageTextBoxLostFocus);
+                _currentPageTextBox.KeyDown -= new System.Windows.Input.KeyEventHandler(OnCurrentPageTextBoxKeyDown);
+                _currentPageTextBox.LostFocus -= new RoutedEventHandler(OnCurrentPageTextBoxLostFocus);
             }
 
             // get new template parts
-            this._firstPageButtonBase = GetTemplateChild(DATAPAGER_elementFirstPageButton) as ButtonBase;
-            this._previousPageButtonBase = GetTemplateChild(DATAPAGER_elementPreviousPageButton) as ButtonBase;
-            this._nextPageButtonBase = GetTemplateChild(DATAPAGER_elementNextPageButton) as ButtonBase;
-            this._lastPageButtonBase = GetTemplateChild(DATAPAGER_elementLastPageButton) as ButtonBase;
+            _firstPageButtonBase = GetTemplateChild(DATAPAGER_elementFirstPageButton) as ButtonBase;
+            _previousPageButtonBase = GetTemplateChild(DATAPAGER_elementPreviousPageButton) as ButtonBase;
+            _nextPageButtonBase = GetTemplateChild(DATAPAGER_elementNextPageButton) as ButtonBase;
+            _lastPageButtonBase = GetTemplateChild(DATAPAGER_elementLastPageButton) as ButtonBase;
 
-            if (this._firstPageButtonBase != null)
+            if (_firstPageButtonBase != null)
             {
-                this._firstPageButtonBase.Click += new RoutedEventHandler(this.OnFirstPageButtonBaseClick);
-                AutomationProperties.SetAutomationId(this._firstPageButtonBase, DATAPAGER_firstPageButtonAutomationId);
+                _firstPageButtonBase.Click += new RoutedEventHandler(OnFirstPageButtonBaseClick);
+                AutomationProperties.SetAutomationId(_firstPageButtonBase, DATAPAGER_firstPageButtonAutomationId);
             }
 
-            if (this._previousPageButtonBase != null)
+            if (_previousPageButtonBase != null)
             {
-                this._previousPageButtonBase.Click += new RoutedEventHandler(this.OnPreviousPageButtonBaseClick);
-                AutomationProperties.SetAutomationId(this._previousPageButtonBase, DATAPAGER_previousPageButtonAutomationId);
+                _previousPageButtonBase.Click += new RoutedEventHandler(OnPreviousPageButtonBaseClick);
+                AutomationProperties.SetAutomationId(_previousPageButtonBase, DATAPAGER_previousPageButtonAutomationId);
             }
 
-            if (this._nextPageButtonBase != null)
+            if (_nextPageButtonBase != null)
             {
-                this._nextPageButtonBase.Click += new RoutedEventHandler(this.OnNextPageButtonBaseClick);
-                AutomationProperties.SetAutomationId(this._nextPageButtonBase, DATAPAGER_nextPageButtonAutomationId);
+                _nextPageButtonBase.Click += new RoutedEventHandler(OnNextPageButtonBaseClick);
+                AutomationProperties.SetAutomationId(_nextPageButtonBase, DATAPAGER_nextPageButtonAutomationId);
             }
 
-            if (this._lastPageButtonBase != null)
+            if (_lastPageButtonBase != null)
             {
-                this._lastPageButtonBase.Click += new RoutedEventHandler(this.OnLastPageButtonBaseClick);
-                AutomationProperties.SetAutomationId(this._lastPageButtonBase, DATAPAGER_lastPageButtonAutomationId);
+                _lastPageButtonBase.Click += new RoutedEventHandler(OnLastPageButtonBaseClick);
+                AutomationProperties.SetAutomationId(_lastPageButtonBase, DATAPAGER_lastPageButtonAutomationId);
             }
 
             // remove previous panel + buttons.
-            if (this._numericButtonPanel != null)
+            if (_numericButtonPanel != null)
             {
-                this._numericButtonPanel.Children.Clear();
+                _numericButtonPanel.Children.Clear();
             }
 
-            this._numericButtonPanel = GetTemplateChild(DATAPAGER_elementNumericButtonPanel) as Panel;
+            _numericButtonPanel = GetTemplateChild(DATAPAGER_elementNumericButtonPanel) as Panel;
 
             // add new buttons to panel
-            if (this._numericButtonPanel != null)
+            if (_numericButtonPanel != null)
             {
-                if (this._numericButtonPanel.Children.Count > 0)
+                if (_numericButtonPanel.Children.Count > 0)
                 {
                     throw new InvalidOperationException(PagerResources.InvalidButtonPanelContent);
                 }
 
-                this.UpdateButtonCount();
+                UpdateButtonCount();
             }
 
-            this._currentPageTextBox = GetTemplateChild(DATAPAGER_elementCurrentPageTextBox) as TextBox;
-            this._currentPagePrefixTextBlock = GetTemplateChild(DATAPAGER_elementCurrentPagePrefixTextBlockn) as TextBlock;
-            this._currentPageSuffixTextBlock = GetTemplateChild(DATAPAGER_elementCurrentPageSuffixTextBlock) as TextBlock;
+            _currentPageTextBox = GetTemplateChild(DATAPAGER_elementCurrentPageTextBox) as TextBox;
+            _currentPagePrefixTextBlock = GetTemplateChild(DATAPAGER_elementCurrentPagePrefixTextBlockn) as TextBlock;
+            _currentPageSuffixTextBlock = GetTemplateChild(DATAPAGER_elementCurrentPageSuffixTextBlock) as TextBlock;
 
-            if (this._currentPageTextBox != null)
+            if (_currentPageTextBox != null)
             {
-                this._currentPageTextBox.KeyDown += new System.Windows.Input.KeyEventHandler(this.OnCurrentPageTextBoxKeyDown);
-                this._currentPageTextBox.LostFocus += new RoutedEventHandler(this.OnCurrentPageTextBoxLostFocus);
-                AutomationProperties.SetAutomationId(this._currentPageTextBox, DATAPAGER_currentPageTextBoxAutomationId);
+                _currentPageTextBox.KeyDown += new System.Windows.Input.KeyEventHandler(OnCurrentPageTextBoxKeyDown);
+                _currentPageTextBox.LostFocus += new RoutedEventHandler(OnCurrentPageTextBoxLostFocus);
+                AutomationProperties.SetAutomationId(_currentPageTextBox, DATAPAGER_currentPageTextBoxAutomationId);
             }
 
-            this.UpdateControl();
+            UpdateControl();
         }
 
         #endregion Public Methods
@@ -837,18 +825,9 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Protected Methods
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Protected Methods
-
-        /// <summary>
-        /// Creates an AutomationPeer (<see cref="UIElement.OnCreateAutomationPeer"/>)
-        /// </summary>
-        /// <returns>Automation Peer for this <see cref="T:System.Windows.Controls.DataPager" /> control</returns>
-        //protected override AutomationPeer OnCreateAutomationPeer()
-        //{
-        //    return new DataPagerAutomationPeer(this);
-        //}
 
         #endregion Protected Methods
 
@@ -856,8 +835,7 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Private Static Methods
         ////
-        ////------------------------------------------------------ 
-
+        ////------------------------------------------------------
         #region Private Static Methods
 
         /// <summary>
@@ -885,7 +863,8 @@ namespace Kino.Toolkit.Wpf
                 {
                     pager.SetValueNoCallback(e.Property, e.OldValue);
                     throw new ArgumentException(
-                        string.Format(CultureInfo.InvariantCulture,
+                        string.Format(
+                            CultureInfo.InvariantCulture,
                             PagerResources.InvalidEnumArgumentException_InvalidEnumArgument,
                             "value",
                             e.NewValue.ToString(),
@@ -948,14 +927,11 @@ namespace Kino.Toolkit.Wpf
                 // update button styles
                 foreach (UIElement uiElement in pager._numericButtonPanel.Children)
                 {
-                    ToggleButton button = uiElement as ToggleButton;
-                    if (button != null)
+                    if (uiElement is ToggleButton button)
                     {
                         button.Style = pager.NumericButtonStyle;
                     }
                 }
-
-              
             }
         }
 
@@ -1071,8 +1047,6 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-      
-
         /// <summary>
         /// Called when a Read-Only dependency property is changed
         /// </summary>
@@ -1080,8 +1054,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The DependencyPropertyChangedEventArgs for this event.</param>
         private static void OnReadOnlyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            KinoDataPager pager = d as KinoDataPager;
-            if (pager != null && !pager.AreHandlersSuspended())
+            if (d is KinoDataPager pager && !pager.AreHandlersSuspended())
             {
                 pager.SetValueNoCallback(e.Property, e.OldValue);
                 throw new InvalidOperationException(
@@ -1101,22 +1074,21 @@ namespace Kino.Toolkit.Wpf
         {
             KinoDataPager pager = d as KinoDataPager;
 
-            INotifyPropertyChanged oldNotifyPropertyChanged = e.OldValue as INotifyPropertyChanged;
-            if (oldNotifyPropertyChanged != null && pager._weakEventListenerPropertyChanged != null)
+            if (e.OldValue is INotifyPropertyChanged oldNotifyPropertyChanged && pager._weakEventListenerPropertyChanged != null)
             {
                 pager._weakEventListenerPropertyChanged.Detach();
                 pager._weakEventListenerPropertyChanged = null;
             }
 
-            IPagedCollectionView newPagedCollectionView = e.NewValue as IPagedCollectionView;
-            if (newPagedCollectionView != null)
+            if (e.NewValue is IPagedCollectionView newPagedCollectionView)
             {
-                INotifyPropertyChanged newNotifyPropertyChanged = e.NewValue as INotifyPropertyChanged;
-                if (newNotifyPropertyChanged != null)
+                if (e.NewValue is INotifyPropertyChanged newNotifyPropertyChanged)
                 {
-                    pager._weakEventListenerPropertyChanged = new WeakEventListener<KinoDataPager, object, PropertyChangedEventArgs>(pager);
-                    pager._weakEventListenerPropertyChanged.OnEventAction = (instance, source, eventArgs) => instance.OnSourcePropertyChanged(source, eventArgs);
-                    pager._weakEventListenerPropertyChanged.OnDetachAction = (weakEventListener) => newNotifyPropertyChanged.PropertyChanged -= weakEventListener.OnEvent;
+                    pager._weakEventListenerPropertyChanged = new WeakEventListener<KinoDataPager, object, PropertyChangedEventArgs>(pager)
+                    {
+                        OnEventAction = (instance, source, eventArgs) => instance.OnSourcePropertyChanged(source, eventArgs),
+                        OnDetachAction = (weakEventListener) => newNotifyPropertyChanged.PropertyChanged -= weakEventListener.OnEvent
+                    };
                     newNotifyPropertyChanged.PropertyChanged += pager._weakEventListenerPropertyChanged.OnEvent;
                 }
 
@@ -1128,12 +1100,13 @@ namespace Kino.Toolkit.Wpf
                 {
                     pager.PageSize = newPagedCollectionView.PageSize;
                 }
+
                 if (pager.PageIndex != newPagedCollectionView.PageIndex)
                 {
                     if (newPagedCollectionView.PageIndex == -1 && newPagedCollectionView.IsPageChanging)
                     {
-                        // Avoid ArgumentOutOfRangeException in situation where the 
-                        // IPagedCollectionView's PageIndex is still set to -1 while 
+                        // Avoid ArgumentOutOfRangeException in situation where the
+                        // IPagedCollectionView's PageIndex is still set to -1 while
                         // a page move is in progress
                         pager.SetValueNoCallback(KinoDataPager.PageIndexProperty, -1);
                     }
@@ -1141,22 +1114,23 @@ namespace Kino.Toolkit.Wpf
                     {
                         pager.PageIndex = newPagedCollectionView.PageIndex;
                     }
+
                     // Raise PageIndex change notifications for a non-cancellable change
                     pager.RaisePageIndexChangeEvents(true /*raisePageChanged*/);
                 }
+
                 pager.ItemCount = newPagedCollectionView.ItemCount;
                 pager.UpdatePageCount();
                 if (newPagedCollectionView.IsPageChanging)
                 {
-                    // Raise non-cancellable PageIndex changing notification since the source is already 
+                    // Raise non-cancellable PageIndex changing notification since the source is already
                     // in the middle of a page change
                     pager.RaisePageIndexChangeEvents(false /*raisePageChanged*/);
                 }
             }
             else
             {
-                IEnumerable enumerable = e.NewValue as IEnumerable;
-                if (enumerable != null)
+                if (e.NewValue is IEnumerable enumerable)
                 {
                     IEnumerable<object> genericEnumerable = enumerable.Cast<object>();
                     pager.ItemCount = genericEnumerable.Count();
@@ -1180,7 +1154,7 @@ namespace Kino.Toolkit.Wpf
         ////
         ////  Private Methods
         ////
-        ////------------------------------------------------------ 
+        ////------------------------------------------------------
 
         #region Private Methods
 
@@ -1191,11 +1165,11 @@ namespace Kino.Toolkit.Wpf
         private int GetButtonStartIndex()
         {
             // Because we have a starting PageIndex, we want to try and center the current pages
-            // around this value. But if we are at the end of the collection, we display the last 
+            // around this value. But if we are at the end of the collection, we display the last
             // available buttons.
             return Math.Min(
-                Math.Max((this.PageIndex + 1) - (this.NumericButtonCount / 2), 1), /* center buttons around pageIndex */
-                Math.Max(this.PageCount - this.NumericButtonCount + 1, 1));        /* lastPage - number of buttons */
+                Math.Max((PageIndex + 1) - (NumericButtonCount / 2), 1), /* center buttons around pageIndex */
+                Math.Max(PageCount - NumericButtonCount + 1, 1));        /* lastPage - number of buttons */
         }
 
         /// <summary>
@@ -1204,36 +1178,37 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void MoveCurrentPageToTextboxValue()
         {
-            if (this._currentPageTextBox.Text != (this.PageIndex + 1).ToString(CultureInfo.CurrentCulture))
+            if (_currentPageTextBox.Text != (PageIndex + 1).ToString(CultureInfo.CurrentCulture))
             {
-                if (this.PagedSource != null && this.TryParseTextBoxPage())
+                if (PagedSource != null && TryParseTextBoxPage())
                 {
-                    this.MoveToRequestedPage();
+                    MoveToRequestedPage();
                 }
-                this._currentPageTextBox.Text = (this.PageIndex + 1).ToString(CultureInfo.CurrentCulture);
+
+                _currentPageTextBox.Text = (PageIndex + 1).ToString(CultureInfo.CurrentCulture);
             }
         }
 
         /// <summary>
-        /// Given the new value of _requestedPageIndex, this method will attempt a page move 
+        /// Given the new value of _requestedPageIndex, this method will attempt a page move
         /// and set the _currentPageIndex variable accordingly.
         /// </summary>
         private void MoveToRequestedPage()
         {
-            if (this._requestedPageIndex >= 0 && this._requestedPageIndex < this.PageCount)
+            if (_requestedPageIndex >= 0 && _requestedPageIndex < PageCount)
             {
                 // Requested page is within the known range
-                this.PageIndex = this._requestedPageIndex;
+                PageIndex = _requestedPageIndex;
             }
-            else if (this._requestedPageIndex >= this.PageCount)
+            else if (_requestedPageIndex >= PageCount)
             {
-                if (this.IsTotalItemCountFixed && this.PagedSource.TotalItemCount != -1)
+                if (IsTotalItemCountFixed && PagedSource.TotalItemCount != -1)
                 {
-                    this.PageIndex = this.PageCount - 1;
+                    PageIndex = PageCount - 1;
                 }
                 else
                 {
-                    this.PageIndex = this._requestedPageIndex;
+                    PageIndex = _requestedPageIndex;
                 }
             }
         }
@@ -1247,7 +1222,7 @@ namespace Kino.Toolkit.Wpf
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                this.MoveCurrentPageToTextboxValue();
+                MoveCurrentPageToTextboxValue();
             }
         }
 
@@ -1258,7 +1233,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args for this event.</param>
         private void OnCurrentPageTextBoxLostFocus(object sender, RoutedEventArgs e)
         {
-            this.MoveCurrentPageToTextboxValue();
+            MoveCurrentPageToTextboxValue();
         }
 
         /// <summary>
@@ -1268,7 +1243,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The DependencyPropertyChangedEventArgs for this event.</param>
         private void OnDataPagerIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            this.UpdateCommonState();
+            UpdateCommonState();
         }
 
         /// <summary>
@@ -1278,12 +1253,12 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args for this event.</param>
         private void OnFirstPageButtonBaseClick(object sender, RoutedEventArgs e)
         {
-            if (this.PagedSource != null)
+            if (PagedSource != null)
             {
-                int oldPageIndex = this.PagedSource.PageIndex;
+                int oldPageIndex = PagedSource.PageIndex;
                 if (oldPageIndex != 0)
                 {
-                    this.PageMoveHandler(oldPageIndex, -1, this.PagedSource.MoveToFirstPage);
+                    PageMoveHandler(oldPageIndex, -1, PagedSource.MoveToFirstPage);
                 }
             }
         }
@@ -1295,12 +1270,12 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args for this event.</param>
         private void OnLastPageButtonBaseClick(object sender, RoutedEventArgs e)
         {
-            if (this.PagedSource != null)
+            if (PagedSource != null)
             {
-                int oldPageIndex = this.PagedSource.PageIndex;
-                if (oldPageIndex != this.PageCount)
+                int oldPageIndex = PagedSource.PageIndex;
+                if (oldPageIndex != PageCount)
                 {
-                    this.PageMoveHandler(oldPageIndex, -1, this.PagedSource.MoveToLastPage);
+                    PageMoveHandler(oldPageIndex, -1, PagedSource.MoveToLastPage);
                 }
             }
         }
@@ -1312,12 +1287,12 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args for this event.</param>
         private void OnNextPageButtonBaseClick(object sender, RoutedEventArgs e)
         {
-            if (this.PagedSource != null)
+            if (PagedSource != null)
             {
-                int oldPageIndex = this.PagedSource.PageIndex;
-                if (oldPageIndex != this.PageIndex + 1)
+                int oldPageIndex = PagedSource.PageIndex;
+                if (oldPageIndex != PageIndex + 1)
                 {
-                    this.PageMoveHandler(oldPageIndex, -1, this.PagedSource.MoveToNextPage);
+                    PageMoveHandler(oldPageIndex, -1, PagedSource.MoveToNextPage);
                 }
             }
         }
@@ -1329,19 +1304,19 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args for this event.</param>
         private void OnPreviousPageButtonBaseClick(object sender, RoutedEventArgs e)
         {
-            if (this.PagedSource != null)
+            if (PagedSource != null)
             {
-                int oldPageIndex = this.PagedSource.PageIndex;
-                if (oldPageIndex != this.PageIndex - 1)
+                int oldPageIndex = PagedSource.PageIndex;
+                if (oldPageIndex != PageIndex - 1)
                 {
-                    this.PageMoveHandler(oldPageIndex, -1, this.PagedSource.MoveToPreviousPage);
+                    PageMoveHandler(oldPageIndex, -1, PagedSource.MoveToPreviousPage);
                 }
             }
         }
 
         /// <summary>
         /// This helper method will take care of calling the specified page move
-        /// operation on the source collection, or MoveToPage if left null, while 
+        /// operation on the source collection, or MoveToPage if left null, while
         /// also firing the PageIndexChanging and PageIndexChanged events.
         /// </summary>
         /// <param name="oldPageIndex">The oldPageIndex value before we change pages</param>
@@ -1350,7 +1325,7 @@ namespace Kino.Toolkit.Wpf
         private void PageMoveHandler(int oldPageIndex, int newPageIndex, PageMoveOperationDelegate pageMoveOperation)
         {
             CancelEventArgs cancelArgs = new CancelEventArgs(false);
-            this.RaisePageIndexChanging(cancelArgs);
+            RaisePageIndexChanging(cancelArgs);
 
             // When the IPagedCollectionView implementation updates its PageIndex property,
             // the DataPager gets a notification and raises the PageIndexChanged event.
@@ -1364,20 +1339,22 @@ namespace Kino.Toolkit.Wpf
                 bool pageMoveOperationResult;
                 if (pageMoveOperation == null)
                 {
-                    Debug.Assert(this.PagedSource != null, "Unexpected this.PagedSource == null");
-                    pageMoveOperationResult = this.PagedSource.MoveToPage(newPageIndex);
+                    Debug.Assert(PagedSource != null, "Unexpected this.PagedSource == null");
+                    pageMoveOperationResult = PagedSource.MoveToPage(newPageIndex);
                 }
                 else
                 {
                     pageMoveOperationResult = pageMoveOperation();
                 }
+
                 if (!pageMoveOperationResult)
                 {
                     // Revert back to old value, since operation failed
                     this.SetValueNoCallback(KinoDataPager.PageIndexProperty, oldPageIndex);
-                    // The PageIndexChanged needs to be raised even though no move occurred, 
+
+                    // The PageIndexChanged needs to be raised even though no move occurred,
                     // because of the PageIndexChanging notification above.
-                    this.RaisePageIndexChanged();
+                    RaisePageIndexChanged();
                 }
             }
         }
@@ -1389,41 +1366,34 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args for this event.</param>
         private void OnSourcePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Debug.Assert(this.PagedSource != null, "Unexpected null this.PagedSource");
+            Debug.Assert(PagedSource != null, "Unexpected null this.PagedSource");
 
             switch (e.PropertyName)
             {
                 case "Count":
                 case "ItemCount":
-                    this.ItemCount = this.PagedSource.ItemCount;
-                    this.UpdatePageCount();
-                    this.UpdateControl();
+                    ItemCount = PagedSource.ItemCount;
+                    UpdatePageCount();
+                    UpdateControl();
                     break;
 
                 case "PageIndex":
-                    int oldPageIndex = this.PageIndex;
-
-                    this.PageIndex = this.PagedSource.PageIndex;
-                    this.RaisePageIndexChanged();
-
-                    //DataPagerAutomationPeer peer = DataPagerAutomationPeer.FromElement(this) as DataPagerAutomationPeer;
-                    //if (peer != null && oldPageIndex != this.PageIndex)
-                    //{
-                    //    peer.RefreshPageIndex(oldPageIndex);
-                    //}
+                    int oldPageIndex = PageIndex;
+                    PageIndex = PagedSource.PageIndex;
+                    RaisePageIndexChanged();
                     break;
 
                 case "PageSize":
-                    this.PageSize = this.PagedSource.PageSize;
-                    this.UpdatePageCount();
-                    this.UpdateControl();
+                    PageSize = PagedSource.PageSize;
+                    UpdatePageCount();
+                    UpdateControl();
                     break;
 
                 case "CanChangePage":
                 case "Filter":
                 case "TotalItemCount":
                 case "SortDescriptions":
-                    this.UpdateControl();
+                    UpdateControl();
                     break;
             }
         }
@@ -1434,10 +1404,10 @@ namespace Kino.Toolkit.Wpf
         /// <param name="raisePageChanged">True when the PageChanged event needs to be raised</param>
         private void RaisePageIndexChangeEvents(bool raisePageChanged)
         {
-            this.RaisePageIndexChanging(new CancelEventArgs(false));
+            RaisePageIndexChanging(new CancelEventArgs(false));
             if (raisePageChanged)
             {
-                this.RaisePageIndexChanged();
+                RaisePageIndexChanged();
             }
         }
 
@@ -1446,19 +1416,16 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void RaisePageIndexChanged()
         {
-            this.UpdateControl();
+            UpdateControl();
 
-            if (this._needPageChangingNotification)
+            if (_needPageChangingNotification)
             {
-                this.RaisePageIndexChangeEvents(false /*raisePageChanged*/);
+                RaisePageIndexChangeEvents(false /*raisePageChanged*/);
             }
-            this._needPageChangingNotification = true;
 
-            EventHandler<EventArgs> handler = this.PageIndexChanged;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            _needPageChangingNotification = true;
+
+            PageIndexChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -1467,19 +1434,15 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args to use for the event.</param>
         private void RaisePageIndexChanging(CancelEventArgs e)
         {
-            if (this._needPageChangingNotification)
+            if (_needPageChangingNotification)
             {
-                EventHandler<CancelEventArgs> handler = this.PageIndexChanging;
-                if (handler != null)
-                {
-                    handler(this, e);
-                }
+                PageIndexChanging?.Invoke(this, e);
 
-                // A PageIndexChanging notification is still required when 
+                // A PageIndexChanging notification is still required when
                 // the change was cancelled.
                 if (!e.Cancel)
                 {
-                    this._needPageChangingNotification = false;
+                    _needPageChangingNotification = false;
                 }
             }
         }
@@ -1490,9 +1453,9 @@ namespace Kino.Toolkit.Wpf
         /// <param name="needPage">Boolean that specifies if a page is needed</param>
         private void SetCannotChangePage(bool needPage)
         {
-            if (this._currentPageTextBox != null && !needPage)
+            if (_currentPageTextBox != null && !needPage)
             {
-                this._currentPageTextBox.Text = String.Empty;
+                _currentPageTextBox.Text = string.Empty;
             }
 
             VisualStateManager.GoToState(this, DATAPAGER_stateMoveDisabled, true);
@@ -1509,9 +1472,9 @@ namespace Kino.Toolkit.Wpf
         {
             VisualStateManager.GoToState(this, DATAPAGER_stateMoveEnabled, true);
 
-            if (this._currentPageTextBox != null)
+            if (_currentPageTextBox != null)
             {
-                this._currentPageTextBox.Text = (this.PageIndex + 1).ToString(CultureInfo.CurrentCulture);
+                _currentPageTextBox.Text = (PageIndex + 1).ToString(CultureInfo.CurrentCulture);
             }
         }
 
@@ -1522,32 +1485,33 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Routed event for the notification</param>
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            if (this._ignoreToggleButtonCheckedNotification)
+            if (_ignoreToggleButtonCheckedNotification)
             {
                 return;
             }
 
             // Ignore notifications when the source is an IEnumerable
-            if (this.PagedSource != null)
+            if (PagedSource != null)
             {
                 ToggleButton button = sender as ToggleButton;
-                int uiIndex = this._numericButtonPanel.Children.IndexOf(button);
-                int pageIndex = this.GetButtonStartIndex() + uiIndex - 1;
+                int uiIndex = _numericButtonPanel.Children.IndexOf(button);
+                int pageIndex = GetButtonStartIndex() + uiIndex - 1;
 
-                this.PageMoveHandler(this.PageIndex, pageIndex, null);
+                PageMoveHandler(PageIndex, pageIndex, null);
 
-                if (this.PagedSource.PageIndex != pageIndex)
+                if (PagedSource.PageIndex != pageIndex)
                 {
                     try
                     {
-                        this._ignoreToggleButtonUncheckedNotification = true;
+                        _ignoreToggleButtonUncheckedNotification = true;
+
                         // The toggle button that was checked must remain unchecked
                         // while the page move occurs, or because the page move initiation failed.
                         button.IsChecked = false;
                     }
                     finally
                     {
-                        this._ignoreToggleButtonUncheckedNotification = false;
+                        _ignoreToggleButtonUncheckedNotification = false;
                     }
                 }
             }
@@ -1560,13 +1524,14 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Routed event for the notification</param>
         private void ToggleButton_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (!this._ignoreToggleButtonFocusNotification)
+            if (!_ignoreToggleButtonFocusNotification)
             {
                 ToggleButton button = sender as ToggleButton;
-                int uiIndex = this._numericButtonPanel.Children.IndexOf(button);
-                // Remember which toggle button got focus so the same page index can 
+                int uiIndex = _numericButtonPanel.Children.IndexOf(button);
+
+                // Remember which toggle button got focus so the same page index can
                 // regain focus when the numeric buttons are shifted.
-                this._focusedToggleButtonIndex = this.GetButtonStartIndex() + uiIndex - 1;
+                _focusedToggleButtonIndex = GetButtonStartIndex() + uiIndex - 1;
             }
         }
 
@@ -1577,10 +1542,10 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Routed event for the notification</param>
         private void ToggleButton_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!this._ignoreToggleButtonFocusNotification)
+            if (!_ignoreToggleButtonFocusNotification)
             {
                 // -1 is an indication that no toggle button has focus
-                this._focusedToggleButtonIndex = -1;
+                _focusedToggleButtonIndex = -1;
             }
         }
 
@@ -1591,19 +1556,20 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">Routed event for the notification</param>
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (!this._ignoreToggleButtonUncheckedNotification)
+            if (!_ignoreToggleButtonUncheckedNotification)
             {
                 try
                 {
-                    this._ignoreToggleButtonCheckedNotification = true;
-                    // Attempts to uncheck a numeric toggle button, other than willingly 
+                    _ignoreToggleButtonCheckedNotification = true;
+
+                    // Attempts to uncheck a numeric toggle button, other than willingly
                     // by internal logic, must fail.
                     ToggleButton button = sender as ToggleButton;
                     button.IsChecked = true;
                 }
                 finally
                 {
-                    this._ignoreToggleButtonCheckedNotification = false;
+                    _ignoreToggleButtonCheckedNotification = false;
                 }
             }
         }
@@ -1614,14 +1580,12 @@ namespace Kino.Toolkit.Wpf
         /// <returns>Whether or not the parsing of the string succeeded.</returns>
         private bool TryParseTextBoxPage()
         {
-            // 
-
-            bool successfullyParsed = int.TryParse(this._currentPageTextBox.Text, NumberStyles.Integer, CultureInfo.InvariantCulture, out this._requestedPageIndex);
+            bool successfullyParsed = int.TryParse(_currentPageTextBox.Text, NumberStyles.Integer, CultureInfo.InvariantCulture, out _requestedPageIndex);
 
             if (successfullyParsed)
             {
                 // Subtract one to make it zero-based.
-                this._requestedPageIndex--;
+                _requestedPageIndex--;
             }
 
             return successfullyParsed;
@@ -1633,37 +1597,38 @@ namespace Kino.Toolkit.Wpf
         private void UpdateButtonCount()
         {
             // what we should use as the button count
-            int buttonCount = Math.Min(this.NumericButtonCount, this.PageCount);
+            int buttonCount = Math.Min(NumericButtonCount, PageCount);
 
-            if (this._numericButtonPanel != null)
+            if (_numericButtonPanel != null)
             {
                 // add new
-                while (this._numericButtonPanel.Children.Count < buttonCount)
+                while (_numericButtonPanel.Children.Count < buttonCount)
                 {
-                    ToggleButton button = new ToggleButton();
-                    button.Style = this.NumericButtonStyle;
-                    button.Checked += new RoutedEventHandler(this.ToggleButton_Checked);
-                    button.Unchecked += new RoutedEventHandler(this.ToggleButton_Unchecked);
-                    button.GotFocus += new RoutedEventHandler(this.ToggleButton_GotFocus);
-                    button.LostFocus += new RoutedEventHandler(this.ToggleButton_LostFocus);
-                    this._numericButtonPanel.Children.Add(button);
+                    ToggleButton button = new ToggleButton
+                    {
+                        Style = NumericButtonStyle
+                    };
+                    button.Checked += new RoutedEventHandler(ToggleButton_Checked);
+                    button.Unchecked += new RoutedEventHandler(ToggleButton_Unchecked);
+                    button.GotFocus += new RoutedEventHandler(ToggleButton_GotFocus);
+                    button.LostFocus += new RoutedEventHandler(ToggleButton_LostFocus);
+                    _numericButtonPanel.Children.Add(button);
                 }
 
                 // remove excess
-                while (this._numericButtonPanel.Children.Count > buttonCount)
+                while (_numericButtonPanel.Children.Count > buttonCount)
                 {
-                    ToggleButton button = this._numericButtonPanel.Children[0] as ToggleButton;
-                    if (button != null)
+                    if (_numericButtonPanel.Children[0] is ToggleButton button)
                     {
-                        button.Checked -= new RoutedEventHandler(this.ToggleButton_Checked);
-                        button.Unchecked -= new RoutedEventHandler(this.ToggleButton_Unchecked);
-                        button.GotFocus -= new RoutedEventHandler(this.ToggleButton_GotFocus);
-                        button.LostFocus -= new RoutedEventHandler(this.ToggleButton_LostFocus);
-                        this._numericButtonPanel.Children.Remove(button);
+                        button.Checked -= new RoutedEventHandler(ToggleButton_Checked);
+                        button.Unchecked -= new RoutedEventHandler(ToggleButton_Unchecked);
+                        button.GotFocus -= new RoutedEventHandler(ToggleButton_GotFocus);
+                        button.LostFocus -= new RoutedEventHandler(ToggleButton_LostFocus);
+                        _numericButtonPanel.Children.Remove(button);
                     }
                 }
 
-                this.UpdateButtonDisplay();
+                UpdateButtonDisplay();
             }
         }
 
@@ -1672,41 +1637,42 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdateButtonDisplay()
         {
-            if (this._numericButtonPanel != null)
+            if (_numericButtonPanel != null)
             {
                 // what we should use as the start index
-                int startIndex = this.GetButtonStartIndex();
+                int startIndex = GetButtonStartIndex();
 
                 // what we should use as the button count
-                int buttonCount = Math.Min(this.NumericButtonCount, this.PageCount);
+                int buttonCount = Math.Min(NumericButtonCount, PageCount);
 
                 // by default no focus restoration needs to occur
                 bool isToggleButtonFocused = false;
 
                 int index = startIndex;
-                foreach (UIElement ui in this._numericButtonPanel.Children)
+                foreach (UIElement ui in _numericButtonPanel.Children)
                 {
-                    ToggleButton button = ui as ToggleButton;
-                    if (button != null)
+                    if (ui is ToggleButton button)
                     {
-                        if (this.PagedSource == null)
+                        if (PagedSource == null)
                         {
                             Debug.Assert(index == 1, "Unexpected index value for IEnumerable Source");
+
                             // The single toggle button needs to be checked.
                             button.IsChecked = true;
                         }
-                        else if (this.PagedSource != null && this.PagedSource.PageIndex == index - 1)
+                        else if (PagedSource != null && PagedSource.PageIndex == index - 1)
                         {
                             try
                             {
-                                this._ignoreToggleButtonCheckedNotification = true;
+                                _ignoreToggleButtonCheckedNotification = true;
+
                                 // The toggle button corresponding to the Source's current page
                                 // needs to be checked.
                                 button.IsChecked = true;
                             }
                             finally
                             {
-                                this._ignoreToggleButtonCheckedNotification = false;
+                                _ignoreToggleButtonCheckedNotification = false;
                             }
                         }
                         else
@@ -1715,19 +1681,20 @@ namespace Kino.Toolkit.Wpf
                             {
                                 try
                                 {
-                                    this._ignoreToggleButtonUncheckedNotification = true;
+                                    _ignoreToggleButtonUncheckedNotification = true;
+
                                     // All other toggle buttons needs to be unchecked.
                                     button.IsChecked = false;
                                 }
                                 finally
                                 {
-                                    this._ignoreToggleButtonUncheckedNotification = false;
+                                    _ignoreToggleButtonUncheckedNotification = false;
                                 }
                             }
                         }
 
-                        if (this.AutoEllipsis && index == startIndex + buttonCount - 1 &&
-                            (index != this.PageCount))
+                        if (AutoEllipsis && index == startIndex + buttonCount - 1 &&
+                            (index != PageCount))
                         {
                             button.Content = PagerResources.AutoEllipsisString;
                         }
@@ -1736,21 +1703,23 @@ namespace Kino.Toolkit.Wpf
                             button.Content = index;
                         }
 
-                        if (this._focusedToggleButtonIndex != -1 &&
-                            this._focusedToggleButtonIndex == index - 1)
+                        if (_focusedToggleButtonIndex != -1 &&
+                            _focusedToggleButtonIndex == index - 1)
                         {
                             try
                             {
-                                this._ignoreToggleButtonFocusNotification = true;
-                                // When the numeric toggle buttons are shifted because the 
-                                // checked one is centered, the previously focused button 
+                                _ignoreToggleButtonFocusNotification = true;
+
+                                // When the numeric toggle buttons are shifted because the
+                                // checked one is centered, the previously focused button
                                 // needs to be shifted as well.
                                 button.Focus();
                             }
                             finally
                             {
-                                this._ignoreToggleButtonFocusNotification = false;
+                                _ignoreToggleButtonFocusNotification = false;
                             }
+
                             isToggleButtonFocused = true;
                         }
 
@@ -1760,14 +1729,13 @@ namespace Kino.Toolkit.Wpf
                     }
                 }
 
-                if (this._focusedToggleButtonIndex != -1 && !isToggleButtonFocused)
+                if (_focusedToggleButtonIndex != -1 && !isToggleButtonFocused)
                 {
                     // The page index of the previously focused toggle button is now out of range.
                     // Focus the toggle button representing the current page instead.
-                    foreach (UIElement ui in this._numericButtonPanel.Children)
+                    foreach (UIElement ui in _numericButtonPanel.Children)
                     {
-                        ToggleButton button = ui as ToggleButton;
-                        if (button != null && (bool)button.IsChecked)
+                        if (ui is ToggleButton button && (bool)button.IsChecked)
                         {
                             button.Focus();
                             break;
@@ -1782,7 +1750,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdateCommonState()
         {
-            VisualStateManager.GoToState(this, this.IsEnabled ? DATAPAGER_stateNormal : DATAPAGER_stateDisabled, true);
+            VisualStateManager.GoToState(this, IsEnabled ? DATAPAGER_stateNormal : DATAPAGER_stateDisabled, true);
         }
 
         /// <summary>
@@ -1791,43 +1759,37 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdateControl()
         {
-            this.UpdatePageModeDisplay();
-            this.UpdateButtonCount();
+            UpdatePageModeDisplay();
+            UpdateButtonCount();
 
-            bool needPage = this.Source != null &&
-                ((this.PagedSource == null && this.PageSize > 0) ||
-                 (this.PagedSource != null && this.PagedSource.PageSize > 0));
+            bool needPage = Source != null &&
+                ((PagedSource == null && PageSize > 0) ||
+                 (PagedSource != null && PagedSource.PageSize > 0));
 
-            this.CanMoveToFirstPage = needPage && this.PageIndex > 0;
+            CanMoveToFirstPage = needPage && PageIndex > 0;
 
-            this.CanMoveToPreviousPage = this.CanMoveToFirstPage;
+            CanMoveToPreviousPage = CanMoveToFirstPage;
 
-            this.CanMoveToNextPage = needPage && this.PagedSource != null &&
-                (!this.IsTotalItemCountFixed || this.PagedSource.TotalItemCount == -1 || this.PageIndex < this.PageCount - 1);
+            CanMoveToNextPage = needPage && PagedSource != null &&
+                (!IsTotalItemCountFixed || PagedSource.TotalItemCount == -1 || PageIndex < PageCount - 1);
 
-            this.CanMoveToLastPage = needPage && this.PagedSource != null &&
-                this.PagedSource.TotalItemCount != -1 && this.PageIndex < this.PageCount - 1;
+            CanMoveToLastPage = needPage && PagedSource != null &&
+                PagedSource.TotalItemCount != -1 && PageIndex < PageCount - 1;
 
-            this.CanChangePage = needPage && (this.PagedSource == null || this.PagedSource.CanChangePage);
+            CanChangePage = needPage && (PagedSource == null || PagedSource.CanChangePage);
 
-            this.UpdateCurrentPagePrefixAndSuffix(needPage);
+            UpdateCurrentPagePrefixAndSuffix(needPage);
 
-            if (!needPage || !this.CanChangePage)
+            if (!needPage || !CanChangePage)
             {
-                this.SetCannotChangePage(needPage);
+                SetCannotChangePage(needPage);
             }
             else
             {
-                this.SetCanChangePage();
-                this.UpdateCanPageFirstAndPrevious();
-                this.UpdateCanPageNextAndLast();
+                SetCanChangePage();
+                UpdateCanPageFirstAndPrevious();
+                UpdateCanPageNextAndLast();
             }
-
-            //DataPagerAutomationPeer peer = DataPagerAutomationPeer.FromElement(this) as DataPagerAutomationPeer;
-            //if (peer != null)
-            //{
-            //    peer.RefreshProperties();
-            //}
         }
 
         /// <summary>
@@ -1836,8 +1798,8 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdateCanPageFirstAndPrevious()
         {
-            VisualStateManager.GoToState(this, this.CanMoveToFirstPage ? DATAPAGER_stateMoveFirstEnabled : DATAPAGER_stateMoveFirstDisabled, true);
-            VisualStateManager.GoToState(this, this.CanMoveToPreviousPage ? DATAPAGER_stateMovePreviousEnabled : DATAPAGER_stateMovePreviousDisabled, true);
+            VisualStateManager.GoToState(this, CanMoveToFirstPage ? DATAPAGER_stateMoveFirstEnabled : DATAPAGER_stateMoveFirstDisabled, true);
+            VisualStateManager.GoToState(this, CanMoveToPreviousPage ? DATAPAGER_stateMovePreviousEnabled : DATAPAGER_stateMovePreviousDisabled, true);
         }
 
         /// <summary>
@@ -1846,8 +1808,8 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdateCanPageNextAndLast()
         {
-            VisualStateManager.GoToState(this, this.CanMoveToNextPage ? DATAPAGER_stateMoveNextEnabled : DATAPAGER_stateMoveNextDisabled, true);
-            VisualStateManager.GoToState(this, this.CanMoveToLastPage ? DATAPAGER_stateMoveLastEnabled : DATAPAGER_stateMoveLastDisabled, true);
+            VisualStateManager.GoToState(this, CanMoveToNextPage ? DATAPAGER_stateMoveNextEnabled : DATAPAGER_stateMoveNextDisabled, true);
+            VisualStateManager.GoToState(this, CanMoveToLastPage ? DATAPAGER_stateMoveLastEnabled : DATAPAGER_stateMoveLastDisabled, true);
         }
 
         /// <summary>
@@ -1857,12 +1819,12 @@ namespace Kino.Toolkit.Wpf
         /// <param name="needPage">True when a Source is set and PageSize > 0</param>
         private void UpdateCurrentPagePrefixAndSuffix(bool needPage)
         {
-            bool needTotalPageCountUnknownState = !needPage || (this.PagedSource != null && this.PagedSource.TotalItemCount == -1);
+            bool needTotalPageCountUnknownState = !needPage || (PagedSource != null && PagedSource.TotalItemCount == -1);
             string textBlockCaption;
 
-            if (this._currentPagePrefixTextBlock != null)
+            if (_currentPagePrefixTextBlock != null)
             {
-                if (this._currentPagePrefixTextBlock != null)
+                if (_currentPagePrefixTextBlock != null)
                 {
                     if (needTotalPageCountUnknownState)
                     {
@@ -1873,22 +1835,22 @@ namespace Kino.Toolkit.Wpf
                         textBlockCaption = string.Format(
                             CultureInfo.InvariantCulture,
                             PagerResources.CurrentPagePrefix_TotalPageCountKnown,
-                            this.PageCount.ToString(CultureInfo.CurrentCulture));
+                            PageCount.ToString(CultureInfo.CurrentCulture));
                     }
 
-                    //this._currentPagePrefixTextBlock.Text = textBlockCaption;
+                    // this._currentPagePrefixTextBlock.Text = textBlockCaption;
                     if (string.IsNullOrEmpty(textBlockCaption))
                     {
-                        this._currentPagePrefixTextBlock.Visibility = Visibility.Collapsed;
+                        _currentPagePrefixTextBlock.Visibility = Visibility.Collapsed;
                     }
                     else
                     {
-                        this._currentPagePrefixTextBlock.Visibility = Visibility.Visible;
+                        _currentPagePrefixTextBlock.Visibility = Visibility.Visible;
                     }
                 }
             }
 
-            if (this._currentPageSuffixTextBlock != null)
+            if (_currentPageSuffixTextBlock != null)
             {
                 if (needTotalPageCountUnknownState)
                 {
@@ -1899,24 +1861,21 @@ namespace Kino.Toolkit.Wpf
                     textBlockCaption = string.Format(
                         CultureInfo.InvariantCulture,
                         PagerResources.CurrentPageSuffix_TotalPageCountKnown,
-                        this.PageCount.ToString(CultureInfo.CurrentCulture));
+                        PageCount.ToString(CultureInfo.CurrentCulture));
                 }
 
-                //this._currentPageSuffixTextBlock.Text = textBlockCaption;
                 if (string.IsNullOrEmpty(textBlockCaption))
                 {
-                    this._currentPageSuffixTextBlock.Visibility = Visibility.Collapsed;
+                    _currentPageSuffixTextBlock.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    this._currentPageSuffixTextBlock.Visibility = Visibility.Visible;
+                    _currentPageSuffixTextBlock.Visibility = Visibility.Visible;
                 }
             }
 
             VisualStateManager.GoToState(this, needTotalPageCountUnknownState ? DATAPAGER_stateTotalPageCountUnknown : DATAPAGER_stateTotalPageCountKnown, true);
         }
-
-       
 
         /// <summary>
         /// Updates the visual display to show the current page mode
@@ -1924,7 +1883,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdatePageModeDisplay()
         {
-            VisualStateManager.GoToState(this, Enum.GetName(typeof(PagerDisplayMode), this.DisplayMode), true);
+            VisualStateManager.GoToState(this, Enum.GetName(typeof(PagerDisplayMode), DisplayMode), true);
         }
 
         /// <summary>
@@ -1932,16 +1891,21 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void UpdatePageCount()
         {
-            if (this.PagedSource.PageSize > 0)
+            if (PagedSource.PageSize > 0)
             {
-                this.PageCount = Math.Max(1, (int)Math.Ceiling((double)this.PagedSource.ItemCount / this.PagedSource.PageSize));
+                PageCount = Math.Max(1, (int)Math.Ceiling((double)PagedSource.ItemCount / PagedSource.PageSize));
             }
             else
             {
-                this.PageCount = 1;
+                PageCount = 1;
             }
         }
 
         #endregion Private Methods
     }
 }
+#pragma warning restore SA1201
+#pragma warning restore SA1202
+#pragma warning restore SA1214
+#pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

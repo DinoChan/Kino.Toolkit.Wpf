@@ -19,10 +19,10 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置ControlPanel的值
-        /// </summary>  
-        public Object ControlPanel
+        /// </summary>
+        public object ControlPanel
         {
-            get => (Object)GetValue(ControlPanelProperty);
+            get => (object)GetValue(ControlPanelProperty);
             set => SetValue(ControlPanelProperty, value);
         }
 
@@ -30,13 +30,13 @@ namespace Kino.Toolkit.Wpf.Samples
         /// 标识 ControlPanel 依赖属性。
         /// </summary>
         public static readonly DependencyProperty ControlPanelProperty =
-            DependencyProperty.Register(nameof(ControlPanel), typeof(Object), typeof(SampleSection), new PropertyMetadata(default(Object), OnControlPanelChanged));
+            DependencyProperty.Register(nameof(ControlPanel), typeof(object), typeof(SampleSection), new PropertyMetadata(default(object), OnControlPanelChanged));
 
         private static void OnControlPanelChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
 
-            var oldValue = (Object)args.OldValue;
-            var newValue = (Object)args.NewValue;
+            var oldValue = (object)args.OldValue;
+            var newValue = (object)args.NewValue;
             if (oldValue == newValue)
                 return;
 
@@ -49,7 +49,7 @@ namespace Kino.Toolkit.Wpf.Samples
         /// </summary>
         /// <param name="oldValue">ControlPanel 属性的旧值。</param>
         /// <param name="newValue">ControlPanel 属性的新值。</param>
-        protected virtual void OnControlPanelChanged(Object oldValue, Object newValue)
+        protected virtual void OnControlPanelChanged(object oldValue, object newValue)
         {
         }
 
@@ -57,7 +57,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置Description的值
-        /// </summary>  
+        /// </summary>
         public object Description
         {
             get => (object)GetValue(DescriptionProperty);

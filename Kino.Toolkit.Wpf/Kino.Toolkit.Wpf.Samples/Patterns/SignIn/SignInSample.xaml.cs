@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// SignInSample.xaml 的交互逻辑
     /// </summary>
-    public partial class SignInSample 
+    public partial class SignInSample
     {
         public SignInSample()
         {
@@ -27,8 +27,10 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnShowSample(object sender, RoutedEventArgs e)
         {
-            var dialog = new UserinfoDialog();
-            dialog.Owner = Window.GetWindow(this);
+            var dialog = new UserinfoDialog
+            {
+                Owner = Window.GetWindow(this)
+            };
             dialog.ShowDialog();
         }
     }

@@ -16,31 +16,6 @@ using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
-    /// <summary>
-    /// Reservoir of attached properties for use by extension methods that require non-static information about objects.
-    /// </summary>
-    internal class ExtensionProperties : DependencyObject
-    {
-        /// <summary>
-        /// Tracks whether or not the event handlers of a particular object are currently suspended.
-        /// Used by the SetValueNoCallback and AreHandlersSuspended extension methods.
-        /// </summary>
-        public static readonly DependencyProperty AreHandlersSuspended = DependencyProperty.RegisterAttached(
-            "AreHandlersSuspended",
-            typeof(Boolean),
-            typeof(ExtensionProperties),
-            new PropertyMetadata(false)
-        );
-        public static void SetAreHandlersSuspended(DependencyObject obj, Boolean value)
-        {
-            obj.SetValue(AreHandlersSuspended, value);
-        }
-        public static Boolean GetAreHandlersSuspended(DependencyObject obj)
-        {
-            return (Boolean)obj.GetValue(AreHandlersSuspended);
-        }
-    }
-
     internal static class Extensions
     {
         public static bool AreHandlersSuspended(this DependencyObject obj)
@@ -71,15 +46,16 @@ namespace Kino.Toolkit.Wpf
                     DependencyObject parent = VisualTreeHelper.GetParent(child);
                     if (parent == null)
                     {
-                        FrameworkElement childElement = child as FrameworkElement;
-                        if (childElement != null)
+                        if (child is FrameworkElement childElement)
                         {
                             parent = childElement.Parent;
                         }
                     }
+
                     child = parent;
                 }
             }
+
             return false;
         }
 
@@ -110,10 +86,11 @@ namespace Kino.Toolkit.Wpf
                 if (attributes != null && attributes.Length > 0)
                 {
                     ReadOnlyAttribute readOnlyAttribute = attributes[0] as ReadOnlyAttribute;
-                    Debug.Assert(readOnlyAttribute != null);
+                    Debug.Assert(readOnlyAttribute != null, "readOnlyAttribute must not by null");
                     return readOnlyAttribute.IsReadOnly;
                 }
             }
+
             return false;
         }
 
@@ -136,7 +113,6 @@ namespace Kino.Toolkit.Wpf
             {
                 // We haven't located a type yet.. try a different approach.
                 // Does the list have anything in it?
-
                 IEnumerator en = list.GetEnumerator();
                 if (en.MoveNext() && en.Current != null)
                 {
@@ -187,8 +163,7 @@ namespace Kino.Toolkit.Wpf
 
             return position.X > 0 && position.X < targetElement.ActualWidth
                 && (ignoreVertical
-                    || (position.Y > 0 && position.Y < targetElement.ActualHeight)
-                );
+                    || (position.Y > 0 && position.Y < targetElement.ActualHeight));
         }
     }
 }

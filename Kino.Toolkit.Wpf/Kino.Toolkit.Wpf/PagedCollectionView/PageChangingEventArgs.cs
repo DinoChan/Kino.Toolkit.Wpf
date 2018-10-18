@@ -17,12 +17,13 @@ namespace System.ComponentModel
     public sealed class PageChangingEventArgs : CancelEventArgs
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="PageChangingEventArgs"/> class.
         /// Constructor that takes the target page index
         /// </summary>
         /// <param name="newPageIndex">Index of the requested page</param>
         public PageChangingEventArgs(int newPageIndex)
         {
-            this.NewPageIndex = newPageIndex;
+            NewPageIndex = newPageIndex;
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置SampleType的值
-        /// </summary>  
+        /// </summary>
         public Type SampleType
         {
             get => (Type)GetValue(SampleTypeProperty);

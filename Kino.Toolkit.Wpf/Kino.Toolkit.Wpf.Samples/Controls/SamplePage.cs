@@ -28,7 +28,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         /// <summary>
         /// 获取或设置Link的值
-        /// </summary>  
+        /// </summary>
         public Uri Link
         {
             get => (Uri)GetValue(LinkProperty);

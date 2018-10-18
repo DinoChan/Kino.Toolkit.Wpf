@@ -22,12 +22,10 @@ namespace System.Windows.Common
     /// </summary>
     internal static class TypeHelper
     {
-        #region Internal Fields
         internal const char IndexParameterSeparator = ',';
         internal const char LeftIndexerToken = '[';
         internal const char PropertyNameSeparator = '.';
         internal const char RightIndexerToken = ']';
-        #endregion
 
         private static Type FindGenericType(Type definition, Type type)
         {
@@ -37,6 +35,7 @@ namespace System.Windows.Common
                 {
                     return type;
                 }
+
                 if (definition.IsInterface)
                 {
                     foreach (Type type2 in type.GetInterfaces())
@@ -48,8 +47,10 @@ namespace System.Windows.Common
                         }
                     }
                 }
+
                 type = type.BaseType;
             }
+
             return null;
         }
 
@@ -79,6 +80,7 @@ namespace System.Windows.Common
             {
                 return type.GetGenericArguments()[0];
             }
+
             return enumerableType;
         }
 
@@ -90,7 +92,7 @@ namespace System.Windows.Common
         /// <param name="propertyPath">Property path</param>
         /// <param name="exception">Potential exception</param>
         /// <param name="item">Parent item which will be set to the property value if non-null.</param>
-        /// <returns></returns>
+        /// <returns>PropertyInfo</returns>
         private static PropertyInfo GetNestedProperty(this Type parentType, string propertyPath, out Exception exception, ref object item)
         {
             exception = null;
@@ -101,8 +103,7 @@ namespace System.Windows.Common
             {
                 // if we can't find the property or it is not of the correct type,
                 // treat it as a null value
-                object[] index = null;
-                propertyInfo = type.GetPropertyOrIndexer(propertyNames[i], out index);
+                propertyInfo = type.GetPropertyOrIndexer(propertyNames[i], out object[] index);
                 if (propertyInfo == null)
                 {
                     item = null;
@@ -124,6 +125,7 @@ namespace System.Windows.Common
                 {
                     item = propertyInfo.GetValue(item, index);
                 }
+
                 type = propertyInfo.PropertyType.GetNonNullableType();
             }
 
@@ -145,9 +147,8 @@ namespace System.Windows.Common
             }
 
             object item = null;
-            Exception exception = null;
-            PropertyInfo propertyInfo = parentType.GetNestedProperty(propertyPath, out exception, ref item);
-            return propertyInfo == null ? null : propertyInfo.PropertyType;
+            PropertyInfo propertyInfo = parentType.GetNestedProperty(propertyPath, out Exception exception, ref item);
+            return propertyInfo?.PropertyType;
         }
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace System.Windows.Common
             }
 
             // if the propertyPath is null or empty, return the item
-            if (String.IsNullOrEmpty(propertyPath))
+            if (string.IsNullOrEmpty(propertyPath))
             {
                 return item;
             }
@@ -186,6 +187,7 @@ namespace System.Windows.Common
                     return null;
                 }
             }
+
             return propertyValue;
         }
 
@@ -249,7 +251,7 @@ namespace System.Windows.Common
                         if (parameterInfos[0].ParameterType == typeof(int))
                         {
                             int intIndex = -1;
-                            if (Int32.TryParse(stringIndex.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out intIndex))
+                            if (int.TryParse(stringIndex.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out intIndex))
                             {
                                 indexer = propertyInfo;
                                 index = new object[] { intIndex };
@@ -267,6 +269,7 @@ namespace System.Windows.Common
                     }
                 }
             }
+
             return indexer;
         }
 
@@ -283,6 +286,7 @@ namespace System.Windows.Common
             {
                 s += '?';
             }
+
             return s;
         }
 
@@ -293,7 +297,7 @@ namespace System.Windows.Common
 
         internal static bool IsNullableType(this Type type)
         {
-            return (((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>)));
+            return ((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>));
         }
 
         /// <summary>
@@ -327,6 +331,7 @@ namespace System.Windows.Common
                     }
                 }
             }
+
             return propertyPaths;
         }
     }

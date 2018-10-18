@@ -17,8 +17,10 @@ namespace Kino.Toolkit.Wpf.Samples
 
         public TestRemoteService()
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(2);
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(2)
+            };
             _timer.Tick += OnTmerTick;
             _source = new Collection<TestModel>();
             for (int i = 0; i < 100; i++)
@@ -56,9 +58,11 @@ namespace Kino.Toolkit.Wpf.Samples
         public async Task<ILoadResult> LoadDataAsync(int pageIndex, int pageSize)
         {
             var collection = new Collection<TestModel>(_source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
-            var result = new LoadResult();
-            result.Result = collection;
-            result.TotalCount = TotalCount;
+            var result = new LoadResult
+            {
+                Result = collection,
+                TotalCount = TotalCount
+            };
             await Task.Delay(TimeSpan.FromSeconds(2));
             return result;
         }
@@ -66,8 +70,7 @@ namespace Kino.Toolkit.Wpf.Samples
         private void OnTmerTick(object sender, EventArgs e)
         {
             _timer.Stop();
-            if (Completed != null)
-                Completed(this, EventArgs.Empty);
+            Completed?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -88,5 +91,5 @@ namespace Kino.Toolkit.Wpf.Samples
     //    }
     //}
 
-  
+
 }

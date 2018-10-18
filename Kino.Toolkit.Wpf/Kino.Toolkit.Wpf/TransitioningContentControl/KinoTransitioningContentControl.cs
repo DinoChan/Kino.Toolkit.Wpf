@@ -12,8 +12,8 @@ using System.Windows.Media.Animation;
 namespace Kino.Toolkit.Wpf
 {
     /// <summary>
-    /// Represents a control with a single piece of content and when that content 
-    /// changes performs a transition animation. 
+    /// Represents a control with a single piece of content and when that content
+    /// changes performs a transition animation.
     /// </summary>
     /// <QualityBand>Experimental</QualityBand>
     /// <remarks>The API for this control will change considerably in the future.</remarks>
@@ -27,7 +27,6 @@ namespace Kino.Toolkit.Wpf
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
     public class KinoTransitioningContentControl : ContentControl
     {
-        #region Visual state names
         /// <summary>
         /// The name of the group that holds the presentation states.
         /// </summary>
@@ -52,9 +51,6 @@ namespace Kino.Toolkit.Wpf
 
         public const string DownTransitionState = "DownTransition";
 
-        #endregion Visual state names
-
-        #region Template part names
         /// <summary>
         /// The name of the control that will display the previous content.
         /// </summary>
@@ -65,9 +61,6 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         internal const string CurrentContentPresentationSitePartName = "CurrentContentPresentationSite";
 
-        #endregion Template part names
-
-        #region TemplateParts
         /// <summary>
         /// Gets or sets the current content presentation site.
         /// </summary>
@@ -79,9 +72,6 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <value>The previous content presentation site.</value>
         private ContentPresenter PreviousContentPresentationSite { get; set; }
-        #endregion TemplateParts
-
-        #region public bool IsTransitioning
 
         /// <summary>
         /// Indicates whether the control allows writing IsTransitioning.
@@ -94,7 +84,11 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public bool IsTransitioning
         {
-            get { return (bool)GetValue(IsTransitioningProperty); }
+            get
+            {
+                return (bool)GetValue(IsTransitioningProperty);
+            }
+
             private set
             {
                 _allowIsTransitioningWrite = true;
@@ -128,7 +122,6 @@ namespace Kino.Toolkit.Wpf
                 throw new InvalidOperationException(Properties.Resources.TransitiotioningContentControl_IsTransitioningReadOnly);
             }
         }
-        #endregion public bool IsTransitioning
 
         /// <summary>
         /// The storyboard that is used to transition old and new content.
@@ -140,17 +133,19 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private Storyboard CurrentTransition
         {
-            get { return _currentTransition; }
+            get
+            {
+                return _currentTransition;
+            }
+
             set
             {
-                // decouple event
                 if (_currentTransition != null)
                 {
                     _currentTransition.Completed -= OnTransitionCompleted;
                 }
 
                 _currentTransition = value;
-
                 if (_currentTransition != null)
                 {
                     _currentTransition.Completed += OnTransitionCompleted;
@@ -158,7 +153,6 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        #region public string Transition
         /// <summary>
         /// Gets or sets the name of the transition to use. These correspond
         /// directly to the VisualStates inside the PresentationStates group.
@@ -222,10 +216,9 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-
         /// <summary>
         /// 获取或设置TransitionType的值
-        /// </summary>  
+        /// </summary>
         public TransitionType TransitionType
         {
             get => (TransitionType)GetValue(TransitionTypeProperty);
@@ -240,11 +233,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnTransitionTypeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (TransitionType)args.OldValue;
             var newValue = (TransitionType)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoTransitioningContentControl;
             target?.OnTransitionTypeChanged(oldValue, newValue);
@@ -278,9 +272,7 @@ namespace Kino.Toolkit.Wpf
                     break;
             }
         }
-        #endregion public string Transition
 
-        #region public bool RestartTransitionOnContentChange
         /// <summary>
         /// Gets or sets a value indicating whether the current transition
         /// will be aborted when setting new content during a transition.
@@ -319,14 +311,11 @@ namespace Kino.Toolkit.Wpf
         protected virtual void OnRestartTransitionOnContentChangeChanged(bool oldValue, bool newValue)
         {
         }
-        #endregion public bool RestartTransitionOnContentChange
 
-        #region Events
         /// <summary>
         /// Occurs when the current transition has completed.
         /// </summary>
         public event RoutedEventHandler TransitionCompleted;
-        #endregion Events
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KinoTransitioningContentControl"/> class.
@@ -337,7 +326,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Builds the visual tree for the TransitioningContentControl control 
+        /// Builds the visual tree for the TransitioningContentControl control
         /// when a new template is applied.
         /// </summary>
         public override void OnApplyTemplate()
@@ -363,6 +352,7 @@ namespace Kino.Toolkit.Wpf
             if (transition == null)
             {
                 string invalidTransition = Transition;
+
                 // revert to default
                 Transition = DefaultTransitionState;
 
@@ -410,7 +400,6 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-
         protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
         {
             base.OnContentTemplateChanged(oldContentTemplate, newContentTemplate);
@@ -446,11 +435,7 @@ namespace Kino.Toolkit.Wpf
         {
             AbortTransition();
 
-            RoutedEventHandler handler = TransitionCompleted;
-            if (handler != null)
-            {
-                handler(this, new RoutedEventArgs());
-            }
+            TransitionCompleted?.Invoke(this, new RoutedEventArgs());
         }
 
         /// <summary>
@@ -484,6 +469,7 @@ namespace Kino.Toolkit.Wpf
                     .Select(state => state.Storyboard)
                     .FirstOrDefault();
             }
+
             return newStoryboard;
         }
     }

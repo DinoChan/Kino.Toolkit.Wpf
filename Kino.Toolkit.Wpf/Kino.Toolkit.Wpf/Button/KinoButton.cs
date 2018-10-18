@@ -10,37 +10,39 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoButton : Button
     {
-        public KinoButton()
-        {
-            DefaultStyleKey = typeof(KinoButton);
-        }
-
-
-        /// <summary>
-        /// 获取或设置Icon的值
-        /// </summary>  
-        public object Icon
-        {
-            get => (object)GetValue(IconProperty);
-            set => SetValue(IconProperty, value);
-        }
-
         /// <summary>
         /// 标识 Icon 依赖属性。
         /// </summary>
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register(nameof(Icon), typeof(object), typeof(KinoButton), new PropertyMetadata(null, OnIconChanged));
 
-        private static void OnIconChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        /// <summary>
+        /// 标识 State 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty StateProperty =
+            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoButton), new PropertyMetadata(ProgressState.None, OnStateChanged));
+
+        public KinoButton()
         {
+            DefaultStyleKey = typeof(KinoButton);
+        }
 
-            var oldValue = (object)args.OldValue;
-            var newValue = (object)args.NewValue;
-            if (oldValue == newValue)
-                return;
+        /// <summary>
+        /// 获取或设置Icon的值
+        /// </summary>
+        public object Icon
+        {
+            get => GetValue(IconProperty);
+            set => SetValue(IconProperty, value);
+        }
 
-            var target = obj as KinoButton;
-            target?.OnIconChanged(oldValue, newValue);
+        /// <summary>
+        /// 获取或设置State的值
+        /// </summary>
+        public ProgressState State
+        {
+            get => (ProgressState)GetValue(StateProperty);
+            set => SetValue(StateProperty, value);
         }
 
         /// <summary>
@@ -52,21 +54,22 @@ namespace Kino.Toolkit.Wpf
         {
         }
 
-
-        /// <summary>
-        /// 获取或设置State的值
-        /// </summary>  
-        public ProgressState State
+        protected virtual void OnStateChanged(ProgressState oldValue, ProgressState newValue)
         {
-            get => (ProgressState)GetValue(StateProperty);
-            set => SetValue(StateProperty, value);
         }
 
-        /// <summary>
-        /// 标识 State 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoButton), new PropertyMetadata(ProgressState.None, OnStateChanged));
+        private static void OnIconChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = args.OldValue;
+            var newValue = args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoButton;
+            target?.OnIconChanged(oldValue, newValue);
+        }
 
         private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -75,10 +78,6 @@ namespace Kino.Toolkit.Wpf
             var newValue = (ProgressState)args.NewValue;
             if (oldValue != newValue)
                 target.OnStateChanged(oldValue, newValue);
-        }
-
-        protected virtual void OnStateChanged(ProgressState oldValue, ProgressState newValue)
-        {
         }
     }
 }

@@ -83,13 +83,13 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
 
     protected override void OnMouseLeftButtonDown( System.Windows.Input.MouseButtonEventArgs e )
     {
-      if( this.SampleType == null )
+      if( SampleType == null )
       {
-        this.IsExpanded = !this.IsExpanded;
+        IsExpanded = !IsExpanded;
       }
       else
       {
-        this.IsSelected = true;
+        IsSelected = true;
       }
       e.Handled = true;
     }

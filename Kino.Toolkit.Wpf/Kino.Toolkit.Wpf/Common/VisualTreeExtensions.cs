@@ -283,11 +283,10 @@ namespace Kino.Toolkit.Wpf
 
             try
             {
-                Point origin, bottom;
                 GeneralTransform transform = element.TransformToVisual(otherElement);
                 if (transform != null &&
-                    transform.TryTransform(new Point(), out origin) &&
-                    transform.TryTransform(new Point(element.ActualWidth, element.ActualHeight), out bottom))
+                    transform.TryTransform(default(Point), out Point origin) &&
+                    transform.TryTransform(new Point(element.ActualWidth, element.ActualHeight), out Point bottom))
                 {
                     return new Rect(origin, bottom);
                 }
@@ -324,18 +323,18 @@ namespace Kino.Toolkit.Wpf
 
             // Create an event handler that unhooks itself before calling the
             // action and then attach it to the LayoutUpdated event.
-            EventHandler handler = null;
-            handler = (s, e) =>
-                {
-                    element.LayoutUpdated -= handler;
-                    action();
-                };
+            void handler(object s, EventArgs e)
+            {
+                element.LayoutUpdated -= handler;
+                action();
+            }
+
             element.LayoutUpdated += handler;
         }
 
         /// <summary>
-        /// Retrieves all the logical children of a framework element using a 
-        /// breadth-first search. For performance reasons this method manually 
+        /// Retrieves all the logical children of a framework element using a
+        /// breadth-first search. For performance reasons this method manually
         /// manages the stack instead of using recursion.
         /// </summary>
         /// <param name="parent">The parent framework element.</param>
@@ -344,20 +343,17 @@ namespace Kino.Toolkit.Wpf
         {
             Debug.Assert(parent != null, "The parent cannot be null.");
 
-            Popup popup = parent as Popup;
-            if (popup != null)
+            if (parent is Popup popup)
             {
-                FrameworkElement popupChild = popup.Child as FrameworkElement;
-                if (popupChild != null)
+                if (popup.Child is FrameworkElement popupChild)
                 {
                     yield return popupChild;
                 }
             }
 
-            // If control is an items control return all children using the 
+            // If control is an items control return all children using the
             // Item container generator.
-            ItemsControl itemsControl = parent as ItemsControl;
-            if (itemsControl != null)
+            if (parent is ItemsControl itemsControl)
             {
                 foreach (FrameworkElement logicalChild in
                     Enumerable
@@ -391,8 +387,8 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Retrieves all the logical descendents of a framework element using a 
-        /// breadth-first search. For performance reasons this method manually 
+        /// Retrieves all the logical descendents of a framework element using a
+        /// breadth-first search. For performance reasons this method manually
         /// manages the stack instead of using recursion.
         /// </summary>
         /// <param name="parent">The parent framework element.</param>
@@ -401,7 +397,7 @@ namespace Kino.Toolkit.Wpf
         {
             Debug.Assert(parent != null, "The parent cannot be null.");
 
-            return 
+            return
                 FunctionalProgramming.TraverseBreadthFirst(
                     parent,
                     node => node.GetLogicalChildren(),

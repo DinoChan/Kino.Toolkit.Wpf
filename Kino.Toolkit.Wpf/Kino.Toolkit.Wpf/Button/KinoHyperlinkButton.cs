@@ -20,40 +20,11 @@ namespace Kino.Toolkit.Wpf
     {
         /// <summary>Identifies the <see cref="P:System.Windows.Controls.HyperlinkButton.NavigateUri" /> dependency property.</summary>
         /// <returns>The identifier for the <see cref="P:System.Windows.Controls.HyperlinkButton.NavigateUri" /> dependency property.</returns>
-        public readonly static DependencyProperty NavigateUriProperty;
+        public static readonly DependencyProperty NavigateUriProperty;
 
         /// <summary>Identifies the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</summary>
         /// <returns>The identifier for the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</returns>
-        public readonly static DependencyProperty TargetNameProperty;
-
-        /// <summary>Gets or sets the URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked. </summary>
-        /// <returns>The URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked.</returns>
-        [TypeConverter(typeof(UriTypeConverter))]
-        public Uri NavigateUri
-        {
-            get
-            {
-                return base.GetValue(KinoHyperlinkButton.NavigateUriProperty) as Uri;
-            }
-            set
-            {
-                base.SetValue(KinoHyperlinkButton.NavigateUriProperty, value);
-            }
-        }
-
-        /// <summary>Gets or sets the name of the target window or frame that the Web page should open in, or the name of the object within the Silverlight application to navigate to.</summary>
-        /// <returns>Gets or sets the name of the target window or frame that the Web page should open in, or the name of the object within the Silverlight application to navigate to.</returns>
-        public string TargetName
-        {
-            get
-            {
-                return base.GetValue(KinoHyperlinkButton.TargetNameProperty) as string;
-            }
-            set
-            {
-                base.SetValue(KinoHyperlinkButton.TargetNameProperty, value);
-            }
-        }
+        public static readonly DependencyProperty TargetNameProperty;
 
         static KinoHyperlinkButton()
         {
@@ -61,16 +32,32 @@ namespace Kino.Toolkit.Wpf
             TargetNameProperty = DependencyProperty.Register("TargetName", typeof(string), typeof(KinoHyperlinkButton), null);
         }
 
-        /// <summary>Initializes a new instance of the <see cref="T:System.Windows.Controls.HyperlinkButton" /> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="KinoHyperlinkButton"/> class.</summary>
         public KinoHyperlinkButton()
         {
-            base.DefaultStyleKey = typeof(KinoHyperlinkButton);
+            DefaultStyleKey = typeof(KinoHyperlinkButton);
             if (IsPermissionGranted() == false)
             {
-                this.IsEnabled = false;
+                IsEnabled = false;
             }
         }
 
+        /// <summary>Gets or sets the URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked. </summary>
+        /// <returns>The URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked.</returns>
+        [TypeConverter(typeof(UriTypeConverter))]
+        public Uri NavigateUri
+        {
+            get => GetValue(NavigateUriProperty) as Uri;
+            set => SetValue(NavigateUriProperty, value);
+        }
+
+        /// <summary>Gets or sets the name of the target window or frame that the Web page should open in, or the name of the object within the Silverlight application to navigate to.</summary>
+        /// <returns>TargetName</returns>
+        public string TargetName
+        {
+            get => GetValue(TargetNameProperty) as string;
+            set => SetValue(KinoHyperlinkButton.TargetNameProperty, value);
+        }
 
         /// <summary>Provides handling for the <see cref="E:System.Windows.Controls.Primitives.ButtonBase.Click" /> event.</summary>
         /// <exception cref="T:System.NotSupportedException">The <see cref="P:System.Windows.Controls.HyperlinkButton.NavigateUri" /> property is not or cannot be converted to an absolute URI.</exception>
@@ -103,6 +90,5 @@ namespace Kino.Toolkit.Wpf
                 return false;
             }
         }
-
     }
 }

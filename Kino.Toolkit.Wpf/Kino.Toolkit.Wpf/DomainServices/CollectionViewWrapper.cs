@@ -1,10 +1,14 @@
-﻿/* 
-    Copyright (c) 2013, The Outercurve Foundation. 
+﻿/*
+    Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
-    you may not use the software except in compliance with the License. 
+    you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +47,7 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionViewWrapper"/>
+        /// Initializes a new instance of the <see cref="CollectionViewWrapper"/> class.
         /// </summary>
         protected CollectionViewWrapper()
         {
@@ -60,31 +64,31 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._collectionView;
+                return _collectionView;
             }
 
             set
             {
-                if (this._collectionView != value)
+                if (_collectionView != value)
                 {
-                    if (this._collectionView != null)
+                    if (_collectionView != null)
                     {
-                        this._collectionView.CollectionChanged -= this.OnCollectionViewCollectionChanged;
-                        this._collectionView.CurrentChanged -= this.OnCollectionViewCurrentChanged;
-                        this._collectionView.CurrentChanging -= this.OnCollectionViewCurrentChanging;
+                        _collectionView.CollectionChanged -= OnCollectionViewCollectionChanged;
+                        _collectionView.CurrentChanged -= OnCollectionViewCurrentChanged;
+                        _collectionView.CurrentChanging -= OnCollectionViewCurrentChanging;
 
-                        this.RemovePropertyChangedIfNeeded(this._collectionView);
+                        RemovePropertyChangedIfNeeded(_collectionView);
                     }
 
-                    this._collectionView = value;
+                    _collectionView = value;
 
-                    if (this._collectionView != null)
+                    if (_collectionView != null)
                     {
-                        this._collectionView.CollectionChanged += this.OnCollectionViewCollectionChanged;
-                        this._collectionView.CurrentChanged += this.OnCollectionViewCurrentChanged;
-                        this._collectionView.CurrentChanging += this.OnCollectionViewCurrentChanging;
+                        _collectionView.CollectionChanged += OnCollectionViewCollectionChanged;
+                        _collectionView.CurrentChanged += OnCollectionViewCurrentChanged;
+                        _collectionView.CurrentChanging += OnCollectionViewCurrentChanging;
 
-                        this.AddPropertyChangedIfNeeded(this._collectionView);
+                        AddPropertyChangedIfNeeded(_collectionView);
                     }
                 }
             }
@@ -100,11 +104,12 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                if (this.CollectionView == null)
+                if (CollectionView == null)
                 {
                     throw new NotSupportedException(DomainServicesResources.IcvNotSupported);
                 }
-                return this.CollectionView;
+
+                return CollectionView;
             }
         }
 
@@ -115,23 +120,23 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._editableCollectionView;
+                return _editableCollectionView;
             }
 
             set
             {
-                if (this._editableCollectionView != value)
+                if (_editableCollectionView != value)
                 {
-                    if (this._editableCollectionView != null)
+                    if (_editableCollectionView != null)
                     {
-                        this.RemovePropertyChangedIfNeeded(this._editableCollectionView);
+                        RemovePropertyChangedIfNeeded(_editableCollectionView);
                     }
 
-                    this._editableCollectionView = value;
+                    _editableCollectionView = value;
 
-                    if (this._editableCollectionView != null)
+                    if (_editableCollectionView != null)
                     {
-                        this.AddPropertyChangedIfNeeded(this._editableCollectionView);
+                        AddPropertyChangedIfNeeded(_editableCollectionView);
                     }
                 }
             }
@@ -147,11 +152,12 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                if (this.EditableCollectionView == null)
+                if (EditableCollectionView == null)
                 {
                     throw new NotSupportedException(DomainServicesResources.IecvNotSupported);
                 }
-                return this.EditableCollectionView;
+
+                return EditableCollectionView;
             }
         }
 
@@ -162,29 +168,29 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                return this._pagedCollectionView;
+                return _pagedCollectionView;
             }
 
             set
             {
-                if (this._pagedCollectionView != value)
+                if (_pagedCollectionView != value)
                 {
-                    if (this._pagedCollectionView != null)
+                    if (_pagedCollectionView != null)
                     {
-                        this._pagedCollectionView.PageChanged -= this.OnPagedCollectionViewPageChanged;
-                        this._pagedCollectionView.PageChanging -= this.OnPagedCollectionViewPageChanging;
+                        _pagedCollectionView.PageChanged -= OnPagedCollectionViewPageChanged;
+                        _pagedCollectionView.PageChanging -= OnPagedCollectionViewPageChanging;
 
-                        this.RemovePropertyChangedIfNeeded(this._pagedCollectionView);
+                        RemovePropertyChangedIfNeeded(_pagedCollectionView);
                     }
 
-                    this._pagedCollectionView = value;
+                    _pagedCollectionView = value;
 
-                    if (this._pagedCollectionView != null)
+                    if (_pagedCollectionView != null)
                     {
-                        this._pagedCollectionView.PageChanged += this.OnPagedCollectionViewPageChanged;
-                        this._pagedCollectionView.PageChanging += this.OnPagedCollectionViewPageChanging;
+                        _pagedCollectionView.PageChanged += OnPagedCollectionViewPageChanged;
+                        _pagedCollectionView.PageChanging += OnPagedCollectionViewPageChanging;
 
-                        this.AddPropertyChangedIfNeeded(this._pagedCollectionView);
+                        AddPropertyChangedIfNeeded(_pagedCollectionView);
                     }
                 }
             }
@@ -200,11 +206,12 @@ namespace Kino.Toolkit.Wpf
         {
             get
             {
-                if (this.PagedCollectionView == null)
+                if (PagedCollectionView == null)
                 {
                     throw new NotSupportedException(DomainServicesResources.IpcvNotSupported);
                 }
-                return this.PagedCollectionView;
+
+                return PagedCollectionView;
             }
         }
 
@@ -236,7 +243,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCollectionViewCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged(e);
+            OnCollectionChanged(e);
         }
 
         /// <summary>
@@ -245,11 +252,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            NotifyCollectionChangedEventHandler handler = this.CollectionChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CollectionChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -259,7 +262,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCollectionViewCurrentChanged(object sender, EventArgs e)
         {
-            this.OnCurrentChanged(e);
+            OnCurrentChanged(e);
         }
 
         /// <summary>
@@ -268,11 +271,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCurrentChanged(EventArgs e)
         {
-            EventHandler handler = this.CurrentChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CurrentChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -282,7 +281,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCollectionViewCurrentChanging(object sender, CurrentChangingEventArgs e)
         {
-            this.OnCurrentChanging(e);
+            OnCurrentChanging(e);
         }
 
         /// <summary>
@@ -291,11 +290,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnCurrentChanging(CurrentChangingEventArgs e)
         {
-            CurrentChangingEventHandler handler = this.CurrentChanging;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CurrentChanging?.Invoke(this, e);
         }
 
         #endregion
@@ -306,28 +301,19 @@ namespace Kino.Toolkit.Wpf
         /// Gets a value that indicates whether this view supports filtering by way of
         /// the <see cref="Filter"/> property.
         /// </summary>
-        public virtual bool CanFilter
-        {
-            get { return this.CollectionViewChecked.CanFilter; }
-        }
+        public virtual bool CanFilter => CollectionViewChecked.CanFilter;
 
         /// <summary>
         /// Gets a value that indicates whether this view supports grouping by way of
         /// the <see cref="GroupDescriptions"/> property.
         /// </summary>
-        public virtual bool CanGroup
-        {
-            get { return this.CollectionViewChecked.CanGroup; }
-        }
+        public virtual bool CanGroup => CollectionViewChecked.CanGroup;
 
         /// <summary>
         /// Gets a value that indicates whether this view supports sorting by way of
         /// the <see cref="SortDescriptions"/> property.
         /// </summary>
-        public virtual bool CanSort
-        {
-            get { return this.CollectionViewChecked.CanSort; }
-        }
+        public virtual bool CanSort => CollectionViewChecked.CanSort;
 
         /// <summary>
         /// Gets or sets the cultural information for any operations of the view that
@@ -335,25 +321,19 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual CultureInfo Culture
         {
-            get { return this.CollectionViewChecked.Culture; }
-            set { this.CollectionViewChecked.Culture = value; }
+            get { return CollectionViewChecked.Culture; }
+            set { CollectionViewChecked.Culture = value; }
         }
 
         /// <summary>
         /// Gets the current item in the view.
         /// </summary>
-        public virtual object CurrentItem
-        {
-            get { return this.CollectionViewChecked.CurrentItem; }
-        }
+        public virtual object CurrentItem => CollectionViewChecked.CurrentItem;
 
         /// <summary>
         ///  Gets the ordinal position of the <see cref="CurrentItem"/> in the view.
         /// </summary>
-        public virtual int CurrentPosition
-        {
-            get { return this.CollectionViewChecked.CurrentPosition; }
-        }
+        public virtual int CurrentPosition => CollectionViewChecked.CurrentPosition;
 
         /// <summary>
         /// Gets or sets a callback that is used to determine whether an item is appropriate
@@ -361,77 +341,53 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual Predicate<object> Filter
         {
-            get { return this.CollectionViewChecked.Filter; }
-            set { this.CollectionViewChecked.Filter = value; }
+            get { return CollectionViewChecked.Filter; }
+            set { CollectionViewChecked.Filter = value; }
         }
 
         /// <summary>
         /// Gets a collection of <see cref="GroupDescription"/> objects that
         /// describe how the items in the collection are grouped in the view.
         /// </summary>
-        public virtual ObservableCollection<GroupDescription> GroupDescriptions
-        {
-            get { return this.CollectionViewChecked.GroupDescriptions; }
-        }
+        public virtual ObservableCollection<GroupDescription> GroupDescriptions => CollectionViewChecked.GroupDescriptions;
 
         /// <summary>
         /// Gets the top-level groups.
         /// </summary>
-        public virtual ReadOnlyObservableCollection<object> Groups
-        {
-            get { return this.CollectionViewChecked.Groups; }
-        }
+        public virtual ReadOnlyObservableCollection<object> Groups => CollectionViewChecked.Groups;
 
         /// <summary>
         /// Gets a value that indicates whether the <see cref="CurrentItem"/>
         /// of the view is beyond the end of the collection.
         /// </summary>
-        public virtual bool IsCurrentAfterLast
-        {
-            get { return this.CollectionViewChecked.IsCurrentAfterLast; }
-        }
+        public virtual bool IsCurrentAfterLast => CollectionViewChecked.IsCurrentAfterLast;
 
         /// <summary>
         /// Gets a value that indicates whether the <see cref="CurrentItem"/>
         /// of the view is beyond the start of the collection.
         /// </summary>
-        public virtual bool IsCurrentBeforeFirst
-        {
-            get { return this.CollectionViewChecked.IsCurrentBeforeFirst; }
-        }
+        public virtual bool IsCurrentBeforeFirst => CollectionViewChecked.IsCurrentBeforeFirst;
 
         /// <summary>
         /// Gets a value that indicates whether the view is empty.
         /// </summary>
-        public virtual bool IsEmpty
-        {
-            get { return this.CollectionViewChecked.IsEmpty; }
-        }
+        public virtual bool IsEmpty => CollectionViewChecked.IsEmpty;
 
         /// <summary>
         /// Gets a collection of <see cref="SortDescription"/> instances that
         /// describe how the items in the collection are sorted in the view.
         /// </summary>
-        public virtual SortDescriptionCollection SortDescriptions
-        {
-            get { return this.CollectionViewChecked.SortDescriptions; }
-        }
+        public virtual SortDescriptionCollection SortDescriptions => CollectionViewChecked.SortDescriptions;
 
         /// <summary>
         /// Gets the underlying collection.
         /// </summary>
-        public virtual IEnumerable SourceCollection
-        {
-            get { return this.CollectionViewChecked.SourceCollection; }
-        }
+        public virtual IEnumerable SourceCollection => CollectionViewChecked.SourceCollection;
 
         /// <summary>
         /// Gets a value that indicates whether a <see cref="DeferRefresh"/> method is pending
         /// </summary>
-        protected bool IsRefreshDeferred
-        {
-            get { return this._deferCount > 0; }
-        }
+        protected bool IsRefreshDeferred => _deferCount > 0;
 
         #endregion
 
@@ -446,7 +402,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool Contains(object item)
         {
-            return this.CollectionViewChecked.Contains(item);
+            return CollectionViewChecked.Contains(item);
         }
 
         /// <summary>
@@ -461,9 +417,9 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual IDisposable DeferRefresh()
         {
-            IDisposable disposable = this.CollectionViewChecked.DeferRefresh();
-            this._deferCount++;
-            return new DeferHelper(this.OnDeferHelperDisposed, disposable);
+            IDisposable disposable = CollectionViewChecked.DeferRefresh();
+            _deferCount++;
+            return new DeferHelper(OnDeferHelperDisposed, disposable);
         }
 
         /// <summary>
@@ -471,10 +427,10 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void OnDeferHelperDisposed()
         {
-            this._deferCount--;
-            if (this._deferCount == 0)
+            _deferCount--;
+            if (_deferCount == 0)
             {
-                this.Refresh();
+                Refresh();
             }
         }
 
@@ -487,7 +443,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual IEnumerator GetEnumerator()
         {
-            return this.CollectionViewChecked.GetEnumerator();
+            return CollectionViewChecked.GetEnumerator();
         }
 
         /// <summary>
@@ -500,7 +456,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool MoveCurrentTo(object item)
         {
-            return this.CollectionViewChecked.MoveCurrentTo(item);
+            return CollectionViewChecked.MoveCurrentTo(item);
         }
 
         /// <summary>
@@ -512,7 +468,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool MoveCurrentToFirst()
         {
-            return this.CollectionViewChecked.MoveCurrentToFirst();
+            return CollectionViewChecked.MoveCurrentToFirst();
         }
 
         /// <summary>
@@ -524,7 +480,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool MoveCurrentToLast()
         {
-            return this.CollectionViewChecked.MoveCurrentToLast();
+            return CollectionViewChecked.MoveCurrentToLast();
         }
 
         /// <summary>
@@ -537,7 +493,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool MoveCurrentToNext()
         {
-            return this.CollectionViewChecked.MoveCurrentToNext();
+            return CollectionViewChecked.MoveCurrentToNext();
         }
 
         /// <summary>
@@ -551,7 +507,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool MoveCurrentToPosition(int position)
         {
-            return this.CollectionViewChecked.MoveCurrentToPosition(position);
+            return CollectionViewChecked.MoveCurrentToPosition(position);
         }
 
         /// <summary>
@@ -564,7 +520,7 @@ namespace Kino.Toolkit.Wpf
         /// </returns>
         public virtual bool MoveCurrentToPrevious()
         {
-            return this.CollectionViewChecked.MoveCurrentToPrevious();
+            return CollectionViewChecked.MoveCurrentToPrevious();
         }
 
         /// <summary>
@@ -572,7 +528,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual void Refresh()
         {
-            this.CollectionViewChecked.Refresh();
+            CollectionViewChecked.Refresh();
         }
 
         #endregion
@@ -586,67 +542,46 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// Gets a value that indicates whether a new item can be added to the collection.
         /// </summary>
-        public virtual bool CanAddNew
-        {
-            get { return this.EditableCollectionViewChecked.CanAddNew; }
-        }
+        public virtual bool CanAddNew => EditableCollectionViewChecked.CanAddNew;
 
         /// <summary>
         /// Gets a value that indicates whether the collection view can discard pending
         /// changes and restore the original values of an edited object.
         /// </summary>
-        public virtual bool CanCancelEdit
-        {
-            get { return this.EditableCollectionViewChecked.CanCancelEdit; }
-        }
+        public virtual bool CanCancelEdit => EditableCollectionViewChecked.CanCancelEdit;
 
         /// <summary>
         /// Gets a value that indicates whether an item can be removed from the collection.
         /// </summary>
-        public virtual bool CanRemove
-        {
-            get { return this.EditableCollectionViewChecked.CanRemove; }
-        }
+        public virtual bool CanRemove => EditableCollectionViewChecked.CanRemove;
 
         /// <summary>
         /// Gets the item that is being added during the current add transaction.
         /// </summary>
-        public virtual object CurrentAddItem
-        {
-            get { return this.EditableCollectionViewChecked.CurrentAddItem; }
-        }
+        public virtual object CurrentAddItem => EditableCollectionViewChecked.CurrentAddItem;
 
         /// <summary>
         /// Gets the item in the collection that is being edited.
         /// </summary>
-        public virtual object CurrentEditItem
-        {
-            get { return this.EditableCollectionViewChecked.CurrentEditItem; }
-        }
+        public virtual object CurrentEditItem => EditableCollectionViewChecked.CurrentEditItem;
 
         /// <summary>
         /// Gets a value that indicates whether an add transaction is in progress.
         /// </summary>
-        public virtual bool IsAddingNew
-        {
-            get { return this.EditableCollectionViewChecked.IsAddingNew; }
-        }
+        public virtual bool IsAddingNew => EditableCollectionViewChecked.IsAddingNew;
 
         /// <summary>
         /// Gets a value that indicates whether an edit transaction is in progress.
         /// </summary>
-        public virtual bool IsEditingItem
-        {
-            get { return this.EditableCollectionViewChecked.IsEditingItem; }
-        }
+        public virtual bool IsEditingItem => EditableCollectionViewChecked.IsEditingItem;
 
         /// <summary>
         /// Gets or sets the position of the new item placeholder in the collection view.
         /// </summary>
         public virtual NewItemPlaceholderPosition NewItemPlaceholderPosition
         {
-            get { return this.EditableCollectionViewChecked.NewItemPlaceholderPosition; }
-            set { this.EditableCollectionViewChecked.NewItemPlaceholderPosition = value; }
+            get { return EditableCollectionViewChecked.NewItemPlaceholderPosition; }
+            set { EditableCollectionViewChecked.NewItemPlaceholderPosition = value; }
         }
 
         #endregion
@@ -659,7 +594,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns>The new item that is added to the collection.</returns>
         public virtual object AddNew()
         {
-            return this.EditableCollectionViewChecked.AddNew();
+            return EditableCollectionViewChecked.AddNew();
         }
 
         /// <summary>
@@ -668,7 +603,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual void CancelEdit()
         {
-            this.EditableCollectionViewChecked.CancelEdit();
+            EditableCollectionViewChecked.CancelEdit();
         }
 
         /// <summary>
@@ -676,7 +611,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual void CancelNew()
         {
-            this.EditableCollectionViewChecked.CancelNew();
+            EditableCollectionViewChecked.CancelNew();
         }
 
         /// <summary>
@@ -684,7 +619,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual void CommitEdit()
         {
-            this.EditableCollectionViewChecked.CommitEdit();
+            EditableCollectionViewChecked.CommitEdit();
         }
 
         /// <summary>
@@ -692,7 +627,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public virtual void CommitNew()
         {
-            this.EditableCollectionViewChecked.CommitNew();
+            EditableCollectionViewChecked.CommitNew();
         }
 
         /// <summary>
@@ -701,7 +636,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="item">The item to edit.</param>
         public virtual void EditItem(object item)
         {
-            this.EditableCollectionViewChecked.EditItem(item);
+            EditableCollectionViewChecked.EditItem(item);
         }
 
         /// <summary>
@@ -710,7 +645,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="item">The item to remove.</param>
         public virtual void Remove(object item)
         {
-            this.EditableCollectionViewChecked.Remove(item);
+            EditableCollectionViewChecked.Remove(item);
         }
 
         /// <summary>
@@ -719,7 +654,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="index">Index of item to remove.</param>
         public virtual void RemoveAt(int index)
         {
-            this.EditableCollectionViewChecked.RemoveAt(index);
+            EditableCollectionViewChecked.RemoveAt(index);
         }
 
         #endregion
@@ -747,7 +682,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPagedCollectionViewPageChanged(object sender, EventArgs e)
         {
-            this.OnPageChanged(e);
+            OnPageChanged(e);
         }
 
         /// <summary>
@@ -756,11 +691,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPageChanged(EventArgs e)
         {
-            EventHandler<EventArgs> handler = this.PageChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PageChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -770,7 +701,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPagedCollectionViewPageChanging(object sender, PageChangingEventArgs e)
         {
-            this.OnPageChanging(e);
+            OnPageChanging(e);
         }
 
         /// <summary>
@@ -779,11 +710,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPageChanging(PageChangingEventArgs e)
         {
-            EventHandler<PageChangingEventArgs> handler = this.PageChanging;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PageChanging?.Invoke(this, e);
         }
 
         #endregion
@@ -794,51 +721,36 @@ namespace Kino.Toolkit.Wpf
         /// Gets a value that indicates whether the <see cref="PageIndex"/>
         /// value can change.
         /// </summary>
-        public virtual bool CanChangePage
-        {
-            get { return this.PagedCollectionViewChecked.CanChangePage; }
-        }
+        public virtual bool CanChangePage => PagedCollectionViewChecked.CanChangePage;
 
         /// <summary>
         /// Gets a value that indicates whether the page index is changing.
         /// </summary>
-        public virtual bool IsPageChanging
-        {
-            get { return this.PagedCollectionViewChecked.IsPageChanging; }
-        }
+        public virtual bool IsPageChanging => PagedCollectionViewChecked.IsPageChanging;
 
         /// <summary>
         /// Gets the number of known items in the view before paging is applied.
         /// </summary>
-        public virtual int ItemCount
-        {
-            get { return this.PagedCollectionViewChecked.ItemCount; }
-        }
+        public virtual int ItemCount => PagedCollectionViewChecked.ItemCount;
 
         /// <summary>
         /// Gets the zero-based index of the current page.
         /// </summary>
-        public virtual int PageIndex
-        {
-            get { return this.PagedCollectionViewChecked.PageIndex; }
-        }
+        public virtual int PageIndex => PagedCollectionViewChecked.PageIndex;
 
         /// <summary>
         /// Gets or sets the number of items to display on a page.
         /// </summary>
         public virtual int PageSize
         {
-            get { return this.PagedCollectionViewChecked.PageSize; }
-            set { this.PagedCollectionViewChecked.PageSize = value; }
+            get { return PagedCollectionViewChecked.PageSize; }
+            set { PagedCollectionViewChecked.PageSize = value; }
         }
 
         /// <summary>
         /// Gets the total number of items in the view before paging is applied.
         /// </summary>
-        public virtual int TotalItemCount
-        {
-            get { return this.PagedCollectionViewChecked.TotalItemCount; }
-        }
+        public virtual int TotalItemCount => PagedCollectionViewChecked.TotalItemCount;
 
         #endregion
 
@@ -850,7 +762,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public virtual bool MoveToFirstPage()
         {
-            return this.PagedCollectionViewChecked.MoveToFirstPage();
+            return PagedCollectionViewChecked.MoveToFirstPage();
         }
 
         /// <summary>
@@ -859,7 +771,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public virtual bool MoveToLastPage()
         {
-            return this.PagedCollectionViewChecked.MoveToLastPage();
+            return PagedCollectionViewChecked.MoveToLastPage();
         }
 
         /// <summary>
@@ -868,7 +780,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public virtual bool MoveToNextPage()
         {
-            return this.PagedCollectionViewChecked.MoveToNextPage();
+            return PagedCollectionViewChecked.MoveToNextPage();
         }
 
         /// <summary>
@@ -878,7 +790,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public virtual bool MoveToPage(int pageIndex)
         {
-            return this.PagedCollectionViewChecked.MoveToPage(pageIndex);
+            return PagedCollectionViewChecked.MoveToPage(pageIndex);
         }
 
         /// <summary>
@@ -887,7 +799,7 @@ namespace Kino.Toolkit.Wpf
         /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
         public virtual bool MoveToPreviousPage()
         {
-            return this.PagedCollectionViewChecked.MoveToPreviousPage();
+            return PagedCollectionViewChecked.MoveToPreviousPage();
         }
 
         #endregion
@@ -909,9 +821,9 @@ namespace Kino.Toolkit.Wpf
         private int GetViewMatches(object view)
         {
             return
-                ((view == this.CollectionView) ? 1 : 0) +
-                ((view == this.EditableCollectionView) ? 1 : 0) +
-                ((view == this.PagedCollectionView) ? 1 : 0);
+                ((view == CollectionView) ? 1 : 0) +
+                ((view == EditableCollectionView) ? 1 : 0) +
+                ((view == PagedCollectionView) ? 1 : 0);
         }
 
         /// <summary>
@@ -920,10 +832,9 @@ namespace Kino.Toolkit.Wpf
         /// <param name="view">The view to add a handler to</param>
         private void AddPropertyChangedIfNeeded(object view)
         {
-            INotifyPropertyChanged notifyingView = view as INotifyPropertyChanged;
-            if ((notifyingView != null) && (this.GetViewMatches(view) == 1) /* evaluated after adding */)
+            if (view is INotifyPropertyChanged notifyingView && (this.GetViewMatches(view) == 1) /* evaluated after adding */)
             {
-                notifyingView.PropertyChanged += this.OnViewPropertyChanged;
+                notifyingView.PropertyChanged += OnViewPropertyChanged;
             }
         }
 
@@ -933,10 +844,9 @@ namespace Kino.Toolkit.Wpf
         /// <param name="view">The view to remove a handler from</param>
         private void RemovePropertyChangedIfNeeded(object view)
         {
-            INotifyPropertyChanged notifyingView = view as INotifyPropertyChanged;
-            if ((notifyingView != null) && (this.GetViewMatches(view) == 1) /* evaluated before removing */)
+            if (view is INotifyPropertyChanged notifyingView && (this.GetViewMatches(view) == 1) /* evaluated before removing */)
             {
-                notifyingView.PropertyChanged -= this.OnViewPropertyChanged;
+                notifyingView.PropertyChanged -= OnViewPropertyChanged;
             }
         }
 
@@ -948,7 +858,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnViewPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            this.OnPropertyChanged(e);
+            OnPropertyChanged(e);
         }
 
         /// <summary>
@@ -957,11 +867,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PropertyChanged?.Invoke(this, e);
         }
 
         #endregion
@@ -978,14 +884,14 @@ namespace Kino.Toolkit.Wpf
 
             public DeferHelper(Action action, IDisposable disposable)
             {
-                this._action = action;
-                this._disposable = disposable;
+                _action = action;
+                _disposable = disposable;
             }
 
             public void Dispose()
             {
-                this._disposable.Dispose();
-                this._action();
+                _disposable.Dispose();
+                _action();
             }
         }
 
@@ -1004,3 +910,8 @@ namespace Kino.Toolkit.Wpf
         #endregion
     }
 }
+#pragma warning restore SA1201
+#pragma warning restore SA1202
+#pragma warning restore SA1214
+#pragma warning restore SA1311
+#pragma warning restore SA1124 // Do not use regions

@@ -24,10 +24,9 @@ namespace Kino.Toolkit.Wpf
 
         public Thickness ExtraBorderPadding { get; }
 
-
         /// <summary>
         /// 获取或设置RibbonStyle的值
-        /// </summary>  
+        /// </summary>
         public Style RibbonStyle
         {
             get => (Style)GetValue(RibbonStyleProperty);
@@ -42,11 +41,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnRibbonStyleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (Style)args.OldValue;
             var newValue = (Style)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoRibbonWindow;
             target?.OnRibbonStyleChanged(oldValue, newValue);
@@ -54,7 +54,7 @@ namespace Kino.Toolkit.Wpf
 
         /// <summary>
         /// 获取或设置CommandBar的值
-        /// </summary>  
+        /// </summary>
         public KinoWindowCommandBar CommandBar
         {
             get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
@@ -69,11 +69,12 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-
             var oldValue = (KinoWindowCommandBar)args.OldValue;
             var newValue = (KinoWindowCommandBar)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as KinoRibbonWindow;
             target?.OnCommandBarChanged(oldValue, newValue);
@@ -88,7 +89,9 @@ namespace Kino.Toolkit.Wpf
         {
             Resources.Remove(typeof(Ribbon));
             if (newValue != null)
+            {
                 Resources.Add(typeof(Ribbon), newValue);
+            }
         }
 
         /// <summary>
@@ -104,16 +107,18 @@ namespace Kino.Toolkit.Wpf
         {
             base.OnMouseLeftButtonDown(e);
             if (e.ButtonState == MouseButtonState.Pressed)
+            {
                 DragMove();
+            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
             if (SizeToContent == SizeToContent.WidthAndHeight)
+            {
                 InvalidateMeasure();
+            }
         }
-
-
     }
 }

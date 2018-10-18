@@ -35,9 +35,9 @@ namespace Kino.Toolkit.Wpf.Samples
             HomeItem.IsSelected = true;
         }
 
-        private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<Object> e)
+        private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            this.UpdateSelectedView(e.NewValue as SampleTreeViewItem);
+            UpdateSelectedView(e.NewValue as SampleTreeViewItem);
         }
 
         private void UpdateSelectedView(SampleTreeViewItem treeViewItem)

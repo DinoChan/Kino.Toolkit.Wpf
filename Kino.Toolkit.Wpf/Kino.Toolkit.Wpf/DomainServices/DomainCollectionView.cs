@@ -1,10 +1,14 @@
-﻿/* 
-    Copyright (c) 2013, The Outercurve Foundation. 
+﻿/*
+    Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
-    you may not use the software except in compliance with the License. 
+    you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
+#pragma warning disable SA1124 // Do not use regions
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,51 +56,36 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/> that
-        /// uses the specified callback for loading data.
-        /// </summary>
-        /// <param name="load">The callback to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        //public DomainCollectionView(Func<LoadOperation> load, IEnumerable source)
-        //    : this(new DomainCollectionViewLoader(load), source)
-        //{
-        //}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/>
+        /// Initializes a new instance of the <see cref="DomainCollectionView"/> class.
         /// </summary>
         /// <param name="collectionViewLoader">The <see cref="CollectionViewLoader"/> to use for loading data</param>
         /// <param name="source">The source collection for this view. All updates to the
         /// source will be reflected in the view.
         /// </param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = ".")]
         public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable source)
         {
-            if (collectionViewLoader == null)
-            {
-                throw new ArgumentNullException("collectionViewLoader");
-            }
             if (source == null)
             {
                 throw new ArgumentNullException("source");
             }
 
-            this._collectionViewLoader = collectionViewLoader;
-            this._collectionViewLoader.CanLoadChanged += this.OnCollectionViewLoaderCanLoadChanged;
-            this._collectionViewLoader.LoadCompleted += this.OnLoadCompleted;
+            _collectionViewLoader = collectionViewLoader ?? throw new ArgumentNullException("collectionViewLoader");
+            _collectionViewLoader.CanLoadChanged += OnCollectionViewLoaderCanLoadChanged;
+            _collectionViewLoader.LoadCompleted += OnLoadCompleted;
 
-            this.CollectionView = DomainCollectionView.CreateView(source);
-            this.EditableCollectionView = this.CollectionView as IEditableCollectionView;
-            if (this.EditableCollectionView == null)
+            CollectionView = DomainCollectionView.CreateView(source);
+            EditableCollectionView = CollectionView as IEditableCollectionView;
+            if (EditableCollectionView == null)
             {
                 throw new InvalidOperationException(DomainServicesResources.MustImplementIecv);
             }
-            this.PagedCollectionView = new DomainPagedCollectionView(this.LoadPage);
 
-            this.SetPageIndex(this.PagedCollectionView.PageIndex);
+            PagedCollectionView = new DomainPagedCollectionView(LoadPage);
 
-            this.CalculateAll();
+            SetPageIndex(PagedCollectionView.PageIndex);
+
+            CalculateAll();
         }
 
         /// <summary>
@@ -106,8 +95,10 @@ namespace Kino.Toolkit.Wpf
         /// <returns>A view over the specified source</returns>
         private static ICollectionView CreateView(IEnumerable source)
         {
-            CollectionViewSource cvs = new CollectionViewSource();
-            cvs.Source = source;
+            CollectionViewSource cvs = new CollectionViewSource
+            {
+                Source = source
+            };
             return cvs.View;
         }
 
@@ -122,10 +113,7 @@ namespace Kino.Toolkit.Wpf
         /// <remarks>
         /// Overridden to return <c>false</c> when <see cref="DomainServices.CollectionViewLoader.CanLoad"/> is <c>false</c>
         /// </remarks>
-        public override bool CanChangePage
-        {
-            get { return this._canChangePage; }
-        }
+        public override bool CanChangePage => _canChangePage;
 
         /// <summary>
         /// Gets a value that indicates whether this view supports grouping by way of
@@ -134,10 +122,7 @@ namespace Kino.Toolkit.Wpf
         /// <remarks>
         /// Overridden to return <c>false</c> when <see cref="DomainServices.CollectionViewLoader.CanLoad"/> is <c>false</c>
         /// </remarks>
-        public override bool CanGroup
-        {
-            get { return this._canGroup; }
-        }
+        public override bool CanGroup => _canGroup;
 
         /// <summary>
         /// Gets a value that indicates whether this view supports sorting by way of
@@ -146,19 +131,13 @@ namespace Kino.Toolkit.Wpf
         /// <remarks>
         /// Overridden to return <c>false</c> when <see cref="DomainServices.CollectionViewLoader.CanLoad"/> is <c>false</c>
         /// </remarks>
-        public override bool CanSort
-        {
-            get { return this._canSort; }
-        }
+        public override bool CanSort => _canSort;
 
         /// <summary>
         /// Gets the <see cref="DomainServices.CollectionViewLoader"/> this view uses to asynchronously load
         /// the source collection.
         /// </summary>
-        public CollectionViewLoader CollectionViewLoader
-        {
-            get { return this._collectionViewLoader; }
-        }
+        public CollectionViewLoader CollectionViewLoader => _collectionViewLoader;
 
         /// <summary>
         /// Gets a collection of <see cref="GroupDescription"/> objects that
@@ -167,10 +146,7 @@ namespace Kino.Toolkit.Wpf
         /// <remarks>
         /// Overridden to preserve view state while an asynchronous load is taking place
         /// </remarks>
-        public override ObservableCollection<GroupDescription> GroupDescriptions
-        {
-            get { return this._groupDescriptions; }
-        }
+        public override ObservableCollection<GroupDescription> GroupDescriptions => _groupDescriptions;
 
         /// <summary>
         /// Gets the zero-based index of the current page.
@@ -178,10 +154,7 @@ namespace Kino.Toolkit.Wpf
         /// <remarks>
         /// Overridden to preserve view state while an asynchronous load is taking place
         /// </remarks>
-        public override int PageIndex
-        {
-            get { return this._pageIndex; }
-        }
+        public override int PageIndex => _pageIndex;
 
         /// <summary>
         /// Gets a collection of <see cref="SortDescription"/> instances that
@@ -190,19 +163,13 @@ namespace Kino.Toolkit.Wpf
         /// <remarks>
         /// Overridden to preserve view state while an asynchronous load is taking place
         /// </remarks>
-        public override SortDescriptionCollection SortDescriptions
-        {
-            get { return this._sortDescriptions; }
-        }
+        public override SortDescriptionCollection SortDescriptions => _sortDescriptions;
 
         /// <summary>
         /// Returns the <see cref="CollectionViewWrapper.PagedCollectionView"/> as a
         /// <see cref="DomainPagedCollectionView"/>
         /// </summary>
-        private DomainPagedCollectionView PagedCollectionViewPrivate
-        {
-            get { return this.PagedCollectionView as DomainPagedCollectionView; }
-        }
+        private DomainPagedCollectionView PagedCollectionViewPrivate => PagedCollectionView as DomainPagedCollectionView;
 
         #endregion
 
@@ -218,7 +185,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="totalItemCount">The total item count</param>
         public void SetTotalItemCount(int totalItemCount)
         {
-            this.UpdateItemCounts(totalItemCount);
+            UpdateItemCounts(totalItemCount);
         }
 
         /// <summary>
@@ -226,12 +193,12 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public override void Refresh()
         {
-            if (this._ignoreRefresh)
+            if (_ignoreRefresh)
             {
                 return;
             }
 
-            this.Load();
+            Load();
         }
 
         /// <summary>
@@ -239,12 +206,13 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         protected void Load()
         {
-            if (this.IsRefreshDeferred)
+            if (IsRefreshDeferred)
             {
                 return;
             }
-            this._currentLoadToken = new object();
-            this.CollectionViewLoader.Load(this._currentLoadToken);
+
+            _currentLoadToken = new object();
+            CollectionViewLoader.Load(_currentLoadToken);
         }
 
         /// <summary>
@@ -253,8 +221,8 @@ namespace Kino.Toolkit.Wpf
         /// <param name="pageIndex">The page index to load</param>
         private void LoadPage(int pageIndex)
         {
-            this.SetPageIndex(pageIndex);
-            this.Load();
+            SetPageIndex(pageIndex);
+            Load();
         }
 
         /// <summary>
@@ -265,19 +233,19 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         protected virtual void OnLoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if (e.UserState == this._currentLoadToken)
+            if (e.UserState == _currentLoadToken)
             {
                 if ((e.Error != null) || e.Cancelled)
                 {
-                    this.SyncToWrappedValues();
+                    SyncToWrappedValues();
                 }
                 else
                 {
-                    this.SyncToCurrentValues();
+                    SyncToCurrentValues();
                 }
 
-                this.PagedCollectionViewPrivate.CompleteMoveToPage(this.PageIndex);
-                this._currentLoadToken = null;
+                PagedCollectionViewPrivate.CompleteMoveToPage(PageIndex);
+                _currentLoadToken = null;
             }
         }
 
@@ -286,16 +254,16 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void SyncToWrappedValues()
         {
-            this._ignoreRefresh = true;
+            _ignoreRefresh = true;
 
-            using (this.DeferRefresh())
+            using (DeferRefresh())
             {
-                this.SyncToWrappedGroupDescriptions();
-                this.SyncToWrappedSortDescriptions();
-                this.SyncToWrappedPageIndex();
+                SyncToWrappedGroupDescriptions();
+                SyncToWrappedSortDescriptions();
+                SyncToWrappedPageIndex();
             }
 
-            this._ignoreRefresh = false;
+            _ignoreRefresh = false;
         }
 
         /// <summary>
@@ -303,7 +271,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void SyncToWrappedGroupDescriptions()
         {
-            DomainCollectionView.CopyGroupDescriptions(base.GroupDescriptions, this.GroupDescriptions);
+            DomainCollectionView.CopyGroupDescriptions(base.GroupDescriptions, GroupDescriptions);
         }
 
         /// <summary>
@@ -311,7 +279,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void SyncToWrappedSortDescriptions()
         {
-            DomainCollectionView.CopySortDescriptions(base.SortDescriptions, this.SortDescriptions);
+            DomainCollectionView.CopySortDescriptions(base.SortDescriptions, SortDescriptions);
         }
 
         /// <summary>
@@ -323,7 +291,7 @@ namespace Kino.Toolkit.Wpf
             // the first page move (base.PageIndex = -1). In that case, we'll keep the current index.
             if (base.PageIndex >= 0)
             {
-                this.SetPageIndex(base.PageIndex);
+                SetPageIndex(base.PageIndex);
             }
         }
 
@@ -332,16 +300,16 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void SyncToCurrentValues()
         {
-            this._ignoreRefresh = true;
+            _ignoreRefresh = true;
 
-            using (this.DeferRefresh())
+            using (DeferRefresh())
             {
-                this.SyncToCurrentGroupDescriptions();
-                this.SyncToCurrentSortDescriptions();
-                this.SyncToCurrentItemCounts();
+                SyncToCurrentGroupDescriptions();
+                SyncToCurrentSortDescriptions();
+                SyncToCurrentItemCounts();
             }
 
-            this._ignoreRefresh = false;
+            _ignoreRefresh = false;
         }
 
         /// <summary>
@@ -349,7 +317,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void SyncToCurrentGroupDescriptions()
         {
-            DomainCollectionView.CopyGroupDescriptions(this.GroupDescriptions, base.GroupDescriptions);
+            DomainCollectionView.CopyGroupDescriptions(GroupDescriptions, base.GroupDescriptions);
         }
 
         /// <summary>
@@ -357,7 +325,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void SyncToCurrentSortDescriptions()
         {
-            DomainCollectionView.CopySortDescriptions(this.SortDescriptions, base.SortDescriptions);
+            DomainCollectionView.CopySortDescriptions(SortDescriptions, base.SortDescriptions);
         }
 
         /// <summary>
@@ -366,7 +334,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         protected void SyncToCurrentItemCounts()
         {
-            this.UpdateItemCounts(this.TotalItemCount);
+            UpdateItemCounts(TotalItemCount);
         }
 
         /// <summary>
@@ -398,7 +366,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and 
+        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and
         /// <see cref="IPagedCollectionView.ItemCount"/> properties based on the
         /// specified <paramref name="totalItemCount"/> and values in the view
         /// </summary>
@@ -409,17 +377,18 @@ namespace Kino.Toolkit.Wpf
             if (itemCount == -1)
             {
                 // We only want to update the ItemCount when we're on a page with items
-                int count = this.SourceCollection.Cast<object>().Count();
+                int count = SourceCollection.Cast<object>().Count();
                 if (count > 0)
                 {
-                    itemCount = Math.Max(this.ItemCount, (this.PageIndex * this.PageSize) + count);
+                    itemCount = Math.Max(ItemCount, (PageIndex * PageSize) + count);
                 }
             }
-            this.UpdateItemCounts(totalItemCount, itemCount);
+
+            UpdateItemCounts(totalItemCount, itemCount);
         }
 
         /// <summary>
-        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and 
+        /// Updates the <see cref="IPagedCollectionView.TotalItemCount"/> and
         /// <see cref="IPagedCollectionView.ItemCount"/> properties based on the
         /// specified <paramref name="totalItemCount"/> and <paramref name="itemCount"/>
         /// </summary>
@@ -427,7 +396,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="itemCount">The item count</param>
         private void UpdateItemCounts(int totalItemCount, int itemCount)
         {
-            this.PagedCollectionViewPrivate.SetItemCounts(totalItemCount, itemCount);
+            PagedCollectionViewPrivate.SetItemCounts(totalItemCount, itemCount);
         }
 
         /// <summary>
@@ -437,7 +406,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event args</param>
         private void OnCollectionViewLoaderCanLoadChanged(object sender, EventArgs e)
         {
-            this.CalculateAll();
+            CalculateAll();
         }
 
         /// <summary>
@@ -453,13 +422,13 @@ namespace Kino.Toolkit.Wpf
             switch (e.PropertyName)
             {
                 case "CanChangePage":
-                    this.CalculateCanChangePage();
+                    CalculateCanChangePage();
                     break;
                 case "CanGroup":
-                    this.CalculateCanGroup();
+                    CalculateCanGroup();
                     break;
                 case "CanSort":
-                    this.CalculateCanSort();
+                    CalculateCanSort();
                     break;
                 case "PageIndex":
                     // do nothing
@@ -475,9 +444,9 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void CalculateAll()
         {
-            this.CalculateCanChangePage();
-            this.CalculateCanGroup();
-            this.CalculateCanSort();
+            CalculateCanChangePage();
+            CalculateCanGroup();
+            CalculateCanSort();
         }
 
         /// <summary>
@@ -485,11 +454,11 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void CalculateCanChangePage()
         {
-            bool canChangePage = base.CanChangePage && this.CollectionViewLoader.CanLoad;
-            if (this._canChangePage != canChangePage)
+            bool canChangePage = base.CanChangePage && CollectionViewLoader.CanLoad;
+            if (_canChangePage != canChangePage)
             {
-                this._canChangePage = canChangePage;
-                this.RaisePropertyChanged("CanChangePage");
+                _canChangePage = canChangePage;
+                RaisePropertyChanged("CanChangePage");
             }
         }
 
@@ -498,11 +467,11 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void CalculateCanGroup()
         {
-            bool canGroup = base.CanGroup && this.CollectionViewLoader.CanLoad;
-            if (this._canGroup != canGroup)
+            bool canGroup = base.CanGroup && CollectionViewLoader.CanLoad;
+            if (_canGroup != canGroup)
             {
-                this._canGroup = canGroup;
-                this.RaisePropertyChanged("CanGroup");
+                _canGroup = canGroup;
+                RaisePropertyChanged("CanGroup");
             }
         }
 
@@ -511,11 +480,11 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         private void CalculateCanSort()
         {
-            bool canSort = base.CanSort && this.CollectionViewLoader.CanLoad;
-            if (this._canSort != canSort)
+            bool canSort = base.CanSort && CollectionViewLoader.CanLoad;
+            if (_canSort != canSort)
             {
-                this._canSort = canSort;
-                this.RaisePropertyChanged("CanSort");
+                _canSort = canSort;
+                RaisePropertyChanged("CanSort");
             }
         }
 
@@ -525,10 +494,10 @@ namespace Kino.Toolkit.Wpf
         /// <param name="pageIndex">The page index</param>
         private void SetPageIndex(int pageIndex)
         {
-            if (this._pageIndex != pageIndex)
+            if (_pageIndex != pageIndex)
             {
-                this._pageIndex = pageIndex;
-                this.RaisePropertyChanged("PageIndex");
+                _pageIndex = pageIndex;
+                RaisePropertyChanged("PageIndex");
             }
         }
 
@@ -538,7 +507,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="propertyName">The property to raise an event for</param>
         protected void RaisePropertyChanged(string propertyName)
         {
-            this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
@@ -555,12 +524,12 @@ namespace Kino.Toolkit.Wpf
 
             public DomainPagedCollectionView(Action<int> moveToPageAction)
             {
-                this._moveToPageAction = moveToPageAction;
+                _moveToPageAction = moveToPageAction;
             }
 
             protected override void BeginMoveToPageCore(int pageIndex)
             {
-                this._moveToPageAction(pageIndex);
+                _moveToPageAction(pageIndex);
             }
 
             /// <summary>
@@ -569,7 +538,7 @@ namespace Kino.Toolkit.Wpf
             /// <param name="pageIndex">The index that was moved to</param>
             public void CompleteMoveToPage(int pageIndex)
             {
-                this.EndMoveToPage(pageIndex);
+                EndMoveToPage(pageIndex);
             }
 
             /// <summary>
@@ -580,63 +549,16 @@ namespace Kino.Toolkit.Wpf
             /// <param name="itemCount">The item count to set</param>
             public void SetItemCounts(int totalItemCount, int itemCount)
             {
-                this.TotalItemCount = totalItemCount;
-                this.ItemCount = itemCount;
+                TotalItemCount = totalItemCount;
+                ItemCount = itemCount;
             }
         }
 
         #endregion
     }
-
-    /// <summary>
-    /// Collection view implementation that allows the view to be updated asynchronously
-    /// via a <see cref="DomainServices.CollectionViewLoader"/>. In conjunction with the
-    /// <see cref="DomainCollectionViewLoader"/>, this allows collection view properties
-    /// like sorting, grouping, and paging to be applied on the server.
-    /// </summary>
-    /// <typeparam name="TItem">The item type of this view</typeparam>
-    public class DomainCollectionView<TItem> : DomainCollectionView, IEnumerable<TItem>
-    {
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/> that
-        /// uses the specified callback for loading data.
-        /// </summary>
-        /// <param name="load">The callback to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        //public DomainCollectionView(Func<LoadOperation> load, IEnumerable<TItem> source)
-        //    : base(load, source)
-        //{
-        //}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView"/>
-        /// </summary>
-        /// <param name="collectionViewLoader">The <see cref="CollectionViewLoader"/> to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the
-        /// source will be reflected in the view.
-        /// </param>
-        public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable<TItem> source)
-            : base(collectionViewLoader, source)
-        {
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}"/> that can be used to iterate through the collection.</returns>
-        public new IEnumerator<TItem> GetEnumerator()
-        {
-            return this.CollectionView.Cast<TItem>().GetEnumerator();
-        }
-
-        #endregion
-    }
 }
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202
+#pragma warning disable SA1214
+#pragma warning disable SA1311
+#pragma warning restore SA1124 // Do not use regions``

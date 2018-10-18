@@ -91,8 +91,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnEdit(object sender, MouseButtonEventArgs e)
         {
-            var testModel = (e.OriginalSource as FrameworkElement).DataContext as TestModel;
-            if (testModel == null)
+            if (!((e.OriginalSource as FrameworkElement).DataContext is TestModel testModel))
                 return;
 
             var window = new TestModelWindow(_service, testModel);

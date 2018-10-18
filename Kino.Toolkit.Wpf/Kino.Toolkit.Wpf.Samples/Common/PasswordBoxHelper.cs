@@ -10,7 +10,7 @@ namespace Kino.Toolkit.Wpf.Samples
 {
     /// <summary>  
     /// 为PasswordBox Password增加绑定功能  
-    /// </summary>  
+    /// </summary>
     public static class PasswordBoxHelper
     {
         /// <summary>
@@ -52,9 +52,8 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private static void OnPasswordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var passwordBox = sender as PasswordBox;
 
-            if (passwordBox == null)
+            if (!(sender is PasswordBox passwordBox))
             {
                 return;
             }

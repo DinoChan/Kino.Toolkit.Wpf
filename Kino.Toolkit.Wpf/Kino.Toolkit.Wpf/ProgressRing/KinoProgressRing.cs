@@ -1,4 +1,4 @@
-﻿//Thanks: http://briandunnington.github.io/progressring-wp8.html
+﻿// Thanks: http://briandunnington.github.io/progressring-wp8.html
 
 using System;
 using System.Collections.Generic;
@@ -14,22 +14,28 @@ namespace Kino.Toolkit.Wpf
     [TemplateVisualState(GroupName = VisualStates.GroupActive, Name = VisualStates.StateInactive)]
     public class KinoProgressRing : Control
     {
-        bool hasAppliedTemplate = false;
+        private bool hasAppliedTemplate = false;
 
         public KinoProgressRing()
         {
-            this.DefaultStyleKey = typeof(KinoProgressRing);
+            DefaultStyleKey = typeof(KinoProgressRing);
             TemplateSettings = new TemplateSettingValues(60);
+        }
+
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             hasAppliedTemplate = true;
-            UpdateState(this.IsActive);
+            UpdateState(IsActive);
         }
 
-        void UpdateState(bool isActive)
+        private void UpdateState(bool isActive)
         {
             if (hasAppliedTemplate)
             {
@@ -44,17 +50,12 @@ namespace Kino.Toolkit.Wpf
             var height = 20d;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this) == false)
             {
-                width = double.IsNaN(this.Width) == false ? this.Width : availableSize.Width;
-                height = double.IsNaN(this.Height) == false ? this.Height : availableSize.Height;
+                width = double.IsNaN(Width) == false ? Width : availableSize.Width;
+                height = double.IsNaN(Height) == false ? Height : availableSize.Height;
             }
+
             TemplateSettings = new TemplateSettingValues(Math.Min(width, height));
             return base.MeasureOverride(availableSize);
-        }
-
-        public bool IsActive
-        {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for IsActive.  This enables animation, styling, binding, etc...
@@ -68,7 +69,6 @@ namespace Kino.Toolkit.Wpf
             pr.UpdateState(isActive);
         }
 
-
         public TemplateSettingValues TemplateSettings
         {
             get { return (TemplateSettingValues)GetValue(TemplateSettingsProperty); }
@@ -79,7 +79,6 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty TemplateSettingsProperty =
             DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(KinoProgressRing), new PropertyMetadata(null));
 
-
         public class TemplateSettingValues : System.Windows.DependencyObject
         {
             public TemplateSettingValues(double width)
@@ -87,9 +86,13 @@ namespace Kino.Toolkit.Wpf
                 MaxSideLength = 400;
 
                 if (width <= 40)
-                    EllipseDiameter = width / 10 + 1;
+                {
+                    EllipseDiameter = (width / 10) + 1;
+                }
                 else
+                {
                     EllipseDiameter = width / 10;
+                }
 
                 EllipseOffset = new System.Windows.Thickness(0, EllipseDiameter * 2.5, 0, 0);
             }
@@ -122,8 +125,7 @@ namespace Kino.Toolkit.Wpf
 
             // Using a DependencyProperty as the backing store for EllipseOffset.  This enables animation, styling, binding, etc...
             public static readonly DependencyProperty EllipseOffsetProperty =
-                DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(new Thickness()));
+                DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(default(Thickness)));
         }
     }
-
 }

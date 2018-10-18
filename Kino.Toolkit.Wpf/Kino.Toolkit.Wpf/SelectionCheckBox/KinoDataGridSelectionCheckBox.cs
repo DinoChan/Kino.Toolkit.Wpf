@@ -13,7 +13,7 @@ namespace Kino.Toolkit.Wpf
     {
         /// <summary>
         /// 获取或设置RelativeDataGrid的值
-        /// </summary>  
+        /// </summary>
         public DataGrid RelativeDataGrid
         {
             get { return (DataGrid)GetValue(RelativeDataGridProperty); }
@@ -32,12 +32,14 @@ namespace Kino.Toolkit.Wpf
             DataGrid oldValue = (DataGrid)args.OldValue;
             DataGrid newValue = (DataGrid)args.NewValue;
             if (oldValue != newValue)
+            {
                 target.OnRelativeDataGridChanged(oldValue, newValue);
+            }
         }
 
         protected virtual void OnRelativeDataGridChanged(DataGrid oldValue, DataGrid newValue)
         {
-            base.Selector = newValue;
+            Selector = newValue;
         }
 
         protected override IList SelectedItems
@@ -45,22 +47,30 @@ namespace Kino.Toolkit.Wpf
             get
             {
                 if (RelativeDataGrid == null)
+                {
                     return new List<object>();
+                }
                 else
+                {
                     return RelativeDataGrid.SelectedItems;
+                }
             }
         }
 
         protected override void SelectAll()
         {
             if (RelativeDataGrid != null)
+            {
                 RelativeDataGrid.SelectAll();
+            }
         }
 
         protected override void UnselectAll()
         {
             if (RelativeDataGrid != null)
+            {
                 RelativeDataGrid.UnselectAll();
+            }
         }
     }
 }

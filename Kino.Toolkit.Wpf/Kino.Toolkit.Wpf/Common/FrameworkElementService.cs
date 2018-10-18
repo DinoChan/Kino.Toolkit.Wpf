@@ -6,14 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Controls.Primitives;
 
 namespace Kino.Toolkit.Wpf
 {
     public class FrameworkElementService
     {
+        /// <summary>
+        /// 标识 IsAutoFocus 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty IsAutoFocusProperty =
+            DependencyProperty.RegisterAttached("IsAutoFocus", typeof(bool), typeof(FrameworkElementService), new PropertyMetadata(default(bool), OnIsAutoFocusChanged));
+
+        /// <summary>
+        /// 标识 Resources 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty ResourcesProperty =
+            DependencyProperty.RegisterAttached("Resources", typeof(ResourceDictionary), typeof(FrameworkElementService), new PropertyMetadata(default(ResourceDictionary), OnResourcesChanged));
 
         /// <summary>
         /// 从指定元素获取 IsAutoFocus 依赖项属性的值。
@@ -30,50 +41,6 @@ namespace Kino.Toolkit.Wpf
         public static void SetIsAutoFocus(DependencyObject obj, bool value) => obj.SetValue(IsAutoFocusProperty, value);
 
         /// <summary>
-        /// 标识 IsAutoFocus 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsAutoFocusProperty =
-            DependencyProperty.RegisterAttached("IsAutoFocus", typeof(bool), typeof(FrameworkElementService), new PropertyMetadata(default(bool), OnIsAutoFocusChanged));
-
-
-        private static void OnIsAutoFocusChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var oldValue = (bool)args.OldValue;
-            var newValue = (bool)args.NewValue;
-            if (oldValue == newValue)
-                return;
-
-            var target = obj as FrameworkElement;
-            if (target != null)
-            {
-                target.Loaded -= OnTargetLoaded;
-                if (newValue)
-                    target.Loaded += OnTargetLoaded;
-            }
-        }
-
-        private static void OnTargetLoaded(object sender, RoutedEventArgs e)
-        {
-            var elemnt = sender as FrameworkElement;
-            if (elemnt.Focus())
-                return;
-
-            foreach (var item in elemnt.GetLogicalChildren())
-            {
-                if (item.Focus())
-                    return;
-            }
-
-            foreach (var item in elemnt.GetVisualDescendants().OfType<FrameworkElement>())
-            {
-                if (item.Focus())
-                    return;
-            } 
-        }
-
-
-
-        /// <summary>
         /// 从指定元素获取 Resources 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
@@ -87,24 +54,61 @@ namespace Kino.Toolkit.Wpf
         /// <param name="value">要设置的值。</param>
         public static void SetResources(DependencyObject obj, ResourceDictionary value) => obj.SetValue(ResourcesProperty, value);
 
-        /// <summary>
-        /// 标识 Resources 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty ResourcesProperty =
-            DependencyProperty.RegisterAttached("Resources", typeof(ResourceDictionary), typeof(FrameworkElementService), new PropertyMetadata(default(ResourceDictionary), OnResourcesChanged));
+        private static void OnIsAutoFocusChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (bool)args.OldValue;
+            var newValue = (bool)args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
 
+            if (obj is FrameworkElement target)
+            {
+                target.Loaded -= OnTargetLoaded;
+                if (newValue)
+                {
+                    target.Loaded += OnTargetLoaded;
+                }
+            }
+        }
+
+        private static void OnTargetLoaded(object sender, RoutedEventArgs e)
+        {
+            var elemnt = sender as FrameworkElement;
+            if (elemnt.Focus())
+            {
+                return;
+            }
+
+            foreach (var item in elemnt.GetLogicalChildren())
+            {
+                if (item.Focus())
+                {
+                    return;
+                }
+            }
+
+            foreach (var item in elemnt.GetVisualDescendants().OfType<FrameworkElement>())
+            {
+                if (item.Focus())
+                {
+                    return;
+                }
+            }
+        }
 
         private static void OnResourcesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var oldValue = (ResourceDictionary)args.OldValue;
             var newValue = (ResourceDictionary)args.NewValue;
             if (oldValue == newValue)
+            {
                 return;
+            }
 
             var target = obj as FrameworkElement;
             target.Resources = newValue;
         }
-
-
     }
 }

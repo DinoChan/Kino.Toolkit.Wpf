@@ -32,65 +32,41 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
 {
   public class CSharpFormat : CLikeFormat
   {
-    /// <summary>
-    /// The list of C# keywords.
-    /// </summary>
-    protected override string Keywords
-    {
-      get
-      {
-        return "abstract as base bool break byte case catch char "
-        + "checked class const continue decimal default delegate do double else "
-        + "enum event explicit extern false finally fixed float for foreach goto "
-        + "if implicit in int interface internal is lock long namespace new null "
-        + "object operator out override partial params private protected public readonly "
-        + "ref return sbyte sealed short sizeof stackalloc static string struct "
-        + "switch this throw true try typeof uint ulong unchecked unsafe ushort "
-        + "using value virtual void volatile where while yield";
-      }
-    }
+        /// <summary>
+        /// The list of C# keywords.
+        /// </summary>
+        protected override string Keywords => "abstract as base bool break byte case catch char "
+            + "checked class const continue decimal default delegate do double else "
+            + "enum event explicit extern false finally fixed float for foreach goto "
+            + "if implicit in int interface internal is lock long namespace new null "
+            + "object operator out override partial params private protected public readonly "
+            + "ref return sbyte sealed short sizeof stackalloc static string struct "
+            + "switch this throw true try typeof uint ulong unchecked unsafe ushort "
+            + "using value virtual void volatile where while yield";
 
-    /// <summary>
-    /// The list of C# preprocessors.
-    /// </summary>
-    protected override string Preprocessors
-    {
-      get
-      {
-        return "#if #else #elif #endif #define #undef #warning "
-            + "#error #line #region #endregion #pragma";
-      }
+        /// <summary>
+        /// The list of C# preprocessors.
+        /// </summary>
+        protected override string Preprocessors => "#if #else #elif #endif #define #undef #warning "
+                + "#error #line #region #endregion #pragma";
     }
-  }
 
   /// <summary>
   /// Provides a base class for formatting languages similar to C.
   /// </summary>
   public abstract class CLikeFormat : CodeFormat
   {
-    /// <summary>
-    /// Regular expression string to match single line and multi-line 
-    /// comments (// and /* */). 
-    /// </summary>
-    protected override string CommentRegEx
-    {
-      get
-      {
-        return @"/\*.*?\*/|//.*?(?=\r|\n)";
-      }
-    }
+        /// <summary>
+        /// Regular expression string to match single line and multi-line 
+        /// comments (// and /* */). 
+        /// </summary>
+        protected override string CommentRegEx => @"/\*.*?\*/|//.*?(?=\r|\n)";
 
-    /// <summary>
-    /// Regular expression string to match string and character literals. 
-    /// </summary>
-    protected override string StringRegEx
-    {
-      get
-      {
-        return @"@?""""|@?"".*?(?!\\).""|''|'.*?(?!\\).'";
-      }
+        /// <summary>
+        /// Regular expression string to match string and character literals. 
+        /// </summary>
+        protected override string StringRegEx => @"@?""""|@?"".*?(?!\\).""|''|'.*?(?!\\).'";
     }
-  }
 
   /// <summary>
   /// Provides a base class for formatting most programming languages.
@@ -109,26 +85,20 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
       get;
     }
 
-    /// <summary>
-    /// Can be overridden to provide a list of preprocessors defined in 
-    /// each language.
-    /// </summary>
-    /// <remarks>
-    /// Preprocessors must be separated with spaces.
-    /// </remarks>
-    protected virtual string Preprocessors
-    {
-      get
-      {
-        return "";
-      }
-    }
+        /// <summary>
+        /// Can be overridden to provide a list of preprocessors defined in 
+        /// each language.
+        /// </summary>
+        /// <remarks>
+        /// Preprocessors must be separated with spaces.
+        /// </remarks>
+        protected virtual string Preprocessors => "";
 
-    /// <summary>
-    /// Must be overridden to provide a regular expression string
-    /// to match strings literals. 
-    /// </summary>
-    protected abstract string StringRegEx
+        /// <summary>
+        /// Must be overridden to provide a regular expression string
+        /// to match strings literals. 
+        /// </summary>
+        protected abstract string StringRegEx
     {
       get;
     }
@@ -142,25 +112,19 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
       get;
     }
 
-    /// <summary>
-    /// Determines if the language is case sensitive.
-    /// </summary>
-    /// <value><b>true</b> if the language is case sensitive, <b>false</b> 
-    /// otherwise. The default is true.</value>
-    /// <remarks>
-    /// A case-insensitive language formatter must override this 
-    /// property to return false.
-    /// </remarks>
-    public virtual bool CaseSensitive
-    {
-      get
-      {
-        return true;
-      }
-    }
+        /// <summary>
+        /// Determines if the language is case sensitive.
+        /// </summary>
+        /// <value><b>true</b> if the language is case sensitive, <b>false</b> 
+        /// otherwise. The default is true.</value>
+        /// <remarks>
+        /// A case-insensitive language formatter must override this 
+        /// property to return false.
+        /// </remarks>
+        public virtual bool CaseSensitive => true;
 
-    /// <summary/>
-    protected CodeFormat()
+        /// <summary/>
+        protected CodeFormat()
     {
       //generate the keyword and preprocessor regexes from the keyword lists
       Regex r;
@@ -223,34 +187,42 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
 
         if( !string.IsNullOrEmpty( sb.ToString() ) )
         {
-          Run r = new Run( sb.ToString() );
-          r.Foreground = new SolidColorBrush( Color.FromRgb( 0, 128, 0 ) );
-          CodeParagraphGlobal.Add( r );
+                    Run r = new Run(sb.ToString())
+                    {
+                        Foreground = new SolidColorBrush(Color.FromRgb(0, 128, 0))
+                    };
+                    CodeParagraphGlobal.Add( r );
         }
         return "::::::";
       }
       else if( match.Groups[ 2 ].Success ) //string literal
       {
-        Run r = new Run( match.ToString() );
-        r.Foreground = new SolidColorBrush( Color.FromRgb( 0, 96, 128 ) );
+                Run r = new Run(match.ToString())
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(0, 96, 128))
+                };
 
-        CodeParagraphGlobal.Add( r );
+                CodeParagraphGlobal.Add( r );
         return "::::::";
       }
       else if( match.Groups[ 3 ].Success ) //preprocessor keyword
       {
-        Run r = new Run( match.ToString() );
-        r.Foreground = new SolidColorBrush( Color.FromRgb( 204, 102, 51 ) );
+                Run r = new Run(match.ToString())
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(204, 102, 51))
+                };
 
-        CodeParagraphGlobal.Add( r );
+                CodeParagraphGlobal.Add( r );
         return "::::::";
       }
       else if( match.Groups[ 4 ].Success ) //keyword
       {
-        Run r = new Run( match.ToString() );
-        r.Foreground = new SolidColorBrush( Color.FromRgb( 0, 0, 255 ) );
+                Run r = new Run(match.ToString())
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 255))
+                };
 
-        CodeParagraphGlobal.Add( r );
+                CodeParagraphGlobal.Add( r );
         return "::::::";
       }
       else
@@ -424,7 +396,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
       //replace special characters
       StringBuilder sb = new StringBuilder( source );
       //color the code
-      source = codeRegex.Replace( sb.ToString(), new MatchEvaluator( this.MatchEval ) );
+      source = codeRegex.Replace( sb.ToString(), new MatchEvaluator( MatchEval ) );
       //codeRegex.Replace(
       string[] characters = { "::::::" };
 

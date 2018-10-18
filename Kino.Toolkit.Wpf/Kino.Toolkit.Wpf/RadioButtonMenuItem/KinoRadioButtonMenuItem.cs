@@ -19,7 +19,6 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(KinoRadioButtonMenuItem), new FrameworkPropertyMetadata(typeof(KinoRadioButtonMenuItem)));
         }
 
-        /// <inheritdoc />
         public KinoRadioButtonMenuItem()
         {
             Checked += OnChecked;
@@ -29,13 +28,12 @@ namespace Kino.Toolkit.Wpf
         protected override void OnClick()
         {
             base.OnClick();
-            this.IsChecked = true;
+            IsChecked = true;
         }
-
 
         /// <summary>
         /// 获取或设置GroupName的值
-        /// </summary>  
+        /// </summary>
         public string GroupName
         {
             get { return (string)GetValue(GroupNameProperty); }
@@ -48,25 +46,25 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty GroupNameProperty =
             DependencyProperty.Register(nameof(GroupName), typeof(string), typeof(KinoRadioButtonMenuItem), new PropertyMetadata(default(string)));
 
-
         private void OnChecked(object sender, RoutedEventArgs e)
         {
             if (IsChecked == false)
+            {
                 return;
+            }
 
-            var parent = VisualTreeHelper.GetParent(this) as FrameworkElement;
-            if (parent != null)
+            if (VisualTreeHelper.GetParent(this) is FrameworkElement parent)
             {
                 var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
                 for (int i = 0; i < childrenCount; i++)
                 {
-                    var menuItem = VisualTreeHelper.GetChild(parent, i) as KinoRadioButtonMenuItem;
-                    if (menuItem != null && menuItem.GroupName == GroupName && menuItem != this && (menuItem.DataContext == parent.DataContext || menuItem.DataContext != DataContext))
+                    if (VisualTreeHelper.GetChild(parent, i) is KinoRadioButtonMenuItem menuItem && menuItem.GroupName == GroupName && menuItem != this && (menuItem.DataContext == parent.DataContext || menuItem.DataContext != DataContext))
+                    {
                         menuItem.IsChecked = false;
+                    }
                 }
             }
         }
-
 
         /// <inheritdoc />
         protected override DependencyObject GetContainerForItemOverride()

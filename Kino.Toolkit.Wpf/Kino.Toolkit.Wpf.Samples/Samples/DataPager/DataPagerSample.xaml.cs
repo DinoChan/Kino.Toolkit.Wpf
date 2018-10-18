@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// DataPagerSample.xaml 的交互逻辑
     /// </summary>
-    public partial class DataPagerSample 
+    public partial class DataPagerSample
     {
         public DataPagerSample()
         {
@@ -28,11 +28,13 @@ namespace Kino.Toolkit.Wpf.Samples
             {
                 list.Add(new TestModel { Name = "this is " + i });
             }
-            var pagedCollectionView = new PagedCollectionView(list);
-            pagedCollectionView.PageSize = 10;
+            var pagedCollectionView = new PagedCollectionView(list)
+            {
+                PageSize = 10
+            };
             DataContext = pagedCollectionView;
         }
 
-       
+
     }
 }

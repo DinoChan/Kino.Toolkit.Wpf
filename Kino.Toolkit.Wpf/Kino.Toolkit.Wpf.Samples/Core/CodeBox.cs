@@ -27,16 +27,16 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
     {
         protected CodeBox()
         {
-            this.IsReadOnly = true;
-            this.FontFamily = new FontFamily("Consolas");
-            this.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
-            this.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            IsReadOnly = true;
+            FontFamily = new FontFamily("Consolas");
+            HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
             SizeChanged += OnControlSizeChanged;
         }
 
         private void OnControlSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.Document.PageWidth = Math.Max(800, e.NewSize.Width - 10);
+            Document.PageWidth = Math.Max(800, e.NewSize.Width - 10);
         }
 
         public string CodeSource
@@ -44,9 +44,9 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
             set
             {
                 if (value == null)
-                    this.Text = null;
+                    Text = null;
 
-                this.Text = this.GetDataFromResource(value);
+                Text = GetDataFromResource(value);
             }
         }
 
@@ -66,11 +66,11 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
 
     public class XamlBox : CodeBox
     {
-        public XamlBox() { this.TextFormatter = new Core.XamlFormatter(); }
+        public XamlBox() { TextFormatter = new Core.XamlFormatter(); }
     }
 
     public class CSharpBox : CodeBox
     {
-        public CSharpBox() { this.TextFormatter = new Core.CSharpFormatter(); }
+        public CSharpBox() { TextFormatter = new Core.CSharpFormatter(); }
     }
 }
