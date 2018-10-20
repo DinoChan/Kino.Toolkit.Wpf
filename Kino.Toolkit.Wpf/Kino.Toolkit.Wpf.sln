@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kino.Toolkit.Wpf.Samples", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kino.Toolkit.Wpf.Themes", "Kino.Toolkit.Wpf.Themes\Kino.Toolkit.Wpf.Themes.csproj", "{3C932FBC-74DF-4380-95BB-F3972CEB4C08}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{F9DB04C5-FEAE-482C-A3AB-F13B4A5035E7}"
+	ProjectSection(SolutionItems) = preProject
+		Kino.Toolkit.Wpf\Kino.Toolkit.Wpf.nuspec = Kino.Toolkit.Wpf\Kino.Toolkit.Wpf.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
