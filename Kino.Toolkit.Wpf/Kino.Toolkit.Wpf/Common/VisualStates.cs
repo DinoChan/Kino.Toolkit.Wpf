@@ -1,4 +1,11 @@
-﻿#pragma warning disable SA1124 // Do not use regions
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight5/Source/Controls/Common/VisualStates.cs
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License (Ms-PL).
+// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+// All other rights reserved.
+
+#pragma warning disable SA1124 // Do not use regions
+#pragma warning disable SA1131 // Use readable conditions
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -397,7 +404,7 @@ namespace Kino.Toolkit.Wpf
         public static FrameworkElement GetImplementationRoot(DependencyObject dependencyObject)
         {
             Debug.Assert(dependencyObject != null, "DependencyObject should not be null.");
-            return (VisualTreeHelper.GetChildrenCount(dependencyObject) == 1) ?
+            return (1 == VisualTreeHelper.GetChildrenCount(dependencyObject)) ?
                 VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement :
                 null;
         }
@@ -426,3 +433,4 @@ namespace Kino.Toolkit.Wpf
     }
 }
 #pragma warning restore SA1124 // Do not use regions
+#pragma warning restore SA1131 // Use readable conditions

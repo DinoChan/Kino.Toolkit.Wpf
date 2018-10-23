@@ -17,6 +17,12 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty IsRequiredProperty =
             DependencyProperty.Register(nameof(IsRequired), typeof(bool), typeof(KinoFormItem), new PropertyMetadata(default(bool)));
 
+        /// <summary>
+        /// 标识 Description 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty DescriptionProperty =
+            DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormItem), new PropertyMetadata(default(object)));
+
         public KinoFormItem()
         {
             DefaultStyleKey = typeof(KinoFormItem);
@@ -30,12 +36,6 @@ namespace Kino.Toolkit.Wpf
             get => (object)GetValue(DescriptionProperty);
             set => SetValue(DescriptionProperty, value);
         }
-
-        /// <summary>
-        /// 标识 Description 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormItem), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// 获取或设置IsRequired的值

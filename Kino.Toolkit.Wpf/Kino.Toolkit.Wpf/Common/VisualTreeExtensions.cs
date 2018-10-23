@@ -1,8 +1,12 @@
-﻿// (c) Copyright Microsoft Corporation.
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight5/Source/Controls.Toolkit/Common/VisualTreeExtensions.cs
+// (c) Copyright Microsoft Corporation.
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
+#pragma warning disable SA1129 // Do not use default value type constructor
+#pragma warning disable SA1202 // Elements must be ordered by access
+#pragma warning disable IDE0019 // 使用模式匹配
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -283,10 +287,13 @@ namespace Kino.Toolkit.Wpf
 
             try
             {
+#pragma warning disable IDE0018 // 内联变量声明
+                Point origin, bottom;
+#pragma warning restore IDE0018 // 内联变量声明
                 GeneralTransform transform = element.TransformToVisual(otherElement);
                 if (transform != null &&
-                    transform.TryTransform(default(Point), out Point origin) &&
-                    transform.TryTransform(new Point(element.ActualWidth, element.ActualHeight), out Point bottom))
+                    transform.TryTransform(new Point(), out origin) &&
+                    transform.TryTransform(new Point(element.ActualWidth, element.ActualHeight), out bottom))
                 {
                     return new Rect(origin, bottom);
                 }
@@ -323,13 +330,15 @@ namespace Kino.Toolkit.Wpf
 
             // Create an event handler that unhooks itself before calling the
             // action and then attach it to the LayoutUpdated event.
-            void handler(object s, EventArgs e)
+#pragma warning disable IDE0039 // 使用本地函数
+            EventHandler handler = null;
+            handler = (s, e) =>
             {
                 element.LayoutUpdated -= handler;
                 action();
-            }
-
+            };
             element.LayoutUpdated += handler;
+#pragma warning restore IDE0039 // 使用本地函数
         }
 
         /// <summary>
@@ -343,9 +352,11 @@ namespace Kino.Toolkit.Wpf
         {
             Debug.Assert(parent != null, "The parent cannot be null.");
 
-            if (parent is Popup popup)
+            Popup popup = parent as Popup;
+            if (popup != null)
             {
-                if (popup.Child is FrameworkElement popupChild)
+                FrameworkElement popupChild = popup.Child as FrameworkElement;
+                if (popupChild != null)
                 {
                     yield return popupChild;
                 }
@@ -353,7 +364,8 @@ namespace Kino.Toolkit.Wpf
 
             // If control is an items control return all children using the
             // Item container generator.
-            if (parent is ItemsControl itemsControl)
+            ItemsControl itemsControl = parent as ItemsControl;
+            if (itemsControl != null)
             {
                 foreach (FrameworkElement logicalChild in
                     Enumerable
@@ -405,3 +417,7 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
+
+#pragma warning restore SA1129 // Do not use default value type constructor
+#pragma warning restore SA1202 // Elements must be ordered by access
+#pragma warning restore IDE0019 // 使用模式匹配

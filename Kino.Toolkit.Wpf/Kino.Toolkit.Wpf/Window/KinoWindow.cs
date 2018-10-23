@@ -7,6 +7,12 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoWindow : Window
     {
+        /// <summary>
+        /// 标识 CommandBar 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty CommandBarProperty =
+            DependencyProperty.Register(nameof(CommandBar), typeof(KinoWindowCommandBar), typeof(KinoWindow), new PropertyMetadata(default(KinoWindowCommandBar), OnCommandBarChanged));
+
         public KinoWindow()
         {
             DefaultStyleKey = typeof(KinoWindow);
@@ -18,6 +24,15 @@ namespace Kino.Toolkit.Wpf
         }
 
         public Thickness ExtraBorderPadding { get; }
+
+        /// <summary>
+        /// 获取或设置CommandBar的值
+        /// </summary>
+        public KinoWindowCommandBar CommandBar
+        {
+            get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
+            set => SetValue(CommandBarProperty, value);
+        }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
@@ -38,19 +53,13 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// 获取或设置CommandBar的值
+        /// CommandBar 属性更改时调用此方法。
         /// </summary>
-        public KinoWindowCommandBar CommandBar
+        /// <param name="oldValue">CommandBar 属性的旧值。</param>
+        /// <param name="newValue">CommandBar 属性的新值。</param>
+        protected virtual void OnCommandBarChanged(KinoWindowCommandBar oldValue, KinoWindowCommandBar newValue)
         {
-            get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
-            set => SetValue(CommandBarProperty, value);
         }
-
-        /// <summary>
-        /// 标识 CommandBar 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty CommandBarProperty =
-            DependencyProperty.Register(nameof(CommandBar), typeof(KinoWindowCommandBar), typeof(KinoWindow), new PropertyMetadata(default(KinoWindowCommandBar), OnCommandBarChanged));
 
         private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -63,15 +72,6 @@ namespace Kino.Toolkit.Wpf
 
             var target = obj as KinoWindow;
             target?.OnCommandBarChanged(oldValue, newValue);
-        }
-
-        /// <summary>
-        /// CommandBar 属性更改时调用此方法。
-        /// </summary>
-        /// <param name="oldValue">CommandBar 属性的旧值。</param>
-        /// <param name="newValue">CommandBar 属性的新值。</param>
-        protected virtual void OnCommandBarChanged(KinoWindowCommandBar oldValue, KinoWindowCommandBar newValue)
-        {
         }
     }
 }

@@ -1,4 +1,12 @@
-﻿using System;
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight5/Source/Controls.Layout.Toolkit/TransitioningContentControl/TransitioningContentControl.cs
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License (Ms-PL).
+// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+// All other rights reserved.
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202 // Elements must be ordered by access
+#pragma warning disable IDE1005 // 可简化委托调用。
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -19,14 +27,12 @@ namespace Kino.Toolkit.Wpf
     /// <remarks>The API for this control will change considerably in the future.</remarks>
     [TemplateVisualState(GroupName = PresentationGroup, Name = NormalState)]
     [TemplateVisualState(GroupName = PresentationGroup, Name = DefaultTransitionState)]
-    [TemplateVisualState(GroupName = PresentationGroup, Name = LeftTransitionState)]
-    [TemplateVisualState(GroupName = PresentationGroup, Name = UpTransitionState)]
-    [TemplateVisualState(GroupName = PresentationGroup, Name = RightTransitionState)]
-    [TemplateVisualState(GroupName = PresentationGroup, Name = DownTransitionState)]
     [TemplatePart(Name = PreviousContentPresentationSitePartName, Type = typeof(ContentControl))]
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
-    public class KinoTransitioningContentControl : ContentControl
+    public partial class KinoTransitioningContentControl : ContentControl
     {
+        #region Visual state names
+
         /// <summary>
         /// The name of the group that holds the presentation states.
         /// </summary>
@@ -43,13 +49,9 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public const string DefaultTransitionState = "DefaultTransition";
 
-        public const string LeftTransitionState = "LeftTransition";
+        #endregion Visual state names
 
-        public const string UpTransitionState = "UpTransition";
-
-        public const string RightTransitionState = "RightTransition";
-
-        public const string DownTransitionState = "DownTransition";
+        #region Template part names
 
         /// <summary>
         /// The name of the control that will display the previous content.
@@ -60,6 +62,10 @@ namespace Kino.Toolkit.Wpf
         /// The name of the control that will display the current content.
         /// </summary>
         internal const string CurrentContentPresentationSitePartName = "CurrentContentPresentationSite";
+
+        #endregion Template part names
+
+        #region TemplateParts
 
         /// <summary>
         /// Gets or sets the current content presentation site.
@@ -72,6 +78,9 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <value>The previous content presentation site.</value>
         private ContentPresenter PreviousContentPresentationSite { get; set; }
+        #endregion TemplateParts
+
+        #region public bool IsTransitioning
 
         /// <summary>
         /// Indicates whether the control allows writing IsTransitioning.
@@ -110,7 +119,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// IsTransitioningProperty property changed handler.
         /// </summary>
-        /// <param name="d">TransitioningContentControl that changed its IsTransitioning.</param>
+        /// <param name="d">KinoTransitioningContentControl that changed its IsTransitioning.</param>
         /// <param name="e">Event arguments.</param>
         private static void OnIsTransitioningPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -122,6 +131,7 @@ namespace Kino.Toolkit.Wpf
                 throw new InvalidOperationException(Properties.Resources.TransitiotioningContentControl_IsTransitioningReadOnly);
             }
         }
+        #endregion public bool IsTransitioning
 
         /// <summary>
         /// The storyboard that is used to transition old and new content.
@@ -140,18 +150,22 @@ namespace Kino.Toolkit.Wpf
 
             set
             {
+                // decouple event
                 if (_currentTransition != null)
                 {
                     _currentTransition.Completed -= OnTransitionCompleted;
                 }
 
                 _currentTransition = value;
+
                 if (_currentTransition != null)
                 {
                     _currentTransition.Completed += OnTransitionCompleted;
                 }
             }
         }
+
+        #region public string Transition
 
         /// <summary>
         /// Gets or sets the name of the transition to use. These correspond
@@ -176,7 +190,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// TransitionProperty property changed handler.
         /// </summary>
-        /// <param name="d">TransitioningContentControl that changed its Transition.</param>
+        /// <param name="d">KinoTransitioningContentControl that changed its Transition.</param>
         /// <param name="e">Event arguments.</param>
         private static void OnTransitionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -215,63 +229,9 @@ namespace Kino.Toolkit.Wpf
                 source.CurrentTransition = newStoryboard;
             }
         }
+        #endregion public string Transition
 
-        /// <summary>
-        /// 获取或设置TransitionType的值
-        /// </summary>
-        public TransitionType TransitionType
-        {
-            get => (TransitionType)GetValue(TransitionTypeProperty);
-            set => SetValue(TransitionTypeProperty, value);
-        }
-
-        /// <summary>
-        /// 标识 TransitionType 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty TransitionTypeProperty =
-            DependencyProperty.Register(nameof(TransitionType), typeof(TransitionType), typeof(KinoTransitioningContentControl), new PropertyMetadata(default(TransitionType), OnTransitionTypeChanged));
-
-        private static void OnTransitionTypeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var oldValue = (TransitionType)args.OldValue;
-            var newValue = (TransitionType)args.NewValue;
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            var target = obj as KinoTransitioningContentControl;
-            target?.OnTransitionTypeChanged(oldValue, newValue);
-        }
-
-        /// <summary>
-        /// TransitionType 属性更改时调用此方法。
-        /// </summary>
-        /// <param name="oldValue">TransitionType 属性的旧值。</param>
-        /// <param name="newValue">TransitionType 属性的新值。</param>
-        protected virtual void OnTransitionTypeChanged(TransitionType oldValue, TransitionType newValue)
-        {
-            switch (newValue)
-            {
-                case TransitionType.Default:
-                    Transition = DefaultTransitionState;
-                    break;
-                case TransitionType.Left:
-                    Transition = LeftTransitionState;
-                    break;
-                case TransitionType.Up:
-                    Transition = UpTransitionState;
-                    break;
-                case TransitionType.Right:
-                    Transition = RightTransitionState;
-                    break;
-                case TransitionType.Down:
-                    Transition = DownTransitionState;
-                    break;
-                default:
-                    break;
-            }
-        }
+        #region public bool RestartTransitionOnContentChange
 
         /// <summary>
         /// Gets or sets a value indicating whether the current transition
@@ -296,7 +256,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// RestartTransitionOnContentChangeProperty property changed handler.
         /// </summary>
-        /// <param name="d">TransitioningContentControl that changed its RestartTransitionOnContentChange.</param>
+        /// <param name="d">KinoTransitioningContentControl that changed its RestartTransitionOnContentChange.</param>
         /// <param name="e">Event arguments.</param>
         private static void OnRestartTransitionOnContentChangePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -311,11 +271,15 @@ namespace Kino.Toolkit.Wpf
         protected virtual void OnRestartTransitionOnContentChangeChanged(bool oldValue, bool newValue)
         {
         }
+        #endregion public bool RestartTransitionOnContentChange
+
+        #region Events
 
         /// <summary>
         /// Occurs when the current transition has completed.
         /// </summary>
         public event RoutedEventHandler TransitionCompleted;
+        #endregion Events
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KinoTransitioningContentControl"/> class.
@@ -326,7 +290,7 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// Builds the visual tree for the TransitioningContentControl control
+        /// Builds the visual tree for the KinoTransitioningContentControl control
         /// when a new template is applied.
         /// </summary>
         public override void OnApplyTemplate()
@@ -400,32 +364,6 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
-        {
-            base.OnContentTemplateChanged(oldContentTemplate, newContentTemplate);
-
-            StartTransition(oldContentTemplate, newContentTemplate);
-        }
-
-        private void StartTransition(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
-        {
-            // both presenters must be available, otherwise a transition is useless.
-            if (CurrentContentPresentationSite != null && PreviousContentPresentationSite != null)
-            {
-                CurrentContentPresentationSite.ContentTemplate = newContentTemplate;
-
-                PreviousContentPresentationSite.ContentTemplate = oldContentTemplate;
-
-                // and start a new transition
-                if (!IsTransitioning || RestartTransitionOnContentChange)
-                {
-                    IsTransitioning = true;
-                    VisualStateManager.GoToState(this, NormalState, false);
-                    VisualStateManager.GoToState(this, Transition, true);
-                }
-            }
-        }
-
         /// <summary>
         /// Handles the Completed event of the transition storyboard.
         /// </summary>
@@ -435,7 +373,11 @@ namespace Kino.Toolkit.Wpf
         {
             AbortTransition();
 
-            TransitionCompleted?.Invoke(this, new RoutedEventArgs());
+            RoutedEventHandler handler = TransitionCompleted;
+            if (handler != null)
+            {
+                handler(this, new RoutedEventArgs());
+            }
         }
 
         /// <summary>
@@ -474,3 +416,6 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
+#pragma warning restore SA1201 // Elements must appear in the correct order
+#pragma warning restore SA1202 // Elements must be ordered by access
+#pragma warning restore IDE1005 // 可简化委托调用。

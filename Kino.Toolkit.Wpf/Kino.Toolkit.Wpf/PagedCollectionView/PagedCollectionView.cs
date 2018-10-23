@@ -1,4 +1,5 @@
-﻿//-----------------------------------------------------------------------
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight4/Source/System.Windows.Data/PagedCollectionView/PagedCollectionView.cs
+//-----------------------------------------------------------------------
 // <copyright file="PagedCollectionView.cs" company="Microsoft">
 //      (c) Copyright Microsoft Corporation.
 //      This source is subject to the Microsoft Public License (Ms-PL).
@@ -11,8 +12,17 @@
 #pragma warning disable SA1214
 #pragma warning disable SA1311
 #pragma warning disable SA1124 // Do not use regions
+#pragma warning disable SA1116 // Split parameters must start on line after declaration
+#pragma warning disable SA1108 // Block statements must not contain embedded comments
+#pragma warning disable SA1117 // Parameters must be on same line or separate lines
+#pragma warning disable SA1119 // Statement must not use unnecessary parenthesis
+#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning disable IDE0019 // 使用模式匹配
+#pragma warning disable IDE1005 // 可简化委托调用。
+#pragma warning disable IDE0031 // 使用 null 传播
 namespace System.Windows.Data
 {
+    using Kino.Toolkit.Wpf;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -23,7 +33,6 @@ namespace System.Windows.Data
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
-    using System.Windows.Common;
 
     /// <summary>
     /// PagedCollectionView view over an IEnumerable.
@@ -78,7 +87,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Private accessor for the Monitor we use to prevent recursion
         /// </summary>
-        private readonly SimpleMonitor _currentChangedMonitor = new SimpleMonitor();
+        private SimpleMonitor _currentChangedMonitor = new SimpleMonitor();
 
         /// <summary>
         /// Private accessor for the CurrentItem
@@ -172,7 +181,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Private accessor for the SourceCollection
         /// </summary>
-        private readonly IEnumerable _sourceCollection;
+        private IEnumerable _sourceCollection;
 
         /// <summary>
         /// Private accessor for the Grouping data on the entire collection
@@ -201,7 +210,6 @@ namespace System.Windows.Data
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PagedCollectionView"/> class.
         /// Helper constructor that sets default values for isDataSorted and isDataInGroupOrder.
         /// </summary>
         /// <param name="source">The source for the collection</param>
@@ -211,7 +219,7 @@ namespace System.Windows.Data
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PagedCollectionView"/> class.
+        /// Initializes a new instance of the PagedCollectionView class.
         /// </summary>
         /// <param name="source">The source for the collection</param>
         /// <param name="isDataSorted">Determines whether the source is already sorted</param>
@@ -412,8 +420,14 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets a value indicating whether the view supports AddNew.
         /// </summary>
-        public bool CanAddNew => !IsEditingItem &&
+        public bool CanAddNew
+        {
+            get
+            {
+                return !IsEditingItem &&
                     (SourceList != null && !SourceList.IsFixedSize && CanConstructItem);
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether the view supports the notion of "pending changes"
@@ -422,34 +436,55 @@ namespace System.Windows.Data
         /// implements IEditableObject, or if the view has special knowledge about
         /// the item that it can use to support rollback of pending changes.
         /// </summary>
-        public bool CanCancelEdit => _editItem is System.ComponentModel.IEditableObject;
+        public bool CanCancelEdit
+        {
+            get { return _editItem is System.ComponentModel.IEditableObject; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether the PageIndex value is allowed to change or not.
         /// </summary>
-        public bool CanChangePage => true;
+        public bool CanChangePage
+        {
+            get { return true; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether we support filtering with this ICollectionView.
         /// </summary>
-        public bool CanFilter => true;
+        public bool CanFilter
+        {
+            get { return true; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this view supports grouping.
         /// When this returns false, the rest of the interface is ignored.
         /// </summary>
-        public bool CanGroup => true;
+        public bool CanGroup
+        {
+            get { return true; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether the view supports Remove and RemoveAt.
         /// </summary>
-        public bool CanRemove => !IsEditingItem && !IsAddingNew &&
+        public bool CanRemove
+        {
+            get
+            {
+                return !IsEditingItem && !IsAddingNew &&
                     (SourceList != null && !SourceList.IsFixedSize);
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether we support sorting with this ICollectionView.
         /// </summary>
-        public bool CanSort => true;
+        public bool CanSort
+        {
+            get { return true; }
+        }
 
         /// <summary>
         /// Gets the number of records in the view after
@@ -637,7 +672,13 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets the description of grouping, indexed by level.
         /// </summary>
-        public ObservableCollection<GroupDescription> GroupDescriptions => _group?.GroupDescriptions;
+        public ObservableCollection<GroupDescription> GroupDescriptions
+        {
+            get
+            {
+                return _group != null ? _group.GroupDescriptions : null;
+            }
+        }
 
         /// <summary>
         /// Gets the top-level groups, constructed according to the descriptions
@@ -653,14 +694,17 @@ namespace System.Windows.Data
                 }
 
                 CollectionViewGroupRoot group = RootGroup;
-                return group?.Items;
+                return group != null ? group.Items : null;
             }
         }
 
         /// <summary>
         /// Gets a value indicating whether an "AddNew" transaction is in progress.
         /// </summary>
-        public bool IsAddingNew => _newItem != null;
+        public bool IsAddingNew
+        {
+            get { return _newItem != null; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether currency is beyond the end (End-Of-File).
@@ -691,7 +735,10 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets a value indicating whether an EditItem transaction is in progress.
         /// </summary>
-        public bool IsEditingItem => _editItem != null;
+        public bool IsEditingItem
+        {
+            get { return _editItem != null; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether the resulting (filtered) view is empty.
@@ -729,12 +776,21 @@ namespace System.Windows.Data
         /// Gets the minimum number of items known to be in the source collection
         /// that verify the current filter if any
         /// </summary>
-        public int ItemCount => InternalList.Count;
+        public int ItemCount
+        {
+            get
+            {
+                return InternalList.Count;
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this view needs to be refreshed.
         /// </summary>
-        public bool NeedsRefresh => CheckFlag(CollectionViewFlags.NeedsRefresh);
+        public bool NeedsRefresh
+        {
+            get { return CheckFlag(CollectionViewFlags.NeedsRefresh); }
+        }
 
         /// <summary>
         /// Gets or sets whether to include a placeholder for a new item, and if so,
@@ -752,8 +808,7 @@ namespace System.Windows.Data
                 if (value != NewItemPlaceholderPosition.None)
                 {
                     throw new ArgumentException(
-                        string.Format(
-                            CultureInfo.InvariantCulture,
+                        string.Format(CultureInfo.InvariantCulture,
                             PagedCollectionViewResources.InvalidEnumArgument,
                             "value",
                             value.ToString(),
@@ -765,7 +820,13 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets the current page we are on. (zero based)
         /// </summary>
-        public int PageIndex => _pageIndex;
+        public int PageIndex
+        {
+            get
+            {
+                return _pageIndex;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the number of items to display on a page. If the
@@ -928,12 +989,21 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets the source of the IEnumerable collection we are using for our view.
         /// </summary>
-        public IEnumerable SourceCollection => _sourceCollection;
+        public IEnumerable SourceCollection
+        {
+            get { return _sourceCollection; }
+        }
 
         /// <summary>
         /// Gets the total number of items in the view before paging is applied.
         /// </summary>
-        public int TotalItemCount => InternalList.Count;
+        public int TotalItemCount
+        {
+            get
+            {
+                return InternalList.Count;
+            }
+        }
 
         #endregion Public Properties
 
@@ -965,12 +1035,18 @@ namespace System.Windows.Data
         /// Gets the private count without taking paging or
         /// placeholders into account
         /// </summary>
-        private int InternalCount => InternalList.Count;
+        private int InternalCount
+        {
+            get { return InternalList.Count; }
+        }
 
         /// <summary>
         /// Gets the InternalList
         /// </summary>
-        private IList InternalList => _internalList;
+        private IList InternalList
+        {
+            get { return _internalList; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether CurrentItem and CurrentPosition are
@@ -1010,7 +1086,10 @@ namespace System.Windows.Data
         /// Gets a value indicating whether or not we have grouping
         /// taking place in this collection.
         /// </summary>
-        private bool IsGrouping => _isGrouping;
+        private bool IsGrouping
+        {
+            get { return _isGrouping; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether there
@@ -1019,13 +1098,19 @@ namespace System.Windows.Data
         /// should not call Refresh if IsRefreshDeferred
         /// is true.
         /// </summary>
-        private bool IsRefreshDeferred => _deferLevel > 0;
+        private bool IsRefreshDeferred
+        {
+            get { return _deferLevel > 0; }
+        }
 
         /// <summary>
         /// Gets whether the current page is empty and we need
         /// to move to a previous page.
         /// </summary>
-        private bool NeedToMoveToPreviousPage => PageSize > 0 && Count == 0 && PageIndex != 0 && PageCount == PageIndex;
+        private bool NeedToMoveToPreviousPage
+        {
+            get { return (PageSize > 0 && Count == 0 && PageIndex != 0 && PageCount == PageIndex); }
+        }
 
         /// <summary>
         /// Gets a value indicating whether we are on the last local page
@@ -1047,31 +1132,46 @@ namespace System.Windows.Data
                     return true;
                 }
 
-                return PageIndex == PageCount - 1;
+                return (PageIndex == PageCount - 1);
             }
         }
 
         /// <summary>
         /// Gets the number of pages we currently have
         /// </summary>
-        private int PageCount => (_pageSize > 0) ? Math.Max(1, (int)Math.Ceiling((double)ItemCount / _pageSize)) : 0;
+        private int PageCount
+        {
+            get { return (_pageSize > 0) ? Math.Max(1, (int)Math.Ceiling((double)ItemCount / _pageSize)) : 0; }
+        }
 
         /// <summary>
         /// Gets the root of the Group that we expose to the user
         /// </summary>
-        private CollectionViewGroupRoot RootGroup => _isUsingTemporaryGroup ? _temporaryGroup : _group;
+        private CollectionViewGroupRoot RootGroup
+        {
+            get
+            {
+                return _isUsingTemporaryGroup ? _temporaryGroup : _group;
+            }
+        }
 
         /// <summary>
         /// Gets the SourceCollection as an IList
         /// </summary>
-        private IList SourceList => SourceCollection as IList;
+        private IList SourceList
+        {
+            get { return SourceCollection as IList; }
+        }
 
         /// <summary>
         /// Gets Timestamp used by the NewItemAwareEnumerator to determine if a
         /// collection change has occurred since the enumerator began.  (If so,
         /// MoveNext should throw.)
         /// </summary>
-        private int Timestamp => _timestamp;
+        private int Timestamp
+        {
+            get { return _timestamp; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether a private copy of the data
@@ -1079,7 +1179,10 @@ namespace System.Windows.Data
         /// classes to also be able to access this value to see whether or not
         /// to use the default source collection, or the internal list.
         /// </summary>
-        private bool UsesLocalArray => SortDescriptions.Count > 0 || Filter != null || _pageSize > 0 || GroupDescriptions.Count > 0;
+        private bool UsesLocalArray
+        {
+            get { return SortDescriptions.Count > 0 || Filter != null || _pageSize > 0 || GroupDescriptions.Count > 0; }
+        }
 
         #endregion Private Properties
 
@@ -1236,7 +1339,8 @@ namespace System.Windows.Data
             MoveCurrentTo(newItem);
 
             // if the new item is editable, call BeginEdit on it
-            if (newItem is IEditableObject editableObject)
+            IEditableObject editableObject = newItem as IEditableObject;
+            if (editableObject != null)
             {
                 editableObject.BeginEdit();
             }
@@ -1269,7 +1373,8 @@ namespace System.Windows.Data
             object editItem = CurrentEditItem;
             CurrentEditItem = null;
 
-            if (editItem is IEditableObject ieo)
+            System.ComponentModel.IEditableObject ieo = editItem as System.ComponentModel.IEditableObject;
+            if (ieo != null)
             {
                 ieo.CancelEdit();
             }
@@ -1413,7 +1518,8 @@ namespace System.Windows.Data
             object editItem = CurrentEditItem;
             CurrentEditItem = null;
 
-            if (editItem is IEditableObject ieo)
+            System.ComponentModel.IEditableObject ieo = editItem as System.ComponentModel.IEditableObject;
+            if (ieo != null)
             {
                 ieo.EndEdit();
             }
@@ -1835,7 +1941,8 @@ namespace System.Windows.Data
 
             CurrentEditItem = item;
 
-            if (item is System.ComponentModel.IEditableObject ieo)
+            System.ComponentModel.IEditableObject ieo = item as System.ComponentModel.IEditableObject;
+            if (ieo != null)
             {
                 ieo.BeginEdit();
             }
@@ -1855,7 +1962,7 @@ namespace System.Windows.Data
             if (IsGrouping)
             {
                 CollectionViewGroupRoot group = RootGroup;
-                return group?.GetLeafEnumerator();
+                return group != null ? group.GetLeafEnumerator() : null;
             }
 
             // if we are paging
@@ -1916,7 +2023,9 @@ namespace System.Windows.Data
             if (IsGrouping)
             {
                 CollectionViewGroupRoot group = RootGroup;
-                return group?.LeafAt(_isUsingTemporaryGroup ? ConvertToInternalIndex(index) : index);
+                return group != null ?
+                    group.LeafAt(_isUsingTemporaryGroup ? ConvertToInternalIndex(index) : index) :
+                    null;
             }
 
             if (IsAddingNew && UsesLocalArray && index == Count - 1)
@@ -2217,7 +2326,8 @@ namespace System.Windows.Data
                     Debug.Assert(!IsCurrentAfterLast, "Unexpected this.IsCurrentAfterLast == true");
 
                     SetCurrentToPosition(oldCurrentPosition);
-                    RaiseCurrencyChanges(false /*fireChangedEvent*/, null /*oldCurrentItem*/, -1 /*oldCurrentPosition*/, true /*oldIsCurrentBeforeFirst*/, false /*oldIsCurrentAfterLast*/);
+                    RaiseCurrencyChanges(false /*fireChangedEvent*/, null /*oldCurrentItem*/, -1 /*oldCurrentPosition*/,
+                        true /*oldIsCurrentBeforeFirst*/, false /*oldIsCurrentAfterLast*/);
 
                     return false;
                 }
@@ -2266,7 +2376,8 @@ namespace System.Windows.Data
         /// </summary>
         public void Refresh()
         {
-            if (this is IEditableCollectionView ecv && (ecv.IsAddingNew || ecv.IsEditingItem))
+            IEditableCollectionView ecv = this as IEditableCollectionView;
+            if (ecv != null && (ecv.IsAddingNew || ecv.IsEditingItem))
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, PagedCollectionViewResources.OperationNotAllowedDuringAddOrEdit, "Refresh"));
             }
@@ -2424,7 +2535,10 @@ namespace System.Windows.Data
         /// <returns>child object</returns>
         private static object InvokePath(object item, string propertyPath, Type propertyType)
         {
-            object propertyValue = TypeHelper.GetNestedPropertyValue(item, propertyPath, propertyType, out Exception exception);
+#pragma warning disable IDE0018 // 内联变量声明
+            Exception exception;
+#pragma warning restore IDE0018 // 内联变量声明
+            object propertyValue = TypeHelper.GetNestedPropertyValue(item, propertyPath, propertyType, out exception);
             if (exception != null)
             {
                 throw exception;
@@ -2671,7 +2785,8 @@ namespace System.Windows.Data
 
             CurrentAddItem = null;    // leave "adding-new" mode
 
-            if (newItem is System.ComponentModel.IEditableObject ieo)
+            System.ComponentModel.IEditableObject ieo = newItem as System.ComponentModel.IEditableObject;
+            if (ieo != null)
             {
                 if (cancel)
                 {
@@ -2965,7 +3080,10 @@ namespace System.Windows.Data
                 return;
             }
 
-            CurrentChanging?.Invoke(this, args);
+            if (CurrentChanging != null)
+            {
+                CurrentChanging(this, args);
+            }
         }
 
         /// <summary>
@@ -3020,7 +3138,10 @@ namespace System.Windows.Data
         /// <param name="e">PropertyChangedEventArgs for this change</param>
         private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, e);
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
         }
 
         /// <summary>
@@ -3040,7 +3161,8 @@ namespace System.Windows.Data
         {
             if (groupRoot == _temporaryGroup || PageSize == 0)
             {
-                if (groupRoot.ActiveComparer is CollectionViewGroupInternal.ListComparer listComparer)
+                CollectionViewGroupInternal.ListComparer listComparer = groupRoot.ActiveComparer as CollectionViewGroupInternal.ListComparer;
+                if (listComparer != null)
                 {
                     listComparer.ResetList(InternalList);
                 }
@@ -3080,7 +3202,7 @@ namespace System.Windows.Data
                 for (int num = 0, count = _internalList.Count; num < count; ++num)
                 {
                     object item = _internalList[num];
-                    if (item != null && (!IsAddingNew || !object.Equals(CurrentAddItem, item)))
+                    if (item != null && (!IsAddingNew || !Equals(CurrentAddItem, item)))
                     {
                         _group.AddToSubgroups(item, true /*loading*/);
                     }
@@ -3131,7 +3253,7 @@ namespace System.Windows.Data
                 for (int num = 0, count = _internalList.Count; num < count; ++num)
                 {
                     object item = _internalList[num];
-                    if (item != null && (!IsAddingNew || !object.Equals(CurrentAddItem, item)))
+                    if (item != null && (!IsAddingNew || !Equals(CurrentAddItem, item)))
                     {
                         _temporaryGroup.AddToSubgroups(item, true /*loading*/);
                     }
@@ -3172,7 +3294,7 @@ namespace System.Windows.Data
                 for (int num = 0, count = Count; num < count; ++num)
                 {
                     object item = GetItemAt(num);
-                    if (item != null && (!IsAddingNew || !object.Equals(CurrentAddItem, item)))
+                    if (item != null && (!IsAddingNew || !Equals(CurrentAddItem, item)))
                     {
                         _group.AddToSubgroups(item, true /*loading*/);
                     }
@@ -3300,8 +3422,8 @@ namespace System.Windows.Data
             // if we are paging, we may have to fire another notification for the item
             // that needs to be removed for the one we added on this page.
             if (PageSize > 0 && !OnLastLocalPage &&
-               ((IsGrouping && removeNotificationItem != null) ||
-               (!IsGrouping && (PageIndex + 1) * PageSize > InternalIndexOf(addedItem))))
+               (((IsGrouping && removeNotificationItem != null) ||
+               (!IsGrouping && (PageIndex + 1) * PageSize > InternalIndexOf(addedItem)))))
             {
                 if (removeNotificationItem != null && removeNotificationItem != addedItem)
                 {
@@ -3387,8 +3509,8 @@ namespace System.Windows.Data
                 return;
             }
 
-            object addedItem = args.NewItems?[0];
-            object removedItem = args.OldItems?[0];
+            object addedItem = (args.NewItems != null) ? args.NewItems[0] : null;
+            object removedItem = (args.OldItems != null) ? args.OldItems[0] : null;
 
             // fire notifications for removes
             if (args.Action == NotifyCollectionChangedAction.Remove ||
@@ -3524,7 +3646,7 @@ namespace System.Windows.Data
                     // otherwise, calculate the correct sorted index
                     if (index < 0 || /* if item was not originally part of list */
                         (index > 0 && (sortFieldComparer.Compare(item, InternalItemAt(index - 1)) < 0)) || /* item has moved up in the list */
-                        ((index < InternalList.Count - 1) && (sortFieldComparer.Compare(item, InternalItemAt(index)) > 0)) /* item has moved down in the list */)
+                        ((index < InternalList.Count - 1) && (sortFieldComparer.Compare(item, InternalItemAt(index)) > 0))) /* item has moved down in the list */
                     {
                         index = sortFieldComparer.FindInsertIndex(item, _internalList);
                     }
@@ -3585,7 +3707,11 @@ namespace System.Windows.Data
         /// </summary>
         private void RaisePageChanged()
         {
-            PageChanged?.Invoke(this, EventArgs.Empty);
+            EventHandler<EventArgs> handler = PageChanged;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
         }
 
         /// <summary>
@@ -3935,7 +4061,7 @@ namespace System.Windows.Data
 
                 switch (sort.Direction)
                 {
-                    case System.ComponentModel.ListSortDirection.Ascending:
+                    case ListSortDirection.Ascending:
                         if (orderedEnum != null)
                         {
                             // thenby
@@ -3948,7 +4074,7 @@ namespace System.Windows.Data
                         }
 
                         break;
-                    case System.ComponentModel.ListSortDirection.Descending:
+                    case ListSortDirection.Descending:
                         if (orderedEnum != null)
                         {
                             // thenby
@@ -4003,10 +4129,11 @@ namespace System.Windows.Data
             /// <summary>
             /// Private accessor for the CultureInfo of our comparer
             /// </summary>
-            private readonly CultureInfo _culture;
+            private CultureInfo _culture;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="CultureSensitiveComparer"/> class.
+            /// Creates a comparer which will respect the CultureInfo
+            /// that is passed in when comparing strings.
             /// </summary>
             /// <param name="culture">The CultureInfo to use in string comparisons</param>
             public CultureSensitiveComparer(CultureInfo culture)
@@ -4071,7 +4198,7 @@ namespace System.Windows.Data
             private PagedCollectionView collectionView;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="DeferHelper"/> class.
+            /// Initializes a new instance of the DeferHelper class
             /// </summary>
             /// <param name="collectionView">CollectionView that created this DeferHelper</param>
             public DeferHelper(PagedCollectionView collectionView)
@@ -4107,7 +4234,10 @@ namespace System.Windows.Data
             /// <summary>
             /// Gets a value indicating whether we have been entered or not
             /// </summary>
-            public bool Busy => entered;
+            public bool Busy
+            {
+                get { return entered; }
+            }
 
             /// <summary>
             /// Sets a value indicating that we have been entered
@@ -4158,7 +4288,7 @@ namespace System.Windows.Data
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="NewItemAwareEnumerator"/> class.
+            /// Initializes a new instance of the NewItemAwareEnumerator class.
             /// </summary>
             /// <param name="collectionView">The PagedCollectionView we are creating the enumerator for</param>
             /// <param name="baseEnumerator">The baseEnumerator that we pass in</param>
@@ -4215,7 +4345,13 @@ namespace System.Windows.Data
             /// <summary>
             /// Gets the Current value for IEnumerable
             /// </summary>
-            public object Current => (_position == Position.OnNewItem) ? _newItem : _baseEnumerator.Current;
+            public object Current
+            {
+                get
+                {
+                    return (_position == Position.OnNewItem) ? _newItem : _baseEnumerator.Current;
+                }
+            }
 
             /// <summary>
             /// Implements the Reset function for IEnumerable
@@ -4226,15 +4362,15 @@ namespace System.Windows.Data
                 _baseEnumerator.Reset();
             }
 
-                              /// <summary>
-                              /// CollectionView that we are creating the enumerator for
-                              /// </summary>
-            private readonly PagedCollectionView _collectionView;
+            /// <summary>
+            /// CollectionView that we are creating the enumerator for
+            /// </summary>
+            private PagedCollectionView _collectionView;
 
             /// <summary>
             /// The Base Enumerator that we are passing in
             /// </summary>
-            private readonly IEnumerator _baseEnumerator;
+            private IEnumerator _baseEnumerator;
 
             /// <summary>
             /// The position we are appending items to the enumerator
@@ -4264,7 +4400,6 @@ namespace System.Windows.Data
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="SortFieldComparer"/> class.
             /// Create a comparer, using the SortDescription and a Type;
             /// tries to find a reflection PropertyInfo for each property name
             /// </summary>
@@ -4330,7 +4465,7 @@ namespace System.Windows.Data
                         IComparer comparer = _fields[k].Comparer;
                         if (propertyType != null && comparer == null)
                         {
-                            _fields[k].Comparer = typeof(Comparer<>).MakeGenericType(propertyType).GetProperty("Default").GetValue(null, null) as IComparer;
+                            _fields[k].Comparer = (typeof(Comparer<>).MakeGenericType(propertyType).GetProperty("Default")).GetValue(null, null) as IComparer;
                             comparer = _fields[k].Comparer;
                         }
 
@@ -4399,7 +4534,7 @@ namespace System.Windows.Data
                 {
                     // remember PropertyPath and Direction, used when actually sorting
                     fields[k].PropertyPath = sortFields[k].PropertyName;
-                    fields[k].Descending = sortFields[k].Direction == ListSortDirection.Descending;
+                    fields[k].Descending = (sortFields[k].Direction == ListSortDirection.Descending);
                 }
 
                 return fields;
@@ -4425,7 +4560,7 @@ namespace System.Windows.Data
                     }
                     else
                     {
-                        value = PagedCollectionView.InvokePath(o, PropertyPath, PropertyType);
+                        value = InvokePath(o, PropertyPath, PropertyType);
                     }
 
                     return value;
@@ -4433,18 +4568,35 @@ namespace System.Windows.Data
             }
 
             private readonly ICollectionView _collectionView;
-            private readonly SortPropertyInfo[] _fields;
+            private SortPropertyInfo[] _fields;
             private readonly SortDescriptionCollection _sortFields;
-            private readonly IComparer<object> _comparer;
+            private IComparer<object> _comparer;
 
             #endregion
         }
 
         #endregion Private Classes
     }
+
+    /// <summary>
+    /// Represents a method that is used to provide custom logic to select
+    /// the GroupDescription based on the parent group and its level.
+    /// </summary>
+    /// <param name="group">The parent group.</param>
+    /// <param name="level">The level of group.</param>
+    /// <returns>The GroupDescription chosen based on the parent group and its level.</returns>
+    // public delegate GroupDescription GroupDescriptionSelectorCallback(CollectionViewGroup group, int level);
 }
 #pragma warning restore SA1201
 #pragma warning restore SA1202
 #pragma warning restore SA1214
 #pragma warning restore SA1311
 #pragma warning restore SA1124 // Do not use regions
+#pragma warning restore SA1116 // Split parameters must start on line after declaration
+#pragma warning restore SA1108 // Block statements must not contain embedded comments
+#pragma warning restore SA1117 // Parameters must be on same line or separate lines
+#pragma warning restore SA1119 // Statement must not use unnecessary parenthesis
+#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning restore IDE0019 // 使用模式匹配
+#pragma warning restore IDE1005 // 可简化委托调用。
+#pragma warning restore IDE0031 // 使用 null 传播

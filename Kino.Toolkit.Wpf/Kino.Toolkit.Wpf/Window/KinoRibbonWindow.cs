@@ -13,6 +13,18 @@ namespace Kino.Toolkit.Wpf
     [StyleTypedProperty(Property = nameof(RibbonStyle), StyleTargetType = typeof(Ribbon))]
     public class KinoRibbonWindow : RibbonWindow
     {
+        /// <summary>
+        /// 标识 RibbonStyle 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty RibbonStyleProperty =
+            DependencyProperty.Register(nameof(RibbonStyle), typeof(Style), typeof(KinoRibbonWindow), new PropertyMetadata(default(Style), OnRibbonStyleChanged));
+
+        /// <summary>
+        /// 标识 CommandBar 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty CommandBarProperty =
+            DependencyProperty.Register(nameof(CommandBar), typeof(KinoWindowCommandBar), typeof(KinoRibbonWindow), new PropertyMetadata(default(KinoWindowCommandBar), OnCommandBarChanged));
+
         public KinoRibbonWindow()
         {
             DefaultStyleKey = typeof(KinoRibbonWindow);
@@ -34,50 +46,12 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// 标识 RibbonStyle 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty RibbonStyleProperty =
-            DependencyProperty.Register(nameof(RibbonStyle), typeof(Style), typeof(KinoRibbonWindow), new PropertyMetadata(default(Style), OnRibbonStyleChanged));
-
-        private static void OnRibbonStyleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var oldValue = (Style)args.OldValue;
-            var newValue = (Style)args.NewValue;
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            var target = obj as KinoRibbonWindow;
-            target?.OnRibbonStyleChanged(oldValue, newValue);
-        }
-
-        /// <summary>
         /// 获取或设置CommandBar的值
         /// </summary>
         public KinoWindowCommandBar CommandBar
         {
             get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
             set => SetValue(CommandBarProperty, value);
-        }
-
-        /// <summary>
-        /// 标识 CommandBar 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty CommandBarProperty =
-            DependencyProperty.Register(nameof(CommandBar), typeof(KinoWindowCommandBar), typeof(KinoRibbonWindow), new PropertyMetadata(default(KinoWindowCommandBar), OnCommandBarChanged));
-
-        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var oldValue = (KinoWindowCommandBar)args.OldValue;
-            var newValue = (KinoWindowCommandBar)args.NewValue;
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            var target = obj as KinoRibbonWindow;
-            target?.OnCommandBarChanged(oldValue, newValue);
         }
 
         /// <summary>
@@ -119,6 +93,32 @@ namespace Kino.Toolkit.Wpf
             {
                 InvalidateMeasure();
             }
+        }
+
+        private static void OnRibbonStyleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (Style)args.OldValue;
+            var newValue = (Style)args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoRibbonWindow;
+            target?.OnRibbonStyleChanged(oldValue, newValue);
+        }
+
+        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (KinoWindowCommandBar)args.OldValue;
+            var newValue = (KinoWindowCommandBar)args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoRibbonWindow;
+            target?.OnCommandBarChanged(oldValue, newValue);
         }
     }
 }

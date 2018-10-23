@@ -1,4 +1,5 @@
-﻿//-----------------------------------------------------------------------
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight4/Source/System.Windows.Data/PagedCollectionView/PageChangingEventArgs.cs
+//-----------------------------------------------------------------------
 // <copyright file="PageChangingEventArgs.cs" company="Microsoft">
 //      (c) Copyright Microsoft Corporation.
 //      This source is subject to the Microsoft Public License (Ms-PL).
@@ -6,7 +7,7 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-
+#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
 namespace System.ComponentModel
 {
     /// <summary>
@@ -17,13 +18,12 @@ namespace System.ComponentModel
     public sealed class PageChangingEventArgs : CancelEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PageChangingEventArgs"/> class.
         /// Constructor that takes the target page index
         /// </summary>
         /// <param name="newPageIndex">Index of the requested page</param>
         public PageChangingEventArgs(int newPageIndex)
         {
-            NewPageIndex = newPageIndex;
+            this.NewPageIndex = newPageIndex;
         }
 
         /// <summary>
@@ -36,3 +36,4 @@ namespace System.ComponentModel
         }
     }
 }
+#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text

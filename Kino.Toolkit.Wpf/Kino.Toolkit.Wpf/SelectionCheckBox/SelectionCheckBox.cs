@@ -31,6 +31,8 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
+        protected abstract IList SelectedItems { get; }
+
         protected virtual void OnSelectorChanged(Selector oldValue, Selector newValue)
         {
             if (oldValue != null)
@@ -47,6 +49,33 @@ namespace Kino.Toolkit.Wpf
 
             IsEnabled = Selector != null && Selector.Items.Count > 0;
         }
+
+        protected override void OnChecked(RoutedEventArgs e)
+        {
+            base.OnChecked(e);
+            if (_isUpdatingIsChecked || Selector == null)
+            {
+                return;
+            }
+
+            SelectAll();
+        }
+
+        protected override void OnUnchecked(RoutedEventArgs e)
+        {
+            base.OnUnchecked(e);
+
+            if (_isUpdatingIsChecked || Selector == null)
+            {
+                return;
+            }
+
+            UnselectAll();
+        }
+
+        protected abstract void SelectAll();
+
+        protected abstract void UnselectAll();
 
         private void OnRelativeListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -86,34 +115,5 @@ namespace Kino.Toolkit.Wpf
 
             IsEnabled = Selector.Items.Count > 0;
         }
-
-        protected override void OnChecked(RoutedEventArgs e)
-        {
-            base.OnChecked(e);
-            if (_isUpdatingIsChecked || Selector == null)
-            {
-                return;
-            }
-
-            SelectAll();
-        }
-
-        protected override void OnUnchecked(RoutedEventArgs e)
-        {
-            base.OnUnchecked(e);
-
-            if (_isUpdatingIsChecked || Selector == null)
-            {
-                return;
-            }
-
-            UnselectAll();
-        }
-
-        protected abstract IList SelectedItems { get; }
-
-        protected abstract void SelectAll();
-
-        protected abstract void UnselectAll();
     }
 }

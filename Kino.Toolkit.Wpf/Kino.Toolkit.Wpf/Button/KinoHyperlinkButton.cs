@@ -56,7 +56,7 @@ namespace Kino.Toolkit.Wpf
         public string TargetName
         {
             get => GetValue(TargetNameProperty) as string;
-            set => SetValue(KinoHyperlinkButton.TargetNameProperty, value);
+            set => SetValue(TargetNameProperty, value);
         }
 
         /// <summary>Provides handling for the <see cref="E:System.Windows.Controls.Primitives.ButtonBase.Click" /> event.</summary>

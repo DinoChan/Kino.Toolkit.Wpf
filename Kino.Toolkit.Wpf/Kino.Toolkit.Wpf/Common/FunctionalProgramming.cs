@@ -1,4 +1,10 @@
-﻿using System;
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight5/Source/Controls.Toolkit/DragDrop/FunctionalProgramming.cs
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License (Ms-PL).
+// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+// All other rights reserved.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

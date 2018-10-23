@@ -1,10 +1,13 @@
-﻿/*
+﻿// https://github.com/OpenRIAServices/OpenRiaServices/blob/master/OpenRiaServices.Data.DomainServices/Framework/CollectionViewLoader.cs
+/*
     Copyright (c) 2013, The Outercurve Foundation.
     This software is released under the Apache License 2.0 (the "License");
     you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
 #pragma warning disable SA1124 // Do not use regions
+#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning disable IDE1005 // 可简化委托调用。
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +26,7 @@ namespace Kino.Toolkit.Wpf
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionViewLoader"/> class.
+        /// Initializes a new instance of the <see cref="CollectionViewLoader"/>
         /// </summary>
         protected CollectionViewLoader()
         {
@@ -74,7 +77,11 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         protected virtual void OnCanLoadChanged()
         {
-            CanLoadChanged?.Invoke(this, EventArgs.Empty);
+            EventHandler handler = this.CanLoadChanged;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
         }
 
         /// <summary>
@@ -83,10 +90,16 @@ namespace Kino.Toolkit.Wpf
         /// <param name="e">The event to raise</param>
         protected virtual void OnLoadCompleted(AsyncCompletedEventArgs e)
         {
-            LoadCompleted?.Invoke(this, e);
+            AsyncCompletedEventHandler handler = this.LoadCompleted;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         #endregion
     }
 }
 #pragma warning restore SA1124 // Do not use regions
+#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning restore IDE1005 // 可简化委托调用。

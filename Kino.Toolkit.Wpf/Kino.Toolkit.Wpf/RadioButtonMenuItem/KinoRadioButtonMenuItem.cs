@@ -14,6 +14,12 @@ namespace Kino.Toolkit.Wpf
     /// </summary>
     public class KinoRadioButtonMenuItem : MenuItem
     {
+        /// <summary>
+        /// 标识 GroupName 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty GroupNameProperty =
+            DependencyProperty.Register(nameof(GroupName), typeof(string), typeof(KinoRadioButtonMenuItem), new PropertyMetadata(default(string)));
+
         static KinoRadioButtonMenuItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(KinoRadioButtonMenuItem), new FrameworkPropertyMetadata(typeof(KinoRadioButtonMenuItem)));
@@ -22,13 +28,6 @@ namespace Kino.Toolkit.Wpf
         public KinoRadioButtonMenuItem()
         {
             Checked += OnChecked;
-        }
-
-        /// <inheritdoc />
-        protected override void OnClick()
-        {
-            base.OnClick();
-            IsChecked = true;
         }
 
         /// <summary>
@@ -40,11 +39,18 @@ namespace Kino.Toolkit.Wpf
             set { SetValue(GroupNameProperty, value); }
         }
 
-        /// <summary>
-        /// 标识 GroupName 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty GroupNameProperty =
-            DependencyProperty.Register(nameof(GroupName), typeof(string), typeof(KinoRadioButtonMenuItem), new PropertyMetadata(default(string)));
+        /// <inheritdoc />
+        protected override void OnClick()
+        {
+            base.OnClick();
+            IsChecked = true;
+        }
+
+        /// <inheritdoc />
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new KinoRadioButtonMenuItem();
+        }
 
         private void OnChecked(object sender, RoutedEventArgs e)
         {
@@ -64,12 +70,6 @@ namespace Kino.Toolkit.Wpf
                     }
                 }
             }
-        }
-
-        /// <inheritdoc />
-        protected override DependencyObject GetContainerForItemOverride()
-        {
-            return new KinoRadioButtonMenuItem();
         }
     }
 }

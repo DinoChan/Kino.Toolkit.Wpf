@@ -4,16 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
     /// <summary>
     /// for custom window
     /// </summary>
-    public class WindowService
+    public partial class WindowService
     {
+        /// <summary>
+        /// 标识 IsKeepInWorkArea 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty IsKeepInWorkAreaProperty =
+            DependencyProperty.RegisterAttached("IsKeepInWorkArea", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsKeepInWorkAreaChanged));
+
+        /// <summary>
+        /// 标识 IsActiveCommands 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty IsActiveCommandsProperty =
+            DependencyProperty.RegisterAttached("IsActiveCommands", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsActiveCommandsChanged));
+
         private static double? _paddedBorder;
 
         /// <summary>
@@ -47,22 +57,6 @@ namespace Kino.Toolkit.Wpf
         public static void SetIsActiveCommands(Window obj, bool value) => obj.SetValue(IsActiveCommandsProperty, value);
 
         /// <summary>
-        /// 标识 IsActiveCommands 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsActiveCommandsProperty =
-            DependencyProperty.RegisterAttached("IsActiveCommands", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsActiveCommandsChanged));
-
-        private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var newValue = (bool)args.NewValue;
-            if (obj is Window window && newValue)
-            {
-                var service = new WindowCommandHelper(window);
-                service.ActiveCommands();
-            }
-        }
-
-        /// <summary>
         /// 从指定元素获取 IsKeepInWorkArea 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
@@ -76,11 +70,15 @@ namespace Kino.Toolkit.Wpf
         /// <param name="value">要设置的值。</param>
         public static void SetIsKeepInWorkArea(Window obj, bool value) => obj.SetValue(IsKeepInWorkAreaProperty, value);
 
-        /// <summary>
-        /// 标识 IsKeepInWorkArea 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsKeepInWorkAreaProperty =
-            DependencyProperty.RegisterAttached("IsKeepInWorkArea", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsKeepInWorkAreaChanged));
+        private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var newValue = (bool)args.NewValue;
+            if (obj is Window window && newValue)
+            {
+                var service = new WindowCommandHelper(window);
+                service.ActiveCommands();
+            }
+        }
 
         private static void OnIsKeepInWorkAreaChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -104,79 +102,6 @@ namespace Kino.Toolkit.Wpf
                 };
                 var service = new WindowCommandHelper(window);
                 service.ActiveCommands();
-            }
-        }
-
-        private class WindowCommandHelper
-        {
-            private Window _window;
-
-            public WindowCommandHelper(Window window)
-            {
-                _window = window;
-            }
-
-            public void ActiveCommands()
-            {
-                _window.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseWindow));
-                _window.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeWindow, CanResizeWindow));
-                _window.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow, CanMinimizeWindow));
-                _window.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreWindow, CanResizeWindow));
-                _window.CommandBindings.Add(new CommandBinding(SystemCommands.ShowSystemMenuCommand, ShowSystemMenu));
-            }
-
-            private void CanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
-            {
-                e.CanExecute = _window.ResizeMode == ResizeMode.CanResize || _window.ResizeMode == ResizeMode.CanResizeWithGrip;
-            }
-
-            private void CanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
-            {
-                e.CanExecute = _window.ResizeMode != ResizeMode.NoResize;
-            }
-
-            private void CloseWindow(object sender, ExecutedRoutedEventArgs e)
-            {
-                _window.Close();
-            }
-
-            private void MaximizeWindow(object sender, ExecutedRoutedEventArgs e)
-            {
-                SystemCommands.MaximizeWindow(_window);
-                e.Handled = true;
-            }
-
-            private void MinimizeWindow(object sender, ExecutedRoutedEventArgs e)
-            {
-                SystemCommands.MinimizeWindow(_window);
-                e.Handled = true;
-            }
-
-            private void RestoreWindow(object sender, ExecutedRoutedEventArgs e)
-            {
-                SystemCommands.RestoreWindow(_window);
-                e.Handled = true;
-            }
-
-            private void ShowSystemMenu(object sender, ExecutedRoutedEventArgs e)
-            {
-                var point = _window.PointToScreen(new Point(0, 0));
-                var dpi = VisualTreeHelper.GetDpi(_window);
-                if (_window.WindowState == WindowState.Maximized)
-                {
-                    // 因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度
-                    point.Y += (SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX) + PaddedBorder + (SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX);
-                    point.X += (SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX) + PaddedBorder;
-                }
-                else
-                {
-                    point.X += _window.BorderThickness.Left;
-                    point.Y += SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX;
-                }
-
-                CompositionTarget compositionTarget = PresentationSource.FromVisual(_window).CompositionTarget;
-                SystemCommands.ShowSystemMenu(_window, compositionTarget.TransformFromDevice.Transform(point));
-                e.Handled = true;
             }
         }
     }

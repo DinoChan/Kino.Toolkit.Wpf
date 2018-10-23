@@ -11,7 +11,7 @@ namespace Kino.Toolkit.Wpf.Samples
     public class TestCurdService
     {
         private List<TestModel> _models;
-        private readonly Func<TestModel, object> sort;
+        //private readonly Func<TestModel, object> sort;
 
         public TestCurdService()
         {

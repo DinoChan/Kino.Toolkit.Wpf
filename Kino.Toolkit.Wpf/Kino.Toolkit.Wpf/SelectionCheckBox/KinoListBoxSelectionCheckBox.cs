@@ -8,34 +8,18 @@ namespace Kino.Toolkit.Wpf
     public class KinoListBoxSelectionCheckBox : SelectionCheckBox
     {
         /// <summary>
+        /// 标识 RelativeListBox 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty RelativeListBoxProperty =
+            DependencyProperty.Register("RelativeListBox", typeof(ListBox), typeof(KinoListBoxSelectionCheckBox), new PropertyMetadata(null, OnRelativeListBoxChanged));
+
+        /// <summary>
         /// 获取或设置RelativeListBox的值
         /// </summary>
         public ListBox RelativeListBox
         {
             get { return (ListBox)GetValue(RelativeListBoxProperty); }
             set { SetValue(RelativeListBoxProperty, value); }
-        }
-
-        /// <summary>
-        /// 标识 RelativeListBox 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty RelativeListBoxProperty =
-            DependencyProperty.Register("RelativeListBox", typeof(ListBox), typeof(KinoListBoxSelectionCheckBox), new PropertyMetadata(null, OnRelativeListBoxChanged));
-
-        private static void OnRelativeListBoxChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var target = obj as KinoListBoxSelectionCheckBox;
-            var oldValue = (ListBox)args.OldValue;
-            var newValue = (ListBox)args.NewValue;
-            if (oldValue != newValue)
-            {
-                target.OnRelativeListBoxChanged(oldValue, newValue);
-            }
-        }
-
-        protected virtual void OnRelativeListBoxChanged(ListBox oldValue, ListBox newValue)
-        {
-            Selector = newValue;
         }
 
         protected override IList SelectedItems
@@ -53,6 +37,11 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
+        protected virtual void OnRelativeListBoxChanged(ListBox oldValue, ListBox newValue)
+        {
+            Selector = newValue;
+        }
+
         protected override void SelectAll()
         {
             if (RelativeListBox != null)
@@ -66,6 +55,17 @@ namespace Kino.Toolkit.Wpf
             if (RelativeListBox != null)
             {
                 RelativeListBox.UnselectAll();
+            }
+        }
+
+        private static void OnRelativeListBoxChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var target = obj as KinoListBoxSelectionCheckBox;
+            var oldValue = (ListBox)args.OldValue;
+            var newValue = (ListBox)args.NewValue;
+            if (oldValue != newValue)
+            {
+                target.OnRelativeListBoxChanged(oldValue, newValue);
             }
         }
     }

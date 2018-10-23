@@ -1,4 +1,5 @@
-﻿//-----------------------------------------------------------------------
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight4/Source/System.Windows.Controls.Data/DataPager/PagerDisplayMode.cs
+//-----------------------------------------------------------------------
 // <copyright file="PagerDisplayMode.cs" company="Microsoft">
 //      (c) Copyright Microsoft Corporation.
 //      This source is subject to the Microsoft Public License (Ms-PL).

@@ -1,4 +1,5 @@
-﻿//-----------------------------------------------------------------------
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight4/Source/System.Windows.Data/PagedCollectionView/CollectionViewGroupInternal.cs
+//-----------------------------------------------------------------------
 // <copyright file="CollectionViewGroupInternal.cs" company="Microsoft">
 //      (c) Copyright Microsoft Corporation.
 //      This source is subject to the Microsoft Public License (Ms-PL).
@@ -11,6 +12,8 @@
 #pragma warning disable SA1214
 #pragma warning disable SA1311
 #pragma warning disable SA1124 // Do not use regions
+#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning disable IDE0019 // 使用模式匹配
 namespace System.Windows.Data
 {
     using System;
@@ -59,14 +62,14 @@ namespace System.Windows.Data
         //------------------------------------------------------
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionViewGroupInternal"/> class.
+        /// Initializes a new instance of the CollectionViewGroupInternal class.
         /// </summary>
         /// <param name="name">Name of the CollectionViewGroupInternal</param>
         /// <param name="parent">Parent node of the CollectionViewGroup</param>
         internal CollectionViewGroupInternal(object name, CollectionViewGroupInternal parent)
             : base(name)
         {
-            _parentGroup = parent;
+            this._parentGroup = parent;
         }
 
         #endregion Constructors
@@ -83,7 +86,10 @@ namespace System.Windows.Data
         /// Gets a value indicating whether this group
         /// is at the bottom level (not further sub-grouped).
         /// </summary>
-        public override bool IsBottomLevel => _groupBy == null;
+        public override bool IsBottomLevel
+        {
+            get { return this._groupBy == null; }
+        }
 
         #endregion  Public Properties
 
@@ -108,28 +114,28 @@ namespace System.Windows.Data
         {
             get
             {
-                return _groupBy;
+                return this._groupBy;
             }
 
             set
             {
-                bool oldIsBottomLevel = IsBottomLevel;
+                bool oldIsBottomLevel = this.IsBottomLevel;
 
-                if (_groupBy != null)
+                if (this._groupBy != null)
                 {
-                    ((INotifyPropertyChanged)_groupBy).PropertyChanged -= new PropertyChangedEventHandler(OnGroupByChanged);
+                    ((INotifyPropertyChanged)this._groupBy).PropertyChanged -= new PropertyChangedEventHandler(this.OnGroupByChanged);
                 }
 
-                _groupBy = value;
+                this._groupBy = value;
 
-                if (_groupBy != null)
+                if (this._groupBy != null)
                 {
-                    ((INotifyPropertyChanged)_groupBy).PropertyChanged += new PropertyChangedEventHandler(OnGroupByChanged);
+                    ((INotifyPropertyChanged)this._groupBy).PropertyChanged += new PropertyChangedEventHandler(this.OnGroupByChanged);
                 }
 
-                if (oldIsBottomLevel != IsBottomLevel)
+                if (oldIsBottomLevel != this.IsBottomLevel)
                 {
-                    OnPropertyChanged(new PropertyChangedEventArgs("IsBottomLevel"));
+                    this.OnPropertyChanged(new PropertyChangedEventArgs("IsBottomLevel"));
                 }
             }
         }
@@ -147,23 +153,21 @@ namespace System.Windows.Data
         {
             get
             {
-                if (ItemCount > 0 && (GroupBy == null || GroupBy.GroupNames.Count == 0))
+                if (this.ItemCount > 0 && (this.GroupBy == null || this.GroupBy.GroupNames.Count == 0))
                 {
                     // look for first item, child by child
                     for (int k = 0, n = Items.Count; k < n; ++k)
                     {
-                        if (Items[k] is CollectionViewGroupInternal subgroup)
-                        {
-                            if (subgroup.ItemCount > 0)
-                            {
-                                // child is a nonempty subgroup - ask it
-                                return subgroup.SeedItem;
-                            }
-                        }
-                        else
+                        CollectionViewGroupInternal subgroup = this.Items[k] as CollectionViewGroupInternal;
+                        if (subgroup == null)
                         {
                             // child is an item - return it
-                            return Items[k];
+                            return this.Items[k];
+                        }
+                        else if (subgroup.ItemCount > 0)
+                        {
+                            // child is a nonempty subgroup - ask it
+                            return subgroup.SeedItem;
                         }
 
                         //// otherwise child is an empty subgroup - go to next child
@@ -195,7 +199,10 @@ namespace System.Windows.Data
         /// <summary>
         /// Gets the parent node for this CollectionViewGroupInternal
         /// </summary>
-        private CollectionViewGroupInternal Parent => _parentGroup;
+        private CollectionViewGroupInternal Parent
+        {
+            get { return this._parentGroup; }
+        }
 
         #endregion Private Properties
 
@@ -213,8 +220,8 @@ namespace System.Windows.Data
         /// <param name="item">Item to add</param>
         internal void Add(object item)
         {
-            ChangeCounts(item, +1);
-            ProtectedItems.Add(item);
+            this.ChangeCounts(item, +1);
+            this.ProtectedItems.Add(item);
         }
 
         /// <summary>
@@ -222,9 +229,9 @@ namespace System.Windows.Data
         /// </summary>
         internal void Clear()
         {
-            ProtectedItems.Clear();
-            FullCount = 1;
-            ProtectedItemCount = 0;
+            this.ProtectedItems.Clear();
+            this.FullCount = 1;
+            this.ProtectedItemCount = 0;
         }
 
         /// <summary>
@@ -242,7 +249,8 @@ namespace System.Windows.Data
 
             if (comparer != null)
             {
-                if (comparer is ListComparer listComparer)
+                ListComparer listComparer = comparer as ListComparer;
+                if (listComparer != null)
                 {
                     // reset the IListComparer before each search. This cannot be done
                     // any less frequently (e.g. in Root.AddToSubgroups), due to the
@@ -250,7 +258,8 @@ namespace System.Windows.Data
                     listComparer.Reset();
                 }
 
-                if (comparer is CollectionViewGroupComparer groupComparer)
+                CollectionViewGroupComparer groupComparer = comparer as CollectionViewGroupComparer;
+                if (groupComparer != null)
                 {
                     // reset the CollectionViewGroupComparer before each search. This cannot be done
                     // any less frequently (e.g. in Root.AddToSubgroups), due to the
@@ -260,7 +269,8 @@ namespace System.Windows.Data
 
                 for (index = low; index < high; ++index)
                 {
-                    object seed1 = ProtectedItems[index] is CollectionViewGroupInternal subgroup ? subgroup.SeedItem : ProtectedItems[index];
+                    CollectionViewGroupInternal subgroup = this.ProtectedItems[index] as CollectionViewGroupInternal;
+                    object seed1 = (subgroup != null) ? subgroup.SeedItem : this.ProtectedItems[index];
                     if (seed1 == DependencyProperty.UnsetValue)
                     {
                         continue;
@@ -302,11 +312,11 @@ namespace System.Windows.Data
         internal int Insert(object item, object seed, IComparer comparer)
         {
             // never insert the new item/group before the explicit subgroups
-            int low = (GroupBy == null) ? 0 : GroupBy.GroupNames.Count;
-            int index = FindIndex(item, seed, comparer, low, ProtectedItems.Count);
+            int low = (this.GroupBy == null) ? 0 : this.GroupBy.GroupNames.Count;
+            int index = this.FindIndex(item, seed, comparer, low, ProtectedItems.Count);
 
             // now insert the item
-            ChangeCounts(item, +1);
+            this.ChangeCounts(item, +1);
             ProtectedItems.Insert(index, item);
 
             return index;
@@ -320,9 +330,10 @@ namespace System.Windows.Data
         /// <returns>Item at given index</returns>
         internal object LeafAt(int index)
         {
-            for (int k = 0, n = Items.Count; k < n; ++k)
+            for (int k = 0, n = this.Items.Count; k < n; ++k)
             {
-                if (Items[k] is CollectionViewGroupInternal subgroup)
+                CollectionViewGroupInternal subgroup = this.Items[k] as CollectionViewGroupInternal;
+                if (subgroup != null)
                 {
                     // current item is a group - either drill in, or skip over
                     if (index < subgroup.ItemCount)
@@ -339,7 +350,7 @@ namespace System.Windows.Data
                     // current item is a leaf - see if we're done
                     if (index == 0)
                     {
-                        return Items[k];
+                        return this.Items[k];
                     }
                     else
                     {
@@ -399,7 +410,8 @@ namespace System.Windows.Data
             int leaves = 0;         // number of leaves we've passed over so far
             for (int k = 0, n = Items.Count; k < n; ++k)
             {
-                if (Items[k] is CollectionViewGroupInternal subgroup)
+                CollectionViewGroupInternal subgroup = Items[k] as CollectionViewGroupInternal;
+                if (subgroup != null)
                 {
                     int subgroupIndex = subgroup.LeafIndexOf(item);
                     if (subgroupIndex < 0)
@@ -434,9 +446,9 @@ namespace System.Windows.Data
         /// </summary>
         protected virtual void OnGroupByChanged()
         {
-            if (Parent != null)
+            if (this.Parent != null)
             {
-                Parent.OnGroupByChanged();
+                this.Parent.OnGroupByChanged();
             }
         }
 
@@ -449,17 +461,17 @@ namespace System.Windows.Data
         internal int Remove(object item, bool returnLeafIndex)
         {
             int index = -1;
-            int localIndex = ProtectedItems.IndexOf(item);
+            int localIndex = this.ProtectedItems.IndexOf(item);
 
             if (localIndex >= 0)
             {
                 if (returnLeafIndex)
                 {
-                    index = LeafIndexFromItem(null, localIndex);
+                    index = this.LeafIndexFromItem(null, localIndex);
                 }
 
-                ChangeCounts(item, -1);
-                ProtectedItems.RemoveAt(localIndex);
+                this.ChangeCounts(item, -1);
+                this.ProtectedItems.RemoveAt(localIndex);
             }
 
             return index;
@@ -482,14 +494,13 @@ namespace System.Windows.Data
         internal class ListComparer : IComparer
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="ListComparer"/> class.
             /// Constructor for the ListComparer that takes
             /// in an IList.
             /// </summary>
             /// <param name="list">IList used to compare on</param>
             internal ListComparer(IList list)
             {
-                ResetList(list);
+                this.ResetList(list);
             }
 
             /// <summary>
@@ -498,7 +509,7 @@ namespace System.Windows.Data
             /// </summary>
             internal void Reset()
             {
-                _index = 0;
+                this._index = 0;
             }
 
             /// <summary>
@@ -509,8 +520,8 @@ namespace System.Windows.Data
             /// <param name="list">IList used to compare on</param>
             internal void ResetList(IList list)
             {
-                _list = list;
-                _index = 0;
+                this._list = list;
+                this._index = 0;
             }
 
             /// <summary>
@@ -528,10 +539,10 @@ namespace System.Windows.Data
                 }
 
                 // advance the index until seeing one x or y
-                int n = (_list != null) ? _list.Count : 0;
-                for (; _index < n; ++_index)
+                int n = (this._list != null) ? this._list.Count : 0;
+                for (; this._index < n; ++this._index)
                 {
-                    object z = _list[_index];
+                    object z = this._list[this._index];
                     if (object.Equals(x, z))
                     {
                         return -1;  // x occurs first, so x < y
@@ -561,14 +572,13 @@ namespace System.Windows.Data
         internal class CollectionViewGroupComparer : IComparer
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="CollectionViewGroupComparer"/> class.
             /// Constructor for the CollectionViewGroupComparer that takes
             /// in an CollectionViewGroupRoot.
             /// </summary>
             /// <param name="group">CollectionViewGroupRoot used to compare on</param>
             internal CollectionViewGroupComparer(CollectionViewGroupRoot group)
             {
-                ResetGroup(group);
+                this.ResetGroup(group);
             }
 
             /// <summary>
@@ -577,7 +587,7 @@ namespace System.Windows.Data
             /// </summary>
             internal void Reset()
             {
-                _index = 0;
+                this._index = 0;
             }
 
             /// <summary>
@@ -588,8 +598,8 @@ namespace System.Windows.Data
             /// <param name="group">CollectionViewGroupRoot used to compare on</param>
             internal void ResetGroup(CollectionViewGroupRoot group)
             {
-                _group = group;
-                _index = 0;
+                this._group = group;
+                this._index = 0;
             }
 
             /// <summary>
@@ -607,10 +617,10 @@ namespace System.Windows.Data
                 }
 
                 // advance the index until seeing one x or y
-                int n = (_group != null) ? _group.ItemCount : 0;
-                for (; _index < n; ++_index)
+                int n = (this._group != null) ? this._group.ItemCount : 0;
+                for (; this._index < n; ++this._index)
                 {
-                    object z = _group.LeafAt(_index);
+                    object z = this._group.LeafAt(this._index);
                     if (object.Equals(x, z))
                     {
                         return -1;  // x occurs first, so x < y
@@ -689,7 +699,7 @@ namespace System.Windows.Data
             unchecked
             {
                 // this invalidates enumerators
-                ++_version;
+                ++this._version;
             }
         }
 
@@ -700,7 +710,7 @@ namespace System.Windows.Data
         /// <param name="e">The args for the PropertyChanged event</param>
         private void OnGroupByChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            OnGroupByChanged();
+            this.OnGroupByChanged();
         }
 
         #endregion Private Methods
@@ -718,21 +728,20 @@ namespace System.Windows.Data
         /// </summary>
         private class LeafEnumerator : IEnumerator
         {
-            private readonly CollectionViewGroupInternal _group; // parent group
             private object _current;   // current item
-
+            private readonly CollectionViewGroupInternal _group; // parent group
             private int _index;     // current index into Items
             private IEnumerator _subEnum;   // enumerator over current subgroup
             private int _version;   // parent group's version at ctor
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="LeafEnumerator"/> class.
+            /// Initializes a new instance of the LeafEnumerator class.
             /// </summary>
             /// <param name="group">CollectionViewGroupInternal that uses the enumerator</param>
             public LeafEnumerator(CollectionViewGroupInternal group)
             {
-                _group = group;
-                DoReset();  // don't call virtual Reset in ctor
+                this._group = group;
+                this.DoReset();  // don't call virtual Reset in ctor
             }
 
             /// <summary>
@@ -740,10 +749,10 @@ namespace System.Windows.Data
             /// </summary>
             private void DoReset()
             {
-                Debug.Assert(_group != null, "_group should have been initialized in constructor");
-                _version = _group._version;
-                _index = -1;
-                _subEnum = null;
+                Debug.Assert(this._group != null, "_group should have been initialized in constructor");
+                this._version = this._group._version;
+                this._index = -1;
+                this._subEnum = null;
             }
 
             #region Implement IEnumerator
@@ -753,7 +762,7 @@ namespace System.Windows.Data
             /// </summary>
             void IEnumerator.Reset()
             {
-                DoReset();
+                this.DoReset();
             }
 
             /// <summary>
@@ -762,41 +771,42 @@ namespace System.Windows.Data
             /// <returns>Returns whether the MoveNext operation was successful</returns>
             bool IEnumerator.MoveNext()
             {
-                Debug.Assert(_group != null, "_group should have been initialized in constructor");
+                Debug.Assert(this._group != null, "_group should have been initialized in constructor");
 
                 // check for invalidated enumerator
-                if (_group._version != _version)
+                if (this._group._version != this._version)
                 {
                     throw new InvalidOperationException();
                 }
 
                 // move forward to the next leaf
-                while (_subEnum == null || !_subEnum.MoveNext())
+                while (this._subEnum == null || !this._subEnum.MoveNext())
                 {
                     // done with the current top-level item.  Move to the next one.
-                    ++_index;
-                    if (_index >= _group.Items.Count)
+                    ++this._index;
+                    if (this._index >= this._group.Items.Count)
                     {
                         return false;
                     }
 
-                    if (_group.Items[_index] is CollectionViewGroupInternal subgroup)
+                    CollectionViewGroupInternal subgroup = this._group.Items[this._index] as CollectionViewGroupInternal;
+                    if (subgroup == null)
                     {
-                        // current item is a subgroup - get its enumerator
-                        _subEnum = subgroup.GetLeafEnumerator();
+                        // current item is a leaf - it's the new Current
+                        this._current = this._group.Items[this._index];
+                        this._subEnum = null;
+                        return true;
                     }
                     else
                     {
-                        // current item is a leaf - it's the new Current
-                        _current = _group.Items[_index];
-                        _subEnum = null;
-                        return true;
+                        // current item is a subgroup - get its enumerator
+                        this._subEnum = subgroup.GetLeafEnumerator();
                     }
                 }
 
                 // the loop terminates only when we have a subgroup enumerator
                 // positioned at the new Current item
-                _current = _subEnum.Current;
+                this._current = this._subEnum.Current;
                 return true;
             }
 
@@ -807,14 +817,14 @@ namespace System.Windows.Data
             {
                 get
                 {
-                    Debug.Assert(_group != null, "_group should have been initialized in constructor");
+                    Debug.Assert(this._group != null, "_group should have been initialized in constructor");
 
-                    if (_index < 0 || _index >= _group.Items.Count)
+                    if (this._index < 0 || this._index >= this._group.Items.Count)
                     {
                         throw new InvalidOperationException();
                     }
 
-                    return _current;
+                    return this._current;
                 }
             }
 
@@ -829,3 +839,5 @@ namespace System.Windows.Data
 #pragma warning restore SA1214
 #pragma warning restore SA1311
 #pragma warning restore SA1124 // Do not use regions
+#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning restore IDE0019 // 使用模式匹配

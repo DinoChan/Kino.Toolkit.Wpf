@@ -48,35 +48,6 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        protected override void OnLoadCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            IsRefreshing = false;
-            Refreshed?.Invoke(this, EventArgs.Empty);
-
-            var loader = CollectionViewLoader as RemoteCollectionViewLoader;
-            var operation = loader.CurrentOperation as ILoadOperation;
-            if (operation.Error != null || operation.IsCanceled)
-            {
-                return;
-            }
-
-            var result = operation.Result.Cast<object>();
-            var source = CollectionView.SourceCollection as List<object>;
-            source.Clear();
-            foreach (var item in result)
-            {
-                source.Add(item);
-            }
-
-            SetTotalItemCount(operation.TotalCount);
-            base.OnLoadCompleted(sender, e);
-        }
-
-        private void OnLoadStarted(object sender, EventArgs e)
-        {
-            RaiseRefreshing();
-        }
-
         public override void Refresh()
         {
             base.Refresh();
@@ -105,6 +76,35 @@ namespace Kino.Toolkit.Wpf
             }
 
             return base.MoveToPreviousPage();
+        }
+
+        protected override void OnLoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            IsRefreshing = false;
+            Refreshed?.Invoke(this, EventArgs.Empty);
+
+            var loader = CollectionViewLoader as RemoteCollectionViewLoader;
+            var operation = loader.CurrentOperation as ILoadOperation;
+            if (operation.Error != null || operation.IsCanceled)
+            {
+                return;
+            }
+
+            var result = operation.Result.Cast<object>();
+            var source = CollectionView.SourceCollection as List<object>;
+            source.Clear();
+            foreach (var item in result)
+            {
+                source.Add(item);
+            }
+
+            SetTotalItemCount(operation.TotalCount);
+            base.OnLoadCompleted(sender, e);
+        }
+
+        private void OnLoadStarted(object sender, EventArgs e)
+        {
+            RaiseRefreshing();
         }
 
         private void RaiseRefreshing()

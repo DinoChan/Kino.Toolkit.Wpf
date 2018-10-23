@@ -30,6 +30,15 @@ namespace Kino.Toolkit.Wpf
             set => SetValue(DescriptionProperty, value);
         }
 
+        /// <summary>
+        /// Description 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">Description 属性的旧值。</param>
+        /// <param name="newValue">Description 属性的新值。</param>
+        protected virtual void OnDescriptionChanged(object oldValue, object newValue)
+        {
+        }
+
         private static void OnDescriptionChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var oldValue = args.OldValue;
@@ -41,15 +50,6 @@ namespace Kino.Toolkit.Wpf
 
             var target = obj as KinoFormTitle;
             target?.OnDescriptionChanged(oldValue, newValue);
-        }
-
-        /// <summary>
-        /// Description 属性更改时调用此方法。
-        /// </summary>
-        /// <param name="oldValue">Description 属性的旧值。</param>
-        /// <param name="newValue">Description 属性的新值。</param>
-        protected virtual void OnDescriptionChanged(object oldValue, object newValue)
-        {
         }
     }
 }

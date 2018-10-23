@@ -15,8 +15,6 @@ namespace Kino.Toolkit.Wpf
 
         private bool _isBusy;
 
-        public event EventHandler LoadStarted;
-
         private ILoadOperation _currentOperation;
 
         private object _currentUserState;
@@ -26,6 +24,8 @@ namespace Kino.Toolkit.Wpf
             _load = load ?? throw new ArgumentNullException("load");
             _onLoadCompleted = onLoadCompleted;
         }
+
+        public event EventHandler LoadStarted;
 
         /// <summary>
         /// Gets or sets a value that indicates whether a <see cref="M:Microsoft.Windows.Data.DomainServices.DomainCollectionViewLoader.Load(System.Object)" /> can be successfully invoked
@@ -54,6 +54,8 @@ namespace Kino.Toolkit.Wpf
                 }
             }
         }
+
+        public RemoteCollectionView RemoteCollectionView { get; internal set; }
 
         /// <summary>
         /// Gets or sets the current operation
@@ -96,27 +98,6 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        public RemoteCollectionView RemoteCollectionView { get; internal set; }
-
-        private void OnLoadCompleted(object sender, EventArgs e)
-        {
-            IsBusy = false;
-            var op = (ILoadOperation)sender;
-
-            _onLoadCompleted?.Invoke(op);
-
-            if (op == CurrentOperation)
-            {
-                OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, _currentUserState));
-                _currentUserState = null;
-                CurrentOperation = null;
-            }
-            else
-            {
-                OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, null));
-            }
-        }
-
         public override void Load(object userState)
         {
             _currentUserState = userState;
@@ -142,6 +123,25 @@ namespace Kino.Toolkit.Wpf
             {
                 IsBusy = false;
                 throw;
+            }
+        }
+
+        private void OnLoadCompleted(object sender, EventArgs e)
+        {
+            IsBusy = false;
+            var op = (ILoadOperation)sender;
+
+            _onLoadCompleted?.Invoke(op);
+
+            if (op == CurrentOperation)
+            {
+                OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, _currentUserState));
+                _currentUserState = null;
+                CurrentOperation = null;
+            }
+            else
+            {
+                OnLoadCompleted(new AsyncCompletedEventArgs(op.Error, op.IsCanceled, null));
             }
         }
     }

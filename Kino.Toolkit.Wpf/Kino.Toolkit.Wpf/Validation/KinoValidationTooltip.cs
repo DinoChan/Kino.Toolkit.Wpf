@@ -10,6 +10,12 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoValidationTooltip : Control
     {
+        /// <summary>
+        /// 标识 AdornedElementPlaceholder 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty AdornedElementPlaceholderProperty =
+            DependencyProperty.Register(nameof(AdornedElementPlaceholder), typeof(AdornedElementPlaceholder), typeof(KinoValidationTooltip), new PropertyMetadata(default(AdornedElementPlaceholder), OnAdornedElementPlaceholderChanged));
+
         public KinoValidationTooltip()
         {
             DefaultStyleKey = typeof(KinoValidationTooltip);
@@ -25,25 +31,6 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// 标识 AdornedElementPlaceholder 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty AdornedElementPlaceholderProperty =
-            DependencyProperty.Register(nameof(AdornedElementPlaceholder), typeof(AdornedElementPlaceholder), typeof(KinoValidationTooltip), new PropertyMetadata(default(AdornedElementPlaceholder), OnAdornedElementPlaceholderChanged));
-
-        private static void OnAdornedElementPlaceholderChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var oldValue = (AdornedElementPlaceholder)args.OldValue;
-            var newValue = (AdornedElementPlaceholder)args.NewValue;
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            var target = obj as KinoValidationTooltip;
-            target?.OnAdornedElementPlaceholderChanged(oldValue, newValue);
-        }
-
-        /// <summary>
         /// AdornedElementPlaceholder 属性更改时调用此方法。
         /// </summary>
         /// <param name="oldValue">AdornedElementPlaceholder 属性的旧值。</param>
@@ -56,6 +43,19 @@ namespace Kino.Toolkit.Wpf
                 newValue.AdornedElement.LostFocus += OnAdornedElementLostFocus;
                 newValue.Loaded += OnPlaceholderLoaded;
             }
+        }
+
+        private static void OnAdornedElementPlaceholderChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (AdornedElementPlaceholder)args.OldValue;
+            var newValue = (AdornedElementPlaceholder)args.NewValue;
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var target = obj as KinoValidationTooltip;
+            target?.OnAdornedElementPlaceholderChanged(oldValue, newValue);
         }
 
         private void OnPlaceholderLoaded(object sender, RoutedEventArgs e)

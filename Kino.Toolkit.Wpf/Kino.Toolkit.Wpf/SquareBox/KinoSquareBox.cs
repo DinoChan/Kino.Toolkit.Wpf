@@ -10,10 +10,25 @@ namespace Kino.Toolkit.Wpf
 {
     public class KinoSquareBox : ContentControl
     {
+        /// <summary>
+        /// 标识 TemplateSettings 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty TemplateSettingsProperty =
+            DependencyProperty.Register(nameof(TemplateSettings), typeof(KinoSquareBoxTemplateSettings), typeof(KinoSquareBox), new PropertyMetadata(null));
+
         public KinoSquareBox()
         {
             DefaultStyleKey = typeof(KinoSquareBox);
             TemplateSettings = new KinoSquareBoxTemplateSettings(0);
+        }
+
+        /// <summary>
+        /// 获取或设置TemplateSettings的值
+        /// </summary>
+        public KinoSquareBoxTemplateSettings TemplateSettings
+        {
+            get => (KinoSquareBoxTemplateSettings)GetValue(TemplateSettingsProperty);
+            set => SetValue(TemplateSettingsProperty, value);
         }
 
         protected override Size MeasureOverride(Size constraint)
@@ -29,20 +44,5 @@ namespace Kino.Toolkit.Wpf
             TemplateSettings = new KinoSquareBoxTemplateSettings(Math.Min(width, height));
             return base.MeasureOverride(constraint);
         }
-
-        /// <summary>
-        /// 获取或设置TemplateSettings的值
-        /// </summary>
-        public KinoSquareBoxTemplateSettings TemplateSettings
-        {
-            get => (KinoSquareBoxTemplateSettings)GetValue(TemplateSettingsProperty);
-            set => SetValue(TemplateSettingsProperty, value);
-        }
-
-        /// <summary>
-        /// 标识 TemplateSettings 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty TemplateSettingsProperty =
-            DependencyProperty.Register(nameof(TemplateSettings), typeof(KinoSquareBoxTemplateSettings), typeof(KinoSquareBox), new PropertyMetadata(null));
-    }
+         }
 }

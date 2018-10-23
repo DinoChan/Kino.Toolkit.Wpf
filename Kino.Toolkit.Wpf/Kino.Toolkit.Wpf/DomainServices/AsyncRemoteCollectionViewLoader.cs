@@ -55,7 +55,9 @@ namespace Kino.Toolkit.Wpf
 
         public AsyncRemoteCollectionView AsyncRemoteCollectionView { get; internal set; }
 
-        public async override void Load(object userState)
+        internal ILoadResult CurrentResult { get; private set; }
+
+        public override async void Load(object userState)
         {
             _currentUserState = userState;
 
@@ -88,7 +90,5 @@ namespace Kino.Toolkit.Wpf
                 IsBusy = false;
             }
         }
-
-        internal ILoadResult CurrentResult { get; private set; }
     }
 }

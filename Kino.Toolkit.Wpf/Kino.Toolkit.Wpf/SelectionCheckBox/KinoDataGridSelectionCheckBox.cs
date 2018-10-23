@@ -12,34 +12,18 @@ namespace Kino.Toolkit.Wpf
     public class KinoDataGridSelectionCheckBox : SelectionCheckBox
     {
         /// <summary>
+        /// 标识 RelativeDataGrid 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty RelativeDataGridProperty =
+            DependencyProperty.Register("RelativeDataGrid", typeof(DataGrid), typeof(KinoDataGridSelectionCheckBox), new PropertyMetadata(null, OnRelativeDataGridChanged));
+
+        /// <summary>
         /// 获取或设置RelativeDataGrid的值
         /// </summary>
         public DataGrid RelativeDataGrid
         {
             get { return (DataGrid)GetValue(RelativeDataGridProperty); }
             set { SetValue(RelativeDataGridProperty, value); }
-        }
-
-        /// <summary>
-        /// 标识 RelativeDataGrid 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty RelativeDataGridProperty =
-            DependencyProperty.Register("RelativeDataGrid", typeof(DataGrid), typeof(KinoDataGridSelectionCheckBox), new PropertyMetadata(null, OnRelativeDataGridChanged));
-
-        private static void OnRelativeDataGridChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            KinoDataGridSelectionCheckBox target = obj as KinoDataGridSelectionCheckBox;
-            DataGrid oldValue = (DataGrid)args.OldValue;
-            DataGrid newValue = (DataGrid)args.NewValue;
-            if (oldValue != newValue)
-            {
-                target.OnRelativeDataGridChanged(oldValue, newValue);
-            }
-        }
-
-        protected virtual void OnRelativeDataGridChanged(DataGrid oldValue, DataGrid newValue)
-        {
-            Selector = newValue;
         }
 
         protected override IList SelectedItems
@@ -57,6 +41,11 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
+        protected virtual void OnRelativeDataGridChanged(DataGrid oldValue, DataGrid newValue)
+        {
+            Selector = newValue;
+        }
+
         protected override void SelectAll()
         {
             if (RelativeDataGrid != null)
@@ -70,6 +59,17 @@ namespace Kino.Toolkit.Wpf
             if (RelativeDataGrid != null)
             {
                 RelativeDataGrid.UnselectAll();
+            }
+        }
+
+        private static void OnRelativeDataGridChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            KinoDataGridSelectionCheckBox target = obj as KinoDataGridSelectionCheckBox;
+            DataGrid oldValue = (DataGrid)args.OldValue;
+            DataGrid newValue = (DataGrid)args.NewValue;
+            if (oldValue != newValue)
+            {
+                target.OnRelativeDataGridChanged(oldValue, newValue);
             }
         }
     }

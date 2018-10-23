@@ -12,8 +12,16 @@ namespace Kino.Toolkit.Wpf
 {
     [TemplateVisualState(GroupName = VisualStates.GroupActive, Name = VisualStates.StateActive)]
     [TemplateVisualState(GroupName = VisualStates.GroupActive, Name = VisualStates.StateInactive)]
-    public class KinoProgressRing : Control
+    public partial class KinoProgressRing : Control
     {
+        // Using a DependencyProperty as the backing store for IsActive.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsActiveProperty =
+            DependencyProperty.Register("IsActive", typeof(bool), typeof(KinoProgressRing), new PropertyMetadata(false, new PropertyChangedCallback(IsActiveChanged)));
+
+        // Using a DependencyProperty as the backing store for TemplateSettings.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TemplateSettingsProperty =
+            DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(KinoProgressRing), new PropertyMetadata(null));
+
         private bool hasAppliedTemplate = false;
 
         public KinoProgressRing()
@@ -28,20 +36,17 @@ namespace Kino.Toolkit.Wpf
             set { SetValue(IsActiveProperty, value); }
         }
 
+        public TemplateSettingValues TemplateSettings
+        {
+            get { return (TemplateSettingValues)GetValue(TemplateSettingsProperty); }
+            set { SetValue(TemplateSettingsProperty, value); }
+        }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             hasAppliedTemplate = true;
             UpdateState(IsActive);
-        }
-
-        private void UpdateState(bool isActive)
-        {
-            if (hasAppliedTemplate)
-            {
-                string state = isActive ? VisualStates.StateActive : VisualStates.StateInactive;
-                System.Windows.VisualStateManager.GoToState(this, state, true);
-            }
         }
 
         protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
@@ -58,10 +63,6 @@ namespace Kino.Toolkit.Wpf
             return base.MeasureOverride(availableSize);
         }
 
-        // Using a DependencyProperty as the backing store for IsActive.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.Register("IsActive", typeof(bool), typeof(KinoProgressRing), new PropertyMetadata(false, new PropertyChangedCallback(IsActiveChanged)));
-
         private static void IsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
             var pr = (KinoProgressRing)d;
@@ -69,63 +70,13 @@ namespace Kino.Toolkit.Wpf
             pr.UpdateState(isActive);
         }
 
-        public TemplateSettingValues TemplateSettings
+        private void UpdateState(bool isActive)
         {
-            get { return (TemplateSettingValues)GetValue(TemplateSettingsProperty); }
-            set { SetValue(TemplateSettingsProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for TemplateSettings.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TemplateSettingsProperty =
-            DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(KinoProgressRing), new PropertyMetadata(null));
-
-        public class TemplateSettingValues : System.Windows.DependencyObject
-        {
-            public TemplateSettingValues(double width)
+            if (hasAppliedTemplate)
             {
-                MaxSideLength = 400;
-
-                if (width <= 40)
-                {
-                    EllipseDiameter = (width / 10) + 1;
-                }
-                else
-                {
-                    EllipseDiameter = width / 10;
-                }
-
-                EllipseOffset = new System.Windows.Thickness(0, EllipseDiameter * 2.5, 0, 0);
+                string state = isActive ? VisualStates.StateActive : VisualStates.StateInactive;
+                VisualStateManager.GoToState(this, state, true);
             }
-
-            public double MaxSideLength
-            {
-                get { return (double)GetValue(MaxSideLengthProperty); }
-                set { SetValue(MaxSideLengthProperty, value); }
-            }
-
-            // Using a DependencyProperty as the backing store for MaxSideLength.  This enables animation, styling, binding, etc...
-            public static readonly DependencyProperty MaxSideLengthProperty =
-                DependencyProperty.Register("MaxSideLength", typeof(double), typeof(TemplateSettingValues), new PropertyMetadata(0D));
-
-            public double EllipseDiameter
-            {
-                get { return (double)GetValue(EllipseDiameterProperty); }
-                set { SetValue(EllipseDiameterProperty, value); }
-            }
-
-            // Using a DependencyProperty as the backing store for EllipseDiameter.  This enables animation, styling, binding, etc...
-            public static readonly DependencyProperty EllipseDiameterProperty =
-                DependencyProperty.Register("EllipseDiameter", typeof(double), typeof(TemplateSettingValues), new PropertyMetadata(0D));
-
-            public Thickness EllipseOffset
-            {
-                get { return (Thickness)GetValue(EllipseOffsetProperty); }
-                set { SetValue(EllipseOffsetProperty, value); }
-            }
-
-            // Using a DependencyProperty as the backing store for EllipseOffset.  This enables animation, styling, binding, etc...
-            public static readonly DependencyProperty EllipseOffsetProperty =
-                DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(default(Thickness)));
         }
     }
 }

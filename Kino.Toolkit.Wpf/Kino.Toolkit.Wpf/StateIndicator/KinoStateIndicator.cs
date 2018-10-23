@@ -17,6 +17,12 @@ namespace Kino.Toolkit.Wpf
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = OtherStateName)]
     public class KinoStateIndicator : ContentControl
     {
+        /// <summary>
+        /// 标识 State 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty StateProperty =
+            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoStateIndicator), new PropertyMetadata(ProgressState.None, OnStateChanged));
+
         private const string ProgressStatesGroupName = "ProgressStates";
         private const string IdleStateName = "Idle";
         private const string BusyStateName = "Busy";
@@ -37,23 +43,6 @@ namespace Kino.Toolkit.Wpf
         {
             get => (ProgressState)GetValue(StateProperty);
             set => SetValue(StateProperty, value);
-        }
-
-        /// <summary>
-        /// 标识 State 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(ProgressState), typeof(KinoStateIndicator), new PropertyMetadata(ProgressState.None, OnStateChanged));
-
-        private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var target = obj as KinoStateIndicator;
-            ProgressState oldValue = (ProgressState)args.OldValue;
-            ProgressState newValue = (ProgressState)args.NewValue;
-            if (oldValue != newValue)
-            {
-                target.OnStateChanged(oldValue, newValue);
-            }
         }
 
         public override void OnApplyTemplate()
@@ -96,6 +85,17 @@ namespace Kino.Toolkit.Wpf
             }
 
             VisualStateManager.GoToState(this, progressState, useTransitions);
+        }
+
+        private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var target = obj as KinoStateIndicator;
+            ProgressState oldValue = (ProgressState)args.OldValue;
+            ProgressState newValue = (ProgressState)args.NewValue;
+            if (oldValue != newValue)
+            {
+                target.OnStateChanged(oldValue, newValue);
+            }
         }
     }
 }

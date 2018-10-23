@@ -1,8 +1,13 @@
-﻿// (c) Copyright Microsoft Corporation.
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight4/Source/System.Windows.Controls.Data/Extensions.cs
+// (c) Copyright Microsoft Corporation.
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable SA1202 // Elements must be ordered by access
+#pragma warning disable SA1204 // Static elements must appear before instance elements
+#pragma warning disable IDE0019 // 使用模式匹配
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +21,36 @@ using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
+#pragma warning disable SA1402 // File may only contain a single class
+#pragma warning disable SA1649 // File name must match first type name
+                              /// <summary>
+                              /// Reservoir of attached properties for use by extension methods that require non-static information about objects.
+                              /// </summary>
+    internal class ExtensionProperties : DependencyObject
+#pragma warning restore SA1649 // File name must match first type name
+#pragma warning restore SA1402 // File may only contain a single class
+    {
+        /// <summary>
+        /// Tracks whether or not the event handlers of a particular object are currently suspended.
+        /// Used by the SetValueNoCallback and AreHandlersSuspended extension methods.
+        /// </summary>
+        public static readonly DependencyProperty AreHandlersSuspended = DependencyProperty.RegisterAttached(
+            "AreHandlersSuspended",
+            typeof(bool),
+            typeof(ExtensionProperties),
+            new PropertyMetadata(false));
+
+        public static void SetAreHandlersSuspended(DependencyObject obj, bool value)
+        {
+            obj.SetValue(AreHandlersSuspended, value);
+        }
+
+        public static bool GetAreHandlersSuspended(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(AreHandlersSuspended);
+        }
+    }
+
     internal static class Extensions
     {
         public static bool AreHandlersSuspended(this DependencyObject obj)
@@ -46,7 +81,8 @@ namespace Kino.Toolkit.Wpf
                     DependencyObject parent = VisualTreeHelper.GetParent(child);
                     if (parent == null)
                     {
-                        if (child is FrameworkElement childElement)
+                        FrameworkElement childElement = child as FrameworkElement;
+                        if (childElement != null)
                         {
                             parent = childElement.Parent;
                         }
@@ -86,7 +122,9 @@ namespace Kino.Toolkit.Wpf
                 if (attributes != null && attributes.Length > 0)
                 {
                     ReadOnlyAttribute readOnlyAttribute = attributes[0] as ReadOnlyAttribute;
-                    Debug.Assert(readOnlyAttribute != null, "readOnlyAttribute must not by null");
+#pragma warning disable SA1405 // Debug.Assert must provide message text
+                    Debug.Assert(readOnlyAttribute != null);
+#pragma warning restore SA1405 // Debug.Assert must provide message text
                     return readOnlyAttribute.IsReadOnly;
                 }
             }
@@ -167,3 +205,8 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
+
+#pragma warning restore SA1201 // Elements must appear in the correct order
+#pragma warning restore SA1202 // Elements must be ordered by access
+#pragma warning restore SA1204 // Static elements must appear before instance elements
+#pragma warning restore IDE0019 // 使用模式匹配

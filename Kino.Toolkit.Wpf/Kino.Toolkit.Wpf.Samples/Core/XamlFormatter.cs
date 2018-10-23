@@ -38,7 +38,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
         {
             document.Blocks.Clear();
             //document.PageWidth = 100;
-            XamlFormatter.ColorizeXAML(text, document);
+            ColorizeXAML(text, document);
         }
 
         #region SyntaxColoring

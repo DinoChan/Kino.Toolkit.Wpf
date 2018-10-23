@@ -1,14 +1,15 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="WeakEventListener.cs" company="Microsoft">
-//      (c) Copyright Microsoft Corporation.
-//      This source is subject to the Microsoft Public License (Ms-PL).
-//      Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
-//      All other rights reserved.
-// </copyright>
-//-----------------------------------------------------------------------
-
+﻿// https://github.com/MicrosoftArchive/SilverlightToolkit/blob/master/Release/Silverlight5/Source/Controls.Toolkit/Common/WeakEventListener.cs
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License (Ms-PL).
+// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+// All other rights reserved.
+#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning disable SA1131 // Use readable conditions
+#pragma warning disable SA1201 // Elements must appear in the correct order
+#pragma warning disable IDE1005 // 可简化委托调用。
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Kino.Toolkit.Wpf
     /// <typeparam name="TInstance">Type of instance listening for the event.</typeparam>
     /// <typeparam name="TSource">Type of source for the event.</typeparam>
     /// <typeparam name="TEventArgs">Type of event arguments for the event.</typeparam>
+    [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Used as link target in several projects.")]
     internal class WeakEventListener<TInstance, TSource, TEventArgs>
         where TInstance : class
     {
@@ -29,20 +31,6 @@ namespace Kino.Toolkit.Wpf
         /// WeakReference to the instance listening for the event.
         /// </summary>
         private WeakReference _weakInstance;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WeakEventListener{TInstance, TSource, TEventArgs}"/> class.
-        /// </summary>
-        /// <param name="instance">Instance subscribing to the event.</param>
-        public WeakEventListener(TInstance instance)
-        {
-            if (instance == null)
-            {
-                throw new ArgumentNullException("instance");
-            }
-
-            _weakInstance = new WeakReference(instance);
-        }
 
         /// <summary>
         /// Gets or sets the method to call when the event fires.
@@ -55,20 +43,38 @@ namespace Kino.Toolkit.Wpf
         public Action<WeakEventListener<TInstance, TSource, TEventArgs>> OnDetachAction { get; set; }
 
         /// <summary>
+        /// Initializes a new instances of the WeakEventListener class.
+        /// </summary>
+        /// <param name="instance">Instance subscribing to the event.</param>
+        public WeakEventListener(TInstance instance)
+        {
+            if (null == instance)
+            {
+                throw new ArgumentNullException("instance");
+            }
+
+            _weakInstance = new WeakReference(instance);
+        }
+
+        /// <summary>
         /// Handler for the subscribed event calls OnEventAction to handle it.
         /// </summary>
         /// <param name="source">Event source.</param>
         /// <param name="eventArgs">Event arguments.</param>
         public void OnEvent(TSource source, TEventArgs eventArgs)
         {
-            if (_weakInstance.Target is TInstance target)
+            TInstance target = (TInstance)_weakInstance.Target;
+            if (null != target)
             {
-                // Call the registered action.
-                OnEventAction?.Invoke(target, source, eventArgs);
+                // Call registered action
+                if (null != OnEventAction)
+                {
+                    OnEventAction(target, source, eventArgs);
+                }
             }
             else
             {
-                // Detach from the event.
+                // Detach from event
                 Detach();
             }
         }
@@ -78,7 +84,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public void Detach()
         {
-            if (OnDetachAction != null)
+            if (null != OnDetachAction)
             {
                 OnDetachAction(this);
                 OnDetachAction = null;
@@ -86,3 +92,7 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
+#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+#pragma warning restore SA1131 // Use readable conditions
+#pragma warning restore SA1201 // Elements must appear in the correct order
+#pragma warning restore IDE1005 // 可简化委托调用。

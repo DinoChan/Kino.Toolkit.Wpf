@@ -26,15 +26,25 @@ namespace Kino.Toolkit.Wpf
     /// <typeparam name="TItem">The item type of this view</typeparam>
     public class DomainCollectionView<TItem> : DomainCollectionView, IEnumerable<TItem>
     {
+        #region Constructors
+
+        
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainCollectionView{TItem}"/> class.
+        /// Initializes a new instance of the <see cref="DomainCollectionView"/>
         /// </summary>
         /// <param name="collectionViewLoader">The <see cref="CollectionViewLoader"/> to use for loading data</param>
-        /// <param name="source">The source collection for this view. All updates to the source will be reflected in the view.</param>
+        /// <param name="source">The source collection for this view. All updates to the
+        /// source will be reflected in the view.
+        /// </param>
         public DomainCollectionView(CollectionViewLoader collectionViewLoader, IEnumerable<TItem> source)
             : base(collectionViewLoader, source)
         {
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -42,7 +52,9 @@ namespace Kino.Toolkit.Wpf
         /// <returns>An <see cref="IEnumerator{T}"/> that can be used to iterate through the collection.</returns>
         public new IEnumerator<TItem> GetEnumerator()
         {
-            return CollectionView.Cast<TItem>().GetEnumerator();
+            return this.CollectionView.Cast<TItem>().GetEnumerator();
         }
+
+        #endregion
     }
 }
