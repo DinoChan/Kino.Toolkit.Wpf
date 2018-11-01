@@ -5,11 +5,7 @@
     you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-#pragma warning disable SA1201 // Elements must appear in the correct order
-#pragma warning disable SA1202
-#pragma warning disable SA1214
-#pragma warning disable SA1311
-#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning disable IDE1005 // 可简化委托调用。
 
 using System;
@@ -188,9 +184,7 @@ namespace Kino.Toolkit.Wpf
                 return this._pageSize;
             }
 
-#pragma warning disable SA1516 // Elements must be separated by blank line
             set
-#pragma warning restore SA1516 // Elements must be separated by blank line
             {
                 if (this._pageSize != value)
                 {
@@ -396,9 +390,5 @@ namespace Kino.Toolkit.Wpf
         #endregion
     }
 }
-#pragma warning restore SA1201
-#pragma warning restore SA1202
-#pragma warning restore SA1214
-#pragma warning restore SA1311
-#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning restore IDE1005 // 可简化委托调用。

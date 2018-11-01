@@ -4,8 +4,6 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
-#pragma warning disable SA1124 // Do not use regions
-#pragma warning disable SA1131 // Use readable conditions
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -432,5 +430,3 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
-#pragma warning restore SA1124 // Do not use regions
-#pragma warning restore SA1131 // Use readable conditions
