@@ -7,12 +7,7 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-#pragma warning disable SA1201 // Elements must appear in the correct order
-#pragma warning disable SA1202
-#pragma warning disable SA1214
-#pragma warning disable SA1311
-#pragma warning disable SA1124 // Do not use regions
-#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning disable IDE0019 // 使用模式匹配
 namespace System.Windows.Data
 {
@@ -834,10 +829,5 @@ namespace System.Windows.Data
         #endregion Private Classes
     }
 }
-#pragma warning restore SA1201
-#pragma warning restore SA1202
-#pragma warning restore SA1214
-#pragma warning restore SA1311
-#pragma warning restore SA1124 // Do not use regions
-#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning restore IDE0019 // 使用模式匹配

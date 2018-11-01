@@ -102,6 +102,7 @@
     <Compile Include="Form\KinoFormItem.cs" />
     <Compile Include="Form\KinoFormSeparator.cs" />
     <Compile Include="Form\KinoFormTitle.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ListBox\KinoListBox.cs" />
     <Compile Include="ListBox\KinoListBoxItem.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />

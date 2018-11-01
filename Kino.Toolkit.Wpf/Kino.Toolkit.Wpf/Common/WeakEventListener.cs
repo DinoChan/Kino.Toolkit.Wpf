@@ -3,9 +3,6 @@
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
-#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
-#pragma warning disable SA1131 // Use readable conditions
-#pragma warning disable SA1201 // Elements must appear in the correct order
 #pragma warning disable IDE1005 // 可简化委托调用。
 using System;
 using System.Collections.Generic;
@@ -92,7 +89,4 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
-#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
-#pragma warning restore SA1131 // Use readable conditions
-#pragma warning restore SA1201 // Elements must appear in the correct order
 #pragma warning restore IDE1005 // 可简化委托调用。

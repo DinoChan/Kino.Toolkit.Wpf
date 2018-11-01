@@ -3,8 +3,7 @@
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
-#pragma warning disable SA1201 // Elements must appear in the correct order
-#pragma warning disable SA1202 // Elements must be ordered by access
+
 #pragma warning disable IDE1005 // 可简化委托调用。
 using System;
 using System.Collections.Generic;
@@ -416,6 +415,5 @@ namespace Kino.Toolkit.Wpf
         }
     }
 }
-#pragma warning restore SA1201 // Elements must appear in the correct order
-#pragma warning restore SA1202 // Elements must be ordered by access
+
 #pragma warning restore IDE1005 // 可简化委托调用。

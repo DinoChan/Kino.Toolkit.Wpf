@@ -4,8 +4,6 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
-#pragma warning disable SA1129 // Do not use default value type constructor
-#pragma warning disable SA1202 // Elements must be ordered by access
 #pragma warning disable IDE0019 // 使用模式匹配
 using System;
 using System.Collections.Generic;
@@ -418,6 +416,4 @@ namespace Kino.Toolkit.Wpf
     }
 }
 
-#pragma warning restore SA1129 // Do not use default value type constructor
-#pragma warning restore SA1202 // Elements must be ordered by access
 #pragma warning restore IDE0019 // 使用模式匹配
