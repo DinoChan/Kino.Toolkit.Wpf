@@ -103,6 +103,7 @@
     <Compile Include="Form\KinoFormSeparator.cs" />
     <Compile Include="Form\KinoFormTitle.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HeaderedContentControl\KinoHeaderedContentControl.cs" />
     <Compile Include="ListBox\KinoListBox.cs" />
     <Compile Include="ListBox\KinoListBoxItem.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
@@ -159,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\KinoForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeaderedContentControl\KinoHeaderedContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
