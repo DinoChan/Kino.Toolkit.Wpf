@@ -9,9 +9,9 @@
                    Padding="0"
                    ItemContainerStyle="{StaticResource FromItemStyle}"
                    ItemsPanel="{StaticResource ItemsPanelTemplate}">
-        <TextBox kino:KinoForm.Header="用户名" />
-        <TextBox kino:KinoForm.Header="级别" />
-        <TextBox kino:KinoForm.Header="备注" />
+        <TextBox kino:KinoForm.Label="用户名" />
+        <TextBox kino:KinoForm.Label="级别" />
+        <TextBox kino:KinoForm.Label="备注" />
 
     </kino:KinoForm>
 </Expander>
@@ -22,9 +22,9 @@
                    Padding="0"
                    ItemContainerStyle="{StaticResource FromItemStyle}"
                    ItemsPanel="{StaticResource ItemsPanelTemplate}">
-        <TextBox kino:KinoForm.Header="学校" />
-        <TextBox kino:KinoForm.Header="职业" />
-        <TextBox kino:KinoForm.Header="证书" />
+        <TextBox kino:KinoForm.Label="学校" />
+        <TextBox kino:KinoForm.Label="职业" />
+        <TextBox kino:KinoForm.Label="证书" />
     </kino:KinoForm>
 </Expander>
 <Expander kino:KinoForm.IsItemItsOwnContainer="True"
@@ -44,7 +44,7 @@
                 </Grid>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
-        <TextBox kino:KinoForm.Header="邮编" />
+        <TextBox kino:KinoForm.Label="邮编" />
         <kino:KinoFormItem Header="住址"
                            Grid.Column="1"
                            Grid.ColumnSpan="2">

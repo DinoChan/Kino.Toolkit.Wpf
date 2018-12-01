@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
     <local:NullToValueConverter x:Key="NullToValueConverter" />
+    <local:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <Style TargetType="local:KinoFormSeparator">
@@ -57,18 +58,15 @@
     <Style TargetType="local:KinoFormItem">
         <Setter Property="IsTabStop"
                 Value="False" />
-        <Setter Property="Focusable"
-                Value="False" />
         <Setter Property="Margin"
                 Value="0,0,0,8" />
         <Setter Property="Padding"
                 Value="8,0,0,0" />
-        <Setter Property="HeaderTemplate">
+        <Setter Property="LabelTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Right" />
+                               VerticalAlignment="Center" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -80,30 +78,30 @@
                             <ColumnDefinition Width="Auto"
                                               SharedSizeGroup="Header" />
                             <ColumnDefinition />
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="IsRequired" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ContentPresenter Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <TextBlock x:Name="IsRequiredMark"
+                                       Margin="0,0,2,0"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="2"
+                                       Visibility="{Binding IsRequired,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       Text="*"
+                                       Foreground="Red" />
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              ContentTemplate="{TemplateBinding LabelTemplate}"
+                                              Visibility="{Binding Label,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}" />
+                        </StackPanel>
                         <ContentPresenter Grid.Column="1"
                                           Margin="{TemplateBinding Padding}"
                                           x:Name="ContentPresenter" />
-                        <TextBlock x:Name="IsRequiredMark"
-                                   Margin="4,0,0,0"
-                                   VerticalAlignment="Center"
-                                   Grid.Column="2"
-                                   Visibility="{Binding IsRequired,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource BooleanToVisibilityConverter}}"
-                                   Text="*"
-                                   Foreground="Red" />
-                        <!---->
-
                         <ContentPresenter Grid.Row="1"
                                           Grid.Column="1"
-                                          Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                                          Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                           Margin="8,2,0,0"
                                           Content="{TemplateBinding Description}"
                                           TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
@@ -126,24 +124,25 @@
                 Value="False" />
         <Setter Property="IsTabStop"
                 Value="False" />
-        <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Grid.IsSharedSizeScope" 
-                Value="True"/>
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="True" />
         <Setter Property="local:FrameworkElementService.IsAutoFocus"
-                Value="True"/>
+                Value="True" />
         <Setter Property="Padding"
-                Value="8"/>
+                Value="8" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel  />
+                    <StackPanel />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type  local:KinoForm}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}"
@@ -151,17 +150,15 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                        
-                        <ScrollViewer Focusable="false" 
-                                       >
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </ScrollViewer>
-                          <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                      Focusable="False" 
-                                            Grid.Row="1"/>
-                         </Grid>
+                            <ScrollViewer Focusable="False">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </ScrollViewer>
+                            <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                              Focusable="False"
+                                              Grid.Row="1" />
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

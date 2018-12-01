@@ -24,10 +24,10 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
 
         /// <summary>
-        /// 标识 Header 依赖项属性。
+        /// 标识 Label 依赖项属性。
         /// </summary>
-        public static readonly DependencyProperty HeaderProperty =
-            DependencyProperty.RegisterAttached("Header", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
+        public static readonly DependencyProperty LabelProperty =
+            DependencyProperty.RegisterAttached("Label", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
 
         /// <summary>
         /// 标识 IsItemItsOwnContainer 依赖项属性。
@@ -72,20 +72,18 @@ namespace Kino.Toolkit.Wpf
         public static void SetIsRequired(DependencyObject obj, bool value) => obj.SetValue(IsRequiredProperty, value);
 
         /// <summary>
-        /// 从指定元素获取 Header 依赖项属性的值。
+        /// 从指定元素获取 Label 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static object GetHeader(DependencyObject obj) => (object)obj.GetValue(HeaderProperty);
+        public static object GetLabel(DependencyObject obj) => (object)obj.GetValue(LabelProperty);
 
         /// <summary>
-        /// 将 Header 依赖项属性的值设置为指定元素。
+        /// 将 Label 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static void SetHeader(DependencyObject obj, object value) => obj.SetValue(HeaderProperty, value);
+        public static void SetLabel(DependencyObject obj, object value) => obj.SetValue(LabelProperty, value);
 
         /// <summary>
         /// 从指定元素获取 Description 依赖项属性的值。
@@ -149,13 +147,13 @@ namespace Kino.Toolkit.Wpf
         {
             base.PrepareContainerForItemOverride(element, item);
 
-            if (element is KinoFormItem kinoFormItem)
+            if (element is KinoFormItem formItem)
             {
                 if (item is KinoFormItem == false && item is DependencyObject content)
                 {
-                    kinoFormItem.Header = GetHeader(content);
-                    kinoFormItem.Description = GetDescription(content);
-                    kinoFormItem.IsRequired = GetIsRequired(content);
+                    formItem.Label = GetLabel(content);
+                    formItem.Description = GetDescription(content);
+                    formItem.IsRequired = GetIsRequired(content);
                 }
             }
         }

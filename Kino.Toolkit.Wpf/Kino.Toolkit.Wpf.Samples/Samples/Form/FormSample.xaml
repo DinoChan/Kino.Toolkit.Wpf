@@ -26,25 +26,25 @@
             <kino:KinoForm Width="500"
                            HorizontalAlignment="Left">
                 <kino:KinoFormTitle Content="用户信息" />
-                <TextBox kino:KinoForm.Header="用户名"
+                <TextBox kino:KinoForm.Label="用户名"
                          kino:KinoForm.IsRequired="True"
                          Text="{Binding Name,Mode=TwoWay}" />
-                <PasswordBox kino:KinoForm.Header="密码"
+                <PasswordBox kino:KinoForm.Label="密码"
                              kino:KinoForm.IsRequired="True" />
-                <ComboBox kino:KinoForm.Header="国家" />
+                <ComboBox kino:KinoForm.Label="国家" />
 
                 <kino:KinoFormSeparator />
 
                 <kino:KinoFormTitle Content="家庭信息"
                                     Description="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。" />
 
-                <TextBox kino:KinoForm.Header="父"
+                <TextBox kino:KinoForm.Label="父"
                          kino:KinoForm.Description="可以不填" />
-                <TextBox kino:KinoForm.Header="母"
+                <TextBox kino:KinoForm.Label="母"
                          kino:KinoForm.Description="可以不填" />
-                <CheckBox kino:KinoForm.Header="已婚"
+                <CheckBox kino:KinoForm.Label="已婚"
                           Content="已婚" />
-                <StackPanel kino:KinoForm.Header="性别"
+                <StackPanel kino:KinoForm.Label="性别"
                             Orientation="Horizontal"
                             kino:KinoForm.IsRequired="True">
                     <RadioButton Content="男"
@@ -53,8 +53,8 @@
                                  GroupName="Sex"
                                  Margin="8,0,0,0" />
                 </StackPanel>
-                <kino:KinoFormItem Header="备注"
-                                   HeaderTemplate="{StaticResource TopHeaderTemplate}">
+                <kino:KinoFormItem Label="备注"
+                                   LabelTemplate="{StaticResource TopHeaderTemplate}">
                     <TextBox AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
                              Height="100" />
@@ -83,7 +83,7 @@
                             Value="0,4,0,8" />
                     <Setter Property="Padding"
                             Value="0,4,0,0" />
-                    <Setter Property="HeaderTemplate">
+                    <Setter Property="LabelTemplate">
                         <Setter.Value>
                             <DataTemplate>
                                 <TextBlock Text="{Binding}"
@@ -98,8 +98,8 @@
                             <ControlTemplate TargetType="kino:KinoFormItem">
                                 <StackPanel x:Name="Root">
                                     <StackPanel Orientation="Horizontal">
-                                        <ContentPresenter Content="{TemplateBinding Header}"
-                                                          ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                        <ContentPresenter Content="{TemplateBinding Label}"
+                                                          ContentTemplate="{TemplateBinding LabelTemplate}" />
                                         <Grid ToolTip="{TemplateBinding Description}"
                                               Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
                                               Margin="8,0,0,0"
@@ -133,24 +133,24 @@
                            HorizontalAlignment="Left">
                 <kino:KinoFormTitle Content="用户信息" />
 
-                <TextBox kino:KinoForm.Header="用户名"
+                <TextBox kino:KinoForm.Label="用户名"
                          kino:KinoForm.IsRequired="True"
                          Text="{Binding Name,Mode=TwoWay}" />
 
-                <PasswordBox kino:KinoForm.Header="密码"
+                <PasswordBox kino:KinoForm.Label="密码"
                              kino:KinoForm.IsRequired="True" />
-                <ComboBox kino:KinoForm.Header="国家" />
+                <ComboBox kino:KinoForm.Label="国家" />
                 <kino:KinoFormSeparator />
                 <kino:KinoFormTitle Content="家庭信息"
                                     Description="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。" />
-                <TextBox kino:KinoForm.Header="父"
+                <TextBox kino:KinoForm.Label="父"
                          kino:KinoForm.Description="可以不填" />
-                <TextBox kino:KinoForm.Header="母"
+                <TextBox kino:KinoForm.Label="母"
                          kino:KinoForm.Description="可以不填" />
-                <CheckBox kino:KinoForm.Header="已婚"
+                <CheckBox kino:KinoForm.Label="已婚"
                           Content="已婚" />
 
-                <StackPanel kino:KinoForm.Header="性别"
+                <StackPanel kino:KinoForm.Label="性别"
                             Orientation="Horizontal"
                             kino:KinoForm.IsRequired="True">
                     <RadioButton Content="男"
@@ -161,8 +161,8 @@
                 </StackPanel>
 
 
-                <kino:KinoFormItem Header="备注"
-                                   HeaderTemplate="{StaticResource TopHeaderTemplate}">
+                <kino:KinoFormItem Label="备注"
+                                   LabelTemplate="{StaticResource TopHeaderTemplate}">
                     <TextBox AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
                              Height="100" />
@@ -192,10 +192,10 @@
                           IsExpanded="True">
                     <kino:KinoForm Grid.IsSharedSizeScope="False"
                                    Padding="0">
-                        <TextBox kino:KinoForm.Header="用户名"
+                        <TextBox kino:KinoForm.Label="用户名"
                                  kino:KinoForm.IsRequired="True"
                                  Text="{Binding Name,Mode=TwoWay}" />
-                        <PasswordBox kino:KinoForm.Header="密码"
+                        <PasswordBox kino:KinoForm.Label="密码"
                                      kino:KinoForm.IsRequired="True" />
                     </kino:KinoForm>
                 </Expander>
@@ -204,10 +204,10 @@
                           IsExpanded="True">
                     <kino:KinoForm Grid.IsSharedSizeScope="False"
                                    Padding="0">
-                        <ComboBox kino:KinoForm.Header="国家" />
-                        <TextBox kino:KinoForm.Header="父"
+                        <ComboBox kino:KinoForm.Label="国家" />
+                        <TextBox kino:KinoForm.Label="父"
                                  kino:KinoForm.Description="可以不填" />
-                        <TextBox kino:KinoForm.Header="母"
+                        <TextBox kino:KinoForm.Label="母"
                                  kino:KinoForm.Description="可以不填" />
                     </kino:KinoForm>
                 </Expander>
@@ -224,20 +224,20 @@
                 <kino:KinoForm.Resources>
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                 </kino:KinoForm.Resources>
-                <CheckBox kino:KinoForm.Header="显示额外信息"
+                <CheckBox kino:KinoForm.Label="显示额外信息"
                           x:Name="ExtraInformationCheckBox" />
                 <Grid kino:KinoForm.IsItemItsOwnContainer="True"
                       Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
                     <kino:KinoForm Grid.IsSharedSizeScope="False"
                                    Padding="0">
-                        <ComboBox kino:KinoForm.Header="国家" />
-                        <TextBox kino:KinoForm.Header="父"
+                        <ComboBox kino:KinoForm.Label="国家" />
+                        <TextBox kino:KinoForm.Label="父"
                                  kino:KinoForm.Description="可以不填" />
-                        <TextBox kino:KinoForm.Header="母"
+                        <TextBox kino:KinoForm.Label="母"
                                  kino:KinoForm.Description="可以不填" />
                     </kino:KinoForm>
                 </Grid>
-                <kino:KinoFormItem Header="备注"
+                <kino:KinoFormItem Label="备注"
                                    Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBox />
                 </kino:KinoFormItem>
@@ -261,8 +261,8 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="kino:KinoFormItem">
                                     <StackPanel x:Name="Root">
-                                        <ContentPresenter Content="{TemplateBinding Header}"
-                                                          ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                        <ContentPresenter Content="{TemplateBinding Label}"
+                                                          ContentTemplate="{TemplateBinding LabelTemplate}" />
                                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                                           x:Name="ContentPresenter"
                                                           Height="50" />
@@ -286,9 +286,9 @@
                                    Padding="0"
                                    ItemContainerStyle="{StaticResource FromItemStyle}"
                                    ItemsPanel="{StaticResource ItemsPanelTemplate}">
-                        <TextBox kino:KinoForm.Header="用户名" />
-                        <TextBox kino:KinoForm.Header="级别" />
-                        <TextBox kino:KinoForm.Header="备注" />
+                        <TextBox kino:KinoForm.Label="用户名" />
+                        <TextBox kino:KinoForm.Label="级别" />
+                        <TextBox kino:KinoForm.Label="备注" />
 
                     </kino:KinoForm>
                 </Expander>
@@ -299,9 +299,9 @@
                                    Padding="0"
                                    ItemContainerStyle="{StaticResource FromItemStyle}"
                                    ItemsPanel="{StaticResource ItemsPanelTemplate}">
-                        <TextBox kino:KinoForm.Header="学校" />
-                        <TextBox kino:KinoForm.Header="职业" />
-                        <TextBox kino:KinoForm.Header="证书" />
+                        <TextBox kino:KinoForm.Label="学校" />
+                        <TextBox kino:KinoForm.Label="职业" />
+                        <TextBox kino:KinoForm.Label="证书" />
                     </kino:KinoForm>
                 </Expander>
                 <Expander kino:KinoForm.IsItemItsOwnContainer="True"
@@ -321,8 +321,8 @@
                                 </Grid>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <TextBox kino:KinoForm.Header="邮编" />
-                        <kino:KinoFormItem Header="住址"
+                        <TextBox kino:KinoForm.Label="邮编" />
+                        <kino:KinoFormItem Label="住址"
                                            Grid.Column="1"
                                            Grid.ColumnSpan="2">
                             <TextBox />

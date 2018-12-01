@@ -29,14 +29,14 @@
             </kino:KinoForm.ItemsPanel>
             <kino:KinoFormTitle Content="用户信息" />
 
-            <TextBox kino:KinoForm.Header="用户名"
+            <TextBox kino:KinoForm.Label="用户名"
                      kino:KinoForm.IsRequired="True"
                      Text="{Binding Name,Mode=TwoWay}"
                      x:Name="NameElement" />
 
-            <PasswordBox kino:KinoForm.Header="密码"
+            <PasswordBox kino:KinoForm.Label="密码"
                          kino:KinoForm.IsRequired="True" />
-            <ComboBox kino:KinoForm.Header="国家" />
+            <ComboBox kino:KinoForm.Label="国家" />
             <kino:KinoFormSeparator />
             <kino:KinoFormTitle Content="家庭信息">
                 <kino:KinoFormTitle.Description>
@@ -44,14 +44,14 @@
                                TextWrapping="Wrap" />
                 </kino:KinoFormTitle.Description>
             </kino:KinoFormTitle>
-            <TextBox kino:KinoForm.Header="父"
+            <TextBox kino:KinoForm.Label="父"
                      x:Name="FatherTextBox"
                      kino:KinoForm.Description="可以不填" />
-            <TextBox kino:KinoForm.Header="母"
+            <TextBox kino:KinoForm.Label="母"
                      kino:KinoForm.Description="可以不填" />
-            <CheckBox kino:KinoForm.Header="已婚" />
+            <CheckBox kino:KinoForm.Label="已婚" />
 
-            <StackPanel kino:KinoForm.Header="性别"
+            <StackPanel kino:KinoForm.Label="性别"
                         Orientation="Horizontal"
                         kino:KinoForm.IsRequired="True">
                 <RadioButton Content="男"
@@ -61,9 +61,9 @@
                              Margin="8,0,0,0" />
             </StackPanel>
 
-            <CheckBox kino:KinoForm.Header="已婚" />
-            <kino:KinoFormItem Header="备注"
-                               HeaderTemplate="{StaticResource TopHeaderTemplate}">
+            <CheckBox kino:KinoForm.Label="已婚" />
+            <kino:KinoFormItem Label="备注"
+                               LabelTemplate="{StaticResource TopHeaderTemplate}">
                 <TextBox AcceptsReturn="True"
                          VerticalScrollBarVisibility="Auto"
                          Height="100" />

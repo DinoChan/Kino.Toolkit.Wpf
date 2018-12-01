@@ -12,7 +12,7 @@
 <local:SampleSection.ControlPanel>
     <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
         <StackPanel Orientation="Horizontal"
-                    kino:KinoForm.Header="Content And Icon">
+                    kino:KinoForm.Label="Content And Icon">
             <RadioButton Content="Content Only"
                          Checked="OnContentOnlyCheck" />
             <RadioButton Content="Icon Only"
@@ -26,6 +26,6 @@
         <ListBox x:Name="StatesListBox"
                  HorizontalAlignment="Left"
                  Width="250"
-                 kino:KinoForm.Header="State" />
+                 kino:KinoForm.Label="State" />
     </kino:KinoForm>
 </local:SampleSection.ControlPanel>

@@ -73,6 +73,8 @@
     <Compile Include="Common\VisualStates.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
     <Compile Include="Common\WeakEventListener.cs" />
+    <Compile Include="Converters\EmptyObjectToObjectConverter.cs" />
+    <Compile Include="Converters\EmptyObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
     <Compile Include="DataGrid\KinoDataGrid.cs" />
