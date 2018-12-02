@@ -9,7 +9,8 @@ using System.Windows.Input;
 
 namespace Kino.Toolkit.Wpf
 {
-    public class KinoForm : ItemsControl
+    [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(KinoFormItem))]
+    public class KinoForm : HeaderedItemsControl
     {
         /// <summary>
         /// 标识 CommandBar 依赖属性。
@@ -40,6 +41,12 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public static readonly DependencyProperty IsRequiredProperty =
             DependencyProperty.RegisterAttached("IsRequired", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
+
+        /// <summary>
+        /// 标识 ContainerStyle 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty ContainerStyleProperty =
+            DependencyProperty.RegisterAttached("ContainerStyle", typeof(Style), typeof(KinoForm), new PropertyMetadata(default(Style)));
 
         public KinoForm()
         {
@@ -118,6 +125,20 @@ namespace Kino.Toolkit.Wpf
         public static void SetIsItemItsOwnContainer(DependencyObject obj, bool value) => obj.SetValue(IsItemItsOwnContainerProperty, value);
 
         /// <summary>
+        /// 从指定元素获取 ContainerStyle 依赖项属性的值。
+        /// </summary>
+        /// <param name="obj">从中读取属性值的元素。</param>
+        /// <returns>从属性存储获取的属性值。</returns>
+        public static Style GetContainerStyle(DependencyObject obj) => (Style)obj.GetValue(ContainerStyleProperty);
+
+        /// <summary>
+        /// 将 ContainerStyle 依赖项属性的值设置为指定元素。
+        /// </summary>
+        /// <param name="obj">对其设置属性值的元素。</param>
+        /// <param name="value">要设置的值。</param>
+        public static void SetContainerStyle(DependencyObject obj, Style value) => obj.SetValue(ContainerStyleProperty, value);
+
+        /// <summary>
         /// CommandBar 属性更改时调用此方法。
         /// </summary>
         /// <param name="oldValue">CommandBar 属性的旧值。</param>
@@ -134,7 +155,7 @@ namespace Kino.Toolkit.Wpf
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
             }
 
-            return item is KinoFormItem || item is KinoFormTitle || item is KinoFormSeparator || isItemItsOwnContainer;
+            return item is KinoFormItem || isItemItsOwnContainer;
         }
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -154,6 +175,9 @@ namespace Kino.Toolkit.Wpf
                     formItem.Label = GetLabel(content);
                     formItem.Description = GetDescription(content);
                     formItem.IsRequired = GetIsRequired(content);
+                    var style = GetContainerStyle(formItem);
+                    if (style != null)
+                        formItem.Style = style;
                 }
             }
         }

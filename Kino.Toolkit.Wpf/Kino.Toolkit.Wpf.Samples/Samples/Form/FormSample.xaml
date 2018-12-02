@@ -9,7 +9,8 @@
                   Header="Form"
                   Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/Form"
                   d:DesignHeight="1950"
-                  d:DesignWidth="800">
+                  d:DesignWidth="800"
+                  BorderBrush="Black">
     <local:SamplePage.DataContext>
         <local:FormTestModel Name="Username" />
     </local:SamplePage.DataContext>
@@ -24,11 +25,16 @@
     <StackPanel Background="White">
         <local:SampleSection Header="Nomal Form">
             <kino:KinoForm Width="500"
-                           HorizontalAlignment="Left">
+                           HorizontalAlignment="Left"
+                           Header="NormalForm">
                 <kino:KinoFormTitle Content="用户信息" />
                 <TextBox kino:KinoForm.Label="用户名"
                          kino:KinoForm.IsRequired="True"
                          Text="{Binding Name,Mode=TwoWay}" />
+                <TextBlock kino:KinoForm.Label="用户名"
+                         kino:KinoForm.IsRequired="True"
+                         Text="Username" />
+
                 <PasswordBox kino:KinoForm.Label="密码"
                              kino:KinoForm.IsRequired="True" />
                 <ComboBox kino:KinoForm.Label="国家" />
