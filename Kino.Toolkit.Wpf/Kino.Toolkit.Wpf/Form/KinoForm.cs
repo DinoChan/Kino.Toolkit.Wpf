@@ -31,6 +31,12 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.RegisterAttached("Label", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
 
         /// <summary>
+        /// 标识 LabelTemplate 依赖项属性。
+        /// </summary>
+        public static readonly DependencyProperty LabelTemplateProperty =
+            DependencyProperty.RegisterAttached("LabelTemplate", typeof(DataTemplate), typeof(KinoForm), new PropertyMetadata(default(DataTemplate)));
+
+        /// <summary>
         /// 标识 IsItemItsOwnContainer 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty IsItemItsOwnContainerProperty =
@@ -83,14 +89,32 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static object GetLabel(DependencyObject obj) => (object)obj.GetValue(LabelProperty);
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
+        public static object GetLabel(DependencyObject obj) => obj.GetValue(LabelProperty);
 
         /// <summary>
         /// 将 Label 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static void SetLabel(DependencyObject obj, object value) => obj.SetValue(LabelProperty, value);
+
+        /// <summary>
+        /// 从指定元素获取 LabelTemplate 依赖项属性的值。
+        /// </summary>
+        /// <param name="obj">从中读取属性值的元素。</param>
+        /// <returns>从属性存储获取的属性值。</returns>
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
+        public static DataTemplate GetLabelTemplate(DependencyObject obj) => (DataTemplate)obj.GetValue(LabelTemplateProperty);
+
+        /// <summary>
+        /// 将 LabelTemplate 依赖项属性的值设置为指定元素。
+        /// </summary>
+        /// <param name="obj">对其设置属性值的元素。</param>
+        /// <param name="value">要设置的值。</param>
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
+        public static void SetLabelTemplate(DependencyObject obj, DataTemplate value) => obj.SetValue(LabelTemplateProperty, value);
 
         /// <summary>
         /// 从指定元素获取 Description 依赖项属性的值。
@@ -98,7 +122,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static object GetDescription(DependencyObject obj) => (object)obj.GetValue(DescriptionProperty);
+        public static object GetDescription(DependencyObject obj) => obj.GetValue(DescriptionProperty);
 
         /// <summary>
         /// 将 Description 依赖项属性的值设置为指定元素。
@@ -129,6 +153,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static Style GetContainerStyle(DependencyObject obj) => (Style)obj.GetValue(ContainerStyleProperty);
 
         /// <summary>
@@ -136,6 +161,7 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static void SetContainerStyle(DependencyObject obj, Style value) => obj.SetValue(ContainerStyleProperty, value);
 
         /// <summary>
@@ -175,9 +201,13 @@ namespace Kino.Toolkit.Wpf
                     formItem.Label = GetLabel(content);
                     formItem.Description = GetDescription(content);
                     formItem.IsRequired = GetIsRequired(content);
-                    var style = GetContainerStyle(formItem);
+                    var style = GetContainerStyle(content);
                     if (style != null)
                         formItem.Style = style;
+
+                    var labelTemplate = GetLabelTemplate(content);
+                    if (labelTemplate != null)
+                        formItem.LabelTemplate = labelTemplate;
                 }
             }
         }

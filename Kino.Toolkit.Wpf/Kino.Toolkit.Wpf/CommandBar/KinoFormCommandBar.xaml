@@ -81,22 +81,17 @@
         <Setter Property="Margin"
                 Value="0" />
         <Setter Property="Padding"
-                Value="8,0,0,0" />
+                Value="8,0,12,12" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Right" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormCommandBar">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="Header" />
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="IsRequired" />
-                        </Grid.ColumnDefinitions>
+                    <Grid Margin="{TemplateBinding Padding}">
+                        <ContentPresenter Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}" 
+                                          HorizontalAlignment="Left"/>
                         <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        Margin="{TemplateBinding Padding}"
                                         Grid.Column="1" />
                     </Grid>
                 </ControlTemplate>

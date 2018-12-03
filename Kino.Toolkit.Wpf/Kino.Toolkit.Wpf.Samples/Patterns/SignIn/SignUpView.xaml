@@ -77,6 +77,13 @@
                                   local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
                     <kino:KinoForm.CommandBar>
                         <kino:KinoFormCommandBar>
+                            <kino:KinoFormCommandBar.Header>
+                                <kino:KinoHyperlinkButton Content="返回"
+                                                          Margin="16"
+                                                          Click="OnBack"
+                                                          VerticalAlignment="Bottom"
+                                                          HorizontalAlignment="Left" />
+                            </kino:KinoFormCommandBar.Header>
                             <kino:KinoButton Content="Sign Up"
                                              x:Name="SignUpButton"
                                              IsDefault="True"
@@ -84,9 +91,7 @@
                         </kino:KinoFormCommandBar>
                     </kino:KinoForm.CommandBar>
                 </kino:KinoForm>
-                <kino:KinoHyperlinkButton Content="返回" Margin="16" 
-                                          Click="OnBack"
-                                          VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+             
             </Grid>
         </Grid>
     </kino:KinoResizer>
