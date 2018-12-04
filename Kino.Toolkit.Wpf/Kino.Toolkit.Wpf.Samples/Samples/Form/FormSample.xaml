@@ -158,14 +158,14 @@
                                                    Text="*"
                                                    Foreground="Red" />
                                         <Grid ToolTip="{TemplateBinding Description}"
-                                              Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                                              Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                               Margin="4,0,0,0"
                                               Background="Transparent">
                                             <TextBlock Style="{StaticResource FontAwesome}"
                                                        Text="&#xf059;"
                                                        VerticalAlignment="Center"
                                                        Foreground="LightSeaGreen"
-                                                       FontSize="14" />
+                                                       FontSize="12" />
                                         </Grid>
                                     </StackPanel>
                                     <ContentPresenter Margin="{TemplateBinding Padding}"
@@ -244,6 +244,16 @@
         <local:SampleSection Header="显示或隐藏">
             <kino:KinoForm Width="500"
                            HorizontalAlignment="Left">
+                <kino:KinoForm.Resources>
+                    <Style TargetType="kino:KinoFormItem" x:Key="CollapsedItemStyle">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+                    </Style>
+                    <kino:BoolToObjectConverter x:Key="BoolToStyleConverter"
+                                                TrueValue="{x:Null}"
+                                                FalseValue="{StaticResource CollapsedItemStyle}"/>
+                </kino:KinoForm.Resources>
+
                 <CheckBox kino:KinoForm.Label="显示额外信息"
                           x:Name="ExtraInformationCheckBox" />
                 <Grid kino:KinoForm.IsItemItsOwnContainer="True"
@@ -257,6 +267,8 @@
                                  kino:KinoForm.Description="可以不填" />
                     </kino:KinoForm>
                 </Grid>
+                <TextBox kino:KinoForm.Label="地址"
+                         kino:KinoForm.ContainerStyle="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BoolToStyleConverter}}"/>
                 <kino:KinoFormItem Label="备注"
                                    Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBox />
@@ -277,6 +289,8 @@
                            BasedOn="{StaticResource ControlPanelFromItemStyle}">
                         <Setter Property="Margin"
                                 Value="8" />
+                        <Setter Property="Opacity"
+                                Value="0.3" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="kino:KinoFormItem">

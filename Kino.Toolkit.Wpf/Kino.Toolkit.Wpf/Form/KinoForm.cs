@@ -22,37 +22,37 @@ namespace Kino.Toolkit.Wpf
         /// 标识 Description 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
+            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 Label 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty LabelProperty =
-            DependencyProperty.RegisterAttached("Label", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
+            DependencyProperty.RegisterAttached("Label", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 LabelTemplate 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty LabelTemplateProperty =
-            DependencyProperty.RegisterAttached("LabelTemplate", typeof(DataTemplate), typeof(KinoForm), new PropertyMetadata(default(DataTemplate)));
+            DependencyProperty.RegisterAttached("LabelTemplate", typeof(DataTemplate), typeof(KinoForm), new PropertyMetadata(default(DataTemplate), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 IsItemItsOwnContainer 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty IsItemItsOwnContainerProperty =
-            DependencyProperty.RegisterAttached("IsItemItsOwnContainer", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
+            DependencyProperty.RegisterAttached("IsItemItsOwnContainer", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 IsRequired 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty IsRequiredProperty =
-            DependencyProperty.RegisterAttached("IsRequired", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
+            DependencyProperty.RegisterAttached("IsRequired", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 ContainerStyle 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty ContainerStyleProperty =
-            DependencyProperty.RegisterAttached("ContainerStyle", typeof(Style), typeof(KinoForm), new PropertyMetadata(default(Style)));
+            DependencyProperty.RegisterAttached("ContainerStyle", typeof(Style), typeof(KinoForm), new PropertyMetadata(default(Style), OnFormPropertyChanged));
 
         public KinoForm()
         {
@@ -177,9 +177,7 @@ namespace Kino.Toolkit.Wpf
         {
             bool isItemItsOwnContainer = false;
             if (item is DependencyObject element)
-            {
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
-            }
 
             return item is KinoFormItem || isItemItsOwnContainer;
         }
@@ -194,22 +192,8 @@ namespace Kino.Toolkit.Wpf
         {
             base.PrepareContainerForItemOverride(element, item);
 
-            if (element is KinoFormItem formItem)
-            {
-                if (item is KinoFormItem == false && item is DependencyObject content)
-                {
-                    formItem.Label = GetLabel(content);
-                    formItem.Description = GetDescription(content);
-                    formItem.IsRequired = GetIsRequired(content);
-                    var style = GetContainerStyle(content);
-                    if (style != null)
-                        formItem.Style = style;
-
-                    var labelTemplate = GetLabelTemplate(content);
-                    if (labelTemplate != null)
-                        formItem.LabelTemplate = labelTemplate;
-                }
-            }
+            if (element is KinoFormItem formItem && item is FrameworkElement content && item is KinoFormItem == false)
+                PrepareFormItem(formItem, content);
         }
 
         private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -217,12 +201,40 @@ namespace Kino.Toolkit.Wpf
             var oldValue = (KinoFormCommandBar)args.OldValue;
             var newValue = (KinoFormCommandBar)args.NewValue;
             if (oldValue == newValue)
-            {
                 return;
-            }
 
             var target = obj as KinoForm;
             target?.OnCommandBarChanged(oldValue, newValue);
+        }
+
+        private static void OnFormPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            if (args.OldValue == args.NewValue)
+                return;
+
+            if (obj is FrameworkElement content && content.Parent is KinoForm form)
+            {
+                if (form.ItemContainerGenerator.ContainerFromItem(content) is KinoFormItem formItem)
+                    form.PrepareFormItem(formItem, content);
+            }
+        }
+
+        private void PrepareFormItem(KinoFormItem formItem, FrameworkElement content)
+        {
+            formItem.Label = GetLabel(content);
+            formItem.Description = GetDescription(content);
+            formItem.IsRequired = GetIsRequired(content);
+            var style = GetContainerStyle(content);
+            if (style != null)
+                formItem.Style = style;
+            else if (ItemContainerStyle != null)
+                formItem.Style = ItemContainerStyle;
+            else
+                formItem.ClearValue(FrameworkElement.StyleProperty);
+
+            var labelTemplate = GetLabelTemplate(content);
+            if (labelTemplate != null)
+                formItem.LabelTemplate = labelTemplate;
         }
     }
 }
