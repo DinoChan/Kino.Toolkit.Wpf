@@ -39,8 +39,7 @@ namespace Kino.Toolkit.Wpf
         {
             if (newValue != null && newValue.AdornedElement != null)
             {
-                newValue.AdornedElement.GotFocus += OnAdornedElementGotFocus;
-                newValue.AdornedElement.LostFocus += OnAdornedElementLostFocus;
+                newValue.AdornedElement.IsKeyboardFocusWithinChanged += OnAdornedElementIsKeyboardFocusWithinChanged;
                 newValue.Loaded += OnPlaceholderLoaded;
             }
         }
@@ -58,17 +57,12 @@ namespace Kino.Toolkit.Wpf
             target?.OnAdornedElementPlaceholderChanged(oldValue, newValue);
         }
 
+        private void OnAdornedElementIsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateVisualState();
+        }
+
         private void OnPlaceholderLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateVisualState();
-        }
-
-        private void OnAdornedElementLostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            UpdateVisualState();
-        }
-
-        private void OnAdornedElementGotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             UpdateVisualState();
         }
@@ -77,7 +71,7 @@ namespace Kino.Toolkit.Wpf
         {
             if (AdornedElementPlaceholder != null && AdornedElementPlaceholder.AdornedElement != null)
             {
-                VisualStateManager.GoToState(this, AdornedElementPlaceholder.AdornedElement.IsFocused ? VisualStates.StateInvalidFocused : VisualStates.StateInvalidUnfocused, false);
+                VisualStateManager.GoToState(this, AdornedElementPlaceholder.AdornedElement.IsKeyboardFocusWithin ? VisualStates.StateInvalidFocused : VisualStates.StateInvalidUnfocused, false);
             }
         }
     }
