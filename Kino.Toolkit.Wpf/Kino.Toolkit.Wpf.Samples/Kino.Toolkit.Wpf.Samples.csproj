@@ -89,6 +89,7 @@
     <Compile Include="Common\LoadResult.cs" />
     <Compile Include="Common\ModelBase.cs" />
     <Compile Include="Common\PasswordBoxHelper.cs" />
+    <Compile Include="Common\Product.cs" />
     <Compile Include="Common\TestCurdService.cs" />
     <Compile Include="Controls\SampleSection.cs" />
     <Compile Include="Controls\SourceCodeBox.cs" />

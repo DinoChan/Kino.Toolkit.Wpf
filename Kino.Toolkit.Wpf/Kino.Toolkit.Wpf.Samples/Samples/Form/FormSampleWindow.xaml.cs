@@ -28,13 +28,13 @@ namespace Kino.Toolkit.Wpf.Samples
             _horizontalFormItemStyle = Resources["HorizontalFormItemStyle"] as Style;
             _verticalFormItemStyle = Resources["VerticalFormItemStyle"] as Style;
             IsLargeSize = true;
-            SizeChanged += OnWindowSizeChanged;
+            Root.SizeChanged += OnRootSizeChanged;
         }
 
-        private void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
+        private void OnRootSizeChanged(object sender, SizeChangedEventArgs e)
         {
             IsLargeSize = e.NewSize.Width > 350;
-            Root.ItemWidth = e.NewSize.Width > 800 ? Math.Max(450, e.NewSize.Width-50 / 2) : double.NaN;
+            Root.ItemWidth = e.NewSize.Width > 700 ? Math.Max(350, e.NewSize.Width / 2) : double.NaN;
         }
 
         private void OnOK(object sender, RoutedEventArgs e)
@@ -65,5 +65,14 @@ namespace Kino.Toolkit.Wpf.Samples
             }
         }
 
+        private void OnCanEditChecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnCanEditUnchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

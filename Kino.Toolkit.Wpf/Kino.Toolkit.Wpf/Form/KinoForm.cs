@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 
 namespace Kino.Toolkit.Wpf
 {
@@ -17,6 +19,12 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         public static readonly DependencyProperty CommandBarProperty =
             DependencyProperty.Register(nameof(CommandBar), typeof(KinoFormCommandBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormCommandBar), OnCommandBarChanged));
+
+        /// <summary>
+        /// 标识 LabelMemberPath 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty LabelMemberPathProperty =
+            DependencyProperty.Register(nameof(LabelMemberPath), typeof(string), typeof(KinoForm), new PropertyMetadata(default(string), OnLabelMemberPathChanged));
 
         /// <summary>
         /// 标识 Description 依赖项属性。
@@ -54,6 +62,8 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty ContainerStyleProperty =
             DependencyProperty.RegisterAttached("ContainerStyle", typeof(Style), typeof(KinoForm), new PropertyMetadata(default(Style), OnFormPropertyChanged));
 
+        private DataTemplate _labelMemberTemplate;
+
         public KinoForm()
         {
             DefaultStyleKey = typeof(KinoForm);
@@ -66,6 +76,32 @@ namespace Kino.Toolkit.Wpf
         {
             get => (KinoFormCommandBar)GetValue(CommandBarProperty);
             set => SetValue(CommandBarProperty, value);
+        }
+
+        /// <summary>
+        /// 获取或设置LabelMemberPath的值
+        /// </summary>
+        public string LabelMemberPath
+        {
+            get => (string)GetValue(LabelMemberPathProperty);
+            set => SetValue(LabelMemberPathProperty, value);
+        }
+
+        private DataTemplate LabelMemberTemplate
+        {
+            get
+            {
+                if (_labelMemberTemplate == null)
+                {
+                    _labelMemberTemplate = (DataTemplate)XamlReader.Parse(@"
+                    <DataTemplate xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+                                xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
+                    		<TextBlock Text=""{Binding " + LabelMemberPath + @"}"" VerticalAlignment=""Center""/>
+                    </DataTemplate>");
+                }
+
+                return _labelMemberTemplate;
+            }
         }
 
         /// <summary>
@@ -173,6 +209,26 @@ namespace Kino.Toolkit.Wpf
         {
         }
 
+        /// <summary>
+        /// LabelMemberPath 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">LabelMemberPath 属性的旧值。</param>
+        /// <param name="newValue">LabelMemberPath 属性的新值。</param>
+        protected virtual void OnLabelMemberPathChanged(string oldValue, string newValue)
+        {
+            // refresh the label member template.
+            _labelMemberTemplate = null;
+            var newTemplate = LabelMemberPath;
+
+            int count = Items.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var formItem = ItemContainerGenerator.ContainerFromIndex(i) as KinoFormItem;
+                if (formItem != null)
+                    PrepareFormItem(formItem, Items[i]);
+            }
+        }
+
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             bool isItemItsOwnContainer = false;
@@ -192,8 +248,13 @@ namespace Kino.Toolkit.Wpf
         {
             base.PrepareContainerForItemOverride(element, item);
 
-            if (element is KinoFormItem formItem && item is FrameworkElement content && item is KinoFormItem == false)
-                PrepareFormItem(formItem, content);
+            if (element is KinoFormItem formItem && item is KinoFormItem == false)
+            {
+                if (item is FrameworkElement content)
+                    PrepareFormFrameworkElement(formItem, content);
+                else
+                    PrepareFormItem(formItem, item);
+            }
         }
 
         private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -207,6 +268,17 @@ namespace Kino.Toolkit.Wpf
             target?.OnCommandBarChanged(oldValue, newValue);
         }
 
+        private static void OnLabelMemberPathChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (string)args.OldValue;
+            var newValue = (string)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoForm;
+            target?.OnLabelMemberPathChanged(oldValue, newValue);
+        }
+
         private static void OnFormPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             if (args.OldValue == args.NewValue)
@@ -215,11 +287,11 @@ namespace Kino.Toolkit.Wpf
             if (obj is FrameworkElement content && content.Parent is KinoForm form)
             {
                 if (form.ItemContainerGenerator.ContainerFromItem(content) is KinoFormItem formItem)
-                    form.PrepareFormItem(formItem, content);
+                    form.PrepareFormFrameworkElement(formItem, content);
             }
         }
 
-        private void PrepareFormItem(KinoFormItem formItem, FrameworkElement content)
+        private void PrepareFormFrameworkElement(KinoFormItem formItem, FrameworkElement content)
         {
             formItem.Label = GetLabel(content);
             formItem.Description = GetDescription(content);
@@ -235,6 +307,18 @@ namespace Kino.Toolkit.Wpf
             var labelTemplate = GetLabelTemplate(content);
             if (labelTemplate != null)
                 formItem.LabelTemplate = labelTemplate;
+        }
+
+        private void PrepareFormItem(KinoFormItem formItem, object item)
+        {
+            if (formItem == item)
+                return;
+
+            if (item is FrameworkElement)
+                return;
+
+            formItem.LabelTemplate = LabelMemberTemplate;
+            formItem.Label = item;
         }
     }
 }

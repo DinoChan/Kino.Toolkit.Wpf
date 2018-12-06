@@ -7,21 +7,18 @@
         mc:Ignorable="d"
         SnapsToDevicePixels="True"
         Title="FormSampleWindow"
+        xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
         Height="450"
         Width="1200">
     <Window.Resources>
+
         <Style TargetType="kino:KinoForm">
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                     Value="Disabled" />
             <Setter Property="Grid.IsSharedSizeScope"
                     Value="False" />
         </Style>
-        <DataTemplate x:Key="TopHeaderTemplate">
-            <TextBlock Text="{Binding}"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Right"
-                       Margin="0,1,0,0" />
-        </DataTemplate>
+        
 
         <Style TargetType="kino:KinoFormItem"
                x:Key="HorizontalFormItemStyle">
@@ -49,7 +46,48 @@
         </Style>
 
         <Style TargetType="kino:KinoFormItem"
+               x:Key="HorizontalEditableFormItemStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="kino:KinoFormItem">
+                    <Grid x:Name="Root">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="Header"
+                                              MinWidth="100" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{TemplateBinding Label}"
+                                          VerticalAlignment="Top"
+                                          HorizontalAlignment="Right"
+                                          TextBlock.Foreground="#FF777777" />
+                        <ContentPresenter Grid.Column="1"
+                                          Margin="{TemplateBinding Padding}"
+                                          x:Name="ContentPresenter" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        </Style>
+
+        <Style TargetType="kino:KinoFormItem"
                x:Key="VerticalFormItemStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <StackPanel>
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              TextBlock.Foreground="#FF777777" />
+                            <ContentPresenter Grid.Column="1"
+                                              x:Name="ContentPresenter" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="kino:KinoFormItem"
+               x:Key="VerticalEditableFormItemStyle">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="kino:KinoFormItem">
@@ -65,6 +103,13 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <StackPanel>
+            <kino:KinoPageTitle>
+                <Grid>
+                    <TextBlock Text="Responsive" />
+                    <CheckBox HorizontalAlignment="Right" Content="Can Edit" FontSize="12" VerticalAlignment="Center" Checked="OnCanEditChecked" Unchecked="OnCanEditUnchecked"/>
+                </Grid>
+            </kino:KinoPageTitle>
         <WrapPanel x:Name="Root"
                    Grid.IsSharedSizeScope="True">
             <kino:KinoForm>
@@ -93,8 +138,43 @@
                 <TextBlock Text="1,467 g"
                            kino:KinoForm.Label="Weight" />
             </kino:KinoForm>
+
+
+            <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
+                           DisplayMemberPath="Value">
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="kino:KinoFormItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="kino:KinoFormItem">
+                                    <Grid x:Name="Root">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"
+                                                              SharedSizeGroup="Header"
+                                                              MinWidth="100" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <ContentPresenter Content="{Binding Content.Key,RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                          VerticalAlignment="Top"
+                                                          HorizontalAlignment="Right"
+                                                          TextBlock.Foreground="#FF777777" />
+                                        <ContentPresenter Grid.Column="1"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          x:Name="ContentPresenter" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </kino:KinoForm>
+
+            <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
+                           DisplayMemberPath="Value"
+                           LabelMemberPath="Key" />
         </WrapPanel>
 
-
+        </StackPanel>
     </Grid>
 </Window>
