@@ -70,7 +70,7 @@ namespace Kino.Toolkit.Wpf
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             bool isItemItsOwnContainer = false;
-            if (item is DependencyObject element)
+            if (item is FrameworkElement element)
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
 
             return item is KinoFormItem || isItemItsOwnContainer;

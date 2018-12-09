@@ -84,83 +84,83 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static bool GetIsRequired(DependencyObject obj) => (bool)obj.GetValue(IsRequiredProperty);
+        public static bool GetIsRequired(FrameworkElement obj) => (bool)obj.GetValue(IsRequiredProperty);
 
         /// <summary>
         /// 将 IsRequired 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetIsRequired(DependencyObject obj, bool value) => obj.SetValue(IsRequiredProperty, value);
+        public static void SetIsRequired(FrameworkElement obj, bool value) => obj.SetValue(IsRequiredProperty, value);
 
         /// <summary>
         /// 从指定元素获取 Label 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static object GetLabel(DependencyObject obj) => obj.GetValue(LabelProperty);
+        public static object GetLabel(FrameworkElement obj) => obj.GetValue(LabelProperty);
 
         /// <summary>
         /// 将 Label 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetLabel(DependencyObject obj, object value) => obj.SetValue(LabelProperty, value);
+        public static void SetLabel(FrameworkElement obj, object value) => obj.SetValue(LabelProperty, value);
 
         /// <summary>
         /// 从指定元素获取 LabelTemplate 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static DataTemplate GetLabelTemplate(DependencyObject obj) => (DataTemplate)obj.GetValue(LabelTemplateProperty);
+        public static DataTemplate GetLabelTemplate(FrameworkElement obj) => (DataTemplate)obj.GetValue(LabelTemplateProperty);
 
         /// <summary>
         /// 将 LabelTemplate 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetLabelTemplate(DependencyObject obj, DataTemplate value) => obj.SetValue(LabelTemplateProperty, value);
+        public static void SetLabelTemplate(FrameworkElement obj, DataTemplate value) => obj.SetValue(LabelTemplateProperty, value);
 
         /// <summary>
         /// 从指定元素获取 Description 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static object GetDescription(DependencyObject obj) => obj.GetValue(DescriptionProperty);
+        public static object GetDescription(FrameworkElement obj) => obj.GetValue(DescriptionProperty);
 
         /// <summary>
         /// 将 Description 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetDescription(DependencyObject obj, object value) => obj.SetValue(DescriptionProperty, value);
+        public static void SetDescription(FrameworkElement obj, object value) => obj.SetValue(DescriptionProperty, value);
 
         /// <summary>
         /// 从指定元素获取 IsItemItsOwnContainer 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static bool GetIsItemItsOwnContainer(DependencyObject obj) => (bool)obj.GetValue(IsItemItsOwnContainerProperty);
+        public static bool GetIsItemItsOwnContainer(FrameworkElement obj) => (bool)obj.GetValue(IsItemItsOwnContainerProperty);
 
         /// <summary>
         /// 将 IsItemItsOwnContainer 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetIsItemItsOwnContainer(DependencyObject obj, bool value) => obj.SetValue(IsItemItsOwnContainerProperty, value);
+        public static void SetIsItemItsOwnContainer(FrameworkElement obj, bool value) => obj.SetValue(IsItemItsOwnContainerProperty, value);
 
         /// <summary>
         /// 从指定元素获取 ContainerStyle 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static Style GetContainerStyle(DependencyObject obj) => (Style)obj.GetValue(ContainerStyleProperty);
+        public static Style GetContainerStyle(FrameworkElement obj) => (Style)obj.GetValue(ContainerStyleProperty);
 
         /// <summary>
         /// 将 ContainerStyle 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetContainerStyle(DependencyObject obj, Style value) => obj.SetValue(ContainerStyleProperty, value);
+        public static void SetContainerStyle(FrameworkElement obj, Style value) => obj.SetValue(ContainerStyleProperty, value);
     }
 }
