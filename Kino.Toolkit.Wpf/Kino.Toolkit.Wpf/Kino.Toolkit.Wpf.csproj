@@ -101,6 +101,7 @@
     <Compile Include="DomainServices\AsyncRemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
+    <Compile Include="Form\KinoForm.Properties.cs" />
     <Compile Include="Form\KinoForm.cs" />
     <Compile Include="Form\KinoFormItem.cs" />
     <Compile Include="Form\KinoFormSeparator.cs" />
