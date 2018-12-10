@@ -20,9 +20,15 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class FormItemSample
     {
+        private Style _formItemStyle;
+        private Style _editableFormItemStyle;
+
         public FormItemSample()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this._formItemStyle = this.Resources["FormItemStyle"] as Style;
+            this._editableFormItemStyle = this.Resources["EditableFormItemStyle"] as Style;
+            this.Root.Resources.Add(typeof(KinoFormItem), this._formItemStyle);
         }
 
         private void OnOK(object sender, RoutedEventArgs e)
@@ -39,6 +45,23 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             var window = new FormSampleWindow();
             window.Show();
+        }
+
+        private async void OnCanEditChecked(object sender, RoutedEventArgs e)
+        {
+            this.Root.Resources.Clear();
+            this.Root.Resources.Add(typeof(KinoFormItem), this._editableFormItemStyle);
+            await this.Dispatcher.InvokeAsync(async () =>
+            {
+                await Task.Delay(100);
+                this.Root.ForceFocus();
+            });
+        }
+
+        private void OnCanEditUnchecked(object sender, RoutedEventArgs e)
+        {
+            this.Root.Resources.Clear();
+            this.Root.Resources.Add(typeof(KinoFormItem), this._formItemStyle);
         }
     }
 }

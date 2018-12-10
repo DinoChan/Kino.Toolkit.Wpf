@@ -24,9 +24,72 @@
         <kino:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
         <kino:BoolToObjectConverter x:Key="BoolToObjectConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+
+        <Style TargetType="kino:KinoFormItem"
+               x:Key="FormItemStyle">
+            <Setter Property="Padding"
+                    Value="11,0,3,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <Grid x:Name="Root"
+                              Height="25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="Header"
+                                                  MinWidth="100" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Right"
+                                              TextBlock.Foreground="#FF777777" />
+                            <ContentPresenter Grid.Column="1"
+                                              Margin="{TemplateBinding Padding}"
+                                              x:Name="ContentPresenter"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="kino:KinoFormItem"
+               x:Key="EditableFormItemStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <Grid x:Name="Root">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="Header"
+                                                  MinWidth="100" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Right"
+                                              TextBlock.Foreground="#FF777777" />
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Content.Text}"
+                                     Margin="{TemplateBinding Padding}"
+                                     x:Name="ContentPresenter"
+                                     VerticalContentAlignment="Center"
+                                     Height="25" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="kino:KinoForm">
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                    Value="Disabled" />
+        </Style>
     </local:SamplePage.Resources>
     <StackPanel Background="White">
-        <local:SampleSection Header="FormIte">
+        <local:SampleSection Header="FormItem">
             <StackPanel Width="500"
                         HorizontalAlignment="Left"
                         Grid.IsSharedSizeScope="True">
@@ -82,7 +145,7 @@
                                        CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section1.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
-        
+
         <local:SampleSection Header="使用样式">
             <local:SampleSection.Resources>
                 <Style TargetType="kino:KinoFormItem">
@@ -152,7 +215,58 @@
                                        CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section2.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
+        <local:SampleSection Header="可编辑">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="kino:KinoForm"
+                           BasedOn="{StaticResource {x:Type kino:KinoForm}}">
+                        <Setter Property="Grid.IsSharedSizeScope"
+                                Value="False" />
+                    </Style>
+                </StackPanel.Resources>
+                <kino:KinoPageTitle>
+                    <Grid>
+                        <TextBlock Text="Responsive" />
+                        <CheckBox HorizontalAlignment="Right"
+                                  Content="Can Edit"
+                                  FontSize="12"
+                                  VerticalAlignment="Center"
+                                  Checked="OnCanEditChecked"
+                                  Unchecked="OnCanEditUnchecked" />
+                    </Grid>
+                </kino:KinoPageTitle>
+                <WrapPanel x:Name="Root"
+                           Grid.IsSharedSizeScope="True">
+                    <kino:KinoForm>
+                        <kino:KinoFormTitle Content="Product" />
+                        <TextBlock Text="1234999"
+                                   kino:KinoForm.Label="Product ID" />
+                        <TextBlock Text="Power Projector 4713"
+                                   kino:KinoForm.Label="IGNORE" />
+                        <TextBlock Text="Projector (PR)"
+                                   kino:KinoForm.Label="Category" />
+                        <TextBlock Text="A very powerful projector with special features for Internet usability, USB"
+                                   kino:KinoForm.Label="Description"
+                                   TextWrapping="Wrap" />
+                        <TextBlock Text="856.49 EUR"
+                                   kino:KinoForm.Label="Price" />
+                    </kino:KinoForm>
 
+                    <kino:KinoForm>
+                        <kino:KinoFormTitle Content="Specification" />
+                        <TextBlock Text="51 cm"
+                                   kino:KinoForm.Label="Width" />
+                        <TextBlock Text="42 cm"
+                                   kino:KinoForm.Label="Depth" />
+                        <TextBlock Text="18 cm"
+                                   kino:KinoForm.Label="Height" />
+                        <TextBlock Text="1,467 g"
+                                   kino:KinoForm.Label="Weight" />
+                    </kino:KinoForm>
+
+                </WrapPanel>
+            </StackPanel>
+        </local:SampleSection>
         <local:SampleSection Header="Responsive Form">
             <Button Content="Show Responsive Form Dialog"
                     Click="OnShowResponsiveDialog"

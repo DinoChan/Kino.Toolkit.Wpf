@@ -64,15 +64,5 @@ namespace Kino.Toolkit.Wpf.Samples
                     Root.Resources.Add(typeof(KinoFormItem), _verticalFormItemStyle);
             }
         }
-
-        private void OnCanEditChecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OnCanEditUnchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -69,4 +69,12 @@ namespace Kino.Toolkit.Wpf.Samples
 
         
     }
+
+    public class MyScrollViewer : ScrollViewer
+    {
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+          
+        }
+    }
 }

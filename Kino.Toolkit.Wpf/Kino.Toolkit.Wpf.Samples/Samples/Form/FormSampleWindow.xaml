@@ -11,15 +11,12 @@
         Height="450"
         Width="1200">
     <Window.Resources>
-
         <Style TargetType="kino:KinoForm">
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                     Value="Disabled" />
             <Setter Property="Grid.IsSharedSizeScope"
                     Value="False" />
         </Style>
-        
-
         <Style TargetType="kino:KinoFormItem"
                x:Key="HorizontalFormItemStyle">
             <Setter Property="Template">
@@ -44,50 +41,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="kino:KinoFormItem"
-               x:Key="HorizontalEditableFormItemStyle">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="kino:KinoFormItem">
-                    <Grid x:Name="Root">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="Header"
-                                              MinWidth="100" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter Content="{TemplateBinding Label}"
-                                          VerticalAlignment="Top"
-                                          HorizontalAlignment="Right"
-                                          TextBlock.Foreground="#FF777777" />
-                        <ContentPresenter Grid.Column="1"
-                                          Margin="{TemplateBinding Padding}"
-                                          x:Name="ContentPresenter" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        </Style>
-
         <Style TargetType="kino:KinoFormItem"
                x:Key="VerticalFormItemStyle">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
-                        <StackPanel>
-                            <ContentPresenter Content="{TemplateBinding Label}"
-                                              TextBlock.Foreground="#FF777777" />
-                            <ContentPresenter Grid.Column="1"
-                                              x:Name="ContentPresenter" />
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="kino:KinoFormItem"
-               x:Key="VerticalEditableFormItemStyle">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="kino:KinoFormItem">
@@ -104,76 +59,67 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <kino:KinoPageTitle>
-                <Grid>
-                    <TextBlock Text="Responsive" />
-                    <CheckBox HorizontalAlignment="Right" Content="Can Edit" FontSize="12" VerticalAlignment="Center" Checked="OnCanEditChecked" Unchecked="OnCanEditUnchecked"/>
-                </Grid>
-            </kino:KinoPageTitle>
-        <WrapPanel x:Name="Root"
-                   Grid.IsSharedSizeScope="True">
-            <kino:KinoForm>
-                <kino:KinoFormTitle Content="Product" />
-                <TextBlock Text="1234999"
-                           kino:KinoForm.Label="Product ID" />
-                <TextBlock Text="Power Projector 4713"
-                           kino:KinoForm.Label="IGNORE" />
-                <TextBlock Text="Projector (PR)"
-                           kino:KinoForm.Label="Category" />
-                <TextBlock Text="A very powerful projector with special features for Internet usability, USB"
-                           kino:KinoForm.Label="Description"
-                           TextWrapping="Wrap" />
-                <TextBlock Text="856.49 EUR"
-                           kino:KinoForm.Label="Price" />
-            </kino:KinoForm>
+            <kino:KinoPageTitle Content="Responsive" />
+            <WrapPanel x:Name="Root"
+                       Grid.IsSharedSizeScope="True">
+                <kino:KinoForm>
+                    <kino:KinoFormTitle Content="Product" />
+                    <TextBlock Text="1234999"
+                               kino:KinoForm.Label="Product ID" />
+                    <TextBlock Text="Power Projector 4713"
+                               kino:KinoForm.Label="IGNORE" />
+                    <TextBlock Text="Projector (PR)"
+                               kino:KinoForm.Label="Category" />
+                    <TextBlock Text="A very powerful projector with special features for Internet usability, USB"
+                               kino:KinoForm.Label="Description"
+                               TextWrapping="Wrap" />
+                    <TextBlock Text="856.49 EUR"
+                               kino:KinoForm.Label="Price" />
+                </kino:KinoForm>
 
-            <kino:KinoForm>
-                <kino:KinoFormTitle Content="Specification" />
-                <TextBlock Text="51 cm"
-                           kino:KinoForm.Label="Width" />
-                <TextBlock Text="42 cm"
-                           kino:KinoForm.Label="Depth" />
-                <TextBlock Text="18 cm"
-                           kino:KinoForm.Label="Height" />
-                <TextBlock Text="1,467 g"
-                           kino:KinoForm.Label="Weight" />
-            </kino:KinoForm>
+                <kino:KinoForm>
+                    <kino:KinoFormTitle Content="Specification" />
+                    <TextBlock Text="51 cm"
+                               kino:KinoForm.Label="Width" />
+                    <TextBlock Text="42 cm"
+                               kino:KinoForm.Label="Depth" />
+                    <TextBlock Text="18 cm"
+                               kino:KinoForm.Label="Height" />
+                    <TextBlock Text="1,467 g"
+                               kino:KinoForm.Label="Weight" />
+                </kino:KinoForm>
 
 
-            <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
-                           DisplayMemberPath="Value">
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="kino:KinoFormItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="kino:KinoFormItem">
-                                    <Grid x:Name="Root">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"
-                                                              SharedSizeGroup="Header"
-                                                              MinWidth="100" />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <ContentPresenter Content="{Binding Content.Key,RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                          VerticalAlignment="Top"
-                                                          HorizontalAlignment="Right"
-                                                          TextBlock.Foreground="#FF777777" />
-                                        <ContentPresenter Grid.Column="1"
-                                                          Margin="{TemplateBinding Padding}"
-                                                          x:Name="ContentPresenter" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
+                <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
+                               DisplayMemberPath="Value">
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="kino:KinoFormItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="kino:KinoFormItem">
+                                        <Grid x:Name="Root">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"
+                                                                  SharedSizeGroup="Header"
+                                                                  MinWidth="100" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Content="{Binding Content.Key,RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                              VerticalAlignment="Top"
+                                                              HorizontalAlignment="Right"
+                                                              TextBlock.Foreground="#FF777777" />
+                                            <ContentPresenter Grid.Column="1"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              x:Name="ContentPresenter" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
 
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-            </kino:KinoForm>
-
-            <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
-                           DisplayMemberPath="Value"
-                           LabelMemberPath="Key" />
-        </WrapPanel>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </kino:KinoForm>
+            </WrapPanel>
 
         </StackPanel>
     </Grid>

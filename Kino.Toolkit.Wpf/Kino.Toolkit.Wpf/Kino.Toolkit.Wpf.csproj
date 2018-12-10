@@ -65,6 +65,7 @@
     <Compile Include="CommandBar\KinoFormCommandBar.cs" />
     <Compile Include="CommandBar\KinoWindowCommandBar.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\FrameworkElementExtensions.cs" />
     <Compile Include="Common\FunctionalProgramming.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Common\FrameworkElementService.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="ProgressRing\TemplateSettingValues.cs" />
     <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
     <Compile Include="Resizer\KinoResizer.cs" />
+    <Compile Include="ScrollViewer\KinoScrollViewer.cs" />
     <Compile Include="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
     <Compile Include="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
     <Compile Include="SelectionCheckBox\SelectionCheckBox.cs" />

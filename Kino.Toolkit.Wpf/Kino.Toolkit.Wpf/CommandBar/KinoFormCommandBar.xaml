@@ -29,6 +29,14 @@
 
 
     <Style TargetType="{x:Type local:KinoFormCommandBar}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <Style BasedOn="{StaticResource FormCommandBarButton}"
+                       TargetType="{x:Type Button}" />
+                <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
+                       TargetType="{x:Type local:KinoButton}" />
+            </ResourceDictionary>
+        </Style.Resources>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Focusable"
@@ -63,17 +71,26 @@
                                 </ResourceDictionary>
                             </ContentPresenter.Resources>
                         </ContentPresenter>
-                        <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        Grid.Column="1">
-                            <ItemsPresenter.Resources>
+                        <Grid Grid.Column="1">
+                            <Grid.Resources>
                                 <ResourceDictionary>
                                     <Style BasedOn="{StaticResource FormCommandBarButton}"
-                                           TargetType="{x:Type Button}" />
+                                           TargetType="{x:Type Button}">
+                                        <Setter Property="Background"
+                                                Value="Red" />
+                                    </Style>
                                     <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
-                                           TargetType="{x:Type local:KinoButton}" />
+                                           TargetType="{x:Type local:KinoButton}">
+                                        <Setter Property="Background"
+                                                Value="Red" />
+                                    </Style>
                                 </ResourceDictionary>
-                            </ItemsPresenter.Resources>
+                            </Grid.Resources>
+                        <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        >
+                           
                         </ItemsPresenter>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

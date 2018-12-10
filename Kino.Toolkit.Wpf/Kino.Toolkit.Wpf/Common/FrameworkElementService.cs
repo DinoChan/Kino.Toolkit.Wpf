@@ -81,26 +81,7 @@ namespace Kino.Toolkit.Wpf
                 return;
             }
 
-            if (element is Control control && control.IsTabStop && control.Focus())
-            {
-                return;
-            }
-
-            foreach (Control item in element.GetLogicalChildren().OfType<Control>().Where(c => c.IsTabStop))
-            {
-                if (item.Focus())
-                {
-                    return;
-                }
-            }
-
-            foreach (Control item in element.GetVisualDescendants().OfType<Control>().Where(c => c.IsTabStop))
-            {
-                if (item.Focus())
-                {
-                    return;
-                }
-            }
+            element.ForceFocus();
         }
 
         private static void OnResourcesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)

@@ -147,11 +147,11 @@
                             </Grid.RowDefinitions>
                             <local:KinoPageTitle Content="{TemplateBinding Header}"
                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                            <ScrollViewer Grid.Row="1"
+                            <local:KinoScrollViewer Grid.Row="1"
                                           Padding="{TemplateBinding Padding}">
                                 <ItemsPresenter SnapsToDevicePixels="True"
                                                 UseLayoutRounding="True" />
-                            </ScrollViewer>
+                            </local:KinoScrollViewer>
                             <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                               Grid.Row="2" />
                         </Grid>
