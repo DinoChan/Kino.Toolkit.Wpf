@@ -223,8 +223,7 @@ namespace Kino.Toolkit.Wpf
             int count = Items.Count;
             for (int i = 0; i < count; i++)
             {
-                var formItem = ItemContainerGenerator.ContainerFromIndex(i) as KinoFormItem;
-                if (formItem != null)
+                if (ItemContainerGenerator.ContainerFromIndex(i) is KinoFormItem formItem)
                     PrepareFormItem(formItem, Items[i]);
             }
         }
@@ -296,7 +295,7 @@ namespace Kino.Toolkit.Wpf
             formItem.Label = GetLabel(content);
             formItem.Description = GetDescription(content);
             formItem.IsRequired = GetIsRequired(content);
-            var style = GetContainerStyle(content);
+            Style style = GetContainerStyle(content);
             if (style != null)
                 formItem.Style = style;
             else if (ItemContainerStyle != null)
@@ -304,7 +303,7 @@ namespace Kino.Toolkit.Wpf
             else
                 formItem.ClearValue(FrameworkElement.StyleProperty);
 
-            var labelTemplate = GetLabelTemplate(content);
+            DataTemplate labelTemplate = GetLabelTemplate(content);
             if (labelTemplate != null)
                 formItem.LabelTemplate = labelTemplate;
         }

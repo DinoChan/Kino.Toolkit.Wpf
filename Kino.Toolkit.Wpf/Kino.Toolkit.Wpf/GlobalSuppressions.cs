@@ -67,3 +67,6 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1204:Static elements must appear before instance elements", Justification = "Opensource code", Scope = "type", Target = "~T:Kino.Toolkit.Wpf.Extensions")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1405:Debug.Assert must provide message text", Justification = "Opensource code", Scope = "type", Target = "Kino.Toolkit.Wpf.Extensions")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements must be ordered by access", Justification = "Opensource code", Scope = "type", Target = "Kino.Toolkit.Wpf.Extensions")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("样式", "IDE1006:命名样式", Justification = "Opensource code", Scope = "type", Target = "System.Windows.Data.CollectionViewGroupRoot")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("样式", "IDE1006:命名样式", Justification = "Opensource code", Scope = "type", Target = "Kino.Toolkit.Wpf.KinoDataPager")]

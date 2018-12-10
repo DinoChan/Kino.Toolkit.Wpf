@@ -86,7 +86,7 @@ namespace Kino.Toolkit.Wpf
                 return;
             }
 
-            foreach (var item in element.GetLogicalChildren().OfType<Control>().Where(c => c.IsTabStop))
+            foreach (Control item in element.GetLogicalChildren().OfType<Control>().Where(c => c.IsTabStop))
             {
                 if (item.Focus())
                 {
@@ -94,7 +94,7 @@ namespace Kino.Toolkit.Wpf
                 }
             }
 
-            foreach (var item in element.GetVisualDescendants().OfType<Control>().Where(c => c.IsTabStop))
+            foreach (Control item in element.GetVisualDescendants().OfType<Control>().Where(c => c.IsTabStop))
             {
                 if (item.Focus())
                 {

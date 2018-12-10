@@ -18,7 +18,7 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKey = typeof(KinoWindow);
 
             var length = WindowService.PaddedBorder;
-            var dpi = VisualTreeHelper.GetDpi(this);
+            DpiScale dpi = VisualTreeHelper.GetDpi(this);
             var lengthWithScale = length / dpi.DpiScaleX;
             ExtraBorderPadding = new Thickness(lengthWithScale);
         }

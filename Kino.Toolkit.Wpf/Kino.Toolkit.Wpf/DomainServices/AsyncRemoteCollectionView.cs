@@ -84,13 +84,13 @@ namespace Kino.Toolkit.Wpf
             Refreshed?.Invoke(this, EventArgs.Empty);
 
             var loader = CollectionViewLoader as AsyncRemoteCollectionViewLoader;
-            var operation = loader.CurrentResult;
+            ILoadResult operation = loader.CurrentResult;
             if (operation.Error != null || operation.IsCanceled)
             {
                 return;
             }
 
-            var result = operation.Result.Cast<object>();
+            IEnumerable<object> result = operation.Result.Cast<object>();
             var source = CollectionView.SourceCollection as List<object>;
             source.Clear();
             foreach (var item in result)

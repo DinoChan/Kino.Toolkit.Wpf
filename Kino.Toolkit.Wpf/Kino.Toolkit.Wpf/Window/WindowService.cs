@@ -87,10 +87,10 @@ namespace Kino.Toolkit.Wpf
             {
                 window.SizeChanged += (s, e) =>
                 {
-                    var point = window.PointToScreen(new Point(0, 0));
+                    Point point = window.PointToScreen(new Point(0, 0));
 
                     var allScreens = System.Windows.Forms.Screen.AllScreens.ToList();
-                    var locationScreen = allScreens.SingleOrDefault(c => window.Left >= c.WorkingArea.Left && window.Left < c.WorkingArea.Right);
+                    System.Windows.Forms.Screen locationScreen = allScreens.SingleOrDefault(c => window.Left >= c.WorkingArea.Left && window.Left < c.WorkingArea.Right);
                     if (locationScreen != null)
                     {
                         var bottom = point.Y + window.ActualHeight - locationScreen.WorkingArea.Height;
