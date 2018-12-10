@@ -5,8 +5,7 @@
     you may not use the software except in compliance with the License.
     http://www.openriaservices.net/
 */
-#pragma warning disable SA1124 // Do not use regions
-#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning disable IDE1005 // 可简化委托调用。
 using System;
 using System.Collections.Generic;
@@ -100,6 +99,4 @@ namespace Kino.Toolkit.Wpf
         #endregion
     }
 }
-#pragma warning restore SA1124 // Do not use regions
-#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
 #pragma warning restore IDE1005 // 可简化委托调用。

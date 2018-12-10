@@ -13,7 +13,7 @@
                     Value="0,4,0,8" />
             <Setter Property="Padding"
                     Value="0,4,0,0" />
-            <Setter Property="HeaderTemplate">
+            <Setter Property="LabelTemplate">
                 <Setter.Value>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"
@@ -28,8 +28,8 @@
                     <ControlTemplate TargetType="kino:KinoFormItem">
                         <StackPanel x:Name="Root">
                             <StackPanel Orientation="Horizontal">
-                                <ContentPresenter Content="{TemplateBinding Header}"
-                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                <ContentPresenter Content="{TemplateBinding Label}"
+                                                  ContentTemplate="{TemplateBinding LabelTemplate}" />
                                 <Grid ToolTip="{TemplateBinding Description}"
                                       Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
                                       Margin="8,0,0,0"
@@ -67,16 +67,23 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <kino:KinoForm Margin="8">
-                    <TextBox kino:KinoForm.Header="用户名"
+                    <TextBox kino:KinoForm.Label="用户名"
                              Text="{Binding Username,Mode=TwoWay}"
                              Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-                    <TextBox kino:KinoForm.Header="昵称"
+                    <TextBox kino:KinoForm.Label="昵称"
                              Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-                    <PasswordBox kino:KinoForm.Header="密码"
+                    <PasswordBox kino:KinoForm.Label="密码"
                                  Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
                                   local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
                     <kino:KinoForm.CommandBar>
                         <kino:KinoFormCommandBar>
+                            <kino:KinoFormCommandBar.Header>
+                                <kino:KinoHyperlinkButton Content="返回"
+                                                          Margin="16"
+                                                          Click="OnBack"
+                                                          VerticalAlignment="Bottom"
+                                                          HorizontalAlignment="Left" />
+                            </kino:KinoFormCommandBar.Header>
                             <kino:KinoButton Content="Sign Up"
                                              x:Name="SignUpButton"
                                              IsDefault="True"
@@ -84,9 +91,7 @@
                         </kino:KinoFormCommandBar>
                     </kino:KinoForm.CommandBar>
                 </kino:KinoForm>
-                <kino:KinoHyperlinkButton Content="返回" Margin="16" 
-                                          Click="OnBack"
-                                          VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+             
             </Grid>
         </Grid>
     </kino:KinoResizer>

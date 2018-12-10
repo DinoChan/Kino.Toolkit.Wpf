@@ -7,16 +7,7 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-#pragma warning disable SA1201 // Elements must appear in the correct order
-#pragma warning disable SA1202
-#pragma warning disable SA1214
-#pragma warning disable SA1311
-#pragma warning disable SA1124 // Do not use regions
-#pragma warning disable SA1116 // Split parameters must start on line after declaration
-#pragma warning disable SA1108 // Block statements must not contain embedded comments
-#pragma warning disable SA1117 // Parameters must be on same line or separate lines
-#pragma warning disable SA1119 // Statement must not use unnecessary parenthesis
-#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning disable IDE0019 // 使用模式匹配
 #pragma warning disable IDE1005 // 可简化委托调用。
 #pragma warning disable IDE0031 // 使用 null 传播
@@ -4587,16 +4578,7 @@ namespace System.Windows.Data
     /// <returns>The GroupDescription chosen based on the parent group and its level.</returns>
     // public delegate GroupDescription GroupDescriptionSelectorCallback(CollectionViewGroup group, int level);
 }
-#pragma warning restore SA1201
-#pragma warning restore SA1202
-#pragma warning restore SA1214
-#pragma warning restore SA1311
-#pragma warning restore SA1124 // Do not use regions
-#pragma warning restore SA1116 // Split parameters must start on line after declaration
-#pragma warning restore SA1108 // Block statements must not contain embedded comments
-#pragma warning restore SA1117 // Parameters must be on same line or separate lines
-#pragma warning restore SA1119 // Statement must not use unnecessary parenthesis
-#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text
+
 #pragma warning restore IDE0019 // 使用模式匹配
 #pragma warning restore IDE1005 // 可简化委托调用。
 #pragma warning restore IDE0031 // 使用 null 传播

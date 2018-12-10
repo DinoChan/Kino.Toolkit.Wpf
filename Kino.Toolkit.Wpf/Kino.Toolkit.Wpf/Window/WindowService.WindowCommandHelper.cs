@@ -59,8 +59,8 @@ namespace Kino.Toolkit.Wpf
 
             private void ShowSystemMenu(object sender, ExecutedRoutedEventArgs e)
             {
-                var point = _window.PointToScreen(new Point(0, 0));
-                var dpi = VisualTreeHelper.GetDpi(_window);
+                Point point = _window.PointToScreen(new Point(0, 0));
+                DpiScale dpi = VisualTreeHelper.GetDpi(_window);
                 if (_window.WindowState == WindowState.Maximized)
                 {
                     // 因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度

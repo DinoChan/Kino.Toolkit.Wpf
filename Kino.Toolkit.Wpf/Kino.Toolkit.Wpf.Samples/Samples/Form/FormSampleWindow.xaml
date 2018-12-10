@@ -7,78 +7,120 @@
         mc:Ignorable="d"
         SnapsToDevicePixels="True"
         Title="FormSampleWindow"
+        xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
         Height="450"
-        Width="800">
+        Width="1200">
+    <Window.Resources>
+        <Style TargetType="kino:KinoForm">
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                    Value="Disabled" />
+            <Setter Property="Grid.IsSharedSizeScope"
+                    Value="False" />
+        </Style>
+        <Style TargetType="kino:KinoFormItem"
+               x:Key="HorizontalFormItemStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <Grid x:Name="Root">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="Header"
+                                                  MinWidth="100" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              VerticalAlignment="Top"
+                                              HorizontalAlignment="Right"
+                                              TextBlock.Foreground="#FF777777" />
+                            <ContentPresenter Grid.Column="1"
+                                              Margin="{TemplateBinding Padding}"
+                                              x:Name="ContentPresenter" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="kino:KinoFormItem"
+               x:Key="VerticalFormItemStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <StackPanel>
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              TextBlock.Foreground="#FF777777" />
+                            <ContentPresenter Grid.Column="1"
+                                              x:Name="ContentPresenter" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Grid.Resources>
-            <DataTemplate x:Key="TopHeaderTemplate">
-                <TextBlock Text="{Binding}"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Right"
-                           Margin="0,1,0,0" />
-            </DataTemplate>
-        </Grid.Resources>
-
-        <kino:KinoForm HorizontalAlignment="Left"
-                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <kino:KinoForm.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Vertical"
-                               ItemWidth="300" />
-                </ItemsPanelTemplate>
-            </kino:KinoForm.ItemsPanel>
-            <kino:KinoFormTitle Content="用户信息" />
-
-            <TextBox kino:KinoForm.Header="用户名"
-                     kino:KinoForm.IsRequired="True"
-                     Text="{Binding Name,Mode=TwoWay}"
-                     x:Name="NameElement" />
-
-            <PasswordBox kino:KinoForm.Header="密码"
-                         kino:KinoForm.IsRequired="True" />
-            <ComboBox kino:KinoForm.Header="国家" />
-            <kino:KinoFormSeparator />
-            <kino:KinoFormTitle Content="家庭信息">
-                <kino:KinoFormTitle.Description>
-                    <TextBlock Text="家庭信息不是必填项，但提供家庭信息可以让我们给您提供更好的服务。"
+        <StackPanel>
+            <kino:KinoPageTitle Content="Responsive" />
+            <WrapPanel x:Name="Root"
+                       Grid.IsSharedSizeScope="True">
+                <kino:KinoForm>
+                    <kino:KinoFormTitle Content="Product" />
+                    <TextBlock Text="1234999"
+                               kino:KinoForm.Label="Product ID" />
+                    <TextBlock Text="Power Projector 4713"
+                               kino:KinoForm.Label="IGNORE" />
+                    <TextBlock Text="Projector (PR)"
+                               kino:KinoForm.Label="Category" />
+                    <TextBlock Text="A very powerful projector with special features for Internet usability, USB"
+                               kino:KinoForm.Label="Description"
                                TextWrapping="Wrap" />
-                </kino:KinoFormTitle.Description>
-            </kino:KinoFormTitle>
-            <TextBox kino:KinoForm.Header="父"
-                     x:Name="FatherTextBox"
-                     kino:KinoForm.Description="可以不填" />
-            <TextBox kino:KinoForm.Header="母"
-                     kino:KinoForm.Description="可以不填" />
-            <CheckBox kino:KinoForm.Header="已婚" />
+                    <TextBlock Text="856.49 EUR"
+                               kino:KinoForm.Label="Price" />
+                </kino:KinoForm>
 
-            <StackPanel kino:KinoForm.Header="性别"
-                        Orientation="Horizontal"
-                        kino:KinoForm.IsRequired="True">
-                <RadioButton Content="男"
-                             GroupName="Sex" />
-                <RadioButton Content="女"
-                             GroupName="Sex"
-                             Margin="8,0,0,0" />
-            </StackPanel>
+                <kino:KinoForm>
+                    <kino:KinoFormTitle Content="Specification" />
+                    <TextBlock Text="51 cm"
+                               kino:KinoForm.Label="Width" />
+                    <TextBlock Text="42 cm"
+                               kino:KinoForm.Label="Depth" />
+                    <TextBlock Text="18 cm"
+                               kino:KinoForm.Label="Height" />
+                    <TextBlock Text="1,467 g"
+                               kino:KinoForm.Label="Weight" />
+                </kino:KinoForm>
 
-            <CheckBox kino:KinoForm.Header="已婚" />
-            <kino:KinoFormItem Header="备注"
-                               HeaderTemplate="{StaticResource TopHeaderTemplate}">
-                <TextBox AcceptsReturn="True"
-                         VerticalScrollBarVisibility="Auto"
-                         Height="100" />
-            </kino:KinoFormItem>
-            <kino:KinoForm.CommandBar>
-                <kino:KinoFormCommandBar>
-                    <kino:KinoButton Content="OK"
-                                     Click="OnOK"
-                                     IsDefault="True" />
-                    <kino:KinoButton Content="Cancel"
-                                     IsCancel="True" />
 
-                </kino:KinoFormCommandBar>
-            </kino:KinoForm.CommandBar>
-        </kino:KinoForm>
+                <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
+                               DisplayMemberPath="Value">
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="kino:KinoFormItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="kino:KinoFormItem">
+                                        <Grid x:Name="Root">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"
+                                                                  SharedSizeGroup="Header"
+                                                                  MinWidth="100" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Content="{Binding Content.Key,RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                              VerticalAlignment="Top"
+                                                              HorizontalAlignment="Right"
+                                                              TextBlock.Foreground="#FF777777" />
+                                            <ContentPresenter Grid.Column="1"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              x:Name="ContentPresenter" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
 
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </kino:KinoForm>
+            </WrapPanel>
+
+        </StackPanel>
     </Grid>
 </Window>

@@ -23,7 +23,7 @@
                     Value="0,4,0,8" />
             <Setter Property="Padding"
                     Value="0,4,0,0" />
-            <Setter Property="HeaderTemplate">
+            <Setter Property="LabelTemplate">
                 <Setter.Value>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"
@@ -37,8 +37,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="kino:KinoFormItem">
                         <StackPanel x:Name="Root">
-                            <ContentPresenter Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              ContentTemplate="{TemplateBinding LabelTemplate}" />
                             <ContentPresenter Margin="{TemplateBinding Padding}"
                                               x:Name="ContentPresenter" />
                             <ContentPresenter Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"

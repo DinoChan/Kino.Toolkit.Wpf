@@ -75,27 +75,13 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnTargetLoaded(object sender, RoutedEventArgs e)
         {
-            var elemnt = sender as FrameworkElement;
-            if (elemnt.Focus())
+            var element = sender as FrameworkElement;
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(element))
             {
                 return;
             }
 
-            foreach (var item in elemnt.GetLogicalChildren())
-            {
-                if (item.Focus())
-                {
-                    return;
-                }
-            }
-
-            foreach (var item in elemnt.GetVisualDescendants().OfType<FrameworkElement>())
-            {
-                if (item.Focus())
-                {
-                    return;
-                }
-            }
+            element.ForceFocus();
         }
 
         private static void OnResourcesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)

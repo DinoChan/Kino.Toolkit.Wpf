@@ -17,5 +17,7 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/ListBox/KinoListBox.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/DataGrid/KinoDataGrid.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Validation/KinoValidationTooltip.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/HeaderedContentControl/KinoHeaderedContentControl.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Layout/KinoPageTitle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

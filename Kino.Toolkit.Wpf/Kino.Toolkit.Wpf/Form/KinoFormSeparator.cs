@@ -12,6 +12,7 @@ namespace Kino.Toolkit.Wpf
         public KinoFormSeparator()
         {
             DefaultStyleKey = typeof(KinoFormSeparator);
+            KinoForm.SetIsItemItsOwnContainer(this, true);
         }
     }
 }

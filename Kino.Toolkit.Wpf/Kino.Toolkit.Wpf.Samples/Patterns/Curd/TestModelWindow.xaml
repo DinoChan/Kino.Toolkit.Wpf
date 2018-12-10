@@ -17,9 +17,9 @@
         <xctk:BusyIndicator x:Name="BusyIndicator">
             <kino:KinoForm>
                 <kino:KinoFormTitle Content="TestModel" />
-                <TextBox kino:KinoForm.Header="Name"
+                <TextBox kino:KinoForm.Label="Name"
                          Text="{Binding Name}" />
-                <xctk:IntegerUpDown kino:KinoForm.Header="Age"
+                <xctk:IntegerUpDown kino:KinoForm.Label="Age"
                                     Value="{Binding Age,Mode=TwoWay}" />
                 <kino:KinoForm.CommandBar>
                     <kino:KinoFormCommandBar>

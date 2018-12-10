@@ -65,6 +65,7 @@
     <Compile Include="CommandBar\KinoFormCommandBar.cs" />
     <Compile Include="CommandBar\KinoWindowCommandBar.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\FrameworkElementExtensions.cs" />
     <Compile Include="Common\FunctionalProgramming.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Common\FrameworkElementService.cs" />
@@ -73,6 +74,9 @@
     <Compile Include="Common\VisualStates.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
     <Compile Include="Common\WeakEventListener.cs" />
+    <Compile Include="Converters\BoolToObjectConverter.cs" />
+    <Compile Include="Converters\EmptyObjectToObjectConverter.cs" />
+    <Compile Include="Converters\EmptyObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
     <Compile Include="DataGrid\KinoDataGrid.cs" />
@@ -98,10 +102,14 @@
     <Compile Include="DomainServices\AsyncRemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
+    <Compile Include="Form\KinoForm.Properties.cs" />
     <Compile Include="Form\KinoForm.cs" />
     <Compile Include="Form\KinoFormItem.cs" />
     <Compile Include="Form\KinoFormSeparator.cs" />
     <Compile Include="Form\KinoFormTitle.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HeaderedContentControl\KinoHeaderedContentControl.cs" />
+    <Compile Include="Layout\KinoPageTitle.cs" />
     <Compile Include="ListBox\KinoListBox.cs" />
     <Compile Include="ListBox\KinoListBoxItem.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
@@ -117,6 +125,7 @@
     <Compile Include="ProgressRing\TemplateSettingValues.cs" />
     <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
     <Compile Include="Resizer\KinoResizer.cs" />
+    <Compile Include="ScrollViewer\KinoScrollViewer.cs" />
     <Compile Include="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
     <Compile Include="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
     <Compile Include="SelectionCheckBox\SelectionCheckBox.cs" />
@@ -160,6 +169,14 @@
     <Page Include="Form\KinoForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeaderedContentControl\KinoHeaderedContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Layout\KinoPageTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ListBox\KinoListBox.xaml">
       <SubType>Designer</SubType>

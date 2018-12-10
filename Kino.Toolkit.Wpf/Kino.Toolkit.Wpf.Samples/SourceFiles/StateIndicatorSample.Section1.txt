@@ -5,13 +5,13 @@
                          HorizontalAlignment="Left" />
 <local:SampleSection.ControlPanel>
     <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
-        <CheckBox kino:KinoForm.Header="Has Content"
+        <CheckBox kino:KinoForm.Label="Has Content"
                   x:Name="HasContentCheckBox"
                   Checked="OnHasContentChecked"
                   Unchecked="OnHasContentUnchecked" />
         <ListBox x:Name="StatesListBox"
                  HorizontalAlignment="Left"
                  Width="250"
-                 kino:KinoForm.Header="State" />
+                 kino:KinoForm.Label="State" />
     </kino:KinoForm>
 </local:SampleSection.ControlPanel>

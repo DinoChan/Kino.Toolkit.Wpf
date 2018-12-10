@@ -40,7 +40,7 @@
             </StackPanel>
             <local:SampleSection.ControlPanel>
                 <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
-                    <ListBox kino:KinoForm.Header="WindowState"
+                    <ListBox kino:KinoForm.Label="WindowState"
                              SelectedIndex="0"
                              Width="250"
                              HorizontalAlignment="Left"
@@ -48,7 +48,7 @@
                         <WindowState>Normal</WindowState>
                         <WindowState>Maximized</WindowState>
                     </ListBox>
-                    <ListBox kino:KinoForm.Header="WindowStartupLocation"
+                    <ListBox kino:KinoForm.Label="WindowStartupLocation"
                              SelectedIndex="0"
                              Width="250"
                              HorizontalAlignment="Left"
@@ -57,7 +57,7 @@
                         <WindowStartupLocation>CenterScreen</WindowStartupLocation>
                         <WindowStartupLocation>CenterOwner</WindowStartupLocation>
                     </ListBox>
-                    <ListBox kino:KinoForm.Header="ResizeMode"
+                    <ListBox kino:KinoForm.Label="ResizeMode"
                              SelectedIndex="0"
                              Width="250"
                              HorizontalAlignment="Left"

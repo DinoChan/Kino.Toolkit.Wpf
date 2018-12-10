@@ -8,8 +8,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-#pragma warning disable SA1119 // Statement must not use unnecessary parenthesis
-#pragma warning disable SA1202 // Elements must be ordered by access
 #pragma warning disable IDE0031 // 使用 null 传播
 using System;
 using System.Collections;
@@ -350,6 +348,4 @@ namespace Kino.Toolkit.Wpf
     }
 }
 
-#pragma warning restore SA1119 // Statement must not use unnecessary parenthesis
-#pragma warning restore SA1202 // Elements must be ordered by access
 #pragma warning restore IDE0031 // 使用 null 传播

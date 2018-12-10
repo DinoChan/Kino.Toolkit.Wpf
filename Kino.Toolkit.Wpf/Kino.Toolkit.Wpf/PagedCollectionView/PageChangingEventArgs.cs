@@ -7,7 +7,7 @@
 //      All other rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-#pragma warning disable SA1642 // Constructor summary documentation must begin with standard text
+
 namespace System.ComponentModel
 {
     /// <summary>
@@ -36,4 +36,3 @@ namespace System.ComponentModel
         }
     }
 }
-#pragma warning restore SA1642 // Constructor summary documentation must begin with standard text

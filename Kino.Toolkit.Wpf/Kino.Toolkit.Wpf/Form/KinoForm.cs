@@ -5,119 +5,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 
 namespace Kino.Toolkit.Wpf
 {
-    public class KinoForm : ItemsControl
+    [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(KinoFormItem))]
+    public partial class KinoForm : HeaderedItemsControl
     {
-        /// <summary>
-        /// 标识 CommandBar 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty CommandBarProperty =
-            DependencyProperty.Register(nameof(CommandBar), typeof(KinoFormCommandBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormCommandBar), OnCommandBarChanged));
-
-        /// <summary>
-        /// 标识 Description 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
-
-        /// <summary>
-        /// 标识 Header 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty HeaderProperty =
-            DependencyProperty.RegisterAttached("Header", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object)));
-
-        /// <summary>
-        /// 标识 IsItemItsOwnContainer 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsItemItsOwnContainerProperty =
-            DependencyProperty.RegisterAttached("IsItemItsOwnContainer", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
-
-        /// <summary>
-        /// 标识 IsRequired 依赖项属性。
-        /// </summary>
-        public static readonly DependencyProperty IsRequiredProperty =
-            DependencyProperty.RegisterAttached("IsRequired", typeof(bool), typeof(KinoForm), new PropertyMetadata(default(bool)));
+        private DataTemplate _labelMemberTemplate;
 
         public KinoForm()
         {
             DefaultStyleKey = typeof(KinoForm);
         }
 
-        /// <summary>
-        /// 获取或设置CommandBar的值
-        /// </summary>
-        public KinoFormCommandBar CommandBar
+        private DataTemplate LabelMemberTemplate
         {
-            get => (KinoFormCommandBar)GetValue(CommandBarProperty);
-            set => SetValue(CommandBarProperty, value);
+            get
+            {
+                if (_labelMemberTemplate == null)
+                {
+                    _labelMemberTemplate = (DataTemplate)XamlReader.Parse(@"
+                    <DataTemplate xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+                                xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
+                    		<TextBlock Text=""{Binding " + LabelMemberPath + @"}"" VerticalAlignment=""Center""/>
+                    </DataTemplate>");
+                }
+
+                return _labelMemberTemplate;
+            }
         }
-
-        /// <summary>
-        /// 从指定元素获取 IsRequired 依赖项属性的值。
-        /// </summary>
-        /// <param name="obj">从中读取属性值的元素。</param>
-        /// <returns>从属性存储获取的属性值。</returns>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static bool GetIsRequired(DependencyObject obj) => (bool)obj.GetValue(IsRequiredProperty);
-
-        /// <summary>
-        /// 将 IsRequired 依赖项属性的值设置为指定元素。
-        /// </summary>
-        /// <param name="obj">对其设置属性值的元素。</param>
-        /// <param name="value">要设置的值。</param>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static void SetIsRequired(DependencyObject obj, bool value) => obj.SetValue(IsRequiredProperty, value);
-
-        /// <summary>
-        /// 从指定元素获取 Header 依赖项属性的值。
-        /// </summary>
-        /// <param name="obj">从中读取属性值的元素。</param>
-        /// <returns>从属性存储获取的属性值。</returns>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static object GetHeader(DependencyObject obj) => (object)obj.GetValue(HeaderProperty);
-
-        /// <summary>
-        /// 将 Header 依赖项属性的值设置为指定元素。
-        /// </summary>
-        /// <param name="obj">对其设置属性值的元素。</param>
-        /// <param name="value">要设置的值。</param>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static void SetHeader(DependencyObject obj, object value) => obj.SetValue(HeaderProperty, value);
-
-        /// <summary>
-        /// 从指定元素获取 Description 依赖项属性的值。
-        /// </summary>
-        /// <param name="obj">从中读取属性值的元素。</param>
-        /// <returns>从属性存储获取的属性值。</returns>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static object GetDescription(DependencyObject obj) => (object)obj.GetValue(DescriptionProperty);
-
-        /// <summary>
-        /// 将 Description 依赖项属性的值设置为指定元素。
-        /// </summary>
-        /// <param name="obj">对其设置属性值的元素。</param>
-        /// <param name="value">要设置的值。</param>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static void SetDescription(DependencyObject obj, object value) => obj.SetValue(DescriptionProperty, value);
-
-        /// <summary>
-        /// 从指定元素获取 IsItemItsOwnContainer 依赖项属性的值。
-        /// </summary>
-        /// <param name="obj">从中读取属性值的元素。</param>
-        /// <returns>从属性存储获取的属性值。</returns>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static bool GetIsItemItsOwnContainer(DependencyObject obj) => (bool)obj.GetValue(IsItemItsOwnContainerProperty);
-
-        /// <summary>
-        /// 将 IsItemItsOwnContainer 依赖项属性的值设置为指定元素。
-        /// </summary>
-        /// <param name="obj">对其设置属性值的元素。</param>
-        /// <param name="value">要设置的值。</param>
-        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static void SetIsItemItsOwnContainer(DependencyObject obj, bool value) => obj.SetValue(IsItemItsOwnContainerProperty, value);
 
         /// <summary>
         /// CommandBar 属性更改时调用此方法。
@@ -128,15 +47,32 @@ namespace Kino.Toolkit.Wpf
         {
         }
 
+        /// <summary>
+        /// LabelMemberPath 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">LabelMemberPath 属性的旧值。</param>
+        /// <param name="newValue">LabelMemberPath 属性的新值。</param>
+        protected virtual void OnLabelMemberPathChanged(string oldValue, string newValue)
+        {
+            // refresh the label member template.
+            _labelMemberTemplate = null;
+            var newTemplate = LabelMemberPath;
+
+            int count = Items.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (ItemContainerGenerator.ContainerFromIndex(i) is KinoFormItem formItem)
+                    PrepareFormItem(formItem, Items[i]);
+            }
+        }
+
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             bool isItemItsOwnContainer = false;
-            if (item is DependencyObject element)
-            {
+            if (item is FrameworkElement element)
                 isItemItsOwnContainer = GetIsItemItsOwnContainer(element);
-            }
 
-            return item is KinoFormItem || item is KinoFormTitle || item is KinoFormSeparator || isItemItsOwnContainer;
+            return item is KinoFormItem || isItemItsOwnContainer;
         }
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -149,14 +85,12 @@ namespace Kino.Toolkit.Wpf
         {
             base.PrepareContainerForItemOverride(element, item);
 
-            if (element is KinoFormItem kinoFormItem)
+            if (element is KinoFormItem formItem && item is KinoFormItem == false)
             {
-                if (item is KinoFormItem == false && item is DependencyObject content)
-                {
-                    kinoFormItem.Header = GetHeader(content);
-                    kinoFormItem.Description = GetDescription(content);
-                    kinoFormItem.IsRequired = GetIsRequired(content);
-                }
+                if (item is FrameworkElement content)
+                    PrepareFormFrameworkElement(formItem, content);
+                else
+                    PrepareFormItem(formItem, item);
             }
         }
 
@@ -165,12 +99,63 @@ namespace Kino.Toolkit.Wpf
             var oldValue = (KinoFormCommandBar)args.OldValue;
             var newValue = (KinoFormCommandBar)args.NewValue;
             if (oldValue == newValue)
-            {
                 return;
-            }
 
             var target = obj as KinoForm;
             target?.OnCommandBarChanged(oldValue, newValue);
+        }
+
+        private static void OnLabelMemberPathChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (string)args.OldValue;
+            var newValue = (string)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoForm;
+            target?.OnLabelMemberPathChanged(oldValue, newValue);
+        }
+
+        private static void OnFormPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            if (args.OldValue == args.NewValue)
+                return;
+
+            if (obj is FrameworkElement content && content.Parent is KinoForm form)
+            {
+                if (form.ItemContainerGenerator.ContainerFromItem(content) is KinoFormItem formItem)
+                    form.PrepareFormFrameworkElement(formItem, content);
+            }
+        }
+
+        private void PrepareFormFrameworkElement(KinoFormItem formItem, FrameworkElement content)
+        {
+            formItem.Label = GetLabel(content);
+            formItem.Description = GetDescription(content);
+            formItem.IsRequired = GetIsRequired(content);
+            Style style = GetContainerStyle(content);
+            if (style != null)
+                formItem.Style = style;
+            else if (ItemContainerStyle != null)
+                formItem.Style = ItemContainerStyle;
+            else
+                formItem.ClearValue(FrameworkElement.StyleProperty);
+
+            DataTemplate labelTemplate = GetLabelTemplate(content);
+            if (labelTemplate != null)
+                formItem.LabelTemplate = labelTemplate;
+        }
+
+        private void PrepareFormItem(KinoFormItem formItem, object item)
+        {
+            if (formItem == item)
+                return;
+
+            if (item is FrameworkElement)
+                return;
+
+            formItem.LabelTemplate = LabelMemberTemplate;
+            formItem.Label = item;
         }
     }
 }

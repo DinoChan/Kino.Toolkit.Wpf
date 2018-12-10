@@ -16,7 +16,7 @@
         <StackPanel>
             <kino:KinoForm HorizontalAlignment="Left"
                            ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
-                <Slider kino:KinoForm.Header="Height"
+                <Slider kino:KinoForm.Label="Height"
                         Maximum="100"
                         Value="10"
                         Minimum="5"
@@ -26,7 +26,7 @@
                         <TextBlock Text="{Binding ElementName=HeightElement,Path=Value,StringFormat=N2}" />
                     </kino:KinoForm.Description>
                 </Slider>
-                <Slider kino:KinoForm.Header="Width"
+                <Slider kino:KinoForm.Label="Width"
                         Maximum="100"
                         Value="10"
                         Minimum="5"

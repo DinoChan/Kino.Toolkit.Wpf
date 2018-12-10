@@ -171,6 +171,8 @@
                                               Tag="{x:Type local:ResizerSample}" />
                     <kino:KinoHyperlinkButton Content="SquareBox"
                                               Tag="{x:Type local:SquareBoxSample}" />
+                    <kino:KinoHyperlinkButton Content="FormItem"
+                                              Tag="{x:Type local:FormItemSample}" />
                     <kino:KinoHyperlinkButton Content="Form"
                                               Tag="{x:Type local:FormSample}" />
                     <kino:KinoHyperlinkButton Content="RadioButtonMenuItem"

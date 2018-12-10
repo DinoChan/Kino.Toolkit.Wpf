@@ -19,6 +19,7 @@ namespace Kino.Toolkit.Wpf
         public KinoFormTitle()
         {
             DefaultStyleKey = typeof(KinoFormTitle);
+            KinoForm.SetIsItemItsOwnContainer(this, true);
         }
 
         /// <summary>

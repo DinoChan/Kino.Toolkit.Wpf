@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-    public class KinoCommandBar : ItemsControl
+    public class KinoCommandBar : HeaderedItemsControl
     {
         public KinoCommandBar()
         {

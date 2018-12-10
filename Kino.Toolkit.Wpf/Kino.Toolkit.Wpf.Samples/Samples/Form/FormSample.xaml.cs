@@ -30,11 +30,18 @@ namespace Kino.Toolkit.Wpf.Samples
             MessageBox.Show("OK");
         }
 
+        private void OnCancel(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Cancel");
+        }
+
         private void OnShowNewDialog(object sender, RoutedEventArgs e)
         {
             var window = new FormSampleWindow();
             window.Show();
         }
+
+        
     }
 
     public class FormTestModel
@@ -61,5 +68,13 @@ namespace Kino.Toolkit.Wpf.Samples
         }
 
         
+    }
+
+    public class MyScrollViewer : ScrollViewer
+    {
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+          
+        }
     }
 }

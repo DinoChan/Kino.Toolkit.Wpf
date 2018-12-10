@@ -17,17 +17,17 @@
 
 <kino:KinoForm>
     <kino:KinoDataPager DisplayMode="FirstLastNumeric"
-                        kino:KinoForm.Header="FirstLastNumeric" />
+                        kino:KinoForm.Label="FirstLastNumeric" />
     <kino:KinoDataPager DisplayMode="FirstLastPreviousNext"
-                        kino:KinoForm.Header="FirstLastPreviousNext" />
+                        kino:KinoForm.Label="FirstLastPreviousNext" />
     <kino:KinoDataPager DisplayMode="FirstLastPreviousNextNumeric"
-                        kino:KinoForm.Header="FirstLastPreviousNextNumeric" />
+                        kino:KinoForm.Label="FirstLastPreviousNextNumeric" />
     <kino:KinoDataPager DisplayMode="Numeric"
-                        kino:KinoForm.Header="Numeric" />
+                        kino:KinoForm.Label="Numeric" />
     <kino:KinoDataPager DisplayMode="PreviousNext"
-                        kino:KinoForm.Header="PreviousNext" />
+                        kino:KinoForm.Label="PreviousNext" />
     <kino:KinoDataPager DisplayMode="PreviousNextNumeric"
-                        kino:KinoForm.Header="PreviousNextNumeric" />
+                        kino:KinoForm.Label="PreviousNextNumeric" />
 </kino:KinoForm>
 <StackPanel Grid.Column="1">
     <ListBox ItemsSource="{Binding}"
@@ -52,19 +52,19 @@
 <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}"
                HorizontalAlignment="Left">
     <CheckBox x:Name="AutoEllipsis"
-              kino:KinoForm.Header="AutoEllipsis" />
+              kino:KinoForm.Label="AutoEllipsis" />
     <CheckBox x:Name="TotalItemCountFixed"
-              kino:KinoForm.Header="IsTotalItemCountFixed"
+              kino:KinoForm.Label="IsTotalItemCountFixed"
               IsChecked="True" />
     <extend:IntegerUpDown x:Name="NumericButtonCount"
-                          kino:KinoForm.Header="NumericButtonCount"
+                          kino:KinoForm.Label="NumericButtonCount"
                           Value="5"
                           Minimum="0"
                           Maximum="20" />
     <extend:IntegerUpDown Value="{Binding PageSize, Mode=TwoWay}"
-                          kino:KinoForm.Header="PageSize"
+                          kino:KinoForm.Label="PageSize"
                           Minimum="1" />
     <extend:ColorPicker SelectedColor="Black"
-                        kino:KinoForm.Header="Foreground"
+                        kino:KinoForm.Label="Foreground"
                         x:Name="ColorPicker" />
 </kino:KinoForm>

@@ -5,10 +5,10 @@
               IsExpanded="True">
         <kino:KinoForm Grid.IsSharedSizeScope="False"
                        Padding="0">
-            <TextBox kino:KinoForm.Header="用户名"
+            <TextBox kino:KinoForm.Label="用户名"
                      kino:KinoForm.IsRequired="True"
                      Text="{Binding Name,Mode=TwoWay}" />
-            <PasswordBox kino:KinoForm.Header="密码"
+            <PasswordBox kino:KinoForm.Label="密码"
                          kino:KinoForm.IsRequired="True" />
         </kino:KinoForm>
     </Expander>
@@ -17,10 +17,10 @@
               IsExpanded="True">
         <kino:KinoForm Grid.IsSharedSizeScope="False"
                        Padding="0">
-            <ComboBox kino:KinoForm.Header="国家" />
-            <TextBox kino:KinoForm.Header="父"
+            <ComboBox kino:KinoForm.Label="国家" />
+            <TextBox kino:KinoForm.Label="父"
                      kino:KinoForm.Description="可以不填" />
-            <TextBox kino:KinoForm.Header="母"
+            <TextBox kino:KinoForm.Label="母"
                      kino:KinoForm.Description="可以不填" />
         </kino:KinoForm>
     </Expander>

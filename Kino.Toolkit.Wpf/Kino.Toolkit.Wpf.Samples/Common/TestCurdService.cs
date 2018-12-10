@@ -39,7 +39,7 @@ namespace Kino.Toolkit.Wpf.Samples
                 resultModels = resultModels.OrderBy(sort);
 
             var totalCount = resultModels.Count();
-            var items = resultModels.Skip(pageIndex * pageSize).Take(pageSize);
+            IEnumerable<TestModel> items = resultModels.Skip(pageIndex * pageSize).Take(pageSize);
             var result = new LoadResult { TotalCount = totalCount, Result = items };
             return result;
         }
@@ -56,7 +56,7 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             await Task.Delay(TimeSpan.FromSeconds(2));
             var models = _models.Where(m =>ids.Contains( m.Id )).ToList();
-            foreach (var model in models)
+            foreach (TestModel model in models)
             {
                 _models.Remove(model);
             }
@@ -65,7 +65,7 @@ namespace Kino.Toolkit.Wpf.Samples
         public async Task Update(TestModel model)
         {
             await Task.Delay(TimeSpan.FromSeconds(2));
-            var modelToUpdate = _models.FirstOrDefault(m => m.Id == model.Id);
+            TestModel modelToUpdate = _models.FirstOrDefault(m => m.Id == model.Id);
             if (modelToUpdate != null)
             {
                 modelToUpdate.Name = model.Name;

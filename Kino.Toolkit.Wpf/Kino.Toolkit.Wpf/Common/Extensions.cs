@@ -4,9 +4,6 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
-#pragma warning disable SA1201 // Elements must appear in the correct order
-#pragma warning disable SA1202 // Elements must be ordered by access
-#pragma warning disable SA1204 // Static elements must appear before instance elements
 #pragma warning disable IDE0019 // 使用模式匹配
 using System;
 using System.Collections;
@@ -21,14 +18,10 @@ using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
-#pragma warning disable SA1402 // File may only contain a single class
-#pragma warning disable SA1649 // File name must match first type name
-                              /// <summary>
-                              /// Reservoir of attached properties for use by extension methods that require non-static information about objects.
-                              /// </summary>
+    /// <summary>
+    /// Reservoir of attached properties for use by extension methods that require non-static information about objects.
+    /// </summary>
     internal class ExtensionProperties : DependencyObject
-#pragma warning restore SA1649 // File name must match first type name
-#pragma warning restore SA1402 // File may only contain a single class
     {
         /// <summary>
         /// Tracks whether or not the event handlers of a particular object are currently suspended.
@@ -122,9 +115,7 @@ namespace Kino.Toolkit.Wpf
                 if (attributes != null && attributes.Length > 0)
                 {
                     ReadOnlyAttribute readOnlyAttribute = attributes[0] as ReadOnlyAttribute;
-#pragma warning disable SA1405 // Debug.Assert must provide message text
                     Debug.Assert(readOnlyAttribute != null);
-#pragma warning restore SA1405 // Debug.Assert must provide message text
                     return readOnlyAttribute.IsReadOnly;
                 }
             }
@@ -206,7 +197,4 @@ namespace Kino.Toolkit.Wpf
     }
 }
 
-#pragma warning restore SA1201 // Elements must appear in the correct order
-#pragma warning restore SA1202 // Elements must be ordered by access
-#pragma warning restore SA1204 // Static elements must appear before instance elements
 #pragma warning restore IDE0019 // 使用模式匹配
