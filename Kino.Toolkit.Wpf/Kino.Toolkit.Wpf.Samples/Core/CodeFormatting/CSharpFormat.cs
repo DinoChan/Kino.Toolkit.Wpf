@@ -35,14 +35,14 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
         /// <summary>
         /// The list of C# keywords.
         /// </summary>
-        protected override string Keywords => "abstract as base bool break byte case catch char "
+        protected override string Keywords => "abstract as base bool break byte case catch char var"
             + "checked class const continue decimal default delegate do double else "
             + "enum event explicit extern false finally fixed float for foreach goto "
             + "if implicit in int interface internal is lock long namespace new null "
             + "object operator out override partial params private protected public readonly "
             + "ref return sbyte sealed short sizeof stackalloc static string struct "
             + "switch this throw true try typeof uint ulong unchecked unsafe ushort "
-            + "using value virtual void volatile where while yield";
+            + "using value virtual void volatile where while yield async await";
 
         /// <summary>
         /// The list of C# preprocessors.
@@ -189,7 +189,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
         {
                     Run r = new Run(sb.ToString())
                     {
-                        Foreground = new SolidColorBrush(Color.FromRgb(0, 128, 0))
+                        Foreground = new SolidColorBrush(Color.FromRgb(3, 47, 98))
                     };
                     CodeParagraphGlobal.Add( r );
         }
@@ -219,7 +219,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
       {
                 Run r = new Run(match.ToString())
                 {
-                    Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 255))
+                    Foreground = new SolidColorBrush(Color.FromRgb(215, 58, 73))
                 };
 
                 CodeParagraphGlobal.Add( r );

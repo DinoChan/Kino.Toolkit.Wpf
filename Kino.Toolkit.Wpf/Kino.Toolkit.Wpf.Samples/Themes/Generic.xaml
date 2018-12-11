@@ -92,9 +92,9 @@
         <Setter Property="Margin"
                 Value="0,4" />
         <Setter Property="Background"
-                Value="#FFF9F9F9" />
+                Value="#FFF6F8FA" />
         <Setter Property="BorderBrush"
-                Value="#FFD3D6DB" />
+                Value="#FFFFFFFF" />
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="Template">

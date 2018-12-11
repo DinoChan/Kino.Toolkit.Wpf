@@ -28,6 +28,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
         protected CodeBox()
         {
             IsReadOnly = true;
+            Background = new SolidColorBrush(Colors.Transparent);
             FontFamily = new FontFamily("Consolas");
             HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
             VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
