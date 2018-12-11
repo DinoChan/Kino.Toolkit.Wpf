@@ -29,14 +29,7 @@
 
 
     <Style TargetType="{x:Type local:KinoFormCommandBar}">
-        <Style.Resources>
-            <ResourceDictionary>
-                <Style BasedOn="{StaticResource FormCommandBarButton}"
-                       TargetType="{x:Type Button}" />
-                <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
-                       TargetType="{x:Type local:KinoButton}" />
-            </ResourceDictionary>
-        </Style.Resources>
+
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Focusable"
@@ -52,45 +45,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:KinoFormCommandBar">
+                    <ControlTemplate.Resources>
+                        <Style BasedOn="{StaticResource FormCommandBarButton}"
+                               TargetType="{x:Type Button}" />
+                        <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
+                               TargetType="{x:Type local:KinoButton}" />
+                    </ControlTemplate.Resources>
                     <Grid Margin="{TemplateBinding Padding}">
                         <ContentPresenter Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          HorizontalAlignment="Left">
-                            <ContentPresenter.Resources>
-                                <ResourceDictionary>
-                                    <Style BasedOn="{StaticResource FormCommandBarButton}"
-                                           TargetType="{x:Type Button}">
-                                        <Setter Property="Margin"
-                                                Value="0,0,4,0" />
-                                    </Style>
-                                    <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
-                                           TargetType="{x:Type local:KinoButton}">
-                                        <Setter Property="Margin"
-                                                Value="0,0,4,0" />
-                                    </Style>
-                                </ResourceDictionary>
-                            </ContentPresenter.Resources>
-                        </ContentPresenter>
-                        <Grid Grid.Column="1">
-                            <Grid.Resources>
-                                <ResourceDictionary>
-                                    <Style BasedOn="{StaticResource FormCommandBarButton}"
-                                           TargetType="{x:Type Button}">
-                                        <Setter Property="Background"
-                                                Value="Red" />
-                                    </Style>
-                                    <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
-                                           TargetType="{x:Type local:KinoButton}">
-                                        <Setter Property="Background"
-                                                Value="Red" />
-                                    </Style>
-                                </ResourceDictionary>
-                            </Grid.Resources>
+                                          HorizontalAlignment="Left" />
                         <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        >
-                           
-                        </ItemsPresenter>
-                        </Grid>
+                                        Grid.Column="1" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
