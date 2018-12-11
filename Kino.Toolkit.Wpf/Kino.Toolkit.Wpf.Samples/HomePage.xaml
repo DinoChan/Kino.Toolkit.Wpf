@@ -167,7 +167,7 @@
                                               Tag="{x:Type local:StateIndicatorSample}" />
                     <kino:KinoHyperlinkButton Content="Window"
                                               Tag="{x:Type local:WindowSample}" />
-                    <kino:KinoHyperlinkButton Content="ResizingControl"
+                    <kino:KinoHyperlinkButton Content="Resizer"
                                               Tag="{x:Type local:ResizerSample}" />
                     <kino:KinoHyperlinkButton Content="SquareBox"
                                               Tag="{x:Type local:SquareBoxSample}" />

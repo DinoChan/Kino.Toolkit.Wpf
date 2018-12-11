@@ -38,8 +38,8 @@
                                 <kino:KinoHyperlinkButton HorizontalAlignment="Right"
                                                           VerticalAlignment="Bottom"
                                                           NavigateUri="{TemplateBinding Link}"
-                                                          Margin="0,0,24,30" 
-                                                          Content="Github"/>
+                                                          Margin="0,0,24,30"
+                                                          Content="Github" />
                             </Grid>
                             <ScrollViewer BorderThickness="0"
                                           Padding="8"
@@ -94,15 +94,33 @@
         <Setter Property="Background"
                 Value="#FFF6F8FA" />
         <Setter Property="BorderBrush"
-                Value="#FFFFFFFF" />
+                Value="#FFD3D6DB" />
         <Setter Property="BorderThickness"
                 Value="1" />
+        <Setter Property="Width"
+                Value="900" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:SourceCodeBox}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ExpandedStates">
+                                <VisualState x:Name="Expanded" />
+                                <VisualState x:Name="Collapsed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MaxHeight)"
+                                                                       Storyboard.TargetName="SourceCodePlacement">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="300" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -110,11 +128,29 @@
                             </Grid.RowDefinitions>
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
+
+                                <CheckBox Content="Show All"
+                                          x:Name="ExpanderToggleButton"
+                                          Foreground="#FF757575"
+                                          Margin="10,0"
+                                          VerticalAlignment="Center"
+                                          VerticalContentAlignment="Center"
+                                          Background="Transparent"
+                                          Command="{x:Static ApplicationCommands.Copy}" />
+
+                                <Rectangle Width="1"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           Fill="{TemplateBinding BorderBrush}" />
+
                                 <Grid  Width="64"
                                        Height="28"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="1"
                                        HorizontalAlignment="Left">
                                     <TextBlock Foreground="#FF757575"
                                                HorizontalAlignment="Center"
@@ -123,14 +159,14 @@
                                 </Grid>
 
                                 <Rectangle Width="1"
-                                           Grid.Column="1"
+                                           Grid.Column="2"
                                            HorizontalAlignment="Left"
                                            Fill="{TemplateBinding BorderBrush}" />
                                 <Button BorderThickness="0"
                                         Foreground="#FF757575"
                                         Width="64"
                                         Height="28"
-                                        Grid.Column="1"
+                                        Grid.Column="2"
                                         Background="Transparent"
                                         Content="Copy"
                                         Command="{x:Static ApplicationCommands.Copy}" />
@@ -139,23 +175,27 @@
                             <Rectangle Height="1"
                                        VerticalAlignment="Bottom"
                                        Fill="{TemplateBinding BorderBrush}" />
-                            <ContentControl x:Name="SourceCodePlacement"
-                                            Grid.Row="1">
-                                <ContentControl.Resources>
-                                    <Style TargetType="liveExplorer:CSharpBox">
-                                        <Setter Property="Padding"
-                                                Value="4,8" />
-                                        <Setter Property="BorderBrush"
-                                                Value="Transparent" />
-                                    </Style>
-                                    <Style TargetType="liveExplorer:XamlBox">
-                                        <Setter Property="Padding"
-                                                Value="4,8" />
-                                        <Setter Property="BorderBrush"
-                                                Value="Transparent" />
-                                    </Style>
-                                </ContentControl.Resources>
-                            </ContentControl>
+                            <kino:KinoResizer Grid.Row="1"
+                                              HorizontalContentAlignment="Stretch">
+                                <ContentControl x:Name="SourceCodePlacement"
+                                                MaxHeight="5000"
+                                                Grid.Row="1">
+                                    <ContentControl.Resources>
+                                        <Style TargetType="liveExplorer:CSharpBox">
+                                            <Setter Property="Padding"
+                                                    Value="4,8" />
+                                            <Setter Property="BorderBrush"
+                                                    Value="Transparent" />
+                                        </Style>
+                                        <Style TargetType="liveExplorer:XamlBox">
+                                            <Setter Property="Padding"
+                                                    Value="4,8" />
+                                            <Setter Property="BorderBrush"
+                                                    Value="Transparent" />
+                                        </Style>
+                                    </ContentControl.Resources>
+                                </ContentControl>
+                            </kino:KinoResizer>
                         </Grid>
                     </Border>
                 </ControlTemplate>

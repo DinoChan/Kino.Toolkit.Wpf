@@ -30,7 +30,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
             IsReadOnly = true;
             Background = new SolidColorBrush(Colors.Transparent);
             FontFamily = new FontFamily("Consolas");
-            HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Disabled;
             VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
             SizeChanged += OnControlSizeChanged;
         }

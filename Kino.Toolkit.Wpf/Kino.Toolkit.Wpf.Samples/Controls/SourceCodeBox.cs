@@ -5,16 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Xceed.Wpf.Toolkit.LiveExplorer.Core;
 
 namespace Kino.Toolkit.Wpf.Samples
 {
-    [TemplatePart(Name = SourceCoeePlacementName, Type = typeof(ContentControl))]
+    [TemplatePart(Name = SourceCodePlacementName, Type = typeof(ContentControl))]
+    [TemplatePart(Name = ExpanderToggleButtonName, Type = typeof(ToggleButton))]
+    [TemplateVisualState(Name = StateExpanded, GroupName = GroupExpandedStates)]
+    [TemplateVisualState(Name = StateCollapsed, GroupName = GroupExpandedStates)]
     public class SourceCodeBox : ContentControl
     {
-        private const string SourceCoeePlacementName = "SourceCodePlacement";
+        private const string GroupExpandedStates = "ExpandedStates";
+        private const string StateExpanded = "Expanded";
+        private const string StateCollapsed = "Collapsed";
+
+        private const string SourceCodePlacementName = "SourceCodePlacement";
+        private const string ExpanderToggleButtonName = "ExpanderToggleButton";
         private ContentControl _sourceCodePlacement;
+        private ToggleButton _expanderToggleButton;
+        private bool _hasAppledTemplate;
+
 
         public SourceCodeBox()
         {
@@ -29,6 +41,33 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             get => (SourceCodeType)GetValue(SourceCodeTypeProperty);
             set => SetValue(SourceCodeTypeProperty, value);
+        }
+
+        /// <summary>
+        /// 获取或设置 ExpanderToggleButton 的值
+        /// </summary>
+        public ToggleButton ExpanderToggleButton
+        {
+            get { return _expanderToggleButton; }
+            set
+            {
+                if (_expanderToggleButton == value)
+                    return;
+
+                if (_expanderToggleButton != null)
+                {
+                    _expanderToggleButton.Checked += OnExpanderToggleButtonChecked;
+                    _expanderToggleButton.Unchecked += OnExpanderToggleButtonUnchecked;
+                }
+
+                _expanderToggleButton = value;
+
+                if (_expanderToggleButton != null)
+                {
+                    _expanderToggleButton.Checked += OnExpanderToggleButtonChecked;
+                    _expanderToggleButton.Unchecked += OnExpanderToggleButtonUnchecked;
+                }
+            }
         }
 
         /// <summary>
@@ -58,7 +97,6 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             UpdateSourceCodePlacement();
         }
-
 
 
         /// <summary>
@@ -101,14 +139,31 @@ namespace Kino.Toolkit.Wpf.Samples
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _sourceCodePlacement = GetTemplateChild(SourceCoeePlacementName) as ContentControl;
+            _sourceCodePlacement = GetTemplateChild(SourceCodePlacementName) as ContentControl;
+            ExpanderToggleButton = GetTemplateChild(ExpanderToggleButtonName) as ToggleButton;
             UpdateSourceCodePlacement();
+            UpdateVisualStates(false);
+        }
+        protected virtual void UpdateVisualStates(bool useTransitions)
+        {
+            string stateName = ExpanderToggleButton.IsChecked == true ? StateExpanded : StateCollapsed;
+            VisualStateManager.GoToState(this, stateName, useTransitions);
+        }
+
+        private void OnExpanderToggleButtonChecked(object sender, RoutedEventArgs e)
+        {
+            UpdateVisualStates(true);
+        }
+
+        private void OnExpanderToggleButtonUnchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateVisualStates(true);
         }
 
         private void Copy(object sender, ExecutedRoutedEventArgs e)
         {
             e.Handled = true;
-            if (_sourceCodePlacement != null && _sourceCodePlacement.Content is CodeBox codeBox)
+            if (this._sourceCodePlacement != null && this._sourceCodePlacement.Content is CodeBox codeBox)
             {
                 Clipboard.SetText(codeBox.Text);
             }
