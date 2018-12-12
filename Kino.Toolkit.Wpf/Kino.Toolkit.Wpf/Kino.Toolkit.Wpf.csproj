@@ -70,6 +70,7 @@
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Common\FrameworkElementService.cs" />
     <Compile Include="Common\Picker.cs" />
+    <Compile Include="Common\TextBlockService.cs" />
     <Compile Include="Common\TypeHelper.cs" />
     <Compile Include="Common\VisualStates.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
