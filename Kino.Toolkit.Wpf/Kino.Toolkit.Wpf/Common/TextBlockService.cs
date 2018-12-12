@@ -10,6 +10,7 @@ using System.Windows.Media;
 
 namespace Kino.Toolkit.Wpf
 {
+    //TODO 要做TextChanged处理，或者最好做成控件
     public class TextBlockService
     {
         /// <summary>
