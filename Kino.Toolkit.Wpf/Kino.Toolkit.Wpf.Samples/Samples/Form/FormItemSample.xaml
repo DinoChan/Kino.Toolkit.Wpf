@@ -198,16 +198,16 @@
                 <ComboBox kino:KinoForm.Label="国家"
                           kino:KinoForm.Description="请选择先居住地" />
 
-                <kino:KinoForm.CommandBar>
-                    <kino:KinoFormCommandBar>
+                <kino:KinoForm.FunctionBar>
+                    <kino:KinoFormFunctionBar>
                         <kino:KinoButton Content="OK"
                                          Click="OnOK"
                                          IsDefault="True" />
                         <kino:KinoButton Content="Cancel"
                                          IsCancel="True" />
 
-                    </kino:KinoFormCommandBar>
-                </kino:KinoForm.CommandBar>
+                    </kino:KinoFormFunctionBar>
+                </kino:KinoForm.FunctionBar>
             </kino:KinoForm>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"

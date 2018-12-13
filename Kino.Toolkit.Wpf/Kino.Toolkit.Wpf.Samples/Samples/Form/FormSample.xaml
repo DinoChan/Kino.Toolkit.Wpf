@@ -68,8 +68,8 @@
                          kino:KinoForm.LabelTemplate="{StaticResource TopHeaderTemplate}"
                          VerticalScrollBarVisibility="Auto"
                          Height="100" />
-                <kino:KinoForm.CommandBar>
-                    <kino:KinoFormCommandBar>
+                <kino:KinoForm.FunctionBar>
+                    <kino:KinoFormFunctionBar>
                         <kino:KinoButton Content="OK"
                                          Click="OnOK"
                                          IsDefault="True" />
@@ -77,8 +77,8 @@
                                          IsCancel="True"
                                          Click="OnCancel" />
 
-                    </kino:KinoFormCommandBar>
-                </kino:KinoForm.CommandBar>
+                    </kino:KinoFormFunctionBar>
+                </kino:KinoForm.FunctionBar>
             </kino:KinoForm>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"

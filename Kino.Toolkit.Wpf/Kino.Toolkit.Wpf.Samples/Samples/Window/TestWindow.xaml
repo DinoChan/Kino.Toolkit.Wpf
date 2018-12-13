@@ -10,8 +10,8 @@
                  Width="400"
                  SizeToContent="Height"
                  UseLayoutRounding="True">
-    <kino:KinoWindow.CommandBar>
-        <kino:KinoWindowCommandBar>
+    <kino:KinoWindow.FunctionBar>
+        <kino:KinoWindowFunctionBar>
             <Button Content="Dino.C" />
             <Separator />
             <Menu>
@@ -35,8 +35,8 @@
                            Fill="White" />
                 </Grid>
             </Button>
-        </kino:KinoWindowCommandBar>
-    </kino:KinoWindow.CommandBar>
+        </kino:KinoWindowFunctionBar>
+    </kino:KinoWindow.FunctionBar>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
 
     <Style TargetType="Button"
-           x:Key="FormCommandBarButtonBase">
+           x:Key="FormFunctionBarButtonBase">
         <Setter Property="MinWidth"
                 Value="48" />
         <Setter Property="Margin"
@@ -17,18 +17,18 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="FormCommandBarKinoButton"
+    <Style x:Key="FormFunctionBarKinoButton"
            TargetType="local:KinoButton"
-           BasedOn="{StaticResource FormCommandBarButtonBase}" />
+           BasedOn="{StaticResource FormFunctionBarButtonBase}" />
 
 
-    <Style x:Key="FormCommandBarButton"
+    <Style x:Key="FormFunctionBarButton"
            TargetType="Button"
-           BasedOn="{StaticResource FormCommandBarButtonBase}" />
+           BasedOn="{StaticResource FormFunctionBarButtonBase}" />
 
 
 
-    <Style TargetType="{x:Type local:KinoFormCommandBar}">
+    <Style TargetType="{x:Type local:KinoFormFunctionBar}">
 
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
@@ -44,11 +44,11 @@
                 Value="Right" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:KinoFormCommandBar">
+                <ControlTemplate TargetType="local:KinoFormFunctionBar">
                     <ControlTemplate.Resources>
-                        <Style BasedOn="{StaticResource FormCommandBarButton}"
+                        <Style BasedOn="{StaticResource FormFunctionBarButton}"
                                TargetType="{x:Type Button}" />
-                        <Style BasedOn="{StaticResource FormCommandBarKinoButton}"
+                        <Style BasedOn="{StaticResource FormFunctionBarKinoButton}"
                                TargetType="{x:Type local:KinoButton}" />
                     </ControlTemplate.Resources>
                     <Grid Margin="{TemplateBinding Padding}">

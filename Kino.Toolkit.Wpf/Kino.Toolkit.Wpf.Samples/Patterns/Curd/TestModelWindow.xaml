@@ -21,16 +21,16 @@
                          Text="{Binding Name}" />
                 <xctk:IntegerUpDown kino:KinoForm.Label="Age"
                                     Value="{Binding Age,Mode=TwoWay}" />
-                <kino:KinoForm.CommandBar>
-                    <kino:KinoFormCommandBar>
+                <kino:KinoForm.FunctionBar>
+                    <kino:KinoFormFunctionBar>
                         <Button Content="Save"
                                 IsDefault="True"
                                 Click="OnSave" />
                         <Button Content="Cancel"
                                 IsCancel="True"
                                 Click="OnCancel" />
-                    </kino:KinoFormCommandBar>
-                </kino:KinoForm.CommandBar>
+                    </kino:KinoFormFunctionBar>
+                </kino:KinoForm.FunctionBar>
             </kino:KinoForm>
         </xctk:BusyIndicator>
     </Grid>

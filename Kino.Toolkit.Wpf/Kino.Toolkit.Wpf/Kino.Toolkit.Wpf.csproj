@@ -61,9 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button\KinoHyperlinkButton.cs" />
-    <Compile Include="CommandBar\KinoCommandBar.cs" />
-    <Compile Include="CommandBar\KinoFormCommandBar.cs" />
-    <Compile Include="CommandBar\KinoWindowCommandBar.cs" />
+    <Compile Include="FunctionBar\KinoFunctionBar.cs" />
+    <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
+    <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\FrameworkElementExtensions.cs" />
     <Compile Include="Common\FunctionalProgramming.cs" />
@@ -147,15 +147,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CommandBar\KinoCommandBar.xaml">
+    <Page Include="FunctionBar\KinoFunctionBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CommandBar\KinoFormCommandBar.xaml">
+    <Page Include="FunctionBar\KinoFormFunctionBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CommandBar\KinoWindowCommandBar.xaml">
+    <Page Include="FunctionBar\KinoWindowFunctionBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

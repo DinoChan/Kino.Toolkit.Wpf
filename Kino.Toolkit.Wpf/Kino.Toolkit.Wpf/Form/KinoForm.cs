@@ -39,11 +39,11 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// CommandBar 属性更改时调用此方法。
+        /// FunctionBar 属性更改时调用此方法。
         /// </summary>
-        /// <param name="oldValue">CommandBar 属性的旧值。</param>
-        /// <param name="newValue">CommandBar 属性的新值。</param>
-        protected virtual void OnCommandBarChanged(KinoFormCommandBar oldValue, KinoFormCommandBar newValue)
+        /// <param name="oldValue">FunctionBar 属性的旧值。</param>
+        /// <param name="newValue">FunctionBar 属性的新值。</param>
+        protected virtual void OnFunctionBarChanged(KinoFormFunctionBar oldValue, KinoFormFunctionBar newValue)
         {
         }
 
@@ -94,15 +94,15 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        private static void OnFunctionBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            var oldValue = (KinoFormCommandBar)args.OldValue;
-            var newValue = (KinoFormCommandBar)args.NewValue;
+            var oldValue = (KinoFormFunctionBar)args.OldValue;
+            var newValue = (KinoFormFunctionBar)args.NewValue;
             if (oldValue == newValue)
                 return;
 
             var target = obj as KinoForm;
-            target?.OnCommandBarChanged(oldValue, newValue);
+            target?.OnFunctionBarChanged(oldValue, newValue);
         }
 
         private static void OnLabelMemberPathChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)

@@ -10,8 +10,8 @@
                        Title="TestWindow"
                        Height="450"
                        Width="800">
-    <kino:KinoRibbonWindow.CommandBar>
-        <kino:KinoWindowCommandBar>
+    <kino:KinoRibbonWindow.FunctionBar>
+        <kino:KinoWindowFunctionBar>
             <Button Content="Dino.C" />
             <Separator />
             <Menu>
@@ -35,8 +35,8 @@
                            Fill="White" />
                 </Grid>
             </Button>
-        </kino:KinoWindowCommandBar>
-    </kino:KinoRibbonWindow.CommandBar>
+        </kino:KinoWindowFunctionBar>
+    </kino:KinoRibbonWindow.FunctionBar>
 
     <Grid>
         <Ribbon x:Name="RibbonMenu"

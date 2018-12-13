@@ -10,16 +10,16 @@
                  Title="SimpleShell"
                  Height="450"
                  Width="800">
-    <kino:KinoWindow.CommandBar>
-        <kino:KinoWindowCommandBar>
+    <kino:KinoWindow.FunctionBar>
+        <kino:KinoWindowFunctionBar>
             <Menu>
                 <MenuItem x:Name="UsernameItem">
                     <MenuItem Header="Sign Out"
                               Click="OnSignOut" />
                 </MenuItem>
             </Menu>
-        </kino:KinoWindowCommandBar>
-    </kino:KinoWindow.CommandBar>
+        </kino:KinoWindowFunctionBar>
+    </kino:KinoWindow.FunctionBar>
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Welcome:"  Foreground="#FF666666" FontSize="16"

@@ -152,7 +152,7 @@
                                 <ItemsPresenter SnapsToDevicePixels="True"
                                                 UseLayoutRounding="True" />
                             </local:KinoScrollViewer>
-                            <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                            <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                               Grid.Row="2" />
                         </Grid>
                     </Border>

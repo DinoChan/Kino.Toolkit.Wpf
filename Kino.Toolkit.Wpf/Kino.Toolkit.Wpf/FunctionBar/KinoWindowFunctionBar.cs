@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Kino.Toolkit.Wpf
 {
-    public class KinoFormCommandBar : KinoCommandBar
+    public class KinoWindowFunctionBar : KinoFunctionBar
     {
-        public KinoFormCommandBar()
+        public KinoWindowFunctionBar()
         {
-            DefaultStyleKey = typeof(KinoFormCommandBar);
+            DefaultStyleKey = typeof(KinoWindowFunctionBar);
         }
     }
 }
