@@ -130,6 +130,7 @@
     <Compile Include="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
     <Compile Include="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
     <Compile Include="SelectionCheckBox\SelectionCheckBox.cs" />
+    <Compile Include="SkeletonScreen\KinoSkeletonScreen.cs" />
     <Compile Include="SquareBox\KinoSquareBox.cs" />
     <Compile Include="SquareBox\KinoSquareBoxTemplateSettings.cs" />
     <Compile Include="StateIndicator\KinoStateIndicator.cs" />
@@ -190,6 +191,10 @@
     <Page Include="Resizer\KinoResizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkeletonScreen\KinoSkeletonScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SquareBox\KinoSquareBox.xaml">
       <SubType>Designer</SubType>
