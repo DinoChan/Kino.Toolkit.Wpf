@@ -13,7 +13,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:KinoSkeletonScreen}">
-                    <Grid>
+                    <Grid Background="{TemplateBinding Background}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="BusyStates">
                                 <VisualStateGroup.Transitions>
@@ -48,8 +48,7 @@
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Opacity="0"
                                           x:Name="ContentPresenter" />
-                        <Grid x:Name="BusyElement"
-                              Background="Transparent">
+                        <Grid x:Name="BusyElement">
                             <Grid.Resources>
                                 <Style TargetType="{x:Type Rectangle}">
                                     <Setter Property="Margin"

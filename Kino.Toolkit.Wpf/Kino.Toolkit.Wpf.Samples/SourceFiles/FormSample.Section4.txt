@@ -1,23 +1,81 @@
 ﻿<kino:KinoForm Width="500"
                HorizontalAlignment="Left">
     <kino:KinoForm.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Style TargetType="kino:KinoFormItem"
+               x:Key="FromItemStyle"
+               BasedOn="{StaticResource ControlPanelFromItemStyle}">
+            <Setter Property="Margin"
+                    Value="8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="kino:KinoFormItem">
+                        <StackPanel x:Name="Root">
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              ContentTemplate="{TemplateBinding LabelTemplate}" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              x:Name="ContentPresenter"
+                                              Height="50" />
+                            <ContentPresenter Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                                              Margin="0,2,0,0"
+                                              Content="{TemplateBinding Description}"
+                                              TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+            <UniformGrid Rows="1" />
+        </ItemsPanelTemplate>
     </kino:KinoForm.Resources>
-    <CheckBox kino:KinoForm.Label="显示额外信息"
-              x:Name="ExtraInformationCheckBox" />
-    <Grid kino:KinoForm.IsItemItsOwnContainer="True"
-          Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+              Header="用户信息"
+              IsExpanded="True">
         <kino:KinoForm Grid.IsSharedSizeScope="False"
-                       Padding="0">
-            <ComboBox kino:KinoForm.Label="国家" />
-            <TextBox kino:KinoForm.Label="父"
-                     kino:KinoForm.Description="可以不填" />
-            <TextBox kino:KinoForm.Label="母"
-                     kino:KinoForm.Description="可以不填" />
+                       Padding="0"
+                       ItemContainerStyle="{StaticResource FromItemStyle}"
+                       ItemsPanel="{StaticResource ItemsPanelTemplate}">
+            <TextBox kino:KinoForm.Label="用户名" />
+            <TextBox kino:KinoForm.Label="级别" />
+            <TextBox kino:KinoForm.Label="备注" />
+
         </kino:KinoForm>
-    </Grid>
-    <kino:KinoFormItem Header="备注"
-                       Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
-        <TextBox />
-    </kino:KinoFormItem>
+    </Expander>
+    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+              Header="其它信息"
+              IsExpanded="True">
+        <kino:KinoForm Grid.IsSharedSizeScope="False"
+                       Padding="0"
+                       ItemContainerStyle="{StaticResource FromItemStyle}"
+                       ItemsPanel="{StaticResource ItemsPanelTemplate}">
+            <TextBox kino:KinoForm.Label="学校" />
+            <TextBox kino:KinoForm.Label="职业" />
+            <TextBox kino:KinoForm.Label="证书" />
+        </kino:KinoForm>
+    </Expander>
+    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+              Header="住址信息"
+              IsExpanded="True">
+        <kino:KinoForm Grid.IsSharedSizeScope="False"
+                       Padding="0"
+                       ItemContainerStyle="{StaticResource FromItemStyle}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <TextBox kino:KinoForm.Label="邮编" />
+            <kino:KinoFormItem Label="住址"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2">
+                <TextBox />
+            </kino:KinoFormItem>
+        </kino:KinoForm>
+    </Expander>
 </kino:KinoForm>

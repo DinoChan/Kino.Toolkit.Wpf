@@ -46,6 +46,7 @@
                                               HorizontalAlignment="Right"
                                               TextBlock.Foreground="#FF777777" />
                             <ContentPresenter Grid.Column="1"
+                                              Width="300"
                                               Margin="{TemplateBinding Padding}"
                                               x:Name="ContentPresenter"
                                               VerticalAlignment="Center" />
@@ -74,6 +75,7 @@
                             <TextBox Grid.Column="1"
                                      Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Content.Text}"
                                      Margin="{TemplateBinding Padding}"
+                                     Width="300"
                                      x:Name="ContentPresenter"
                                      VerticalContentAlignment="Center"
                                      Height="25" />
@@ -137,12 +139,11 @@
                              VerticalScrollBarVisibility="Auto"
                              Height="100" />
                 </kino:KinoFormItem>
-
             </StackPanel>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
-                                       Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section1.txt" />
+                                       Haader="FormItemSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormItemSample.Section1.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
 
@@ -211,12 +212,12 @@
             </kino:KinoForm>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
-                                       Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section2.txt" />
+                                       Haader="FormItemSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormItemSample.Section2.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="可编辑">
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Left">
                 <StackPanel.Resources>
                     <Style TargetType="kino:KinoForm"
                            BasedOn="{StaticResource {x:Type kino:KinoForm}}">
@@ -245,9 +246,8 @@
                                    kino:KinoForm.Label="IGNORE" />
                         <TextBlock Text="Projector (PR)"
                                    kino:KinoForm.Label="Category" />
-                        <TextBlock Text="A very powerful projector with special features for Internet usability, USB"
-                                   kino:KinoForm.Label="Description"
-                                   TextWrapping="Wrap" />
+                        <TextBlock Text="A very powerful projector"
+                                   kino:KinoForm.Label="Description" />
                         <TextBlock Text="856.49 EUR"
                                    kino:KinoForm.Label="Price" />
                     </kino:KinoForm>
@@ -266,6 +266,14 @@
 
                 </WrapPanel>
             </StackPanel>
+            <local:SampleSection.SourceCodes>
+                <local:SourceCodeModel SourceCodeType="Xaml"
+                                       Haader="FormItemSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormItemSample.Section3.txt" />
+                <local:SourceCodeModel SourceCodeType="CSharp"
+                                       Haader="FormItemSample.xaml.cs"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormItemSample.Section4.txt" />
+            </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="Responsive Form">
             <Button Content="Show Responsive Form Dialog"

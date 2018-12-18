@@ -478,5 +478,17 @@
   <ItemGroup>
     <Resource Include="Assets\Images\small_logo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section4.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

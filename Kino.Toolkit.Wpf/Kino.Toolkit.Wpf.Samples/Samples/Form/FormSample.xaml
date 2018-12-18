@@ -122,7 +122,7 @@
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section4.txt" />
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section2.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用Expander分组">
@@ -244,13 +244,18 @@
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section5.txt" />
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section4.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用LabelMemberPath">
             <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
                            DisplayMemberPath="Value"
                            LabelMemberPath="Key" />
+            <local:SampleSection.SourceCodes>
+                <local:SourceCodeModel SourceCodeType="Xaml"
+                                       Haader="FormSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section5.txt" />
+            </local:SampleSection.SourceCodes>
         </local:SampleSection>
         
         <!--<Button Content="OK"

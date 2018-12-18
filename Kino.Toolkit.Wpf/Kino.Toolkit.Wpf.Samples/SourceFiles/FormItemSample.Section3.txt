@@ -1,0 +1,11 @@
+﻿<kino:KinoPageTitle>
+    <Grid>
+        <TextBlock Text="Responsive" />
+        <CheckBox HorizontalAlignment="Right"
+                  Content="Can Edit"
+                  FontSize="12"
+                  VerticalAlignment="Center"
+                  Checked="OnCanEditChecked"
+                  Unchecked="OnCanEditUnchecked" />
+    </Grid>
+</kino:KinoPageTitle>
