@@ -5,65 +5,70 @@
              xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <kino:NullToValueConverter x:Key="NullToValueConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PresentationFramework.Aero2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aero2.normalcolor.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <kino:NullToValueConverter x:Key="NullToValueConverter" />
 
-        <Style x:Key="FontAwesome"
-               TargetType="TextBlock">
-            <Setter Property="TextElement.FontFamily"
-                    Value="/Kino.Toolkit.Wpf.Samples;component/Assets/#Font Awesome 5 Free Regular" />
-        </Style>
+            <Style x:Key="FontAwesome"
+                   TargetType="TextBlock">
+                <Setter Property="TextElement.FontFamily"
+                        Value="/Kino.Toolkit.Wpf.Samples;component/Assets/#Font Awesome 5 Free Regular" />
+            </Style>
 
-        <Style TargetType="kino:KinoFormItem"
-               x:Key="ControlPanelFromItemStyle">
-            <Setter Property="IsTabStop"
-                    Value="False" />
-            <Setter Property="Focusable"
-                    Value="False" />
-            <Setter Property="Margin"
-                    Value="0,4,0,8" />
-            <Setter Property="Padding"
-                    Value="0,4,0,0" />
-            <Setter Property="LabelTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"
-                                   Foreground="#FF555555"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" />
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
-                        <StackPanel x:Name="Root">
-                            <ContentPresenter Content="{TemplateBinding Label}"
-                                              ContentTemplate="{TemplateBinding LabelTemplate}" />
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              x:Name="ContentPresenter" />
-                            <ContentPresenter Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
-                                              Margin="0,2,0,0"
-                                              Content="{TemplateBinding Description}"
-                                              TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+            <Style TargetType="kino:KinoFormItem"
+                   x:Key="ControlPanelFromItemStyle">
+                <Setter Property="IsTabStop"
+                        Value="False" />
+                <Setter Property="Focusable"
+                        Value="False" />
+                <Setter Property="Margin"
+                        Value="0,4,0,8" />
+                <Setter Property="Padding"
+                        Value="0,4,0,0" />
+                <Setter Property="LabelTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                       Foreground="#FF555555"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="kino:KinoFormItem">
+                            <StackPanel x:Name="Root">
+                                <ContentPresenter Content="{TemplateBinding Label}"
+                                                  ContentTemplate="{TemplateBinding LabelTemplate}" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  x:Name="ContentPresenter" />
+                                <ContentPresenter Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                                                  Margin="0,2,0,0"
+                                                  Content="{TemplateBinding Description}"
+                                                  TextBlock.Foreground="{Binding Source={x:Static SystemColors.GrayTextBrush}}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-        <LinearGradientBrush x:Key="AccentBackground">
-            <GradientStop Color="#FF1F2022" />
-            <GradientStop Color="#FF434446"
-                          Offset="1" />
-        </LinearGradientBrush>
+            <LinearGradientBrush x:Key="AccentBackground">
+                <GradientStop Color="#FF1F2022" />
+                <GradientStop Color="#FF434446"
+                              Offset="1" />
+            </LinearGradientBrush>
 
-        <SolidColorBrush x:Key="AccentForeground"
-                         Color="#FF68C0CA" />
+            <SolidColorBrush x:Key="AccentForeground"
+                             Color="#FF68C0CA" />
 
-        <ControlTemplate x:Key="ErrorTemplate">
-            <AdornedElementPlaceholder>
-                <kino:KinoValidationTooltip AdornedElementPlaceholder="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type AdornedElementPlaceholder}}}"/>
-            </AdornedElementPlaceholder>
-        </ControlTemplate>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <AdornedElementPlaceholder>
+                    <kino:KinoValidationTooltip AdornedElementPlaceholder="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type AdornedElementPlaceholder}}}" />
+                </AdornedElementPlaceholder>
+            </ControlTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

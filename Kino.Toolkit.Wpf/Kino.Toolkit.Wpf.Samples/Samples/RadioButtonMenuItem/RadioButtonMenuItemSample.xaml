@@ -31,13 +31,24 @@
                                                   GroupName="GroupB" />
                     <kino:KinoRadioButtonMenuItem Header="Option 6"
                                                   GroupName="GroupB" />
+                    
+                    
+                    <Separator />
+                    <kino:KinoRadioButtonMenuItem Header="Options ">
+                        <kino:KinoRadioButtonMenuItem Header="Option 7"
+                                                      GroupName="GroupC" />
+                        <kino:KinoRadioButtonMenuItem Header="Option 8"
+                                                      GroupName="GroupC" />
+                        <kino:KinoRadioButtonMenuItem Header="Option 9"
+                                                      GroupName="GroupC" />
+                    </kino:KinoRadioButtonMenuItem>
                     <Separator />
                     <MenuItem IsCheckable="True"
-                              Header="Option 7" />
+                              Header="Option X" />
                     <MenuItem IsCheckable="True"
-                              Header="Option 8" />
+                              Header="Option Y" />
                     <MenuItem IsCheckable="True"
-                              Header="Option 9" />
+                              Header="Option Z" />
                 </kino:KinoRadioButtonMenuItem>
             </Menu>
             <local:SampleSection.SourceCodes>
