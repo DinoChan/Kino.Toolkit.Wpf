@@ -34,8 +34,6 @@
     <CodeAnalysisRuleSet>Kino.Toolkit.Wpf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -62,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button\KinoHyperlinkButton.cs" />
+    <Compile Include="Chromes\DataGridHeaderBorder.cs" />
     <Compile Include="FunctionBar\KinoFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
@@ -185,10 +184,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.Aero2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,10 +207,6 @@
     <Page Include="ProgressRing\KinoProgressRing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Aero2.NormalColor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
