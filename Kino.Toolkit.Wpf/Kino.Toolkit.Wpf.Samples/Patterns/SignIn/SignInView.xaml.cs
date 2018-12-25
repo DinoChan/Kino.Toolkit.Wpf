@@ -1,5 +1,4 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Prism.Mvvm;
 
 namespace Kino.Toolkit.Wpf.Samples
 {
@@ -89,7 +89,9 @@ namespace Kino.Toolkit.Wpf.Samples
                     return;
 
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new Exception("请输入用户名");
+                    ErrorsContainer.SetErrors(nameof(Username), new List<string> { "请输入用户名" });
+                else
+                    ErrorsContainer.SetErrors(nameof(Username), null);
 
                 _username = value;
                 RaisePropertyChanged();
@@ -113,7 +115,10 @@ namespace Kino.Toolkit.Wpf.Samples
                 _passwrd = value;
 
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new Exception("请输入密码");
+                    ErrorsContainer.SetErrors(nameof(Password), new List<string> { "请输入密码" });
+                else
+                    ErrorsContainer.SetErrors(nameof(Password), null);
+
                 RaisePropertyChanged();
             }
         }
