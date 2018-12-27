@@ -63,7 +63,7 @@
 
             <ControlTemplate x:Key="ErrorTemplate">
                 <AdornedElementPlaceholder>
-                    <kino:KinoValidationTooltip AdornedElementPlaceholder="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type AdornedElementPlaceholder}}}" />
+                    <kino:KinoValidationContent  />
                 </AdornedElementPlaceholder>
             </ControlTemplate>
         </ResourceDictionary>
