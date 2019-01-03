@@ -10,14 +10,15 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Window/KinoWindow.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Resizer/KinoResizer.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/SquareBox/KinoSquareBox.xaml" />
-        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/CommandBar/KinoCommandBar.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/FunctionBar/KinoFunctionBar.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Form/KinoForm.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/RadioButtonMenuItem/KinoRadioButtonMenuItem.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/DataPager/KinoDataPager.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/ListBox/KinoListBox.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/DataGrid/KinoDataGrid.xaml" />
-        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Validation/KinoValidationTooltip.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Validation/KinoValidationContent.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/HeaderedContentControl/KinoHeaderedContentControl.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Layout/KinoPageTitle.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/SkeletonScreen/KinoSkeletonScreen.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

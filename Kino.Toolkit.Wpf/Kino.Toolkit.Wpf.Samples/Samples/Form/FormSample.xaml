@@ -68,8 +68,8 @@
                          kino:KinoForm.LabelTemplate="{StaticResource TopHeaderTemplate}"
                          VerticalScrollBarVisibility="Auto"
                          Height="100" />
-                <kino:KinoForm.CommandBar>
-                    <kino:KinoFormCommandBar>
+                <kino:KinoForm.FunctionBar>
+                    <kino:KinoFormFunctionBar>
                         <kino:KinoButton Content="OK"
                                          Click="OnOK"
                                          IsDefault="True" />
@@ -77,8 +77,8 @@
                                          IsCancel="True"
                                          Click="OnCancel" />
 
-                    </kino:KinoFormCommandBar>
-                </kino:KinoForm.CommandBar>
+                    </kino:KinoFormFunctionBar>
+                </kino:KinoForm.FunctionBar>
             </kino:KinoForm>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
@@ -122,7 +122,41 @@
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section4.txt" />
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section2.txt" />
+            </local:SampleSection.SourceCodes>
+        </local:SampleSection>
+        <local:SampleSection Header="使用Expander分组">
+            <kino:KinoForm Width="500"
+                           HorizontalAlignment="Left">
+                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                          Header="用户信息"
+                          IsExpanded="True">
+                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                                   Padding="0">
+                        <TextBox kino:KinoForm.Label="用户名"
+                                 kino:KinoForm.IsRequired="True"
+                                 Text="{Binding Name,Mode=TwoWay}" />
+                        <PasswordBox kino:KinoForm.Label="密码"
+                                     kino:KinoForm.IsRequired="True" />
+                    </kino:KinoForm>
+                </Expander>
+                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                          Header="其它信息"
+                          IsExpanded="True">
+                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                                   Padding="0">
+                        <ComboBox kino:KinoForm.Label="国家" />
+                        <TextBox kino:KinoForm.Label="父"
+                                 kino:KinoForm.Description="可以不填" />
+                        <TextBox kino:KinoForm.Label="母"
+                                 kino:KinoForm.Description="可以不填" />
+                    </kino:KinoForm>
+                </Expander>
+            </kino:KinoForm>
+            <local:SampleSection.SourceCodes>
+                <local:SourceCodeModel SourceCodeType="Xaml"
+                                       Haader="FormSample.xaml"
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section3.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用ItemsPanelTemplate">
@@ -134,8 +168,6 @@
                            BasedOn="{StaticResource ControlPanelFromItemStyle}">
                         <Setter Property="Margin"
                                 Value="8" />
-                        <Setter Property="Opacity"
-                                Value="0.3" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="kino:KinoFormItem">
@@ -212,48 +244,20 @@
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section5.txt" />
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section4.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用LabelMemberPath">
             <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
                            DisplayMemberPath="Value"
                            LabelMemberPath="Key" />
-        </local:SampleSection>
-        <local:SampleSection Header="使用Expander分组">
-            <kino:KinoForm Width="500"
-                           HorizontalAlignment="Left">
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
-                          Header="用户信息"
-                          IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
-                                   Padding="0">
-                        <TextBox kino:KinoForm.Label="用户名"
-                                 kino:KinoForm.IsRequired="True"
-                                 Text="{Binding Name,Mode=TwoWay}" />
-                        <PasswordBox kino:KinoForm.Label="密码"
-                                     kino:KinoForm.IsRequired="True" />
-                    </kino:KinoForm>
-                </Expander>
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
-                          Header="其它信息"
-                          IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
-                                   Padding="0">
-                        <ComboBox kino:KinoForm.Label="国家" />
-                        <TextBox kino:KinoForm.Label="父"
-                                 kino:KinoForm.Description="可以不填" />
-                        <TextBox kino:KinoForm.Label="母"
-                                 kino:KinoForm.Description="可以不填" />
-                    </kino:KinoForm>
-                </Expander>
-            </kino:KinoForm>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
-                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section3.txt" />
+                                       CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/FormSample.Section5.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
+        
         <!--<Button Content="OK"
                 VerticalAlignment="Center" Margin="5"
                          IsDefault="True" />

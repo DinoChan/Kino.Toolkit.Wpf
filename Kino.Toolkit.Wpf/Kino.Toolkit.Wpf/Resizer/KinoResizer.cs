@@ -187,6 +187,8 @@ namespace Kino.Toolkit.Wpf
 
         private void OnResizingCompleted(object sender, EventArgs e)
         {
+            MinHeight = 0;
+            MinWidth = 0;
             _isResizing = false;
         }
     }

@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/CommandBar/KinoFormCommandBar.xaml" />
-        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/CommandBar/KinoWindowCommandBar.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/FunctionBar/KinoFormFunctionBar.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/FunctionBar/KinoWindowFunctionBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
    
 

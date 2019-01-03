@@ -1,0 +1,48 @@
+﻿<StackPanel Width="500"
+            HorizontalAlignment="Left"
+            Grid.IsSharedSizeScope="True">
+    <kino:KinoFormTitle Content="用户信息" />
+    <kino:KinoFormItem Label="用户名"
+                       IsRequired="True">
+        <TextBox Text="{Binding Name,Mode=TwoWay}" />
+    </kino:KinoFormItem>
+    <kino:KinoFormItem Label="密码"
+                       IsRequired="True">
+        <PasswordBox />
+    </kino:KinoFormItem>
+    <kino:KinoFormItem Label="国家与地区(请选择居住地)">
+        <ComboBox />
+    </kino:KinoFormItem>
+    <kino:KinoFormSeparator />
+
+    <kino:KinoFormTitle Content="家庭信息"
+                        Description="填写家庭信息可以让我们给您提供更好的服务。"/>
+    <kino:KinoFormItem Label="父"
+                       Description="可以不填">
+        <TextBox />
+    </kino:KinoFormItem>
+    <kino:KinoFormItem Label="母"
+                       Description="可以不填">
+        <TextBox />
+    </kino:KinoFormItem>
+    <kino:KinoFormItem Label="伴侣"
+                       Description="可以没有"
+                       IsRequired="True">
+        <TextBox />
+    </kino:KinoFormItem>
+    <kino:KinoFormItem Label="性别">
+        <StackPanel Orientation="Horizontal">
+            <RadioButton Content="男"
+                         GroupName="Sex" />
+            <RadioButton Content="女"
+                         GroupName="Sex"
+                         Margin="8,0,0,0" />
+        </StackPanel>
+    </kino:KinoFormItem>
+    <kino:KinoFormItem Label="备注"
+                       LabelTemplate="{StaticResource TopHeaderTemplate}">
+        <TextBox AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Auto"
+                 Height="100" />
+    </kino:KinoFormItem>
+</StackPanel>

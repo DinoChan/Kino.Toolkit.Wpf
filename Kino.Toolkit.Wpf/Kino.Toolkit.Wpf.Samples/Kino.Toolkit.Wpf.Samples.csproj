@@ -38,8 +38,6 @@
     <ApplicationIcon>Assets\Images\small_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework.Aero2" />
-    <Reference Include="PresentationFramework.Classic" />
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -477,6 +475,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\small_logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\FormItemSample.Section4.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

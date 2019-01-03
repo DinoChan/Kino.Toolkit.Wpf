@@ -273,7 +273,7 @@
                                           SampleType="{x:Type local:StateIndicatorSample}" />
                 <local:SampleTreeViewItem Header="Window"
                                           SampleType="{x:Type local:WindowSample}" />
-                <local:SampleTreeViewItem Header="ResizingControl"
+                <local:SampleTreeViewItem Header="Resizer"
                                           SampleType="{x:Type local:ResizerSample}" />
                 <local:SampleTreeViewItem Header="SquareBox"
                                           SampleType="{x:Type local:SquareBoxSample}" />

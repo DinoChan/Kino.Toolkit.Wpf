@@ -644,7 +644,7 @@
     <Style x:Key="WindowTitleBarSeparatorStyle"
            TargetType="{x:Type Separator}">
         <Setter Property="Background"
-                Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                Value="White" />
         <Setter Property="BorderBrush"
                 Value="White" />
         <Setter Property="Opacity"
@@ -667,7 +667,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:KinoWindowCommandBar}">
+    <Style TargetType="{x:Type local:KinoWindowFunctionBar}">
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Focusable"
@@ -676,7 +676,7 @@
                 Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:KinoWindowCommandBar">
+                <ControlTemplate TargetType="local:KinoWindowFunctionBar">
                     <ControlTemplate.Resources>
                         <ResourceDictionary>
                             <Style BasedOn="{StaticResource WindowTitleBarButtonStyle}"

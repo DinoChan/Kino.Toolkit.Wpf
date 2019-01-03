@@ -14,10 +14,10 @@ namespace Kino.Toolkit.Wpf
     public partial class KinoForm : HeaderedItemsControl
     {
         /// <summary>
-        /// 标识 CommandBar 依赖属性。
+        /// 标识 FunctionBar 依赖属性。
         /// </summary>
-        public static readonly DependencyProperty CommandBarProperty =
-            DependencyProperty.Register(nameof(CommandBar), typeof(KinoFormCommandBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormCommandBar), OnCommandBarChanged));
+        public static readonly DependencyProperty FunctionBarProperty =
+            DependencyProperty.Register(nameof(FunctionBar), typeof(KinoFormFunctionBar), typeof(KinoForm), new PropertyMetadata(default(KinoFormFunctionBar), OnFunctionBarChanged));
 
         /// <summary>
         /// 标识 LabelMemberPath 依赖属性。
@@ -62,12 +62,12 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.RegisterAttached("ContainerStyle", typeof(Style), typeof(KinoForm), new PropertyMetadata(default(Style), OnFormPropertyChanged));
 
         /// <summary>
-        /// 获取或设置CommandBar的值
+        /// 获取或设置FunctionBar的值
         /// </summary>
-        public KinoFormCommandBar CommandBar
+        public KinoFormFunctionBar FunctionBar
         {
-            get => (KinoFormCommandBar)GetValue(CommandBarProperty);
-            set => SetValue(CommandBarProperty, value);
+            get => (KinoFormFunctionBar)GetValue(FunctionBarProperty);
+            set => SetValue(FunctionBarProperty, value);
         }
 
         /// <summary>

@@ -8,10 +8,10 @@ namespace Kino.Toolkit.Wpf
     public class KinoWindow : Window
     {
         /// <summary>
-        /// 标识 CommandBar 依赖属性。
+        /// 标识 FunctionBar 依赖属性。
         /// </summary>
-        public static readonly DependencyProperty CommandBarProperty =
-            DependencyProperty.Register(nameof(CommandBar), typeof(KinoWindowCommandBar), typeof(KinoWindow), new PropertyMetadata(default(KinoWindowCommandBar), OnCommandBarChanged));
+        public static readonly DependencyProperty FunctionBarProperty =
+            DependencyProperty.Register(nameof(FunctionBar), typeof(KinoWindowFunctionBar), typeof(KinoWindow), new PropertyMetadata(default(KinoWindowFunctionBar), OnFunctionBarChanged));
 
         public KinoWindow()
         {
@@ -26,12 +26,12 @@ namespace Kino.Toolkit.Wpf
         public Thickness ExtraBorderPadding { get; }
 
         /// <summary>
-        /// 获取或设置CommandBar的值
+        /// 获取或设置FunctionBar的值
         /// </summary>
-        public KinoWindowCommandBar CommandBar
+        public KinoWindowFunctionBar FunctionBar
         {
-            get => (KinoWindowCommandBar)GetValue(CommandBarProperty);
-            set => SetValue(CommandBarProperty, value);
+            get => (KinoWindowFunctionBar)GetValue(FunctionBarProperty);
+            set => SetValue(FunctionBarProperty, value);
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -53,25 +53,25 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// CommandBar 属性更改时调用此方法。
+        /// FunctionBar 属性更改时调用此方法。
         /// </summary>
-        /// <param name="oldValue">CommandBar 属性的旧值。</param>
-        /// <param name="newValue">CommandBar 属性的新值。</param>
-        protected virtual void OnCommandBarChanged(KinoWindowCommandBar oldValue, KinoWindowCommandBar newValue)
+        /// <param name="oldValue">FunctionBar 属性的旧值。</param>
+        /// <param name="newValue">FunctionBar 属性的新值。</param>
+        protected virtual void OnFunctionBarChanged(KinoWindowFunctionBar oldValue, KinoWindowFunctionBar newValue)
         {
         }
 
-        private static void OnCommandBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        private static void OnFunctionBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            var oldValue = (KinoWindowCommandBar)args.OldValue;
-            var newValue = (KinoWindowCommandBar)args.NewValue;
+            var oldValue = (KinoWindowFunctionBar)args.OldValue;
+            var newValue = (KinoWindowFunctionBar)args.NewValue;
             if (oldValue == newValue)
             {
                 return;
             }
 
             var target = obj as KinoWindow;
-            target?.OnCommandBarChanged(oldValue, newValue);
+            target?.OnFunctionBarChanged(oldValue, newValue);
         }
     }
 }

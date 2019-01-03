@@ -1,0 +1,62 @@
+﻿<local:SampleSection.Resources>
+    <Style TargetType="kino:KinoFormItem">
+        <Setter Property="Padding"
+                Value="0,4,0,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="kino:KinoFormItem">
+                    <StackPanel x:Name="Root">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              ContentTemplate="{TemplateBinding LabelTemplate}" />
+                            <TextBlock x:Name="IsRequiredMark"
+                                       Margin="2,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="2"
+                                       Visibility="{Binding IsRequired,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       Text="*"
+                                       Foreground="Red" />
+                            <Grid ToolTip="{TemplateBinding Description}"
+                                  Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
+                                  Margin="4,0,0,0"
+                                  Background="Transparent">
+                                <TextBlock Style="{StaticResource FontAwesome}"
+                                           Text="&#xf059;"
+                                           VerticalAlignment="Center"
+                                           Foreground="LightSeaGreen"
+                                           FontSize="12" />
+                            </Grid>
+                        </StackPanel>
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          x:Name="ContentPresenter" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</local:SampleSection.Resources>
+<kino:KinoForm Width="400"
+               HorizontalAlignment="Left"
+               Header="登录">
+    <kino:KinoFormTitle Content="用户信息" />
+
+    <TextBox kino:KinoForm.Label="用户名"
+             kino:KinoForm.IsRequired="True"
+             Text="{Binding Name,Mode=TwoWay}" />
+
+    <PasswordBox kino:KinoForm.Label="密码"
+                 kino:KinoForm.IsRequired="True" />
+    <ComboBox kino:KinoForm.Label="国家"
+              kino:KinoForm.Description="请选择先居住地" />
+
+    <kino:KinoForm.FunctionBar>
+        <kino:KinoFormFunctionBar>
+            <kino:KinoButton Content="OK"
+                             Click="OnOK"
+                             IsDefault="True" />
+            <kino:KinoButton Content="Cancel"
+                             IsCancel="True" />
+
+        </kino:KinoFormFunctionBar>
+    </kino:KinoForm.FunctionBar>
+</kino:KinoForm>

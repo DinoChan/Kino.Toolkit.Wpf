@@ -1,50 +1,32 @@
-﻿<Style TargetType="kino:KinoFormItem">
-    <Setter Property="Margin"
-            Value="0,4,0,8" />
-    <Setter Property="Padding"
-            Value="0,4,0,0" />
-    <Setter Property="HeaderTemplate">
-        <Setter.Value>
-            <DataTemplate>
-                <TextBlock Text="{Binding}"
-                           Foreground="#FF555555"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left" />
-            </DataTemplate>
-        </Setter.Value>
-    </Setter>
-    <Setter Property="Template">
-        <Setter.Value>
-            <ControlTemplate TargetType="kino:KinoFormItem">
-                <StackPanel x:Name="Root">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentPresenter Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                        <Grid ToolTip="{TemplateBinding Description}"
-                              Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
-                              Margin="8,0,0,0"
-                              Background="Transparent">
-                            <TextBlock Style="{StaticResource FontAwesome}"
-                                       Text="&#xf059;"
-                                       VerticalAlignment="Center"
-                                       Foreground="LightSeaGreen"
-                                       FontSize="14" />
-                        </Grid>
-                    </StackPanel>
-                    <ContentPresenter Margin="{TemplateBinding Padding}"
-                                      x:Name="ContentPresenter" />
-                </StackPanel>
-            </ControlTemplate>
-        </Setter.Value>
-    </Setter>
-</Style>
+﻿<kino:KinoForm Width="500"
+               HorizontalAlignment="Left">
+    <kino:KinoForm.Resources>
+        <Style TargetType="kino:KinoFormItem" x:Key="CollapsedItemStyle">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+        </Style>
+        <kino:BoolToObjectConverter x:Key="BoolToStyleConverter"
+                                    TrueValue="{x:Null}"
+                                    FalseValue="{StaticResource CollapsedItemStyle}"/>
+    </kino:KinoForm.Resources>
 
-<Style TargetType="kino:KinoFormTitle">
-    <Setter Property="Margin"
-            Value="0,4,4,8" />
-</Style>
-
-<Style TargetType="kino:KinoFormSeparator">
-    <Setter Property="Margin"
-            Value="0,4,0,8" />
-</Style>
+    <CheckBox kino:KinoForm.Label="显示额外信息"
+              x:Name="ExtraInformationCheckBox" />
+    <Grid kino:KinoForm.IsItemItsOwnContainer="True"
+          Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
+        <kino:KinoForm Grid.IsSharedSizeScope="False"
+                       Padding="0">
+            <ComboBox kino:KinoForm.Label="国家" />
+            <TextBox kino:KinoForm.Label="父"
+                     kino:KinoForm.Description="可以不填" />
+            <TextBox kino:KinoForm.Label="母"
+                     kino:KinoForm.Description="可以不填" />
+        </kino:KinoForm>
+    </Grid>
+    <TextBox kino:KinoForm.Label="地址"
+             kino:KinoForm.ContainerStyle="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BoolToStyleConverter}}"/>
+    <kino:KinoFormItem Label="备注"
+                       Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
+        <TextBox />
+    </kino:KinoFormItem>
+</kino:KinoForm>

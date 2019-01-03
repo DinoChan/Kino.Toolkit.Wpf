@@ -269,7 +269,7 @@
                                             Orientation="Horizontal"
                                             WindowChrome.IsHitTestVisibleInChrome="True"
                                             Margin="0,0,-1,0">
-                                    <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                    <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                                       Focusable="False" />
                                     <Button x:Name="Minimize"
                                             Style="{StaticResource MinimizeButtonStyle}" />
@@ -448,7 +448,7 @@
                                             Orientation="Horizontal"
                                             WindowChrome.IsHitTestVisibleInChrome="True"
                                             Margin="0,-1,-1,0">
-                                    <ContentPresenter Content="{Binding CommandBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                    <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                                       Focusable="False" />
                                     <Button x:Name="Minimize"
                                             Style="{StaticResource MinimizeButtonStyle}" />

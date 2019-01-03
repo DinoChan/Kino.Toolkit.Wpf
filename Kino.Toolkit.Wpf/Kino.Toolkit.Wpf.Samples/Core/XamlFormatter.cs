@@ -99,11 +99,11 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
                 case XmlTokenKind.OpenProcessingInstruction:
                 case XmlTokenKind.CloseProcessingInstruction:
                 case XmlTokenKind.AttributeValue:
-                    color = Color.FromRgb(0, 0, 255);
+                    color = Color.FromRgb(3, 47, 98);
                     // color = "blue";
                     break;
                 case XmlTokenKind.ElementName:
-                    color = Color.FromRgb(163, 21, 21);
+                    color = Color.FromRgb(34, 134, 58);
                     // color = "brown";
                     break;
                 case XmlTokenKind.TextContent:
@@ -111,7 +111,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
                     break;
                 case XmlTokenKind.AttributeName:
                 case XmlTokenKind.Entity:
-                    color = Color.FromRgb(255, 0, 0);
+                    color = Color.FromRgb(111, 66, 193);
                     // color = "red";
                     break;
                 case XmlTokenKind.CommentText:

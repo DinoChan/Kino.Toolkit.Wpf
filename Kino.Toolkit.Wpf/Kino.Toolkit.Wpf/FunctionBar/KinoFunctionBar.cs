@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace Kino.Toolkit.Wpf
 {
-    public class KinoCommandBar : HeaderedItemsControl
+    public class KinoFunctionBar : HeaderedItemsControl
     {
-        public KinoCommandBar()
+        public KinoFunctionBar()
         {
         }
 

@@ -33,10 +33,10 @@ csharp_indent_switch_labels = true
 csharp_indent_labels = one_less_than_current
 
 # avoid this. unless absolutely necessary
-dotnet_style_qualification_for_event = true:silent
-dotnet_style_qualification_for_field = true:silent
-dotnet_style_qualification_for_method = true:silent
-dotnet_style_qualification_for_property = true:silent
+dotnet_style_qualification_for_event = false:silent
+dotnet_style_qualification_for_field = false:silent
+dotnet_style_qualification_for_method = false:silent
+dotnet_style_qualification_for_property = false:silent
 
 # only use var when it's obvious what the variable type is
 csharp_style_var_for_built_in_types = false:none
