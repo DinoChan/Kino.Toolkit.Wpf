@@ -27,11 +27,14 @@
         <Style TargetType="kino:KinoForm">
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                     Value="Disabled" />
+            <Setter Property="kino:FrameworkElementService.IsAutoFocus"
+                    Value="False" />
         </Style>
     </local:SamplePage.Resources>
     <StackPanel Background="White">
         <local:SampleSection Header="使用Form">
             <kino:KinoForm Width="500"
+                           kino:FrameworkElementService.IsAutoFocus="True"
                            HorizontalAlignment="Left"
                            Header="NormalForm">
                 <kino:KinoFormTitle Content="用户信息" />
