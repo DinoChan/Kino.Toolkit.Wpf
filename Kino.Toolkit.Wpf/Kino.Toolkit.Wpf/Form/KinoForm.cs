@@ -94,6 +94,11 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
+        protected override bool ShouldApplyItemContainerStyle(DependencyObject container, object item)
+        {
+            return container is KinoFormItem;
+        }
+
         private static void OnFunctionBarChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var oldValue = (KinoFormFunctionBar)args.OldValue;

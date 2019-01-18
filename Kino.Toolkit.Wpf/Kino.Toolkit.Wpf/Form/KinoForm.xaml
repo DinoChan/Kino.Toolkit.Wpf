@@ -148,11 +148,11 @@
                             <local:KinoPageTitle Content="{TemplateBinding Header}"
                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
                             <local:KinoScrollViewer Grid.Row="1"
-                                          Padding="{TemplateBinding Padding}">
+                                                    Padding="{TemplateBinding Padding}">
                                 <ItemsPresenter SnapsToDevicePixels="True"
                                                 UseLayoutRounding="True" />
                             </local:KinoScrollViewer>
-                            <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                            <ContentPresenter Content="{TemplateBinding FunctionBar}"
                                               Grid.Row="2" />
                         </Grid>
                     </Border>

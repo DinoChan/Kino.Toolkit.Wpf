@@ -644,7 +644,7 @@
     <Style x:Key="WindowTitleBarSeparatorStyle"
            TargetType="{x:Type Separator}">
         <Setter Property="Background"
-                Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                Value="White" />
         <Setter Property="BorderBrush"
                 Value="White" />
         <Setter Property="Opacity"
