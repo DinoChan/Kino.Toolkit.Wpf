@@ -65,7 +65,6 @@
     <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
     <Compile Include="Common\Extensions.cs" />
-    <Compile Include="Common\FrameworkElementExtensions.cs" />
     <Compile Include="Common\FunctionalProgramming.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Common\FrameworkElementService.cs" />
