@@ -54,7 +54,8 @@ namespace Kino.Toolkit.Wpf.Samples
             await this.Dispatcher.InvokeAsync(async () =>
             {
                 await Task.Delay(100);
-                this.Root.ForceFocus();
+                var request = new TraversalRequest(FocusNavigationDirection.Next);
+                Root.MoveFocus(request);
             });
         }
 

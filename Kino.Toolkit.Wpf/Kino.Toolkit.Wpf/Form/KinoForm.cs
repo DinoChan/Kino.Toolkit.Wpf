@@ -138,6 +138,7 @@ namespace Kino.Toolkit.Wpf
             formItem.Label = GetLabel(content);
             formItem.Description = GetDescription(content);
             formItem.IsRequired = GetIsRequired(content);
+            formItem.ClearValue(DataContextProperty);
             Style style = GetContainerStyle(content);
             if (style != null)
                 formItem.Style = style;
