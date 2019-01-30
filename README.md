@@ -1,4 +1,4 @@
-![](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/logo.png)
+![](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/Logo.png)
 
 # Kino.Toolkit.Wpf
 
