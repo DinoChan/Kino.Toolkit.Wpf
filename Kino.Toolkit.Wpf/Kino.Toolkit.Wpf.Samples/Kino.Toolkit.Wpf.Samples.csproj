@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Assets\Images\small_logo.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Images\kino.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -470,13 +470,6 @@
     <Resource Include="SourceFiles\FormSample.Section5.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\large_logo.jpg" />
-    <Resource Include="Assets\Images\small_logo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\small_logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="SourceFiles\FormItemSample.Section1.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -487,6 +480,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\FormItemSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\kino.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

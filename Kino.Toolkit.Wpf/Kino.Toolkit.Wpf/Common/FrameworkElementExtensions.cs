@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Kino.Toolkit.Wpf
 {
@@ -12,28 +13,8 @@ namespace Kino.Toolkit.Wpf
     {
         public static bool ForceFocus(this FrameworkElement element)
         {
-            if (element is Control control && control.IsTabStop && control.Focus())
-            {
-                return true;
-            }
-
-            foreach (Control item in element.GetLogicalChildren().OfType<Control>().Where(c => c.IsTabStop))
-            {
-                if (item.Focus())
-                {
-                    return true;
-                }
-            }
-
-            foreach (Control item in element.GetVisualDescendants().OfType<Control>().Where(c => c.IsTabStop))
-            {
-                if (item.Focus())
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
+            return element.MoveFocus(request);
         }
     }
 }

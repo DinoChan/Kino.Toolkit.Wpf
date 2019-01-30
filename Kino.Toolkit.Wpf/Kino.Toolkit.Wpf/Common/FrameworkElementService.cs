@@ -77,11 +77,10 @@ namespace Kino.Toolkit.Wpf
         {
             var element = sender as FrameworkElement;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(element))
-            {
                 return;
-            }
 
-            element.ForceFocus();
+            var request = new TraversalRequest(FocusNavigationDirection.Next);
+            element.MoveFocus(request);
         }
 
         private static void OnResourcesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
