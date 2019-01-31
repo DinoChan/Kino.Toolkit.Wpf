@@ -58,20 +58,6 @@
         </Grid>
     </DataTemplate>
 
-    <Style x:Key="TitleBarButtonFocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2"
-                               SnapsToDevicePixels="True"
-                               Stroke="Transparent"
-                               StrokeDashArray="1 2"
-                               StrokeThickness="1" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="WindowTitleBarButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Focusable"
@@ -261,7 +247,7 @@
                                                     FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}"
                                                     Content="{TemplateBinding Title}" />
                                 </StackPanel>
-                                <StackPanel x:Name="WindowCommandButtonsStackPanel"
+                                <StackPanel x:Name="WindowCommandButtonsPanel"
                                             Grid.Column="1"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Stretch"
@@ -271,16 +257,16 @@
                                             Margin="0,0,-1,0">
                                     <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                                       Focusable="False" />
-                                    <Button x:Name="Minimize"
+                                    <Button x:Name="MinimizeButton"
                                             Style="{StaticResource MinimizeButtonStyle}" />
                                     <Grid Margin="1,0,1,0">
-                                        <Button x:Name="Restore"
+                                        <Button x:Name="RestoreButton"
                                                 Style="{StaticResource RestoreButtonStyle}"
                                                 Visibility="Collapsed" />
-                                        <Button x:Name="Maximize"
+                                        <Button x:Name="MaximizeButton"
                                                 Style="{StaticResource MaximizeButtonStyle}" />
                                     </Grid>
-                                    <Button x:Name="Close"
+                                    <Button x:Name="CloseButton"
                                             Background="Red"
                                             Style="{StaticResource CloseButtonStyle}" />
                                 </StackPanel>
@@ -309,10 +295,10 @@
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Maximized">
-                            <Setter TargetName="Maximize"
+                            <Setter TargetName="MaximizeButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
-                            <Setter TargetName="Restore"
+                            <Setter TargetName="RestoreButton"
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="WindowBorder"
@@ -327,22 +313,22 @@
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
-                            <Setter TargetName="Maximize"
+                            <Setter TargetName="MaximizeButton"
                                     Property="Visibility"
                                     Value="Visible" />
-                            <Setter TargetName="Restore"
+                            <Setter TargetName="RestoreButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="ResizeMode"
                                  Value="NoResize">
-                            <Setter TargetName="Minimize"
+                            <Setter TargetName="MinimizeButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
-                            <Setter TargetName="Maximize"
+                            <Setter TargetName="MaximizeButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
-                            <Setter TargetName="Restore"
+                            <Setter TargetName="RestoreButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </Trigger>
@@ -440,7 +426,7 @@
                                         </i:Interaction.Triggers>
                                     </Image>
                                 </StackPanel>
-                                <StackPanel x:Name="WindowCommandButtonsStackPanel"
+                                <StackPanel x:Name="WindowCommandButtonsPanel"
                                             Grid.Column="1"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Stretch"
@@ -450,16 +436,16 @@
                                             Margin="0,-1,-1,0">
                                     <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                                       Focusable="False" />
-                                    <Button x:Name="Minimize"
+                                    <Button x:Name="MinimizeButton"
                                             Style="{StaticResource MinimizeButtonStyle}" />
                                     <Grid Margin="1,0,1,0">
-                                        <Button x:Name="Restore"
+                                        <Button x:Name="RestoreButton"
                                                 Style="{StaticResource RestoreButtonStyle}"
                                                 Visibility="Collapsed" />
-                                        <Button x:Name="Maximize"
+                                        <Button x:Name="MaximizeButton"
                                                 Style="{StaticResource MaximizeButtonStyle}" />
                                     </Grid>
-                                    <Button x:Name="Close"
+                                    <Button x:Name="CloseButton"
                                             Background="Red"
                                             Style="{StaticResource CloseButtonStyle}" />
                                 </StackPanel>
@@ -489,10 +475,10 @@
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Maximized">
-                            <Setter TargetName="Maximize"
+                            <Setter TargetName="MaximizeButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
-                            <Setter TargetName="Restore"
+                            <Setter TargetName="RestoreButton"
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="WindowBorder"
@@ -507,22 +493,22 @@
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
-                            <Setter TargetName="Maximize"
+                            <Setter TargetName="MaximizeButton"
                                     Property="Visibility"
                                     Value="Visible" />
-                            <Setter TargetName="Restore"
+                            <Setter TargetName="RestoreButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="ResizeMode"
                                  Value="NoResize">
-                            <Setter TargetName="Minimize"
+                            <Setter TargetName="MinimizeButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
-                            <Setter TargetName="Maximize"
+                            <Setter TargetName="MaximizeButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
-                            <Setter TargetName="Restore"
+                            <Setter TargetName="RestoreButton"
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </Trigger>
