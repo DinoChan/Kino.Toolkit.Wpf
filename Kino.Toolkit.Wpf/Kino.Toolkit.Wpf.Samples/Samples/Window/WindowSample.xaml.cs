@@ -18,24 +18,24 @@ namespace Kino.Toolkit.Wpf.Samples
     /// <summary>
     /// WindowSample.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowSample 
+    public partial class WindowSample
     {
         public WindowSample()
         {
             InitializeComponent();
-            
+
         }
 
         private void OnTestWindowShow(object sender, RoutedEventArgs e)
         {
-            var window= new TestWindow();
+            var window = new TestWindow();
             SetupWindowStyle(window);
             window.Show();
         }
 
         private void OnTestWindowShowDalog(object sender, RoutedEventArgs e)
         {
-            var window = new TestWindow();
+            var window = new TestWindow { Owner = Application.Current.MainWindow };
             SetupWindowStyle(window);
             window.ShowDialog();
         }
@@ -49,23 +49,23 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnTestRibbonWindowShowDialog(object sender, RoutedEventArgs e)
         {
-            var window = new TestRibbonWindow();
+            var window = new TestRibbonWindow { Owner = Application.Current.MainWindow };
             SetupWindowStyle(window);
             window.ShowDialog();
         }
 
         private void OnSystemWindowShowDialog(object sender, RoutedEventArgs e)
         {
-            var window = new TestSystemWindow();
+            var window = new TestSystemWindow { Owner = Application.Current.MainWindow };
             SetupWindowStyle(window);
-            window.Show();
+            window.ShowDialog();
         }
 
         private void OnSystemWindowShow(object sender, RoutedEventArgs e)
         {
             var window = new TestSystemWindow();
             SetupWindowStyle(window);
-            window.ShowDialog();
+            window.Show();
         }
 
         private void OnSystemRibbonWindowShow(object sender, RoutedEventArgs e)
@@ -77,7 +77,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnSystemRibbonWindowShowDialog(object sender, RoutedEventArgs e)
         {
-            var window = new TestSystemRibbonWindow();
+            var window = new TestSystemRibbonWindow { Owner = Application.Current.MainWindow };
             SetupWindowStyle(window);
             window.ShowDialog();
         }
@@ -89,6 +89,6 @@ namespace Kino.Toolkit.Wpf.Samples
             window.ResizeMode = (ResizeMode)ResizeModeListBox.SelectedItem;
         }
 
-      
+
     }
 }

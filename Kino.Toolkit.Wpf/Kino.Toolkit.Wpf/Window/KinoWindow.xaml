@@ -190,7 +190,7 @@
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
         <Setter Property="Icon"
-                Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
+                Value="/Kino.Toolkit.Wpf;component/Assets/Images/kino.ico" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CornerRadius="0"
@@ -288,7 +288,7 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsActive"
+                        <Trigger Property="IsNonClientActive"
                                  Value="False">
                             <Setter Property="BorderBrush"
                                     Value="#FF6F7785" />
@@ -377,7 +377,7 @@
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
         <Setter Property="Icon"
-                Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
+                Value="/Kino.Toolkit.Wpf;component/Assets/Images/kino.ico" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CornerRadius="0"
@@ -468,7 +468,7 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsActive"
+                        <Trigger Property="IsNonClientActive"
                                  Value="False">
                             <Setter Property="BorderBrush"
                                     Value="#FF6F7785" />
