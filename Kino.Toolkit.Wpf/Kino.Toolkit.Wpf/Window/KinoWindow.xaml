@@ -190,16 +190,14 @@
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
         <Setter Property="Icon"
-                Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
+                Value="/Kino.Toolkit.Wpf;component/Assets/Images/kino.ico" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CornerRadius="0"
-                              UseAeroCaptionButtons="False"
-                              NonClientFrameEdges="None"
+                <WindowChrome UseAeroCaptionButtons="False"
                               CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>
-        <Setter Property="local:WindowService.IsActiveCommands"
+        <Setter Property="local:WindowService.IsBindingToSystemCommands"
                 Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -213,7 +211,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Grid x:Name="PART_WindowTitleGrid"
+                            <Grid x:Name="WindowTitlePanel"
                                   Height="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
                                   Background="{TemplateBinding BorderBrush}"
                                   Margin="0,-1,0,0">
@@ -288,7 +286,7 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsActive"
+                        <Trigger Property="IsNonClientActive"
                                  Value="False">
                             <Setter Property="BorderBrush"
                                     Value="#FF6F7785" />
@@ -377,16 +375,14 @@
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
         <Setter Property="Icon"
-                Value="/Kino.Toolkit.Wpf;component/Assets/Images/defaultsystemicon.png" />
+                Value="/Kino.Toolkit.Wpf;component/Assets/Images/kino.ico" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CornerRadius="0"
-                              UseAeroCaptionButtons="False"
-                              NonClientFrameEdges="None"
+                <WindowChrome UseAeroCaptionButtons="False"
                               CaptionHeight="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}" />
             </Setter.Value>
         </Setter>
-        <Setter Property="local:WindowService.IsActiveCommands"
+        <Setter Property="local:WindowService.IsBindingToSystemCommands"
                 Value="True" />
         <Setter Property="RibbonStyle"
                 Value="{StaticResource RibbonStyle}" />
@@ -400,7 +396,7 @@
                         <Grid x:Name="LayoutRoot"
                               Background="{TemplateBinding Background}">
 
-                            <Grid x:Name="PART_WindowTitleGrid"
+                            <Grid x:Name="WindowTitlePanel"
                                   VerticalAlignment="Top"
                                   Height="{Binding Path=(SystemParameters.WindowNonClientFrameThickness).Top}"
                                   Background="{TemplateBinding BorderBrush}">
@@ -468,7 +464,7 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsActive"
+                        <Trigger Property="IsNonClientActive"
                                  Value="False">
                             <Setter Property="BorderBrush"
                                     Value="#FF6F7785" />

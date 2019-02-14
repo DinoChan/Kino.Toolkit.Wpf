@@ -19,10 +19,10 @@ namespace Kino.Toolkit.Wpf
             DependencyProperty.RegisterAttached("IsKeepInWorkArea", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsKeepInWorkAreaChanged));
 
         /// <summary>
-        /// 标识 IsActiveCommands 依赖项属性。
+        /// 标识 IsBindingToSystemCommands 依赖项属性。
         /// </summary>
-        public static readonly DependencyProperty IsActiveCommandsProperty =
-            DependencyProperty.RegisterAttached("IsActiveCommands", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsActiveCommandsChanged));
+        public static readonly DependencyProperty IsBindingToSystemCommandsProperty =
+            DependencyProperty.RegisterAttached("IsBindingToSystemCommands", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsBindingToSystemCommandsChanged));
 
         private static double? _paddedBorder;
 
@@ -43,18 +43,18 @@ namespace Kino.Toolkit.Wpf
         }
 
         /// <summary>
-        /// 从指定元素获取 IsActiveCommands 依赖项属性的值。
+        /// 从指定元素获取 IsBindingToSystemCommands 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static bool GetIsActiveCommands(Window obj) => (bool)obj.GetValue(IsActiveCommandsProperty);
+        public static bool GetIsBindingToSystemCommands(Window obj) => (bool)obj.GetValue(IsBindingToSystemCommandsProperty);
 
         /// <summary>
-        /// 将 IsActiveCommands 依赖项属性的值设置为指定元素。
+        /// 将 IsBindingToSystemCommands 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetIsActiveCommands(Window obj, bool value) => obj.SetValue(IsActiveCommandsProperty, value);
+        public static void SetIsBindingToSystemCommands(Window obj, bool value) => obj.SetValue(IsBindingToSystemCommandsProperty, value);
 
         /// <summary>
         /// 从指定元素获取 IsKeepInWorkArea 依赖项属性的值。
@@ -70,7 +70,7 @@ namespace Kino.Toolkit.Wpf
         /// <param name="value">要设置的值。</param>
         public static void SetIsKeepInWorkArea(Window obj, bool value) => obj.SetValue(IsKeepInWorkAreaProperty, value);
 
-        private static void OnIsActiveCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        private static void OnIsBindingToSystemCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (bool)args.NewValue;
             if (obj is Window window && newValue)

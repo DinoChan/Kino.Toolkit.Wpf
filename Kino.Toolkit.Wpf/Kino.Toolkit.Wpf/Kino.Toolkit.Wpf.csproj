@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="Button\KinoHyperlinkButton.cs" />
     <Compile Include="Chromes\DataGridHeaderBorder.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Common\WindowNotifications.cs" />
     <Compile Include="FunctionBar\KinoFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
@@ -277,6 +279,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\defaultsystemicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\kino.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

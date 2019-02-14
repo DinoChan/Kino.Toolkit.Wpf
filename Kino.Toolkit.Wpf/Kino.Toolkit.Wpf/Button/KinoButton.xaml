@@ -163,16 +163,9 @@
         </Setter>
     </Style>
 
-    <ResourceDictionary x:Key="HyperlinkResources">
-        <Style TargetType="TextBlock">
-            <Setter Property="TextDecorations"
-                    Value="Underline" />
-        </Style>
-    </ResourceDictionary>
-
     <Style TargetType="local:KinoHyperlinkButton">
         <Setter Property="Foreground"
-                Value="#FF0097FB" />
+                Value="#FF0066CC" />
         <Setter Property="Padding"
                 Value="2,0,2,0" />
         <Setter Property="Cursor"
@@ -191,24 +184,9 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
-                                                                       Storyboard.TargetProperty="(local:FrameworkElementService.Resources)"
-                                                                       Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource HyperlinkResources}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
+                                <VisualState x:Name="MouseOver" />
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
-                                                                       Storyboard.TargetProperty="(local:FrameworkElementService.Resources)"
-                                                                       Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource HyperlinkResources}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                                        Storyboard.TargetName="contentPresenter">
                                             <EasingDoubleKeyFrame KeyTime="0"
@@ -233,7 +211,22 @@
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" />
+                                          Margin="{TemplateBinding Padding}">
+                            <ContentPresenter.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
+                                                           Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="TextDecorations"
+                                                    Value="Underline" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
