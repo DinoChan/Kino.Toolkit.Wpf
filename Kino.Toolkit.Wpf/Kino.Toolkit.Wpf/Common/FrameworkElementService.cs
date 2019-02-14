@@ -85,8 +85,8 @@ namespace Kino.Toolkit.Wpf
 
         private static void OnResourcesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            var oldValue = (ResourceDictionary)args.OldValue;
-            var newValue = (ResourceDictionary)args.NewValue;
+            var oldValue = args.OldValue as ResourceDictionary;
+            var newValue = args.NewValue as ResourceDictionary;
             if (oldValue == newValue)
             {
                 return;
