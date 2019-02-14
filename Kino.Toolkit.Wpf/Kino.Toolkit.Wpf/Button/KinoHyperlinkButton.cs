@@ -39,7 +39,6 @@ namespace Kino.Toolkit.Wpf
 
         /// <summary>Gets or sets the URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked. </summary>
         /// <returns>The URI to navigate to when the <see cref="T:System.Windows.Controls.HyperlinkButton" /> is clicked.</returns>
-        [TypeConverter(typeof(UriTypeConverter))]
         public Uri NavigateUri
         {
             get => GetValue(NavigateUriProperty) as Uri;
