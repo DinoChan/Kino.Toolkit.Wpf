@@ -22,14 +22,9 @@ namespace Kino.Toolkit.Wpf
         /// <returns>The identifier for the <see cref="P:System.Windows.Controls.HyperlinkButton.NavigateUri" /> dependency property.</returns>
         public static readonly DependencyProperty NavigateUriProperty;
 
-        /// <summary>Identifies the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</summary>
-        /// <returns>The identifier for the <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> dependency property.</returns>
-        public static readonly DependencyProperty TargetNameProperty;
-
         static KinoHyperlinkButton()
         {
             NavigateUriProperty = DependencyProperty.Register("NavigateUri", typeof(Uri), typeof(KinoHyperlinkButton), null);
-            TargetNameProperty = DependencyProperty.Register("TargetName", typeof(string), typeof(KinoHyperlinkButton), null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="KinoHyperlinkButton"/> class.</summary>
@@ -51,17 +46,8 @@ namespace Kino.Toolkit.Wpf
             set => SetValue(NavigateUriProperty, value);
         }
 
-        /// <summary>Gets or sets the name of the target window or frame that the Web page should open in, or the name of the object within the Silverlight application to navigate to.</summary>
-        /// <returns>TargetName</returns>
-        public string TargetName
-        {
-            get => GetValue(TargetNameProperty) as string;
-            set => SetValue(TargetNameProperty, value);
-        }
-
         /// <summary>Provides handling for the <see cref="E:System.Windows.Controls.Primitives.ButtonBase.Click" /> event.</summary>
         /// <exception cref="T:System.NotSupportedException">The <see cref="P:System.Windows.Controls.HyperlinkButton.NavigateUri" /> property is not or cannot be converted to an absolute URI.</exception>
-        /// <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Windows.Controls.HyperlinkButton.TargetName" /> property is set to a value that contains embedded whitespace.</exception>
         protected override void OnClick()
         {
             base.OnClick();
