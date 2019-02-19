@@ -25,11 +25,6 @@ namespace Kino.Toolkit.Wpf
             DefaultStyleKeyProperty.OverrideMetadata(typeof(KinoRadioButtonMenuItem), new FrameworkPropertyMetadata(typeof(KinoRadioButtonMenuItem)));
         }
 
-        public KinoRadioButtonMenuItem()
-        {
-            Checked += OnChecked;
-        }
-
         /// <summary>
         /// 获取或设置GroupName的值
         /// </summary>
@@ -52,19 +47,16 @@ namespace Kino.Toolkit.Wpf
             return new KinoRadioButtonMenuItem();
         }
 
-        private void OnChecked(object sender, RoutedEventArgs e)
+        /// <inheritdoc />
+        protected override void OnChecked(RoutedEventArgs e)
         {
-            if (IsChecked == false)
-            {
-                return;
-            }
+            base.OnChecked(e);
 
             if (VisualTreeHelper.GetParent(this) is FrameworkElement parent)
             {
-                var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
-                for (int i = 0; i < childrenCount; i++)
+                foreach (var menuItem in this.GetVisualSiblings().OfType<KinoRadioButtonMenuItem>())
                 {
-                    if (VisualTreeHelper.GetChild(parent, i) is KinoRadioButtonMenuItem menuItem && menuItem.GroupName == GroupName && menuItem != this && (menuItem.DataContext == parent.DataContext || menuItem.DataContext != DataContext))
+                    if (menuItem.GroupName == GroupName && (menuItem.DataContext == parent.DataContext || menuItem.DataContext != DataContext))
                     {
                         menuItem.IsChecked = false;
                     }
