@@ -24,23 +24,6 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty IsBindingToSystemCommandsProperty =
             DependencyProperty.RegisterAttached("IsBindingToSystemCommands", typeof(bool), typeof(WindowService), new PropertyMetadata(default(bool), OnIsBindingToSystemCommandsChanged));
 
-        private static double? _paddedBorder;
-
-        /// <summary>
-        ///  returns the amount of extra border padding around captioned windows
-        /// </summary>
-        public static double PaddedBorder
-        {
-            get
-            {
-                if (_paddedBorder == null)
-                {
-                    _paddedBorder = NativeMethods.GetSystemMetrics(SM.CXPADDEDBORDER);
-                }
-
-                return _paddedBorder.Value;
-            }
-        }
 
         /// <summary>
         /// 从指定元素获取 IsBindingToSystemCommands 依赖项属性的值。

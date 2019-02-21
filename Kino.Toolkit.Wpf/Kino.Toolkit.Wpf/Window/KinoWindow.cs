@@ -29,14 +29,7 @@ namespace Kino.Toolkit.Wpf
         public KinoWindow()
         {
             DefaultStyleKey = typeof(KinoWindow);
-
-            var length = WindowService.PaddedBorder;
-            DpiScale dpi = VisualTreeHelper.GetDpi(this);
-            var lengthWithScale = length / dpi.DpiScaleX;
-            ExtraBorderPadding = new Thickness(lengthWithScale);
         }
-
-        public Thickness ExtraBorderPadding { get; }
 
         /// <summary>
         /// 获取或设置FunctionBar的值

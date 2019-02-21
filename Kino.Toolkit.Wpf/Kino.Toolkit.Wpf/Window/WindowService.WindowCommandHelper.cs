@@ -64,8 +64,8 @@ namespace Kino.Toolkit.Wpf
                 if (_window.WindowState == WindowState.Maximized)
                 {
                     // 因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度
-                    point.Y += (SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX) + PaddedBorder + (SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX);
-                    point.X += (SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX) + PaddedBorder;
+                    point.Y += (SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX) + WindowParameters.PaddedBorderThickness.Top + (SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX);
+                    point.X += (SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX) + WindowParameters.PaddedBorderThickness.Top;
                 }
                 else
                 {

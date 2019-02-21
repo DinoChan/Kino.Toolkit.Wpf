@@ -95,7 +95,7 @@
         <Setter Property="TextBlock.TextAlignment"
                 Value="Center" />
         <Setter Property="Height"
-                Value="{x:Static local:RibbonService.RibbonContextualTabGroupHeight}" />
+                Value="{x:Static local:WindowParameters.RibbonContextualTabGroupHeight}" />
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">
@@ -110,8 +110,7 @@
                             Background="{TemplateBinding Control.Background}"
                             BorderBrush="{TemplateBinding Control.BorderBrush}"
                             BorderThickness="{TemplateBinding Control.BorderThickness}"
-                            RenderOptions.ClearTypeHint="Enabled"
-                           >
+                            RenderOptions.ClearTypeHint="Enabled">
                         <Border Name="InnerBorder"
                                 Background="{StaticResource RibbonContextualTabGroup.InnerBorderBackground}"
                                 BorderBrush="{TemplateBinding Control.Background}">
@@ -283,7 +282,7 @@
                                                       Content="{TemplateBinding QuickAccessToolBar}"
                                                       IsHitTestVisible="True"
                                                       Margin="0,0.5,0,1.4">
-                                        
+
                                     </ContentPresenter>
                                     <Border Name="QatTopHostRightBorder"
                                             Grid.Column="2"
@@ -326,10 +325,10 @@
                                     </ContentPresenter.Resources>
                                 </ContentPresenter>
                                 <RibbonContextualTabGroupItemsControl x:Name="PART_ContextualTabGroupItemsControl"
-                                                                             IsHitTestVisible="True"
-                                                                      Height="{x:Static local:RibbonService.RibbonContextualTabGroupHeight}"
-                                                                             shell:WindowChrome.IsHitTestVisibleInChrome="True"
-                                                                             HorizontalAlignment="Center" />
+                                                                      IsHitTestVisible="True"
+                                                                      Height="{x:Static local:WindowParameters.RibbonContextualTabGroupHeight}"
+                                                                      shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                                                                      HorizontalAlignment="Center" />
 
                             </primitives:RibbonTitlePanel>
                         </DockPanel>
@@ -342,7 +341,8 @@
                                                      HorizontalAlignment="Left"
                                                      Grid.Row="1"
                                                      Grid.Column="1"
-                                                     Margin="1,1,1,0" Height="26"/>
+                                                     Margin="1,1,1,0"
+                                                     Height="26" />
                         <ContentPresenter Name="PART_HelpPane"
                                           ContentSource="HelpPaneContent"
                                           ContentTemplate="{TemplateBinding Ribbon.HelpPaneContentTemplate}"

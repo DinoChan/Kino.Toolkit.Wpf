@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Button\KinoHyperlinkButton.cs" />
     <Compile Include="Chromes\DataGridHeaderBorder.cs" />
+    <Compile Include="Common\DpiHelper.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WindowNotifications.cs" />
     <Compile Include="FunctionBar\KinoFunctionBar.cs" />
@@ -142,7 +143,7 @@
     <Compile Include="Validation\KinoValidationContent.cs" />
     <Compile Include="Window\KinoRibbonWindow.cs" />
     <Compile Include="Window\KinoWindow.cs" />
-    <Compile Include="Window\RibbonService.cs" />
+    <Compile Include="Window\WindowParameters.cs" />
     <Compile Include="Window\WindowService.cs" />
     <Compile Include="Window\WindowService.WindowCommandHelper.cs" />
     <Page Include="Button\KinoButton.xaml">

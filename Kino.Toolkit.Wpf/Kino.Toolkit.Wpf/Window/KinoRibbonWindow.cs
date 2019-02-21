@@ -39,13 +39,7 @@ namespace Kino.Toolkit.Wpf
         public KinoRibbonWindow()
         {
             DefaultStyleKey = typeof(KinoRibbonWindow);
-            var length = WindowService.PaddedBorder;
-            var dpi = VisualTreeHelper.GetDpi(this);
-            var lengthWithScale = length / dpi.DpiScaleX;
-            ExtraBorderPadding = new Thickness(lengthWithScale);
         }
-
-        public Thickness ExtraBorderPadding { get; }
 
         /// <summary>
         /// 获取或设置RibbonStyle的值
