@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,10 +14,11 @@ namespace Kino.Toolkit.Wpf
         private static Thickness? _paddedBorderThickness;
 
         /// <summary>
-        ///  returns the border thickness padding around captioned windows
+        /// returns the border thickness padding around captioned windows,in pixels. Windows XP/2000:  This value is not supported.
         /// </summary>
         public static Thickness PaddedBorderThickness
         {
+            [SecurityCritical]
             get
             {
                 if (_paddedBorderThickness == null)
