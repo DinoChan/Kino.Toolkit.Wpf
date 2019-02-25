@@ -13,6 +13,8 @@ namespace Kino.Toolkit.Wpf
     {
         private static Thickness? _paddedBorderThickness;
 
+        private static double? _ribbonContextualTabGroupHeight;
+
         /// <summary>
         /// returns the border thickness padding around captioned windows,in pixels. Windows XP/2000:  This value is not supported.
         /// </summary>
@@ -34,7 +36,20 @@ namespace Kino.Toolkit.Wpf
             }
         }
 
-        public static double RibbonContextualTabGroupHeight => SystemParameters.WindowNonClientFrameThickness.Top + 1;
+        public static double RibbonContextualTabGroupHeight
+        {
+
+            get
+            {
+                if (_ribbonContextualTabGroupHeight == null)
+                {
+                    _ribbonContextualTabGroupHeight = SystemParameters.WindowNonClientFrameThickness.Top + (1d * GetDpi() / 96.0);
+                }
+
+                return _ribbonContextualTabGroupHeight.Value;
+            }
+        }
+
 
         /// <summary>
         /// Get Dpi
