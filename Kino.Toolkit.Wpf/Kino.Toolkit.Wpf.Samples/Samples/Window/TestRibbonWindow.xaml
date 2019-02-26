@@ -50,36 +50,38 @@
                 </DataTemplate>
             </Ribbon.TitleTemplate>-->
 
-            <RibbonTab Header="xxxxxxxxxx">
-                <RibbonGroup Header="dddddddddddddddd">
-                    <RibbonButton RibbonControlService.ToolTipTitle="dddddddddddddd"
-                                  RibbonControlService.ToolTipDescription="sssssssssss"
-                                  Label="ddddddddd" />
+
+            <RibbonTab Header="Home">
+                <RibbonGroup Header="Copy">
+                    <RibbonButton RibbonControlService.ToolTipTitle="Copy"
+                                  RibbonControlService.ToolTipDescription="Copy"
+                                  Label="Copy" />
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="TestRibbonWindow"
                        ContextualTabGroupHeader="TestRibbonWindow">
-                <RibbonGroup Header="dddddddddddddddd">
-                    <RibbonButton RibbonControlService.ToolTipTitle="dddddddddddddd"
-                                  RibbonControlService.ToolTipDescription="sssssssssss"
-                                  Label="ddddddddd" />
+                <RibbonGroup Header="View">
+                    <RibbonButton RibbonControlService.ToolTipTitle="View"
+                                  RibbonControlService.ToolTipDescription="View"
+                                  Label="View" />
                 </RibbonGroup>
             </RibbonTab>
 
             <Ribbon.ContextualTabGroups>
-                <RibbonContextualTabGroup Header="TestRibbonWindow" 
-                                          Visibility="Visible" >
+                <RibbonContextualTabGroup Header="TestRibbonWindow"
+                                          Visibility="Visible">
                 </RibbonContextualTabGroup>
             </Ribbon.ContextualTabGroups>
             <Ribbon.QuickAccessToolBar>
-                <RibbonQuickAccessToolBar >
+                <RibbonQuickAccessToolBar>
                     <RibbonButton SmallImageSource="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png" />
                     <RibbonButton SmallImageSource="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/defaulticon.png" />
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
         </Ribbon>
         <Button VerticalAlignment="Center"
-                Content="test" />
-       
+                Content="Test"
+                HorizontalAlignment="Center" />
+
     </Grid>
 </kino:KinoRibbonWindow>
