@@ -62,6 +62,7 @@
     <Compile Include="Button\KinoHyperlinkButton.cs" />
     <Compile Include="Chromes\DataGridHeaderBorder.cs" />
     <Compile Include="Common\DpiHelper.cs" />
+    <Compile Include="Common\FocusService.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WindowNotifications.cs" />
     <Compile Include="FunctionBar\KinoFunctionBar.cs" />
