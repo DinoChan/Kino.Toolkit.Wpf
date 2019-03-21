@@ -150,6 +150,11 @@ namespace Kino.Toolkit.Wpf
             DataTemplate labelTemplate = GetLabelTemplate(content);
             if (labelTemplate != null)
                 formItem.LabelTemplate = labelTemplate;
+
+            var binding = new Binding(nameof(Visibility));
+            binding.Source = content;
+            binding.Mode = BindingMode.OneWay;
+            formItem.SetBinding(VisibilityProperty, binding);
         }
 
         private void PrepareFormItem(KinoFormItem formItem, object item)

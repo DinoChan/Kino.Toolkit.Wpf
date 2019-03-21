@@ -1,15 +1,5 @@
 ﻿<kino:KinoForm Width="500"
                HorizontalAlignment="Left">
-    <kino:KinoForm.Resources>
-        <Style TargetType="kino:KinoFormItem" x:Key="CollapsedItemStyle">
-            <Setter Property="Visibility"
-                    Value="Collapsed" />
-        </Style>
-        <kino:BoolToObjectConverter x:Key="BoolToStyleConverter"
-                                    TrueValue="{x:Null}"
-                                    FalseValue="{StaticResource CollapsedItemStyle}"/>
-    </kino:KinoForm.Resources>
-
     <CheckBox kino:KinoForm.Label="显示额外信息"
               x:Name="ExtraInformationCheckBox" />
     <Grid kino:KinoForm.IsItemItsOwnContainer="True"
@@ -24,9 +14,5 @@
         </kino:KinoForm>
     </Grid>
     <TextBox kino:KinoForm.Label="地址"
-             kino:KinoForm.ContainerStyle="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BoolToStyleConverter}}"/>
-    <kino:KinoFormItem Label="备注"
-                       Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
-        <TextBox />
-    </kino:KinoFormItem>
+             Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}"/>
 </kino:KinoForm>
