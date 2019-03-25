@@ -20,16 +20,28 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class TransitioningContentControlSample
     {
+
+        private int _index = 0;
+
         public TransitioningContentControlSample()
         {
             InitializeComponent();
             Loaded += OnLoaded;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             CustomContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            while (true)
+            {
+                await Task.Delay(2000);
+                ContentControl.Content = Airport.SampleAirports[_index];
+                _index++;
+                if (_index >= Airport.SampleAirports.Count)
+                    _index = 0;
+            }
         }
 
         private void OnChangByDefault(object sender, RoutedEventArgs e)

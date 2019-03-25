@@ -123,6 +123,55 @@
                 </Border>
             </ControlTemplate>
 
+            <Style x:Key="Header"
+                   TargetType="ContentControl">
+                <Setter Property="Background"
+                        Value="#22D2D2D2" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+                <Setter Property="Cursor"
+                        Value="Arrow" />
+                <Setter Property="IsTabStop"
+                        Value="False" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Left" />
+                <Setter Property="FontSize"
+                        Value="14" />
+                <Setter Property="FontWeight"
+                        Value="Bold" />
+                <Setter Property="FontStretch"
+                        Value="UltraExpanded" />
+                <Setter Property="Foreground"
+                        Value="#FF313861" />
+                <Setter Property="Margin"
+                        Value="0 8 0 2" />
+                <Setter Property="Padding"
+                        Value="6 2 2 2" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Top" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="2">
+                                <ContentControl Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                Cursor="{TemplateBinding Cursor}"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                FontFamily="{TemplateBinding FontFamily}"
+                                                FontSize="{TemplateBinding FontSize}"
+                                                FontStretch="{TemplateBinding FontStretch}"
+                                                Foreground="{TemplateBinding Foreground}"
+                                                IsTabStop="{TemplateBinding IsTabStop}"
+                                                Margin="{TemplateBinding Padding}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <StackPanel>
             <local:SampleSection Header="Default Transition">
@@ -185,6 +234,50 @@
                     <local:SourceCodeModel SourceCodeType="CSharp"
                                            Haader="TransitioningContentControlSample.xaml.cs"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/TransitioningContentControlSample.Section4.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+
+
+            <local:SampleSection Header="Custom ContentTemplate">
+                <kino:KinoTransitioningContentControl x:Name="ContentControl"
+                                                      Transition="{x:Static kino:KinoTransitioningContentControl.DownTransitionState}"
+                                                      Margin="0,0,0,30">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Grid MinWidth="370">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="#aa000000" />
+                                </Grid.Background>
+                                <TextBlock Foreground="#22ffffff"
+                                           Margin="4,2"
+                                           FontSize="34"
+                                           Text="{Binding CodeFaa}" />
+                                <StackPanel HorizontalAlignment="Right"
+                                            Margin="0, 0, 8, 0">
+                                    <TextBlock HorizontalAlignment="Right"
+                                               Foreground="White"
+                                               FontSize="12"
+                                               Text="{Binding LimitedName}"
+                                               Padding="2" />
+                                    <TextBlock HorizontalAlignment="Right"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               Text="{Binding City}"
+                                               Padding="2" />
+                                    <TextBlock HorizontalAlignment="Right"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               Text="{Binding State}"
+                                               Padding="2" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </kino:KinoTransitioningContentControl>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="TransitioningContentControlSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/TransitioningContentControlSample.Section5.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
         </StackPanel>

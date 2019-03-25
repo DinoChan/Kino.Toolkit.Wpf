@@ -84,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Airport.cs" />
     <Compile Include="Common\LoadResult.cs" />
     <Compile Include="Common\ModelBase.cs" />
     <Compile Include="Common\PasswordBoxHelper.cs" />
@@ -483,6 +484,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\kino.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

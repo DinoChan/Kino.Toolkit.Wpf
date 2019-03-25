@@ -1,0 +1,34 @@
+﻿<kino:KinoTransitioningContentControl x:Name="ContentControl"
+                                      Transition="{x:Static kino:KinoTransitioningContentControl.DownTransitionState}">
+    <ContentControl.ContentTemplate>
+        <DataTemplate>
+            <Grid MinWidth="370">
+                <Grid.Background>
+                    <SolidColorBrush Color="#aa000000" />
+                </Grid.Background>
+                <TextBlock Foreground="#22ffffff"
+                           Margin="4,2"
+                           FontSize="34"
+                           Text="{Binding CodeFaa}" />
+                <StackPanel HorizontalAlignment="Right"
+                            Margin="0, 0, 8, 0">
+                    <TextBlock HorizontalAlignment="Right"
+                               Foreground="White"
+                               FontSize="12"
+                               Text="{Binding LimitedName}"
+                               Padding="2" />
+                    <TextBlock HorizontalAlignment="Right"
+                               Foreground="White"
+                               FontSize="14"
+                               Text="{Binding City}"
+                               Padding="2" />
+                    <TextBlock HorizontalAlignment="Right"
+                               Foreground="White"
+                               FontSize="14"
+                               Text="{Binding State}"
+                               Padding="2" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </ContentControl.ContentTemplate>
+</kino:KinoTransitioningContentControl>
