@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="ProgressRing\TemplateSettingValues.cs" />
     <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
+    <Compile Include="Resizer\InnerContentControl.cs" />
     <Compile Include="Resizer\KinoResizer.cs" />
     <Compile Include="ScrollViewer\KinoScrollViewer.cs" />
     <Compile Include="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />

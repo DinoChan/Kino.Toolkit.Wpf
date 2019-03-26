@@ -8,9 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace Kino.Toolkit.Wpf
+namespace Kino.Toolkit.Wpf.Primitives
 {
-    [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = InnerContentControlName, Type = typeof(InnerContentControl))]
     public class KinoResizer : ContentControl
     {
         /// <summary>
@@ -19,13 +19,26 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty AnimationProperty =
             DependencyProperty.Register(nameof(Animation), typeof(DoubleAnimation), typeof(KinoResizer), new PropertyMetadata(default(DoubleAnimation), OnAnimationChanged));
 
-        private const string ContentPresenterName = "ContentPresenter";
+        /// <summary>
+        /// 标识 ContentHeight 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty ContentHeightProperty =
+            DependencyProperty.Register(nameof(ContentHeight), typeof(double), typeof(KinoResizer), new PropertyMetadata(default(double), OnContentHeightChanged));
+
+        /// <summary>
+        /// 标识 ContentWidth 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty ContentWidthProperty =
+            DependencyProperty.Register(nameof(ContentWidth), typeof(double), typeof(KinoResizer), new PropertyMetadata(default(double), OnContentWidthChanged));
+
+        private const string InnerContentControlName = "InnerContentControl";
         private readonly DoubleAnimation _defaultHeightAnimation;
         private readonly DoubleAnimation _defaultWidthAnimation;
-        private ContentPresenter _contentPreseter;
+        private InnerContentControl _innerContentControl;
         private Storyboard _resizingStoryboard;
         private bool _isResizing;
-        private bool _hasFirstSizeChanged;
+        private readonly bool _hasFirstSizeChanged;
+        private bool _isInnerContentMeasuring;
 
         public KinoResizer()
         {
@@ -55,22 +68,40 @@ namespace Kino.Toolkit.Wpf
             set => SetValue(AnimationProperty, value);
         }
 
-        protected ContentPresenter ContentPresenter
+        /// <summary>
+        /// 获取或设置ContentHeight的值
+        /// </summary>
+        public double ContentHeight
+        {
+            get => (double)GetValue(ContentHeightProperty);
+            set => SetValue(ContentHeightProperty, value);
+        }
+
+        /// <summary>
+        /// 获取或设置ContentWidth的值
+        /// </summary>
+        public double ContentWidth
+        {
+            get => (double)GetValue(ContentWidthProperty);
+            set => SetValue(ContentWidthProperty, value);
+        }
+
+        protected InnerContentControl InnerContentControl
         {
             get
             {
-                return _contentPreseter;
+                return _innerContentControl;
             }
 
             set
             {
-                if (_contentPreseter != null)
-                    _contentPreseter.SizeChanged -= OnContentSizeChanged;
+                if (_innerContentControl != null)
+                    _innerContentControl.Measuring -= OnInnerContentMeasuring;
 
-                _contentPreseter = value;
+                _innerContentControl = value;
 
-                if (_contentPreseter != null)
-                    _contentPreseter.SizeChanged += OnContentSizeChanged;
+                if (_innerContentControl != null)
+                    _innerContentControl.Measuring += OnInnerContentMeasuring;
             }
         }
 
@@ -84,11 +115,11 @@ namespace Kino.Toolkit.Wpf
                 {
                     heightAnimation = Animation.Clone();
                     Storyboard.SetTarget(heightAnimation, this);
-                    Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(MinHeightProperty));
+                    Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(ContentHeightProperty));
 
                     widthAnimation = Animation.Clone();
                     Storyboard.SetTarget(widthAnimation, this);
-                    Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(MinWidthProperty));
+                    Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(ContentWidthProperty));
                 }
                 else
                 {
@@ -97,9 +128,9 @@ namespace Kino.Toolkit.Wpf
                 }
 
                 heightAnimation.From = ActualHeight;
-                heightAnimation.To = ContentPresenter.ActualHeight;
+                heightAnimation.To = InnerContentControl.DesiredSize.Height;
                 widthAnimation.From = ActualWidth;
-                widthAnimation.To = ContentPresenter.ActualWidth;
+                widthAnimation.To = InnerContentControl.DesiredSize.Width;
 
                 _resizingStoryboard.Children.Clear();
                 _resizingStoryboard.Children.Add(heightAnimation);
@@ -111,7 +142,27 @@ namespace Kino.Toolkit.Wpf
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            ContentPresenter = GetTemplateChild(ContentPresenterName) as ContentPresenter;
+            InnerContentControl = GetTemplateChild(InnerContentControlName) as InnerContentControl;
+        }
+
+        /// <summary>
+        /// ContentHeight 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">ContentHeight 属性的旧值。</param>
+        /// <param name="newValue">ContentHeight 属性的新值。</param>
+        protected virtual void OnContentHeightChanged(double oldValue, double newValue)
+        {
+            InvalidateMeasure();
+        }
+
+        /// <summary>
+        /// ContentWidth 属性更改时调用此方法。
+        /// </summary>
+        /// <param name="oldValue">ContentWidth 属性的旧值。</param>
+        /// <param name="newValue">ContentWidth 属性的新值。</param>
+        protected virtual void OnContentWidthChanged(double oldValue, double newValue)
+        {
+            InvalidateMeasure();
         }
 
         /// <summary>
@@ -125,21 +176,18 @@ namespace Kino.Toolkit.Wpf
 
         protected override Size MeasureOverride(Size constraint)
         {
-            int count = VisualChildrenCount;
-            UIElement child = (count > 0) ? GetVisualChild(0) as UIElement : null;
-            Size desiredSize = default(Size);
-            if (child != null)
-            {
-                child.Measure(constraint);
-            }
+            if (_isInnerContentMeasuring == false && _isResizing == false)
+                return base.MeasureOverride(constraint);
 
-            return desiredSize;
-        }
+            _isInnerContentMeasuring = false;
 
-        protected override void OnContentChanged(object oldContent, object newContent)
-        {
-            base.OnContentChanged(oldContent, newContent);
-            ChangeSize(_hasFirstSizeChanged);
+            if (_isResizing)
+                return new Size(ContentWidth, ContentHeight);
+            else
+                ChangeSize(true);
+
+            return base.MeasureOverride(constraint);
+
         }
 
         private static void OnAnimationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -155,23 +203,44 @@ namespace Kino.Toolkit.Wpf
             target?.OnAnimationChanged(oldValue, newValue);
         }
 
-        private void OnContentSizeChanged(object sender, SizeChangedEventArgs e)
+        private void OnInnerContentMeasuring(object sender, EventArgs e)
         {
-            ChangeSize(_hasFirstSizeChanged);
-            _hasFirstSizeChanged = true;
+            _isInnerContentMeasuring = true;
+        }
+
+        private static void OnContentHeightChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (double)args.OldValue;
+            var newValue = (double)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoResizer;
+            target?.OnContentHeightChanged(oldValue, newValue);
+        }
+
+        private static void OnContentWidthChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (double)args.OldValue;
+            var newValue = (double)args.NewValue;
+            if (oldValue == newValue)
+                return;
+
+            var target = obj as KinoResizer;
+            target?.OnContentWidthChanged(oldValue, newValue);
         }
 
         private void ChangeSize(bool useAnimation)
         {
-            if (ContentPresenter == null)
+            if (InnerContentControl == null)
             {
                 return;
             }
 
             if (useAnimation == false)
             {
-                MinHeight = ContentPresenter.ActualHeight;
-                MinWidth = ContentPresenter.ActualWidth;
+                ContentHeight = InnerContentControl.ActualHeight;
+                ContentWidth = InnerContentControl.ActualWidth;
             }
             else
             {
@@ -187,8 +256,6 @@ namespace Kino.Toolkit.Wpf
 
         private void OnResizingCompleted(object sender, EventArgs e)
         {
-            MinHeight = 0;
-            MinWidth = 0;
             _isResizing = false;
         }
     }

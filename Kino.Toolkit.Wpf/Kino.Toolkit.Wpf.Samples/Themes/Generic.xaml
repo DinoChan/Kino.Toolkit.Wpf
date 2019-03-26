@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-                    xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                    xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                     xmlns:liveExplorer="clr-namespace:Xceed.Wpf.Toolkit.LiveExplorer.Core">
 
     <local:SourceCodeTypeConverter x:Key="SourceCodeTypeConverter" />
