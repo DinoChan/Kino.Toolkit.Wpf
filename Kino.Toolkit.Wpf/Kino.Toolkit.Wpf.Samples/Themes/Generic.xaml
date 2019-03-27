@@ -97,10 +97,10 @@
                 Value="#FFD3D6DB" />
         <Setter Property="BorderThickness"
                 Value="1" />
-        <Setter Property="Width"
-                Value="900" />
-        <Setter Property="HorizontalAlignment"
-                Value="Left" />
+        <!--<Setter Property="Width"
+                Value="900" />-->
+        <!--<Setter Property="HorizontalAlignment"
+                Value="Left" />-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:SourceCodeBox}">

@@ -176,18 +176,16 @@ namespace Kino.Toolkit.Wpf.Primitives
 
         protected override Size MeasureOverride(Size constraint)
         {
-            if (_isInnerContentMeasuring == false && _isResizing == false)
-                return base.MeasureOverride(constraint);
-
-            _isInnerContentMeasuring = false;
-
             if (_isResizing)
                 return new Size(ContentWidth, ContentHeight);
-            else
+
+            if (_isInnerContentMeasuring)
+            {
+                _isInnerContentMeasuring = false;
                 ChangeSize(true);
+            }
 
             return base.MeasureOverride(constraint);
-
         }
 
         private static void OnAnimationChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -201,11 +199,6 @@ namespace Kino.Toolkit.Wpf.Primitives
 
             var target = obj as KinoResizer;
             target?.OnAnimationChanged(oldValue, newValue);
-        }
-
-        private void OnInnerContentMeasuring(object sender, EventArgs e)
-        {
-            _isInnerContentMeasuring = true;
         }
 
         private static void OnContentHeightChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -256,6 +249,12 @@ namespace Kino.Toolkit.Wpf.Primitives
 
         private void OnResizingCompleted(object sender, EventArgs e)
         {
+            _isResizing = false;
+        }
+
+        private void OnInnerContentMeasuring(object sender, EventArgs e)
+        {
+            _isInnerContentMeasuring = true;
             _isResizing = false;
         }
     }
