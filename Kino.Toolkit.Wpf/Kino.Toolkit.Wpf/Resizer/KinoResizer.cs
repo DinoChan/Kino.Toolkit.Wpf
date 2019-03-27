@@ -52,11 +52,11 @@ namespace Kino.Toolkit.Wpf.Primitives
             _resizingStoryboard.Completed += OnResizingCompleted;
             _defaultHeightAnimation = new DoubleAnimation() { Duration = new Duration(TimeSpan.Zero) };
             Storyboard.SetTarget(_defaultHeightAnimation, this);
-            Storyboard.SetTargetProperty(_defaultHeightAnimation, new PropertyPath(MinHeightProperty));
+            Storyboard.SetTargetProperty(_defaultHeightAnimation, new PropertyPath(ContentHeightProperty));
 
             _defaultWidthAnimation = new DoubleAnimation() { Duration = new Duration(TimeSpan.Zero) };
             Storyboard.SetTarget(_defaultWidthAnimation, this);
-            Storyboard.SetTargetProperty(_defaultWidthAnimation, new PropertyPath(MinWidthProperty));
+            Storyboard.SetTargetProperty(_defaultWidthAnimation, new PropertyPath(ContentWidthProperty));
         }
 
         /// <summary>
