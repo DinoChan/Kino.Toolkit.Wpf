@@ -6,6 +6,7 @@
                     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <local:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
     <system:Double x:Key="HighContrast.GroupsBorder.Height">94.0</system:Double>
     <LinearGradientBrush x:Key="Ribbon.MouseOverBackground"
                          StartPoint="0,0"
@@ -257,6 +258,7 @@
                                             Width="108"
                                             Visibility="{TemplateBinding IsHostedInRibbonWindow, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <ContentControl Name="windowIconPadding"
+                                            Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                             Margin="5,0,0,0"
                                             IsHitTestVisible="False"
                                             DockPanel.Dock="Left"
@@ -271,6 +273,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Border Name="QatTopHostLeftBorder"
+                                            Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                             Grid.Column="0"
                                             Margin="6,6,-1,5"
                                             Width="2"
