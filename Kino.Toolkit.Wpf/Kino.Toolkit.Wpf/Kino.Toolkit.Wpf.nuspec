@@ -2,17 +2,23 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.1</version>
+    <version>1.2.0</version>
     <title>Kino.Toolkit.Wpf</title>
     <authors>dino.c</authors>
     <owners>dino.c</owners>
-    <licenseUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf</projectUrl>
-    <iconUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/logo.jpg</iconUrl>
+    <iconUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/Logo.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A set of wpf toolkit.</description>
-    <releaseNotes>1.0.1</releaseNotes>
-    <copyright>Copyright 2018 dino.c</copyright>
+    <releaseNotes>1.2.0</releaseNotes>
+    <copyright>Copyright 2019 dino.c</copyright>
     <tags>WPF Control Toolkit Xaml</tags>
+    <dependencies>
+    
+      <group targetFramework="net461">
+        <dependency id="Expression.Interaction" version="3.0.40218" />
+      </group>
+    </dependencies>
   </metadata>
 </package>
