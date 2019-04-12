@@ -1,9 +1,17 @@
 ﻿<StackPanel>
+    <TextBlock Text="Selection Mode"
+               Margin="8,8,8,0" />
+    <ComboBox Width="300"
+              HorizontalAlignment="Left"
+              Margin="8"
+              x:Name="SelectionComboBox" />
+              
     <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=ListBox}"
-                                       Content="全选" />
+                                       Content="全选"
+                                       Margin="8,8,8,0" />
     <kino:KinoListBox DisplayMemberPath="Name"
                       ItemsSource="{Binding}"
-                      SelectionMode="Extended"
-                      Margin="0,4,0,0"
+                      SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
+                      Margin="8,4,8,8"
                       x:Name="ListBox" />
 </StackPanel>

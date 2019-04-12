@@ -5,20 +5,197 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
+                  xmlns:kino1="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                   mc:Ignorable="d"
                   Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/ListBox"
                   Header="ListBox"
-                  d:DesignHeight="450"
+                  d:DesignHeight="750"
                   d:DesignWidth="800">
-    <Grid>
-        <local:SampleSection>
+    <FrameworkElement.Resources>
+        <SolidColorBrush x:Key="Item.MouseOver.Background"
+                         Color="#1F26A0DA" />
+        <SolidColorBrush x:Key="Item.MouseOver.Border"
+                         Color="#a826A0Da" />
+        <SolidColorBrush x:Key="Item.SelectedInactive.Background"
+                         Color="#3DDADADA" />
+        <SolidColorBrush x:Key="Item.SelectedInactive.Border"
+                         Color="#FFDADADA" />
+        <SolidColorBrush x:Key="Item.SelectedActive.Background"
+                         Color="#3D26A0DA" />
+        <SolidColorBrush x:Key="Item.SelectedActive.Border"
+                         Color="#FF26A0DA" />
+        <Style TargetType="{x:Type kino:KinoListBoxItem}"
+               x:Key="SquareListBoxItemStyle">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="True" />
+            <Setter Property="Padding"
+                    Value="1" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type kino:KinoListBoxItem}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="Storyboard1">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                               Storyboard.TargetName="ContentPresenter">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1"
+                                                          Value="0.95">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuarticEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                               Storyboard.TargetName="ContentPresenter">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1"
+                                                          Value="0.95">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuarticEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="Storyboard2">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                                               Storyboard.TargetName="ContentPresenter">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuarticEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                                               Storyboard.TargetName="ContentPresenter">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuarticEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Border x:Name="Bd"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="true">
+                            <Grid x:Name="grid">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Grid.Column="1"
+                                                  x:Name="ContentPresenter"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  RenderTransformOrigin="0.5,0.5">
+                                    <ContentPresenter.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <CheckBox Margin="6"
+                                          IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          IsTabStop="False"
+                                          x:Name="SelectionCheckMark"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background"
+                                        TargetName="Bd"
+                                        Value="{StaticResource Item.MouseOver.Background}" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="Bd"
+                                        Value="{StaticResource Item.MouseOver.Border}" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive"
+                                               Value="False" />
+                                    <Condition Property="IsSelected"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background"
+                                        TargetName="Bd"
+                                        Value="{StaticResource Item.SelectedInactive.Background}" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="Bd"
+                                        Value="{StaticResource Item.SelectedInactive.Border}" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive"
+                                               Value="True" />
+                                    <Condition Property="IsSelected"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background"
+                                        TargetName="Bd"
+                                        Value="{StaticResource Item.SelectedActive.Background}" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="Bd"
+                                        Value="{StaticResource Item.SelectedActive.Border}" />
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter Property="TextElement.Foreground"
+                                        TargetName="Bd"
+                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListBox},Path=SelectionMode}"
+                                         Value="Single">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource Storyboard2}" />
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource Storyboard1}" />
+                                </DataTrigger.ExitActions>
+                                <Setter Property="Visibility"
+                                        TargetName="SelectionCheckMark"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </FrameworkElement.Resources>
+    <StackPanel>
+        <local:SampleSection Header="基本使用">
             <StackPanel>
+                <TextBlock Text="Selection Mode"
+                           Margin="8,8,8,0" />
+                <ComboBox Width="300"
+                          HorizontalAlignment="Left"
+                          Margin="8"
+                          x:Name="SelectionComboBox" />
                 <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=ListBox}"
-                                                   Content="全选" />
+                                                   Content="全选"
+                                                   Margin="8,8,8,0" />
                 <kino:KinoListBox DisplayMemberPath="Name"
                                   ItemsSource="{Binding}"
-                                  SelectionMode="Extended"
-                                  Margin="0,4,0,0"
+                                  SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
+                                  Margin="8,4,8,8"
                                   x:Name="ListBox" />
             </StackPanel>
             <local:SampleSection.SourceCodes>
@@ -30,5 +207,62 @@
                                        CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ListBoxSample.Section2.txt" />
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
-    </Grid>
+
+        <local:SampleSection Header="自定义样式">
+            <StackPanel HorizontalAlignment="Left">
+                <Grid>
+                    <CheckBox Content="多选"
+                              Margin="8"
+                              Checked="OnChangeToMultipleSelection"
+                              Unchecked="OnChangeToSingleSelection"
+                              HorizontalAlignment="Left" />
+                    <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=SquareListBox}"
+                                                       Content="全选"
+                                                       Margin="8"
+                                                       Visibility="Collapsed"
+                                                       x:Name="SquareSelectionCheckBox"
+                                                       HorizontalAlignment="Right" />
+                </Grid>
+                <kino:KinoListBox Margin="8,0,8,8"
+                                  x:Name="SquareListBox"
+                                  BorderThickness="0"
+                                  ItemContainerStyle="{StaticResource SquareListBoxItemStyle}"
+                                  SelectionMode="Single">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="520" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <FrameworkElement.Resources>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="Height"
+                                    Value="100" />
+                            <Setter Property="Width"
+                                    Value="100" />
+                            <Setter Property="Fill"
+                                    Value="MediumPurple" />
+                        </Style>
+                    </FrameworkElement.Resources>
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                    <Rectangle />
+                </kino:KinoListBox>
+            </StackPanel>
+        </local:SampleSection>
+    </StackPanel>
 </local:SamplePage>
