@@ -10,6 +10,8 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Window/Ribbon.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <local:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
+
     <DataTemplate x:Key="RestoreWhite">
         <Grid UseLayoutRounding="True">
             <Path Data="M1,3 L1,11 L9,11 L9,3 z M3,1 L3,2 L10,2 L10,9 L11,9 L11,1 z M2 ,0 L12,0 L12,10 L10,10 L10,12 L0,12 L0,2 L2 ,2 z"
@@ -189,8 +191,6 @@
                 Value="True" />
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
-        <Setter Property="Icon"
-                Value="/Kino.Toolkit.Wpf;component/Assets/Images/kino.ico" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome UseAeroCaptionButtons="False"
@@ -198,6 +198,8 @@
             </Setter.Value>
         </Setter>
         <Setter Property="local:WindowService.IsBindingToSystemCommands"
+                Value="True" />
+        <Setter Property="local:WindowService.IsDragMoveEnabled"
                 Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -223,7 +225,8 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{TemplateBinding Icon}"
                                            VerticalAlignment="Center"
-                                           Margin="5,0,5,0"
+                                           Margin="5,0,0,0"
+                                           Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                            Height="{x:Static SystemParameters.SmallIconHeight}"
                                            Width="{x:Static SystemParameters.SmallIconWidth}"
                                            WindowChrome.IsHitTestVisibleInChrome="True">
@@ -236,9 +239,10 @@
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Image>
-                                               
-                                       
+
+
                                     <ContentControl IsTabStop="False"
+                                                    Margin="5,0,0,0"
                                                     Foreground="White"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
@@ -307,7 +311,7 @@
                                     Value="{x:Static SystemParameters.WindowResizeBorderThickness}" />
                             <Setter Property="Margin"
                                     TargetName="LayoutRoot"
-                                    Value="{Binding ExtraBorderPadding, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    Value="{x:Static local:WindowParameters.PaddedBorderThickness}" />
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
@@ -374,8 +378,6 @@
                 Value="True" />
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
-        <Setter Property="Icon"
-                Value="/Kino.Toolkit.Wpf;component/Assets/Images/kino.ico" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome UseAeroCaptionButtons="False"
@@ -383,6 +385,8 @@
             </Setter.Value>
         </Setter>
         <Setter Property="local:WindowService.IsBindingToSystemCommands"
+                Value="True" />
+        <Setter Property="local:WindowService.IsDragMoveEnabled"
                 Value="True" />
         <Setter Property="RibbonStyle"
                 Value="{StaticResource RibbonStyle}" />
@@ -408,9 +412,10 @@
                                             Margin="0,-1,0,0">
                                     <Image Source="{TemplateBinding Icon}"
                                            VerticalAlignment="Center"
-                                           Margin="5,0,5,0"
+                                           Margin="5,0,0,0"
                                            Height="{x:Static SystemParameters.SmallIconHeight}"
                                            Width="{x:Static SystemParameters.SmallIconWidth}"
+                                           Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                            WindowChrome.IsHitTestVisibleInChrome="True">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -423,13 +428,13 @@
                                     </Image>
                                 </StackPanel>
                                 <StackPanel x:Name="WindowCommandButtonsPanel"
+                                            Margin="5,-1,-1,0"
                                             Grid.Column="1"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Stretch"
                                             Background="Transparent"
                                             Orientation="Horizontal"
-                                            WindowChrome.IsHitTestVisibleInChrome="True"
-                                            Margin="0,-1,-1,0">
+                                            WindowChrome.IsHitTestVisibleInChrome="True">
                                     <ContentPresenter Content="{Binding FunctionBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                                       Focusable="False" />
                                     <Button x:Name="MinimizeButton"
@@ -485,7 +490,7 @@
                                     Value="{x:Static SystemParameters.WindowResizeBorderThickness}" />
                             <Setter Property="Margin"
                                     TargetName="LayoutRoot"
-                                    Value="{Binding ExtraBorderPadding, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    Value="{x:Static local:WindowParameters.PaddedBorderThickness}" />
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">

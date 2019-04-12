@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace Kino.Toolkit.Wpf
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(NavigateUri.AbsoluteUri));
+                    Process.Start(new ProcessStartInfo(NavigateUri.AbsoluteUri));
                 }
                 catch (Win32Exception)
                 {

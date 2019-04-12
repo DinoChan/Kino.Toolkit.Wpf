@@ -63,13 +63,17 @@ namespace Kino.Toolkit.Wpf
                 DpiScale dpi = VisualTreeHelper.GetDpi(_window);
                 if (_window.WindowState == WindowState.Maximized)
                 {
-                    // 因为不想在最大化时改变标题高度，所以这里再加上 SystemParameters.FixedFrameHorizontalBorderHeight 才是正确的高度
-                    point.Y += (SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX) + PaddedBorder + (SystemParameters.FixedFrameHorizontalBorderHeight * dpi.DpiScaleX);
-                    point.X += (SystemParameters.WindowNonClientFrameThickness.Left * dpi.DpiScaleX) + PaddedBorder;
+                    // 因为不想在最大化时改变标题高度，所以这里的计算方式和标准计算方式不一样
+                    point.X += (SystemParameters.WindowNonClientFrameThickness.Left + WindowParameters.PaddedBorderThickness.Left) * dpi.DpiScaleX;
+                    point.Y += (SystemParameters.WindowNonClientFrameThickness.Top +
+                                WindowParameters.PaddedBorderThickness.Top +
+                                SystemParameters.WindowResizeBorderThickness.Top -
+                                _window.BorderThickness.Top)
+                                * dpi.DpiScaleX;
                 }
                 else
                 {
-                    point.X += _window.BorderThickness.Left;
+                    point.X += _window.BorderThickness.Left * dpi.DpiScaleX;
                     point.Y += SystemParameters.WindowNonClientFrameThickness.Top * dpi.DpiScaleX;
                 }
 

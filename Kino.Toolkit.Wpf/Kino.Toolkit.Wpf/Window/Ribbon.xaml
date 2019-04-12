@@ -6,6 +6,7 @@
                     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <local:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
     <system:Double x:Key="HighContrast.GroupsBorder.Height">94.0</system:Double>
     <LinearGradientBrush x:Key="Ribbon.MouseOverBackground"
                          StartPoint="0,0"
@@ -95,7 +96,7 @@
         <Setter Property="TextBlock.TextAlignment"
                 Value="Center" />
         <Setter Property="Height"
-                Value="{x:Static local:RibbonService.RibbonContextualTabGroupHeight}" />
+                Value="{x:Static local:WindowParameters.RibbonContextualTabGroupHeight}" />
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">
@@ -110,8 +111,7 @@
                             Background="{TemplateBinding Control.Background}"
                             BorderBrush="{TemplateBinding Control.BorderBrush}"
                             BorderThickness="{TemplateBinding Control.BorderThickness}"
-                            RenderOptions.ClearTypeHint="Enabled"
-                           >
+                            RenderOptions.ClearTypeHint="Enabled">
                         <Border Name="InnerBorder"
                                 Background="{StaticResource RibbonContextualTabGroup.InnerBorderBackground}"
                                 BorderBrush="{TemplateBinding Control.Background}">
@@ -258,6 +258,7 @@
                                             Width="108"
                                             Visibility="{TemplateBinding IsHostedInRibbonWindow, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <ContentControl Name="windowIconPadding"
+                                            Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                             Margin="5,0,0,0"
                                             IsHitTestVisible="False"
                                             DockPanel.Dock="Left"
@@ -272,6 +273,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Border Name="QatTopHostLeftBorder"
+                                            Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                             Grid.Column="0"
                                             Margin="6,6,-1,5"
                                             Width="2"
@@ -283,7 +285,7 @@
                                                       Content="{TemplateBinding QuickAccessToolBar}"
                                                       IsHitTestVisible="True"
                                                       Margin="0,0.5,0,1.4">
-                                        
+
                                     </ContentPresenter>
                                     <Border Name="QatTopHostRightBorder"
                                             Grid.Column="2"
@@ -326,10 +328,10 @@
                                     </ContentPresenter.Resources>
                                 </ContentPresenter>
                                 <RibbonContextualTabGroupItemsControl x:Name="PART_ContextualTabGroupItemsControl"
-                                                                             IsHitTestVisible="True"
-                                                                      Height="{x:Static local:RibbonService.RibbonContextualTabGroupHeight}"
-                                                                             shell:WindowChrome.IsHitTestVisibleInChrome="True"
-                                                                             HorizontalAlignment="Center" />
+                                                                      IsHitTestVisible="True"
+                                                                      Height="{x:Static local:WindowParameters.RibbonContextualTabGroupHeight}"
+                                                                      shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                                                                      HorizontalAlignment="Center" />
 
                             </primitives:RibbonTitlePanel>
                         </DockPanel>
@@ -342,7 +344,8 @@
                                                      HorizontalAlignment="Left"
                                                      Grid.Row="1"
                                                      Grid.Column="1"
-                                                     Margin="1,1,1,0" Height="26"/>
+                                                     Margin="1,1,1,0"
+                                                     Height="26" />
                         <ContentPresenter Name="PART_HelpPane"
                                           ContentSource="HelpPaneContent"
                                           ContentTemplate="{TemplateBinding Ribbon.HelpPaneContentTemplate}"

@@ -8,6 +8,7 @@ using System.Windows.Controls.Ribbon;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace Kino.Toolkit.Wpf
 {
@@ -39,13 +40,7 @@ namespace Kino.Toolkit.Wpf
         public KinoRibbonWindow()
         {
             DefaultStyleKey = typeof(KinoRibbonWindow);
-            var length = WindowService.PaddedBorder;
-            var dpi = VisualTreeHelper.GetDpi(this);
-            var lengthWithScale = length / dpi.DpiScaleX;
-            ExtraBorderPadding = new Thickness(lengthWithScale);
         }
-
-        public Thickness ExtraBorderPadding { get; }
 
         /// <summary>
         /// 获取或设置RibbonStyle的值
@@ -96,19 +91,10 @@ namespace Kino.Toolkit.Wpf
         {
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            if (e.ButtonState == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
-
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            if (SizeToContent == SizeToContent.WidthAndHeight)
+            if (SizeToContent == SizeToContent.WidthAndHeight && WindowChrome.GetWindowChrome(this) != null)
             {
                 InvalidateMeasure();
             }

@@ -38,6 +38,9 @@
     <ApplicationIcon>Assets\Images\kino.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -45,8 +48,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Airport.cs" />
     <Compile Include="Common\LoadResult.cs" />
     <Compile Include="Common\ModelBase.cs" />
     <Compile Include="Common\PasswordBoxHelper.cs" />
@@ -483,6 +486,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\kino.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\TransitioningContentControlSample.Section5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

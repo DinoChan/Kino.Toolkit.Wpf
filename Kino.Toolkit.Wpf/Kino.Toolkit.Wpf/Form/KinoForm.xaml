@@ -120,7 +120,7 @@
                 Value="False" />
         <Setter Property="Grid.IsSharedSizeScope"
                 Value="True" />
-        <Setter Property="local:FrameworkElementService.IsAutoFocus"
+        <Setter Property="local:FocusService.IsAutoFocus"
                 Value="True" />
         <Setter Property="Padding"
                 Value="0,12,0,0" />

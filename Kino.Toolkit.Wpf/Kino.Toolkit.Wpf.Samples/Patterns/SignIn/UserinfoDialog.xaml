@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-                 xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                 xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                  mc:Ignorable="d"
                  UseLayoutRounding="True"
                  WindowStartupLocation="CenterOwner"

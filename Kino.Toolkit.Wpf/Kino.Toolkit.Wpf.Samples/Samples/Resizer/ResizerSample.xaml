@@ -4,7 +4,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                   mc:Ignorable="d"
                   Header="Resizer"
                   Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/Resizer"

@@ -24,19 +24,19 @@
                 </DataTemplate>
             </Ribbon.TitleTemplate>-->
 
-            <RibbonTab Header="xxxxxxxxxx">
-                <RibbonGroup Header="dddddddddddddddd">
-                    <RibbonButton RibbonControlService.ToolTipTitle="dddddddddddddd"
-                                  RibbonControlService.ToolTipDescription="sssssssssss"
-                                  Label="ddddddddd" />
+            <RibbonTab Header="Home">
+                <RibbonGroup Header="Copy">
+                    <RibbonButton RibbonControlService.ToolTipTitle="Copy"
+                                  RibbonControlService.ToolTipDescription="Copy"
+                                  Label="Copy" />
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="TestRibbonWindow"
                        ContextualTabGroupHeader="TestRibbonWindow">
-                <RibbonGroup Header="dddddddddddddddd">
-                    <RibbonButton RibbonControlService.ToolTipTitle="dddddddddddddd"
-                                  RibbonControlService.ToolTipDescription="sssssssssss"
-                                  Label="ddddddddd" />
+                <RibbonGroup Header="View">
+                    <RibbonButton RibbonControlService.ToolTipTitle="View"
+                                  RibbonControlService.ToolTipDescription="View"
+                                  Label="View" />
                 </RibbonGroup>
             </RibbonTab>
 
@@ -53,7 +53,7 @@
             </Ribbon.QuickAccessToolBar>
         </Ribbon>
         <Button VerticalAlignment="Center"
-                Content="test" />
-       
+                Content="Test"
+                HorizontalAlignment="Center" />
     </Grid>
 </RibbonWindow>

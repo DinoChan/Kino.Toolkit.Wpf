@@ -8,12 +8,12 @@ namespace Kino.Toolkit.Wpf
 {
     public partial class KinoTransitioningContentControl
     {
-        public const string LeftTransitionState = "LeftTransition";
+        public static string LeftTransitionState => "LeftTransition";
 
-        public const string UpTransitionState = "UpTransition";
+        public static string UpTransitionState => "UpTransition";
 
-        public const string RightTransitionState = "RightTransition";
+        public static string RightTransitionState => "RightTransition";
 
-        public const string DownTransitionState = "DownTransition";
+        public static string DownTransitionState => "DownTransition";
     }
 }
