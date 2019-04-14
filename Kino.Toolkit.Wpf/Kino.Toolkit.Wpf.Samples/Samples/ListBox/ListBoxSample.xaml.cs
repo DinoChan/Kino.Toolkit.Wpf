@@ -24,12 +24,28 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             InitializeComponent();
 
+            SelectionComboBox.Items.Add(SelectionMode.Extended);
+            SelectionComboBox.Items.Add(SelectionMode.Multiple);
+            SelectionComboBox.Items.Add(SelectionMode.Single);
+            SelectionComboBox.SelectedIndex = 0;
             var list = new List<TestModel>();
             for (int i = 0; i < 10; i++)
             {
                 list.Add(new TestModel { Name = "this is " + i });
             }
             DataContext = list;
+        }
+
+        private void OnChangeToMultipleSelection(object sender, RoutedEventArgs e)
+        {
+            SquareSelectionCheckBox.Visibility = Visibility.Visible;
+            SquareListBox.SelectionMode = SelectionMode.Multiple;
+        }
+
+        private void OnChangeToSingleSelection(object sender, RoutedEventArgs e)
+        {
+            SquareSelectionCheckBox.Visibility = Visibility.Collapsed;
+            SquareListBox.SelectionMode = SelectionMode.Single;
         }
     }
 }

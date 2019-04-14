@@ -490,5 +490,8 @@
   <ItemGroup>
     <Resource Include="SourceFiles\TransitioningContentControlSample.Section5.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ListBoxSample.Section1 - 复制.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
