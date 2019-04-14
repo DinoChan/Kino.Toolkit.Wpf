@@ -20,5 +20,6 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/HeaderedContentControl/KinoHeaderedContentControl.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Layout/KinoPageTitle.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/SkeletonScreen/KinoSkeletonScreen.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf;component/Expander/KinoExpander.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

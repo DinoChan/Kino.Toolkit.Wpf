@@ -67,6 +67,7 @@
     <Compile Include="Common\FocusService.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WindowNotifications.cs" />
+    <Compile Include="Expander\KinoExpander.cs" />
     <Compile Include="FunctionBar\KinoFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
@@ -151,6 +152,10 @@
     <Compile Include="Window\WindowService.cs" />
     <Compile Include="Window\WindowService.WindowCommandHelper.cs" />
     <Page Include="Button\KinoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Expander\KinoExpander.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

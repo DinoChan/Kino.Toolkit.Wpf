@@ -106,6 +106,17 @@
 
             <local:SampleSection Header="Expander">
                 <StackPanel>
+                    <kino:KinoExpander Header="KinoExpander">
+                        <Grid>
+                            <Rectangle Height="100"
+                                       Fill="Red" />
+                            <StackPanel>
+                            <TextBlock Text="AAAccxvcvc"/>
+                                <TextBlock Text="BBBBBBBB"/>
+                                <TextBlock Text="CCCCCCCCCC"/>
+                            </StackPanel>
+                        </Grid>
+                    </kino:KinoExpander>
                     <kino:KinoResizer HorizontalContentAlignment="Stretch">
                         <Expander Header="Expander1">
                             <Rectangle Height="100"
