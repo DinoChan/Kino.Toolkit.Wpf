@@ -67,6 +67,7 @@
     <Compile Include="Common\FocusService.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WindowNotifications.cs" />
+    <Compile Include="Expander\ExpandableContentControl.cs" />
     <Compile Include="Expander\KinoExpander.cs" />
     <Compile Include="FunctionBar\KinoFunctionBar.cs" />
     <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />

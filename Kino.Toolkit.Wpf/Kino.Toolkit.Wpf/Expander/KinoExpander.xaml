@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Primitives="clr-namespace:Kino.Toolkit.Wpf.Primitives"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
-    
+
     <SolidColorBrush x:Key="Expander.MouseOver.Circle.Stroke" Color="#FF5593FF"/>
     <SolidColorBrush x:Key="Expander.MouseOver.Circle.Fill" Color="#FFF3F9FF"/>
     <SolidColorBrush x:Key="Expander.MouseOver.Arrow.Stroke" Color="#FF000000"/>
@@ -235,7 +235,7 @@
                 <ControlTemplate TargetType="{x:Type local:KinoExpander}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="true">
                         <VisualStateManager.VisualStateGroups>
-                            <!--<VisualStateGroup x:Name="ExpansionStates">
+                            <VisualStateGroup x:Name="ExpansionStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="Collapsed" GeneratedDuration="0" To="Expanded">
                                         <VisualTransition.GeneratedEasingFunction>
@@ -251,12 +251,12 @@
                                 <VisualState x:Name="Expanded"/>
                                 <VisualState x:Name="Collapsed">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ExpandSite">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ExpandRoot">
                                             <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                            </VisualStateGroup>-->
+                            </VisualStateGroup>
                             <!--<VisualStateGroup x:Name="ExpandDirectionStates">
                                 <VisualState x:Name="ExpandDown">
                                     <Storyboard>
@@ -275,42 +275,32 @@
                         </VisualStateManager.VisualStateGroups>
                         <DockPanel>
                             <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" Content="{TemplateBinding Header}" DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" Style="{StaticResource ExpanderDownHeaderStyle}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <ScrollViewer Padding="0" BorderThickness="0" VerticalScrollBarVisibility="Disabled" Margin="{TemplateBinding Padding}">
-                                <Grid>
-                                    <Primitives:KinoResizer HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
-                                        <Primitives:KinoResizer.Animation>
-                                            <DoubleAnimation BeginTime="0:0:0"
-                                             Duration="0:0:5">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <QuinticEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Primitives:KinoResizer.Animation>
-                                        <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          Margin="{StaticResource MarginDown}"/>
-                                    </Primitives:KinoResizer>
-                                </Grid>
-                            </ScrollViewer>
-                            
+                            <Primitives:KinoResizer x:Name="ExpandRoot"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Margin="{TemplateBinding Padding}" ClipToBounds="True">
+                                <Primitives:ExpandableContentControl IsExpand="False" x:Name="ExpandableContentControl" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Primitives:ExpandableContentControl>
+                            </Primitives:KinoResizer>
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="true">
-                            <Setter Property="Margin" TargetName="ExpandSite" Value="{StaticResource NoMargin}"/>
+                            <Setter Property="IsExpand" TargetName="ExpandableContentControl" Value="True"/>
                         </Trigger>
                         <Trigger Property="ExpandDirection" Value="Right">
-                            <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Right"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ExpandRoot" Value="Right"/>
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderRightHeaderStyle}"/>
                         </Trigger>
                         <Trigger Property="ExpandDirection" Value="Up">
-                            <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Top"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ExpandRoot" Value="Top"/>
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderUpHeaderStyle}"/>
                         </Trigger>
                         <Trigger Property="ExpandDirection" Value="Left">
-                            <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Left"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ExpandRoot" Value="Left"/>
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderLeftHeaderStyle}"/>
                         </Trigger>

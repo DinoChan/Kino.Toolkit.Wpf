@@ -106,12 +106,34 @@
 
             <local:SampleSection Header="Expander">
                 <StackPanel>
-                    <kino:KinoExpander Header="KinoExpander">
+                    <kino:KinoExpander Header="KinoExpander" HorizontalContentAlignment="Stretch" ExpandDirection="Right">
                         <Grid>
                             <Rectangle Height="100"
                                        Fill="Red" />
                             <StackPanel>
                             <TextBlock Text="AAAccxvcvc"/>
+                                <TextBlock Text="BBBBBBBB"/>
+                                <TextBlock Text="CCCCCCCCCC"/>
+                            </StackPanel>
+                        </Grid>
+                    </kino:KinoExpander>
+                    <kino:KinoExpander Header="KinoExpander" HorizontalContentAlignment="Stretch" ExpandDirection="Up">
+                        <Grid>
+                            <Rectangle Height="100"
+                                       Fill="Red" />
+                            <StackPanel>
+                                <TextBlock Text="AAAccxvcvc"/>
+                                <TextBlock Text="BBBBBBBB"/>
+                                <TextBlock Text="CCCCCCCCCC"/>
+                            </StackPanel>
+                        </Grid>
+                    </kino:KinoExpander>
+                    <kino:KinoExpander Header="KinoExpander" HorizontalContentAlignment="Stretch" ExpandDirection="Left">
+                        <Grid>
+                            <Rectangle Height="100"
+                                       Fill="Red" />
+                            <StackPanel>
+                                <TextBlock Text="AAAccxvcvc"/>
                                 <TextBlock Text="BBBBBBBB"/>
                                 <TextBlock Text="CCCCCCCCCC"/>
                             </StackPanel>
