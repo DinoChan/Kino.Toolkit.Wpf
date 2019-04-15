@@ -9,30 +9,6 @@ namespace Kino.Toolkit.Wpf
 {
     public sealed class DataGridHeaderBorder : Border
     {
-        private enum AeroFreezables
-        {
-            NormalBevel,
-            NormalBackground,
-            PressedBackground,
-            HoveredBackground,
-            SortedBackground,
-            PressedTop,
-            NormalSides,
-            PressedSides,
-            HoveredSides,
-            SortedSides,
-            PressedBevel,
-            NormalBottom,
-            PressedOrHoveredBottom,
-            SortedBottom,
-            ArrowBorder,
-            ArrowFill,
-            ArrowFillScale,
-            ArrowUpGeometry,
-            ArrowDownGeometry,
-            NumFreezables
-        }
-
         public static readonly DependencyProperty IsHoveredProperty;
 
         public static readonly DependencyProperty IsPressedProperty;
@@ -49,124 +25,71 @@ namespace Kino.Toolkit.Wpf
 
         public static readonly DependencyProperty SeparatorVisibilityProperty;
 
-        private static List<Freezable> _freezableCache;
-
         private static readonly object _cacheAccess;
+
+        private static List<Freezable> _freezableCache;
 
         public bool IsHovered
         {
-            get
-            {
-                return (bool)base.GetValue(IsHoveredProperty);
-            }
+            get => (bool)GetValue(IsHoveredProperty);
 
-            set
-            {
-                base.SetValue(IsHoveredProperty, value);
-            }
+            set => SetValue(IsHoveredProperty, value);
         }
 
         public bool IsPressed
         {
-            get
-            {
-                return (bool)base.GetValue(IsPressedProperty);
-            }
+            get => (bool)GetValue(IsPressedProperty);
 
-            set
-            {
-                base.SetValue(IsPressedProperty, value);
-            }
+            set => SetValue(IsPressedProperty, value);
         }
 
         public bool IsClickable
         {
-            get
-            {
-                return (bool)base.GetValue(IsClickableProperty);
-            }
+            get => (bool)GetValue(IsClickableProperty);
 
-            set
-            {
-                base.SetValue(IsClickableProperty, value);
-            }
+            set => SetValue(IsClickableProperty, value);
         }
 
         public ListSortDirection? SortDirection
         {
-            get
-            {
-                return (ListSortDirection?)base.GetValue(SortDirectionProperty);
-            }
+            get => (ListSortDirection?)GetValue(SortDirectionProperty);
 
-            set
-            {
-                base.SetValue(SortDirectionProperty, value);
-            }
+            set => SetValue(SortDirectionProperty, value);
         }
 
         public bool IsSelected
         {
-            get
-            {
-                return (bool)base.GetValue(IsSelectedProperty);
-            }
+            get => (bool)GetValue(IsSelectedProperty);
 
-            set
-            {
-                base.SetValue(IsSelectedProperty, value);
-            }
+            set => SetValue(IsSelectedProperty, value);
         }
 
         public Orientation Orientation
         {
-            get
-            {
-                return (Orientation)base.GetValue(OrientationProperty);
-            }
+            get => (Orientation)GetValue(OrientationProperty);
 
-            set
-            {
-                base.SetValue(OrientationProperty, value);
-            }
+            set => SetValue(OrientationProperty, value);
+        }
+
+        public Brush SeparatorBrush
+        {
+            get => (Brush)GetValue(SeparatorBrushProperty);
+
+            set => SetValue(SeparatorBrushProperty, value);
+        }
+
+        public Visibility SeparatorVisibility
+        {
+            get => (Visibility)GetValue(SeparatorVisibilityProperty);
+
+            set => SetValue(SeparatorVisibilityProperty, value);
         }
 
         private bool UsingBorderImplementation
         {
             get
             {
-                if (base.Background == null)
-                {
-                    return base.BorderBrush != null;
-                }
-
-                return true;
-            }
-        }
-
-        public Brush SeparatorBrush
-        {
-            get
-            {
-                return (Brush)base.GetValue(SeparatorBrushProperty);
-            }
-
-            set
-            {
-                base.SetValue(SeparatorBrushProperty, value);
-            }
-        }
-
-        public Visibility SeparatorVisibility
-        {
-            get
-            {
-                return (Visibility)base.GetValue(SeparatorVisibilityProperty);
-            }
-
-            set
-            {
-                base.SetValue(SeparatorVisibilityProperty, value);
+                return Background == null ? BorderBrush != null : true;
             }
         }
 
@@ -688,6 +611,30 @@ namespace Kino.Toolkit.Wpf
             {
                 dc.Pop();
             }
+        }
+
+        private enum AeroFreezables
+        {
+            NormalBevel,
+            NormalBackground,
+            PressedBackground,
+            HoveredBackground,
+            SortedBackground,
+            PressedTop,
+            NormalSides,
+            PressedSides,
+            HoveredSides,
+            SortedSides,
+            PressedBevel,
+            NormalBottom,
+            PressedOrHoveredBottom,
+            SortedBottom,
+            ArrowBorder,
+            ArrowFill,
+            ArrowFillScale,
+            ArrowUpGeometry,
+            ArrowDownGeometry,
+            NumFreezables
         }
     }
 }

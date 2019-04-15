@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf"
-                    xmlns:classic="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
                     xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
                     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
@@ -194,7 +193,7 @@
                                    AllowsTransparency="True"
                                    PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                                    IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
-                                <classic:SystemDropShadowChrome Name="Shdw"
+                                <local:SystemDropShadowChrome Name="Shdw"
                                                                 Focusable="True"
                                                                 Color="Transparent"
                                                                 Margin="0,0,5,5"
@@ -208,7 +207,7 @@
                                                         KeyboardNavigation.TabNavigation="Cycle"
                                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                                     </Border>
-                                </classic:SystemDropShadowChrome>
+                                </local:SystemDropShadowChrome>
                             </Popup>
                         </Border>
                         <ContentControl Name="mainItemsPresenterHost"
@@ -485,7 +484,7 @@
                                  Value="True">
                             <Setter TargetName="Shdw"
                                     Value="{StaticResource DropShadow.Color}"
-                                    Property="classic:SystemDropShadowChrome.Color" />
+                                    Property="local:SystemDropShadowChrome.Color" />
                         </Trigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
