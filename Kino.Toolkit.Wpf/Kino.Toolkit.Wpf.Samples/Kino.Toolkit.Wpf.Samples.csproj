@@ -137,6 +137,9 @@
     <Compile Include="Samples\DataPager\DataPagerSample.xaml.cs">
       <DependentUpon>DataPagerSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\Expander\ExpanderSample.xaml.cs">
+      <DependentUpon>ExpanderSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\Form\FormItemSample.xaml.cs">
       <DependentUpon>FormItemSample.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\DataPager\DataPagerSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Expander\ExpanderSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -491,7 +498,13 @@
     <Resource Include="SourceFiles\TransitioningContentControlSample.Section5.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SourceFiles\ListBoxSample.Section1 - 复制.txt" />
+    <Resource Include="SourceFiles\ExpanderSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section5 - 复制.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ExpanderSample.Section2.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

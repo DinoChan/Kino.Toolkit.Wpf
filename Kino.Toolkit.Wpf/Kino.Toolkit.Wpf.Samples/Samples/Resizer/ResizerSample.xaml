@@ -83,7 +83,7 @@
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
-                                           Haader="ResizerSample.xaml"
+                                           Haader="ExpanderSample.xaml"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ResizerSample.Section3.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
@@ -104,41 +104,8 @@
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
 
-            <local:SampleSection Header="Expander">
+            <local:SampleSection Header="Simple Expander">
                 <StackPanel>
-                    <kino:KinoExpander Header="KinoExpander" HorizontalContentAlignment="Stretch" ExpandDirection="Right">
-                        <Grid>
-                            <Rectangle Height="100"
-                                       Fill="Red" />
-                            <StackPanel>
-                            <TextBlock Text="AAAccxvcvc"/>
-                                <TextBlock Text="BBBBBBBB"/>
-                                <TextBlock Text="CCCCCCCCCC"/>
-                            </StackPanel>
-                        </Grid>
-                    </kino:KinoExpander>
-                    <kino:KinoExpander Header="KinoExpander" HorizontalContentAlignment="Stretch" ExpandDirection="Up">
-                        <Grid>
-                            <Rectangle Height="100"
-                                       Fill="Red" />
-                            <StackPanel>
-                                <TextBlock Text="AAAccxvcvc"/>
-                                <TextBlock Text="BBBBBBBB"/>
-                                <TextBlock Text="CCCCCCCCCC"/>
-                            </StackPanel>
-                        </Grid>
-                    </kino:KinoExpander>
-                    <kino:KinoExpander Header="KinoExpander" HorizontalContentAlignment="Stretch" ExpandDirection="Left">
-                        <Grid>
-                            <Rectangle Height="100"
-                                       Fill="Red" />
-                            <StackPanel>
-                                <TextBlock Text="AAAccxvcvc"/>
-                                <TextBlock Text="BBBBBBBB"/>
-                                <TextBlock Text="CCCCCCCCCC"/>
-                            </StackPanel>
-                        </Grid>
-                    </kino:KinoExpander>
                     <kino:KinoResizer HorizontalContentAlignment="Stretch">
                         <Expander Header="Expander1">
                             <Rectangle Height="100"
@@ -154,7 +121,7 @@
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
-                                           Haader="ResizerSample.xaml"
+                                           Haader="ExpanderSample.xaml.cs"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ResizerSample.Section5.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>

@@ -275,6 +275,8 @@
                                           SampleType="{x:Type local:WindowSample}" />
                 <local:SampleTreeViewItem Header="Resizer"
                                           SampleType="{x:Type local:ResizerSample}" />
+                <local:SampleTreeViewItem Header="Expander"
+                                          SampleType="{x:Type local:ExpanderSample}" />
                 <local:SampleTreeViewItem Header="SquareBox"
                                           SampleType="{x:Type local:SquareBoxSample}" />
                 <local:SampleTreeViewItem Header="FormItem"

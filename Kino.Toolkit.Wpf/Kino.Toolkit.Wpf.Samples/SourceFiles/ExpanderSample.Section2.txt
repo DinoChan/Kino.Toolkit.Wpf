@@ -1,0 +1,42 @@
+﻿var expanders = new List<KinoExpander>();
+Expander firstExpander = null;
+for (int i = 0; i < 10; i++)
+{
+    var expander = new KinoExpander() { Header = "This is AccordionItem " + i };
+    if (i == 0)
+        firstExpander = expander;
+
+    Grid.SetRow(expander, i);
+    var panel = new StackPanel();
+    panel.Children.Add(new CheckBox { Content = "Calendar" });
+    panel.Children.Add(new CheckBox { Content = "中国节假日" });
+    panel.Children.Add(new CheckBox { Content = "Birthdays" });
+    expander.Content = panel;
+    MenuRoot.Children.Add(expander);
+    MenuRoot.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+    int index = i;
+    expander.Expanded += (s, args) =>
+    {
+
+        var lastExpander = expanders.Where(p => p.IsExpanded && p != s).FirstOrDefault();
+        if (lastExpander != null)
+            lastExpander.IsExpanded = false;
+
+        MenuRoot.RowDefinitions[index].Height = new GridLength(1, GridUnitType.Star);
+    };
+
+    expander.Collapsed += (s, args) =>
+      {
+          if (expanders.Any(p => p.IsExpanded) == false)
+          {
+              expander.IsExpanded = true;
+              return;
+          }
+
+          MenuRoot.RowDefinitions[index].Height = new GridLength(1, GridUnitType.Auto);
+      };
+    expanders.Add(expander);
+}
+
+
+firstExpander.IsExpanded = true;

@@ -1,0 +1,12 @@
+﻿<kino:KinoResizer HorizontalContentAlignment="Stretch">
+    <Expander Header="Expander1">
+        <Rectangle Height="100"
+                   Fill="Red" />
+    </Expander>
+</kino:KinoResizer>
+<kino:KinoResizer HorizontalContentAlignment="Stretch">
+    <Expander Header="Expander2">
+        <Rectangle Height="100"
+                   Fill="Blue" />
+    </Expander>
+</kino:KinoResizer>
