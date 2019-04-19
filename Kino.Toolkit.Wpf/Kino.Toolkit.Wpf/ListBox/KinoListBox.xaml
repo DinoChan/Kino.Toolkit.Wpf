@@ -70,6 +70,12 @@
                                     TargetName="SelectionCheckMark"
                                     Value="Collapsed" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListBox},Path=IsMultiSelectCheckBoxEnabled}"
+                                     Value="False">
+                            <Setter Property="Visibility"
+                                    TargetName="SelectionCheckMark"
+                                    Value="Collapsed" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

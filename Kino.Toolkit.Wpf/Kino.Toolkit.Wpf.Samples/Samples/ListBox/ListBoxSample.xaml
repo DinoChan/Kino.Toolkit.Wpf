@@ -189,11 +189,19 @@
                           HorizontalAlignment="Left"
                           Margin="8"
                           x:Name="SelectionComboBox" />
+
+                <TextBlock Text="IsMultiSelectCheckBoxEnabled"
+                           Margin="8,8,8,0" />
+                <CheckBox Width="300"
+                          HorizontalAlignment="Left"
+                          Margin="8"
+                          x:Name="IsMultiSelectCheckBoxEnabledElement" />
                 <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=ListBox}"
                                                    Content="全选"
                                                    Margin="8,8,8,0" />
                 <kino:KinoListBox DisplayMemberPath="Name"
                                   ItemsSource="{Binding}"
+                                  IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement,Path=IsChecked}"
                                   SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
                                   Margin="8,4,8,8"
                                   x:Name="ListBox" />
