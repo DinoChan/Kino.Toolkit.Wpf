@@ -62,6 +62,9 @@
                     <PasswordBox kino:KinoForm.Label="密码"
                                  Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
                                   local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
+                    <TextBox kino:KinoForm.Label="邮箱"/>
+                    <TextBox kino:KinoForm.Label="家庭住址"/>
+                    <TextBox kino:KinoForm.Label="邮编"/>
                     <kino:KinoForm.FunctionBar>
                         <kino:KinoFormFunctionBar>
                             <kino:KinoFormFunctionBar.Header>

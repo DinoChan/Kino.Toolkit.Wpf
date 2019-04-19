@@ -17,11 +17,6 @@ namespace Kino.Toolkit.Wpf.Primitives
         public static readonly DependencyProperty PercentageProperty =
             DependencyProperty.Register(nameof(Percentage), typeof(double), typeof(ExpandableContentControl), new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        static ExpandableContentControl()
-        {
-
-        }
-
         /// <summary>
         /// 获取或设置Pentage的值
         /// </summary>
