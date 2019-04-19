@@ -229,14 +229,14 @@
                                            Height="{x:Static SystemParameters.SmallIconHeight}"
                                            Width="{x:Static SystemParameters.SmallIconWidth}"
                                            WindowChrome.IsHitTestVisibleInChrome="True">
-                                        <i:Interaction.Triggers>
+                                        <!--<i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseLeftButtonDown">
                                                 <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
                                             <i:EventTrigger EventName="MouseRightButtonDown">
                                                 <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
-                                        </i:Interaction.Triggers>
+                                        </i:Interaction.Triggers>-->
                                     </Image>
 
 
@@ -416,14 +416,14 @@
                                            Width="{x:Static SystemParameters.SmallIconWidth}"
                                            Visibility="{Binding Icon,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
                                            WindowChrome.IsHitTestVisibleInChrome="True">
-                                        <i:Interaction.Triggers>
+                                        <!--<i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseLeftButtonDown">
                                                 <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
                                             <i:EventTrigger EventName="MouseRightButtonDown">
                                                 <i:InvokeCommandAction Command="{x:Static SystemCommands.ShowSystemMenuCommand}" />
                                             </i:EventTrigger>
-                                        </i:Interaction.Triggers>
+                                        </i:Interaction.Triggers>-->
                                     </Image>
                                 </StackPanel>
                                 <StackPanel x:Name="WindowCommandButtonsPanel"

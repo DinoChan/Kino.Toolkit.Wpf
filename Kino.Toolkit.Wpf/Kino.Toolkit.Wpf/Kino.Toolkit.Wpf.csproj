@@ -13,10 +13,21 @@
     <PackageIconUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/Logo.png?raw=true</PackageIconUrl>
     <PackageTags>WPF Control Toolkit Xaml</PackageTags>
   </PropertyGroup>
+
+
+
   <ItemGroup>
-    <PackageReference Include="Expression.Interaction" Version="3.0.40218" />
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>
