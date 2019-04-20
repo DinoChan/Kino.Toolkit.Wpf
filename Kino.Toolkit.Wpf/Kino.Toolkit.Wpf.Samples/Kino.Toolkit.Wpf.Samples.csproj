@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Kino.Toolkit.Wpf.Samples</RootNamespace>
     <AssemblyName>Kino.Toolkit.Wpf.Samples</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -38,8 +38,8 @@
     <ApplicationIcon>Assets\Images\kino.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\Microsoft.Expression.Interactions.dll</HintPath>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
@@ -47,9 +47,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net46\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -136,6 +133,9 @@
     </Compile>
     <Compile Include="Samples\DataPager\DataPagerSample.xaml.cs">
       <DependentUpon>DataPagerSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Expander\ExpanderSample.xaml.cs">
+      <DependentUpon>ExpanderSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\Form\FormItemSample.xaml.cs">
       <DependentUpon>FormItemSample.xaml</DependentUpon>
@@ -227,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\DataPager\DataPagerSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Expander\ExpanderSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -489,6 +493,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\TransitioningContentControlSample.Section5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ExpanderSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ResizerSample.Section5 - 复制.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ExpanderSample.Section2.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

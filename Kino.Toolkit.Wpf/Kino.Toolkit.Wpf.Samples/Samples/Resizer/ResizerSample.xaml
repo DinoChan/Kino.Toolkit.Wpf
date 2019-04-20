@@ -83,7 +83,7 @@
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
-                                           Haader="ResizerSample.xaml"
+                                           Haader="ExpanderSample.xaml"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ResizerSample.Section3.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
@@ -104,7 +104,7 @@
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
 
-            <local:SampleSection Header="Expander">
+            <local:SampleSection Header="Simple Expander">
                 <StackPanel>
                     <kino:KinoResizer HorizontalContentAlignment="Stretch">
                         <Expander Header="Expander1">
@@ -121,9 +121,41 @@
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
-                                           Haader="ResizerSample.xaml"
+                                           Haader="ExpanderSample.xaml.cs"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ResizerSample.Section5.txt" />
                 </local:SampleSection.SourceCodes>
+            </local:SampleSection>
+
+            <local:SampleSection Header="Outlook 2019">
+                <StackPanel>
+                    <kino:KinoResizer HorizontalContentAlignment="Stretch">
+                        <Expander Header="我的日历">
+                            <StackPanel>
+                                <CheckBox Content="Calender"/>
+                                <CheckBox Content="中国节假日"/>
+                                <CheckBox Content="Birthdays"/>
+                            </StackPanel>
+                        </Expander>
+                    </kino:KinoResizer>
+                    <kino:KinoResizer HorizontalContentAlignment="Stretch">
+                        <Expander Header="其它日历">
+                            <StackPanel>
+                                <CheckBox Content="Calender"/>
+                                <CheckBox Content="中国节假日"/>
+                                <CheckBox Content="Birthdays"/>
+                            </StackPanel>
+                        </Expander>
+                    </kino:KinoResizer>
+                    <kino:KinoResizer HorizontalContentAlignment="Stretch">
+                        <Expander Header="共享日历">
+                            <StackPanel>
+                                <CheckBox Content="Calender"/>
+                                <CheckBox Content="中国节假日"/>
+                                <CheckBox Content="Birthdays"/>
+                            </StackPanel>
+                        </Expander>
+                    </kino:KinoResizer>
+                </StackPanel>
             </local:SampleSection>
         </StackPanel>
     </Grid>

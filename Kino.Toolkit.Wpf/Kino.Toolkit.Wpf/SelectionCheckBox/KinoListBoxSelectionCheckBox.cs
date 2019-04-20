@@ -44,7 +44,7 @@ namespace Kino.Toolkit.Wpf
 
         protected override void SelectAll()
         {
-            if (RelativeListBox != null)
+            if (RelativeListBox != null && RelativeListBox.SelectionMode != SelectionMode.Single)
             {
                 RelativeListBox.SelectAll();
             }
@@ -52,7 +52,7 @@ namespace Kino.Toolkit.Wpf
 
         protected override void UnselectAll()
         {
-            if (RelativeListBox != null)
+            if (RelativeListBox != null && RelativeListBox.SelectionMode != SelectionMode.Single)
             {
                 RelativeListBox.UnselectAll();
             }

@@ -1,9 +1,16 @@
-﻿<kino:KinoDataGrid ItemsSource="{Binding}"
-                   AutoGenerateColumns="False"
-                   IsReadOnly="True">
+﻿<TextBlock Text="Selection Mode"
+           Margin="8,8,8,0" />
+<ComboBox Width="300"
+          HorizontalAlignment="Left"
+          Margin="8"
+          x:Name="SelectionComboBox" />
+<kino:KinoDataGrid ItemsSource="{Binding}" 
+               AutoGenerateColumns="False"
+               SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
+               IsReadOnly="True">
     <DataGrid.Columns>
         <DataGridTextColumn Header="Name"
-                            Binding="{Binding Name}"
-                            Width="200" />
+                        Binding="{Binding Name}"
+                        Width="200" />
     </DataGrid.Columns>
 </kino:KinoDataGrid>

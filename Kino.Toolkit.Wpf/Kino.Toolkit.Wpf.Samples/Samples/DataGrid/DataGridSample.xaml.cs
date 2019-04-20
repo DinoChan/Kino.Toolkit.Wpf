@@ -23,6 +23,11 @@ namespace Kino.Toolkit.Wpf.Samples
         public DataGridSample()
         {
             InitializeComponent();
+
+            SelectionComboBox.Items.Add(DataGridSelectionMode.Extended);
+            SelectionComboBox.Items.Add(DataGridSelectionMode.Single);
+            SelectionComboBox.SelectedIndex = 0;
+
             var list = new List<TestModel>();
             for (int i = 0; i < 10; i++)
             {
@@ -30,8 +35,5 @@ namespace Kino.Toolkit.Wpf.Samples
             }
             DataContext = list;
         }
-
-
-       
     }
 }

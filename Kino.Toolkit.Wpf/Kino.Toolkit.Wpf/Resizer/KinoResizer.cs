@@ -237,10 +237,7 @@ namespace Kino.Toolkit.Wpf.Primitives
             }
             else
             {
-                if (_isResizing)
-                {
-                    ResizingStoryboard.Stop();
-                }
+                _resizingStoryboard.Stop();
 
                 _isResizing = true;
                 ResizingStoryboard.Begin();
