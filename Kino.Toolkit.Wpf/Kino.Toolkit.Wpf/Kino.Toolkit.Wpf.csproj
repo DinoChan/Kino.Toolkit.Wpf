@@ -15,6 +15,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
+    <Compile Remove="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Kino.Toolkit.Wpf.1.0.0.nupkg" />
+    <None Remove="Kino.Toolkit.Wpf.1.0.1.nupkg" />
+    <None Remove="Kino.Toolkit.Wpf.1.2.0.nupkg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1" />
   </ItemGroup>
 

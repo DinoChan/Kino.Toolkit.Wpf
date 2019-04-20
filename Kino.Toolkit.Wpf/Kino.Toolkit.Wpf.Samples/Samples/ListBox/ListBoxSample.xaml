@@ -3,9 +3,8 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:kino="clr-namespace:Kino.Toolkit.Wpf;assembly=Kino.Toolkit.Wpf"
+                  xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                   xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Samples"
-                  xmlns:kino1="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                   mc:Ignorable="d"
                   Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/ListBox"
                   Header="ListBox"
@@ -196,9 +195,9 @@
                           HorizontalAlignment="Left"
                           Margin="8"
                           x:Name="IsMultiSelectCheckBoxEnabledElement" />
-                <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=ListBox}"
-                                                   Content="全选"
-                                                   Margin="8,8,8,0" />
+                <kino:KinoSelectionCheckBox Selector="{Binding ElementName=ListBox}"
+                                            Content="全选"
+                                            Margin="8,8,8,0" />
                 <kino:KinoListBox DisplayMemberPath="Name"
                                   ItemsSource="{Binding}"
                                   IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement,Path=IsChecked}"
@@ -224,12 +223,12 @@
                               Checked="OnChangeToMultipleSelection"
                               Unchecked="OnChangeToSingleSelection"
                               HorizontalAlignment="Left" />
-                    <kino:KinoListBoxSelectionCheckBox RelativeListBox="{Binding ElementName=SquareListBox}"
-                                                       Content="全选"
-                                                       Margin="8"
-                                                       Visibility="Collapsed"
-                                                       x:Name="SquareSelectionCheckBox"
-                                                       HorizontalAlignment="Right" />
+                    <kino:KinoSelectionCheckBox Selector="{Binding ElementName=SquareListBox}"
+                                                Content="全选"
+                                                Margin="8"
+                                                Visibility="Collapsed"
+                                                x:Name="SquareSelectionCheckBox"
+                                                HorizontalAlignment="Right" />
                 </Grid>
                 <kino:KinoListBox Margin="8,0,8,8"
                                   x:Name="SquareListBox"

@@ -1,10 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Kino.Toolkit.Wpf"
+                    xmlns:Primitives="clr-namespace:Kino.Toolkit.Wpf.Primitives"
                     x:Class="WpfApp1.MainWindow">
 
     <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
-    
+
     <Style x:Key="RowHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Height" Value="2"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -17,17 +18,18 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="DataGridRowHeaderStyle" TargetType="{x:Type DataGridRowHeader}">
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
                     <Grid>
                         <local:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" IsSelected="{TemplateBinding IsRowSelected}" Orientation="Horizontal" Padding="{TemplateBinding Padding}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
-                            <StackPanel Orientation="Horizontal">
-                                <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
-                                <Control SnapsToDevicePixels="false" Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Visibility="{Binding (Validation.HasError), Converter={StaticResource bool2VisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                            <Control SnapsToDevicePixels="false" Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Visibility="{Binding (Validation.HasError), Converter={StaticResource bool2VisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                        </StackPanel>
                         </local:DataGridHeaderBorder>
                         <Thumb x:Name="PART_TopHeaderGripper" Style="{StaticResource RowHeaderGripperStyle}" VerticalAlignment="Top"/>
                         <Thumb x:Name="PART_BottomHeaderGripper" Style="{StaticResource RowHeaderGripperStyle}" VerticalAlignment="Bottom"/>
@@ -39,7 +41,8 @@
 
     <DataTemplate x:Key="DataGridRowHeaderTemplate">
         <Grid>
-            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}, Mode=FindAncestor}}"/>
+            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}, Mode=FindAncestor}}"
+                          x:Name="SelectionCheckBox"/>
         </Grid>
     </DataTemplate>
 
@@ -75,9 +78,10 @@
                                         </Grid.RowDefinitions>
                                         <!--<Button Command="{x:Static DataGrid.SelectAllCommand}" Focusable="false" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>-->
                                         <Grid Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
-                                            <local:KinoDataGridSelectionCheckBox VerticalAlignment="Center" HorizontalAlignment="Center" RelativeDataGrid="{Binding RelativeSource={RelativeSource  Mode=FindAncestor, AncestorType=DataGrid}}" Focusable="False" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <Primitives:KinoSelectionCheckBox x:Name="SelectionCheckBox" Selector="{Binding RelativeSource={RelativeSource  Mode=FindAncestor, AncestorType=DataGrid}}" Focusable="False" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                                                  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                         </Grid>
-                                        
+
                                         <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" Grid.ColumnSpan="2" Grid.Row="1"/>
                                         <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
@@ -105,11 +109,12 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
             </MultiTrigger>
+            <Trigger Property="SelectionMode" Value="Single">
+                <Setter Property="HeadersVisibility"  Value="Column" />
+            </Trigger>
+            <Trigger Property="IsMultiSelectCheckBoxEnabled" Value="False">
+                <Setter Property="HeadersVisibility"  Value="Column"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
-   
-
-
-    
-
 </ResourceDictionary>
