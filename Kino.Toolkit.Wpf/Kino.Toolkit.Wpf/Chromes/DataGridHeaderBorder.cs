@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Kino.Toolkit.Wpf
+namespace Kino.Toolkit.Wpf.Primitives
 {
     public sealed class DataGridHeaderBorder : Border
     {
