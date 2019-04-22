@@ -1,22 +1,23 @@
-﻿<TextBlock Text="Selection Mode"
-           Margin="8,8,8,0" />
-<ComboBox Width="300"
-          HorizontalAlignment="Left"
-          Margin="8"
-          x:Name="SelectionComboBox" />
-
-<TextBlock Text="IsMultiSelectCheckBoxEnabled"
-           Margin="8,8,8,0" />
-<CheckBox Width="300"
-          HorizontalAlignment="Left"
-          Margin="8"
-          x:Name="IsMultiSelectCheckBoxEnabledElement" />
-<kino:KinoSelectionCheckBox Selector="{Binding ElementName=ListBox}"
-                            Content="全选"
-                            Margin="8,8,8,0" />
-<kino:KinoListBox DisplayMemberPath="Name"
-                  ItemsSource="{Binding}"
-                  IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement,Path=IsChecked}"
-                  SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
-                  Margin="8,4,8,8"
-                  x:Name="ListBox" />
+﻿<StackPanel>
+    <kino:KinoSelectionCheckBox Selector="{Binding ElementName=ListBox}"
+                                Content="全选"
+                                Margin="8,8,8,0" />
+    <kino:KinoListBox DisplayMemberPath="Name"
+                      ItemsSource="{Binding}"
+                      IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement,Path=IsChecked}"
+                      SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
+                      Margin="8,4,8,8"
+                      x:Name="ListBox" />
+</StackPanel>
+<local:SampleSection.ControlPanel>
+    <kino:KinoForm Style="{StaticResource ControlPanelFromStyle}">
+        <ComboBox Width="300"
+                  HorizontalAlignment="Left"
+                  x:Name="SelectionComboBox"  
+                  kino:KinoForm.Label="SelectionMode"/>
+        <CheckBox Width="300"
+                  kino:KinoForm.Label="IsMultiSelectCheckBoxEnabled"
+                  HorizontalAlignment="Left"
+                  x:Name="IsMultiSelectCheckBoxEnabledElement" />
+    </kino:KinoForm>
+</local:SampleSection.ControlPanel>
