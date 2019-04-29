@@ -16,9 +16,9 @@
     <tags>WPF Control Toolkit Xaml</tags>
     <dependencies>
     
-      <group targetFramework="net461">
+      <!--<group targetFramework="net461">
         <dependency id="Expression.Interaction" version="3.0.40218" />
-      </group>
+      </group>-->
     </dependencies>
   </metadata>
 </package>

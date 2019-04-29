@@ -389,10 +389,12 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core.CodeFormatting
     protected abstract string MatchEval( Match match ); //protected abstract
 
     //does the formatting job
+#pragma warning disable IDE0060 // 删除未使用的参数
     private Paragraph FormatCode( string source, bool lineNumbers,
         bool alternate, bool embedStyleSheet, bool subCode )
     {
-      Paragraph codeParagraph = new Paragraph();
+#pragma warning restore IDE0060 // 删除未使用的参数
+            Paragraph codeParagraph = new Paragraph();
       //replace special characters
       StringBuilder sb = new StringBuilder( source );
       //color the code

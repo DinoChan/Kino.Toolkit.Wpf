@@ -25,5 +25,12 @@ namespace Kino.Toolkit.Wpf
         {
             return new KinoListBoxItem();
         }
+
+        protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
+        {
+            base.PrepareContainerForItemOverride(element, item);
+            if (element is KinoListBoxItem listBoxItem)
+                listBoxItem.Owner = this;
+        }
     }
 }

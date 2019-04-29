@@ -27,7 +27,7 @@ namespace Kino.Toolkit.Wpf
         /// 标识 Label 依赖属性。
         /// </summary>
         public static readonly DependencyProperty LabelProperty =
-            DependencyProperty.Register(nameof(Label), typeof(object), typeof(KinoFormItem), new PropertyMetadata(default(object), OnLabelChanged));
+            DependencyProperty.Register(nameof(Label), typeof(object), typeof(KinoFormItem), new PropertyMetadata(default, OnLabelChanged));
 
         /// <summary>
         /// 标识 LabelTemplate 依赖属性。

@@ -14,6 +14,14 @@
     <PackageTags>WPF Control Toolkit Xaml</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+    <CodeAnalysisRuleSet>Kino.Toolkit.Wpf.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <CodeAnalysisRuleSet>Kino.Toolkit.Wpf.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
     <Compile Remove="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
@@ -26,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1" />
   </ItemGroup>
 

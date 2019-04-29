@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Kino.Toolkit.Wpf
+namespace Kino.Toolkit.Wpf.Primitives
 {
     public sealed class DataGridHeaderBorder : Border
     {
@@ -160,7 +160,7 @@ namespace Kino.Toolkit.Wpf
             if (child != null)
             {
                 Thickness thickness = base.Padding;
-                if (thickness.Equals(default(Thickness)))
+                if (thickness.Equals(default))
                 {
                     thickness = DefaultPadding;
                 }
@@ -182,7 +182,7 @@ namespace Kino.Toolkit.Wpf
                 return new Size(desiredSize.Width + thickness.Left + thickness.Right, desiredSize.Height + thickness.Top + thickness.Bottom);
             }
 
-            return default(Size);
+            return default;
         }
 
         protected override Size ArrangeOverride(Size arrangeSize)
@@ -196,7 +196,7 @@ namespace Kino.Toolkit.Wpf
             if (child != null)
             {
                 Thickness thickness = base.Padding;
-                if (thickness.Equals(default(Thickness)))
+                if (thickness.Equals(default))
                 {
                     thickness = DefaultPadding;
                 }
@@ -287,9 +287,9 @@ namespace Kino.Toolkit.Wpf
             EnsureCache(19);
             if (flag)
             {
-                Matrix trans = default(Matrix);
+                Matrix trans = default;
                 trans.RotateAt(-90.0, 0.0, 0.0);
-                Matrix trans2 = default(Matrix);
+                Matrix trans2 = default;
                 trans2.Translate(0.0, renderSize.Height);
                 MatrixTransform matrixTransform = new MatrixTransform(trans * trans2);
                 matrixTransform.Freeze();
@@ -306,7 +306,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     linearGradientBrush = new LinearGradientBrush
                     {
-                        StartPoint = default(Point),
+                        StartPoint = default,
                         EndPoint = new Point(0.0, 1.0)
                     };
                     linearGradientBrush.GradientStops.Add(new GradientStop(Color.FromArgb(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue), 0.0));
@@ -339,7 +339,7 @@ namespace Kino.Toolkit.Wpf
             {
                 linearGradientBrush2 = new LinearGradientBrush
                 {
-                    StartPoint = default(Point),
+                    StartPoint = default,
                     EndPoint = new Point(0.0, 1.0)
                 };
                 switch (aeroFreezables)
@@ -408,7 +408,7 @@ namespace Kino.Toolkit.Wpf
                             {
                                 linearGradientBrush3 = new LinearGradientBrush
                                 {
-                                    StartPoint = default(Point),
+                                    StartPoint = default,
                                     EndPoint = new Point(0.0, 1.0)
                                 };
                                 brush = linearGradientBrush3;
@@ -454,7 +454,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     linearGradientBrush4 = new LinearGradientBrush
                     {
-                        StartPoint = default(Point),
+                        StartPoint = default,
                         EndPoint = new Point(0.0, 1.0)
                     };
                     linearGradientBrush4.GradientStops.Add(new GradientStop(Color.FromArgb(byte.MaxValue, 134, 163, 178), 0.0));
@@ -471,7 +471,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     linearGradientBrush5 = new LinearGradientBrush
                     {
-                        StartPoint = default(Point),
+                        StartPoint = default,
                         EndPoint = new Point(0.0, 1.0)
                     };
                     linearGradientBrush5.GradientStops.Add(new GradientStop(Color.FromArgb(byte.MaxValue, 162, 203, 224), 0.0));
@@ -568,7 +568,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     linearGradientBrush6 = new LinearGradientBrush
                     {
-                        StartPoint = default(Point),
+                        StartPoint = default,
                         EndPoint = new Point(1.0, 1.0)
                     };
                     linearGradientBrush6.GradientStops.Add(new GradientStop(Color.FromArgb(byte.MaxValue, 60, 94, 114), 0.0));
@@ -584,7 +584,7 @@ namespace Kino.Toolkit.Wpf
                 {
                     linearGradientBrush7 = new LinearGradientBrush
                     {
-                        StartPoint = default(Point),
+                        StartPoint = default,
                         EndPoint = new Point(1.0, 1.0)
                     };
                     linearGradientBrush7.GradientStops.Add(new GradientStop(Color.FromArgb(byte.MaxValue, 97, 150, 182), 0.0));

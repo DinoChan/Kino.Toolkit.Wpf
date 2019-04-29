@@ -38,8 +38,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer.Core
       //document.PageWidth = 2500;
 
       CSharpFormat cSharpFormat = new CSharpFormat();
-      Paragraph p = new Paragraph();
-      p = cSharpFormat.FormatCode( text );
+      Paragraph p = cSharpFormat.FormatCode( text );
       document.Blocks.Add( p );
     }
   }

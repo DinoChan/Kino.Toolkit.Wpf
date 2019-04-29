@@ -21,8 +21,8 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class CurdSample
     {
-        private AsyncRemoteCollectionView _asyncRemoteCollectionView;
-        private TestCurdService _service;
+        private readonly AsyncRemoteCollectionView _asyncRemoteCollectionView;
+        private readonly TestCurdService _service;
 
         public CurdSample()
         {

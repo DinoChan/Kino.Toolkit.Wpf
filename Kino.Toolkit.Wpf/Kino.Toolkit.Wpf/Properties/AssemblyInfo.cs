@@ -29,7 +29,7 @@ using System.Windows.Markup;
 // 对以下 NeutralResourceLanguage 特性的注释。  更新
 // 以下行中的“en-US”以匹配项目文件中的 UICulture 设置。
 
-// [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None,
     ResourceDictionaryLocation.SourceAssembly)
