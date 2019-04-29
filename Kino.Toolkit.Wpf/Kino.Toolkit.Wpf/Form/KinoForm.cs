@@ -56,7 +56,9 @@ namespace Kino.Toolkit.Wpf
         {
             // refresh the label member template.
             _labelMemberTemplate = null;
+#pragma warning disable IDE0059 // 从不使用分配给符号的值
             var newTemplate = LabelMemberPath;
+#pragma warning restore IDE0059 // 从不使用分配给符号的值
 
             int count = Items.Count;
             for (int i = 0; i < count; i++)
@@ -151,9 +153,11 @@ namespace Kino.Toolkit.Wpf
             if (labelTemplate != null)
                 formItem.LabelTemplate = labelTemplate;
 
-            var binding = new Binding(nameof(Visibility));
-            binding.Source = content;
-            binding.Mode = BindingMode.OneWay;
+            var binding = new Binding(nameof(Visibility))
+            {
+                Source = content,
+                Mode = BindingMode.OneWay
+            };
             formItem.SetBinding(VisibilityProperty, binding);
         }
 

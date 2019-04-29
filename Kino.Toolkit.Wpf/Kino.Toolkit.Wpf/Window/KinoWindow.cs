@@ -25,7 +25,6 @@ namespace Kino.Toolkit.Wpf
 #pragma warning restore SA1202 // Elements must be ordered by access
 
         private readonly IntPtr _trueValue = new IntPtr(1);
-        private readonly IntPtr _falseValue = new IntPtr(0);
 
         public KinoWindow()
         {

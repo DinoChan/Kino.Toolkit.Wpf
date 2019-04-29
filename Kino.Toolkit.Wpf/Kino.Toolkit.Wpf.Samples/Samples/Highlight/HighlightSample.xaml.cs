@@ -22,7 +22,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class HighlightSample
     {
-        private CollectionViewSource _viewSource;
+        private readonly CollectionViewSource _viewSource;
 
         public HighlightSample()
         {

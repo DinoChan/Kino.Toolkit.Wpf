@@ -25,7 +25,6 @@ namespace Kino.Toolkit.Wpf.Samples
         private const string ExpanderToggleButtonName = "ExpanderToggleButton";
         private ContentControl _sourceCodePlacement;
         private ToggleButton _expanderToggleButton;
-        private bool _hasAppledTemplate;
 
 
         public SourceCodeBox()

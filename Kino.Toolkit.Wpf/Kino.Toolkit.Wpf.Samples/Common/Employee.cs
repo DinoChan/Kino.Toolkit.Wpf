@@ -48,6 +48,7 @@ namespace Kino.Toolkit.Wpf.Samples
         {
         }
 
+#pragma warning disable IDE0060 // 删除未使用的参数
         /// <summary>
         /// Initializes a new instance of the Employee class.
         /// </summary>
@@ -57,6 +58,7 @@ namespace Kino.Toolkit.Wpf.Samples
         /// Name of a resource containing a photograph of the employee.
         /// </param>
         internal Employee(string firstName, string lastName, string resourceName) : this(firstName, lastName)
+#pragma warning restore IDE0060 // 删除未使用的参数
         {
             //Photograph = new Photograph(resourceName);
         }
