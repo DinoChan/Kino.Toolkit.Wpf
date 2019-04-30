@@ -115,77 +115,75 @@ namespace Kino.Toolkit.Wpf.Samples
         {
             get
             {
-                IList airports = new List<object>
-                {
-                    new Airport("Phoenix", "Arizona", "PHX", "PHX", "KPHX", "Phoenix Sky Harbor International Airport"),
-                    new Airport("Los Angeles", "California", "LAX", "LAX", "KLAX", "Los Angeles International Airport"),
-                    new Airport("San Diego", "California", "SAN", "SAN", "KSAN", "San Diego International Airport"),
-                    new Airport("San Francisco", "California", "SFO", "SFO", "KSFO", "San Francisco International Airport"),
-                    new Airport("Denver", "Colorado", "DEN", "DEN", "KDEN", "Denver International Airport"),
-                    new Airport("Fort Lauderdale", "Florida", "FLL", "FLL", "KFLL", "Fort Lauderdale-Hollywood International Airport"),
-                    new Airport("Miami", "Florida", "MIA", "MIA", "KMIA", "Miami International Airport"),
-                    new Airport("Orlando", "Florida", "MCO", "MCO", "KMCO", "Orlando International Airport"),
-                    new Airport("Tampa", "Florida", "TPA", "TPA", "KTPA", "Tampa International Airport"),
-                    new Airport("Atlanta", "Georgia", "ATL", "ATL", "KATL", "Hartsfield-Jackson Atlanta International Airport"),
-                    new Airport("Honolulu", "Hawaii", "HNL", "HNL", "PHNL", "Honolulu International Airport / Hickam AFB"),
-                    new Airport("Boise", "Idaho", "BOI", "BOI", "KBOI", "Boise Air Terminal (Gowen Field)"),
-                    new Airport("Chicago", "Illinois", "ORD", "ORD", "KORD", "Chicago O'Hare International Airport"),
-                    new Airport("Chicago", "Illinois", "MDW", "MDW", "KMDW", "Chicago Midway International Airport"),
-                    new Airport("Indianapolis", "Indiana", "IND", "IND", "KIND", "Indianapolis International Airport"),
-                    new Airport("Covington", "Kentucky", "CVG", "CVG", "KCVG", "Cincinnati/Northern Kentucky International Airport"),
-                    new Airport("Louisville", "Kentucky", "SDF", "SDF", "KSDF", "Louisville International Airport (Standiford Field)"),
-                    new Airport("New Orleans", "Louisiana", "MSY", "MSY", "KMSY", "Louis Armstrong New Orleans International Airport"),
-                    new Airport("Baltimore / Glen Burnie", "Maryland", "BWI", "BWI", "KBWI", "Baltimore-Washington International Thurgood Marshall Airport"),
-                    new Airport("Boston", "Massachusetts", "BOS", "BOS", "KBOS", "Gen. Edward Lawrence Logan International Airport"),
-                    new Airport("Detroit", "Michigan", "DTW", "DTW", "KDTW", "Detroit Metropolitan Wayne County Airport"),
-                    new Airport("Grand Rapids", "Michigan", "GRR", "GRR", "KGRR", "Gerald R. Ford International Airport"),
-                    new Airport("Minneapolis", "Minnesota", "MSP", "MSP", "KMSP", "Minneapolis-St. Paul International Airport (Wold-Chamberlain Field)"),
-                    new Airport("Kansas City", "Missouri", "MCI", "MCI", "KMCI", "Kansas City International Airport"),
-                    new Airport("St. Louis", "Missouri", "STL", "STL", "KSTL", "Lambert-St. Louis International Airport"),
-                    new Airport("Omaha", "Nebraska", "OMA", "OMA", "KOMA", "Eppley Airfield"),
-                    new Airport("Las Vegas", "Nevada", "LAS", "LAS", "KLAS", "McCarran International Airport"),
-                    new Airport("Reno", "Nevada", "RNO", "RNO", "KRNO", "Reno-Tahoe International Airport"),
-                    new Airport("Manchester", "New Hampshire", "MHT", "MHT", "KMHT", "Manchester-Boston Regional Airport"),
-                    new Airport("Newark", "New Jersey", "EWR", "EWR", "KEWR", "Newark Liberty International Airport"),
-                    new Airport("Albuquerque", "New Mexico", "ABQ", "ABQ", "KABQ", "Albuquerque International Sunport"),
-                    new Airport("Albany", "New York", "ALB", "ALB", "KALB", "Albany International Airport"),
-                    new Airport("Buffalo", "New York", "BUF", "BUF", "KBUF", "Buffalo Niagara International Airport"),
-                    new Airport("Islip", "New York", "ISP", "ISP", "KISP", "Long Island MacArthur Airport"),
-                    new Airport("New York", "New York", "JFK", "JFK", "KJFK", "John F. Kennedy International Airport"),
-                    new Airport("New York", "New York", "LGA", "LGA", "KLGA", "LaGuardia Airport"),
-                    new Airport("Rochester", "New York", "ROC", "ROC", "KROC", "Greater Rochester International Airport"),
-                    new Airport("Syracuse", "New York", "SYR", "SYR", "KSYR", "Syracuse Hancock International Airport"),
-                    new Airport("Charlotte", "North Carolina", "CLT", "CLT", "KCLT", "Charlotte/Douglas International Airport"),
-                    new Airport("Greensboro", "North Carolina", "GSO", "GSO", "KGSO", "Piedmont Triad International Airport"),
-                    new Airport("Raleigh", "North Carolina", "RDU", "RDU", "KRDU", "Raleigh-Durham International Airport"),
-                    new Airport("Cleveland", "Ohio", "CLE", "CLE", "KCLE", "Cleveland-Hopkins International Airport"),
-                    new Airport("Columbus", "Ohio", "CMH", "CMH", "KCMH", "Port Columbus International Airport"),
-                    new Airport("Dayton", "Ohio", "DAY", "DAY", "KDAY", "James M. Cox Dayton International Airport"),
-                    new Airport("Oklahoma City", "Oklahoma", "OKC", "OKC", "KOKC", "Will Rogers World Airport"),
-                    new Airport("Tulsa", "Oklahoma", "TUL", "TUL", "KTUL", "Tulsa International Airport"),
-                    new Airport("Portland", "Oregon", "PDX", "PDX", "KPDX", "Portland International Airport"),
-                    new Airport("Philadelphia", "Pennsylvania", "PHL", "PHL", "KPHL", "Philadelphia International Airport"),
-                    new Airport("Pittsburgh", "Pennsylvania", "PIT", "PIT", "KPIT", "Pittsburgh International Airport"),
-                    new Airport("Providence", "Rhode Island", "PVD", "PVD", "KPVD", "Theodore Francis Green State Airport"),
-                    new Airport("Memphis", "Tennessee", "MEM", "MEM", "KMEM", "Memphis International Airport"),
-                    new Airport("Nashville", "Tennessee", "BNA", "BNA", "KBNA", "Nashville International Airport (Berry Field)"),
-                    new Airport("Austin", "Texas", "AUS", "AUS", "KAUS", "Austin-Bergstrom International Airport"),
-                    new Airport("Dallas", "Texas", "DAL", "DAL", "KDAL", "Dallas Love Field"),
-                    new Airport("Dallas-Fort Worth", "Texas", "DFW", "DFW", "KDFW", "Dallas-Fort Worth International Airport"),
-                    new Airport("El Paso", "Texas", "ELP", "ELP", "KELP", "El Paso International Airport"),
-                    new Airport("Houston", "Texas", "IAH", "IAH", "KIAH", "George Bush Intercontinental Airport"),
-                    new Airport("Houston", "Texas", "HOU", "HOU", "KHOU", "William P. Hobby Airport"),
-                    new Airport("San Antonio", "Texas", "SAT", "SAT", "KSAT", "San Antonio International Airport"),
-                    new Airport("Salt Lake City", "Utah", "SLC", "SLC", "KSLC", "Salt Lake City International Airport"),
-                    new Airport("Norfolk", "Virginia", "ORF", "ORF", "KORF", "Norfolk International Airport"),
-                    new Airport("Richmond", "Virginia", "RIC", "RIC", "KRIC", "Richmond International Airport"),
-                    new Airport("Washington, D.C. (Arlington County)", "Virginia", "DCA", "DCA", "KDCA", "Ronald Reagan Washington National Airport"),
-                    new Airport("Washington, D.C. (Chantilly / Dulles)", "Virginia", "IAD", "IAD", "KIAD", "Washington Dulles International Airport"),
-                    new Airport("Seattle / Tacoma (SeaTac)", "Washington", "SEA", "SEA", "KSEA", "Seattle-Tacoma International Airport"),
-                    new Airport("Spokane", "Washington", "GEG", "GEG", "KGEG", "Spokane International Airport (Geiger Field)"),
-                    new Airport("Milwaukee", "Wisconsin", "MKE", "MKE", "KMKE", "General Mitchell International Airport"),
-                    new Airport("San Juan", "Puerto Rico", "SJU", "SJU", "TJSJ", "Luis Muñoz Marín International Airport")
-                };
+                IList airports = new List<object>();
+                airports.Add(new Airport("Phoenix", "Arizona", "PHX", "PHX", "KPHX", "Phoenix Sky Harbor International Airport"));
+                airports.Add(new Airport("Los Angeles", "California", "LAX", "LAX", "KLAX", "Los Angeles International Airport"));
+                airports.Add(new Airport("San Diego", "California", "SAN", "SAN", "KSAN", "San Diego International Airport"));
+                airports.Add(new Airport("San Francisco", "California", "SFO", "SFO", "KSFO", "San Francisco International Airport"));
+                airports.Add(new Airport("Denver", "Colorado", "DEN", "DEN", "KDEN", "Denver International Airport"));
+                airports.Add(new Airport("Fort Lauderdale", "Florida", "FLL", "FLL", "KFLL", "Fort Lauderdale-Hollywood International Airport"));
+                airports.Add(new Airport("Miami", "Florida", "MIA", "MIA", "KMIA", "Miami International Airport"));
+                airports.Add(new Airport("Orlando", "Florida", "MCO", "MCO", "KMCO", "Orlando International Airport"));
+                airports.Add(new Airport("Tampa", "Florida", "TPA", "TPA", "KTPA", "Tampa International Airport"));
+                airports.Add(new Airport("Atlanta", "Georgia", "ATL", "ATL", "KATL", "Hartsfield-Jackson Atlanta International Airport"));
+                airports.Add(new Airport("Honolulu", "Hawaii", "HNL", "HNL", "PHNL", "Honolulu International Airport / Hickam AFB"));
+                airports.Add(new Airport("Boise", "Idaho", "BOI", "BOI", "KBOI", "Boise Air Terminal (Gowen Field)"));
+                airports.Add(new Airport("Chicago", "Illinois", "ORD", "ORD", "KORD", "Chicago O'Hare International Airport"));
+                airports.Add(new Airport("Chicago", "Illinois", "MDW", "MDW", "KMDW", "Chicago Midway International Airport"));
+                airports.Add(new Airport("Indianapolis", "Indiana", "IND", "IND", "KIND", "Indianapolis International Airport"));
+                airports.Add(new Airport("Covington", "Kentucky", "CVG", "CVG", "KCVG", "Cincinnati/Northern Kentucky International Airport"));
+                airports.Add(new Airport("Louisville", "Kentucky", "SDF", "SDF", "KSDF", "Louisville International Airport (Standiford Field)"));
+                airports.Add(new Airport("New Orleans", "Louisiana", "MSY", "MSY", "KMSY", "Louis Armstrong New Orleans International Airport"));
+                airports.Add(new Airport("Baltimore / Glen Burnie", "Maryland", "BWI", "BWI", "KBWI", "Baltimore-Washington International Thurgood Marshall Airport"));
+                airports.Add(new Airport("Boston", "Massachusetts", "BOS", "BOS", "KBOS", "Gen. Edward Lawrence Logan International Airport"));
+                airports.Add(new Airport("Detroit", "Michigan", "DTW", "DTW", "KDTW", "Detroit Metropolitan Wayne County Airport"));
+                airports.Add(new Airport("Grand Rapids", "Michigan", "GRR", "GRR", "KGRR", "Gerald R. Ford International Airport"));
+                airports.Add(new Airport("Minneapolis", "Minnesota", "MSP", "MSP", "KMSP", "Minneapolis-St. Paul International Airport (Wold-Chamberlain Field)"));
+                airports.Add(new Airport("Kansas City", "Missouri", "MCI", "MCI", "KMCI", "Kansas City International Airport"));
+                airports.Add(new Airport("St. Louis", "Missouri", "STL", "STL", "KSTL", "Lambert-St. Louis International Airport"));
+                airports.Add(new Airport("Omaha", "Nebraska", "OMA", "OMA", "KOMA", "Eppley Airfield"));
+                airports.Add(new Airport("Las Vegas", "Nevada", "LAS", "LAS", "KLAS", "McCarran International Airport"));
+                airports.Add(new Airport("Reno", "Nevada", "RNO", "RNO", "KRNO", "Reno-Tahoe International Airport"));
+                airports.Add(new Airport("Manchester", "New Hampshire", "MHT", "MHT", "KMHT", "Manchester-Boston Regional Airport"));
+                airports.Add(new Airport("Newark", "New Jersey", "EWR", "EWR", "KEWR", "Newark Liberty International Airport"));
+                airports.Add(new Airport("Albuquerque", "New Mexico", "ABQ", "ABQ", "KABQ", "Albuquerque International Sunport"));
+                airports.Add(new Airport("Albany", "New York", "ALB", "ALB", "KALB", "Albany International Airport"));
+                airports.Add(new Airport("Buffalo", "New York", "BUF", "BUF", "KBUF", "Buffalo Niagara International Airport"));
+                airports.Add(new Airport("Islip", "New York", "ISP", "ISP", "KISP", "Long Island MacArthur Airport"));
+                airports.Add(new Airport("New York", "New York", "JFK", "JFK", "KJFK", "John F. Kennedy International Airport"));
+                airports.Add(new Airport("New York", "New York", "LGA", "LGA", "KLGA", "LaGuardia Airport"));
+                airports.Add(new Airport("Rochester", "New York", "ROC", "ROC", "KROC", "Greater Rochester International Airport"));
+                airports.Add(new Airport("Syracuse", "New York", "SYR", "SYR", "KSYR", "Syracuse Hancock International Airport"));
+                airports.Add(new Airport("Charlotte", "North Carolina", "CLT", "CLT", "KCLT", "Charlotte/Douglas International Airport"));
+                airports.Add(new Airport("Greensboro", "North Carolina", "GSO", "GSO", "KGSO", "Piedmont Triad International Airport"));
+                airports.Add(new Airport("Raleigh", "North Carolina", "RDU", "RDU", "KRDU", "Raleigh-Durham International Airport"));
+                airports.Add(new Airport("Cleveland", "Ohio", "CLE", "CLE", "KCLE", "Cleveland-Hopkins International Airport"));
+                airports.Add(new Airport("Columbus", "Ohio", "CMH", "CMH", "KCMH", "Port Columbus International Airport"));
+                airports.Add(new Airport("Dayton", "Ohio", "DAY", "DAY", "KDAY", "James M. Cox Dayton International Airport"));
+                airports.Add(new Airport("Oklahoma City", "Oklahoma", "OKC", "OKC", "KOKC", "Will Rogers World Airport"));
+                airports.Add(new Airport("Tulsa", "Oklahoma", "TUL", "TUL", "KTUL", "Tulsa International Airport"));
+                airports.Add(new Airport("Portland", "Oregon", "PDX", "PDX", "KPDX", "Portland International Airport"));
+                airports.Add(new Airport("Philadelphia", "Pennsylvania", "PHL", "PHL", "KPHL", "Philadelphia International Airport"));
+                airports.Add(new Airport("Pittsburgh", "Pennsylvania", "PIT", "PIT", "KPIT", "Pittsburgh International Airport"));
+                airports.Add(new Airport("Providence", "Rhode Island", "PVD", "PVD", "KPVD", "Theodore Francis Green State Airport"));
+                airports.Add(new Airport("Memphis", "Tennessee", "MEM", "MEM", "KMEM", "Memphis International Airport"));
+                airports.Add(new Airport("Nashville", "Tennessee", "BNA", "BNA", "KBNA", "Nashville International Airport (Berry Field)"));
+                airports.Add(new Airport("Austin", "Texas", "AUS", "AUS", "KAUS", "Austin-Bergstrom International Airport"));
+                airports.Add(new Airport("Dallas", "Texas", "DAL", "DAL", "KDAL", "Dallas Love Field"));
+                airports.Add(new Airport("Dallas-Fort Worth", "Texas", "DFW", "DFW", "KDFW", "Dallas-Fort Worth International Airport"));
+                airports.Add(new Airport("El Paso", "Texas", "ELP", "ELP", "KELP", "El Paso International Airport"));
+                airports.Add(new Airport("Houston", "Texas", "IAH", "IAH", "KIAH", "George Bush Intercontinental Airport"));
+                airports.Add(new Airport("Houston", "Texas", "HOU", "HOU", "KHOU", "William P. Hobby Airport"));
+                airports.Add(new Airport("San Antonio", "Texas", "SAT", "SAT", "KSAT", "San Antonio International Airport"));
+                airports.Add(new Airport("Salt Lake City", "Utah", "SLC", "SLC", "KSLC", "Salt Lake City International Airport"));
+                airports.Add(new Airport("Norfolk", "Virginia", "ORF", "ORF", "KORF", "Norfolk International Airport"));
+                airports.Add(new Airport("Richmond", "Virginia", "RIC", "RIC", "KRIC", "Richmond International Airport"));
+                airports.Add(new Airport("Washington, D.C. (Arlington County)", "Virginia", "DCA", "DCA", "KDCA", "Ronald Reagan Washington National Airport"));
+                airports.Add(new Airport("Washington, D.C. (Chantilly / Dulles)", "Virginia", "IAD", "IAD", "KIAD", "Washington Dulles International Airport"));
+                airports.Add(new Airport("Seattle / Tacoma (SeaTac)", "Washington", "SEA", "SEA", "KSEA", "Seattle-Tacoma International Airport"));
+                airports.Add(new Airport("Spokane", "Washington", "GEG", "GEG", "KGEG", "Spokane International Airport (Geiger Field)"));
+                airports.Add(new Airport("Milwaukee", "Wisconsin", "MKE", "MKE", "KMKE", "General Mitchell International Airport"));
+                airports.Add(new Airport("San Juan", "Puerto Rico", "SJU", "SJU", "TJSJ", "Luis Muñoz Marín International Airport"));
                 return airports;
             }
         }

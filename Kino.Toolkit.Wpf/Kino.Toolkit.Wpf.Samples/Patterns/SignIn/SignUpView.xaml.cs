@@ -20,7 +20,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class SignUpView : UserControl
     {
-        private readonly UserInfo _user;
+        private UserInfo _user;
         public SignUpView()
         {
             InitializeComponent();

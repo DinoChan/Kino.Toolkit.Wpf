@@ -20,8 +20,8 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class FormItemSample
     {
-        private readonly Style _formItemStyle;
-        private readonly Style _editableFormItemStyle;
+        private Style _formItemStyle;
+        private Style _editableFormItemStyle;
 
         public FormItemSample()
         {

@@ -29,13 +29,13 @@ namespace Kino.Toolkit.Wpf
         /// 标识 Description 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default, OnFormPropertyChanged));
+            DependencyProperty.RegisterAttached("Description", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 Label 依赖项属性。
         /// </summary>
         public static readonly DependencyProperty LabelProperty =
-            DependencyProperty.RegisterAttached("Label", typeof(object), typeof(KinoForm), new PropertyMetadata(default, OnFormPropertyChanged));
+            DependencyProperty.RegisterAttached("Label", typeof(object), typeof(KinoForm), new PropertyMetadata(default(object), OnFormPropertyChanged));
 
         /// <summary>
         /// 标识 LabelTemplate 依赖项属性。
@@ -105,14 +105,14 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetLabel(FrameworkElement element, object value) => element.SetValue(LabelProperty, value);
+        public static void SetLabel(FrameworkElement obj, object value) => obj.SetValue(LabelProperty, value);
 
         /// <summary>
         /// 从指定元素获取 LabelTemplate 依赖项属性的值。
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static DataTemplate GetLabelTemplate(FrameworkElement element) => (DataTemplate)element.GetValue(LabelTemplateProperty);
+        public static DataTemplate GetLabelTemplate(FrameworkElement obj) => (DataTemplate)obj.GetValue(LabelTemplateProperty);
 
         /// <summary>
         /// 将 LabelTemplate 依赖项属性的值设置为指定元素。

@@ -19,8 +19,8 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class TestModelWindow
     {
-        private readonly TestCurdService _curdService;
-        private readonly bool _isNewObject;
+        private TestCurdService _curdService;
+        private bool _isNewObject;
 
         public TestModelWindow(TestCurdService curdService, TestModel testModel = null)
         {

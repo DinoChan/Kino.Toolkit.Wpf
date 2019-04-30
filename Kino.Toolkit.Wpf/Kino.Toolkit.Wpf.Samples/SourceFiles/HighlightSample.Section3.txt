@@ -1,8 +1,0 @@
-﻿<TextBox x:Name="FilterElement2"                                 />
-<kino:TextBlockHighlightSource Text="{Binding ElementName=FilterElement2,Path=Text}" 
-                               HighlightForeground="DarkBlue"
-                               HighlightBackground="Yellow"
-                               x:Name="TextBlockHighlightSource"/>
-<TextBlock Text="A very powerful projector with special features for Internet usability, USB" 
-           kino:TextBlockService.HighlightText="{Binding ElementName=TextBlockHighlightSource}"
-           TextWrapping="Wrap"/>

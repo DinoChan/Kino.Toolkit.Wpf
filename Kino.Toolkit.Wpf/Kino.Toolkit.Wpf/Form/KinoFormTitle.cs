@@ -14,7 +14,7 @@ namespace Kino.Toolkit.Wpf
         /// 标识 Description 依赖属性。
         /// </summary>
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormTitle), new PropertyMetadata(default, OnDescriptionChanged));
+            DependencyProperty.Register(nameof(Description), typeof(object), typeof(KinoFormTitle), new PropertyMetadata(default(object), OnDescriptionChanged));
 
         public KinoFormTitle()
         {

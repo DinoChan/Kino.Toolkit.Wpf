@@ -187,8 +187,6 @@
                                               Tag="{x:Type local:DataGridSample}" />
                     <kino:KinoHyperlinkButton Content="Paging"
                                               Tag="{x:Type local:PagingSample}" />
-                    <kino:KinoHyperlinkButton Content="Highlight"
-                                              Tag="{x:Type local:HighlightSample}" />
                 </WrapPanel>
                 <Rectangle Height="1"
                            Margin="0,30"

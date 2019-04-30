@@ -35,8 +35,9 @@ namespace Kino.Toolkit.Wpf.Primitives
         private readonly DoubleAnimation _defaultHeightAnimation;
         private readonly DoubleAnimation _defaultWidthAnimation;
         private InnerContentControl _innerContentControl;
-        private readonly Storyboard _resizingStoryboard;
+        private Storyboard _resizingStoryboard;
         private bool _isResizing;
+        private readonly bool _hasFirstSizeChanged;
         private bool _isInnerContentMeasuring;
 
         public KinoResizer()

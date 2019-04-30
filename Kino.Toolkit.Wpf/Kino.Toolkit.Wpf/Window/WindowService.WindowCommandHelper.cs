@@ -8,7 +8,7 @@ namespace Kino.Toolkit.Wpf
     {
         private class WindowCommandHelper
         {
-            private readonly Window _window;
+            private Window _window;
 
             public WindowCommandHelper(Window window)
             {

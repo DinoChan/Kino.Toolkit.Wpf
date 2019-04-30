@@ -178,137 +178,23 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-        <Style TargetType="{x:Type kino:KinoListBoxItem}" x:Key="StyleUsingVisualState">
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="Padding" Value="4,1"/>
-            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type kino:KinoListBoxItem}">
-                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"  SnapsToDevicePixels="true">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="MultiSelectStates">
-                                    <VisualState x:Name="MultiSelectDisabled">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectCheckBoxTransform" Storyboard.TargetProperty="X">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.333" Value="-32" KeySpline="0.1,0.9,0.2,1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectClipTransform" Storyboard.TargetProperty="X">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.333" Value="32" KeySpline="0.1,0.9,0.2,1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform" Storyboard.TargetProperty="X">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="32" />
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.333" Value="0" KeySpline="0.1,0.9,0.2,1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectSquare" Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.333" Value="{x:Static Visibility.Collapsed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="MultiSelectEnabled">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectCheckBoxTransform" Storyboard.TargetProperty="X">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="-32" />
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.333" Value="0" KeySpline="0.1,0.9,0.2,1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectClipTransform" Storyboard.TargetProperty="X">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="32" />
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.333" Value="0" KeySpline="0.1,0.9,0.2,1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform" Storyboard.TargetProperty="X">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="-32" />
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.333" Value="0" KeySpline="0.1,0.9,0.2,1" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MultiSelectSquare" Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ContentPresenterGrid">
-                                                <EasingThicknessKeyFrame KeyTime="0" Value="32,0,0,0"/>
-                                            </ThicknessAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <CheckBox x:Name="MultiSelectSquare"
-                                      IsChecked="{Binding IsSelected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Width="20"
-                                      Margin="12,0,0,0"  
-                                      IsTabStop="False"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Left"
-                                      Visibility="Collapsed">
-                                    <CheckBox.Clip>
-                                        <RectangleGeometry Rect="0,0,20,20">
-                                            <RectangleGeometry.Transform>
-                                                <TranslateTransform x:Name="MultiSelectClipTransform" />
-                                            </RectangleGeometry.Transform>
-                                        </RectangleGeometry>
-                                    </CheckBox.Clip>
-                                    <CheckBox.RenderTransform>
-                                        <TranslateTransform x:Name="MultiSelectCheckBoxTransform" />
-                                    </CheckBox.RenderTransform>
-                                </CheckBox>
-                                <Grid x:Name="ContentPresenterGrid" Background="Transparent" Margin="0,0,0,0">
-                                    <Grid.RenderTransform>
-                                        <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
-                                    </Grid.RenderTransform>
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Grid.Column="1"
-                                                  Margin="{TemplateBinding Padding}"
-                                                  x:Name="ContentPresenter"/>
-                                </Grid>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsMouseOver" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
-                            </MultiTrigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                                    <Condition Property="IsSelected" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
-                            </MultiTrigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
-                                    <Condition Property="IsSelected" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
-                            </MultiTrigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </FrameworkElement.Resources>
     <StackPanel>
         <local:SampleSection Header="基本使用">
             <StackPanel>
+                <TextBlock Text="Selection Mode"
+                           Margin="8,8,8,0" />
+                <ComboBox Width="300"
+                          HorizontalAlignment="Left"
+                          Margin="8"
+                          x:Name="SelectionComboBox" />
+
+                <TextBlock Text="IsMultiSelectCheckBoxEnabled"
+                           Margin="8,8,8,0" />
+                <CheckBox Width="300"
+                          HorizontalAlignment="Left"
+                          Margin="8"
+                          x:Name="IsMultiSelectCheckBoxEnabledElement" />
                 <kino:KinoSelectionCheckBox Selector="{Binding ElementName=ListBox}"
                                             Content="全选"
                                             Margin="8,8,8,0" />
@@ -319,18 +205,6 @@
                                   Margin="8,4,8,8"
                                   x:Name="ListBox" />
             </StackPanel>
-            <local:SampleSection.ControlPanel>
-                <kino:KinoForm Style="{StaticResource ControlPanelFromStyle}">
-                    <ComboBox Width="300"
-                              HorizontalAlignment="Left"
-                              x:Name="SelectionComboBox"  
-                              kino:KinoForm.Label="SelectionMode"/>
-                    <CheckBox Width="300"
-                              kino:KinoForm.Label="IsMultiSelectCheckBoxEnabled"
-                              HorizontalAlignment="Left"
-                              x:Name="IsMultiSelectCheckBoxEnabledElement" />
-                </kino:KinoForm>
-            </local:SampleSection.ControlPanel>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="ListBoxSample.xaml"
@@ -396,24 +270,6 @@
                     <Rectangle />
                 </kino:KinoListBox>
             </StackPanel>
-        </local:SampleSection>
-        <local:SampleSection Header="使用VisualState">
-            <StackPanel>
-                <kino:KinoListBox DisplayMemberPath="Name"
-                                  ItemsSource="{Binding}"
-                                  ItemContainerStyle="{StaticResource StyleUsingVisualState}"
-                                  IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement2,Path=IsChecked}"
-                                  SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
-                                  Margin="8,4,8,8"/>
-            </StackPanel>
-            <local:SampleSection.ControlPanel>
-                <kino:KinoForm Style="{StaticResource ControlPanelFromStyle}">
-                    <CheckBox Width="300"
-                              kino:KinoForm.Label="IsMultiSelectCheckBoxEnabled"
-                              HorizontalAlignment="Left"
-                              x:Name="IsMultiSelectCheckBoxEnabledElement2" />
-                </kino:KinoForm>
-            </local:SampleSection.ControlPanel>
         </local:SampleSection>
     </StackPanel>
 </local:SamplePage>

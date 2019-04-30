@@ -19,8 +19,8 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class FormSampleWindow : Window
     {
-        private readonly Style _horizontalFormItemStyle;
-        private readonly Style _verticalFormItemStyle;
+        private Style _horizontalFormItemStyle;
+        private Style _verticalFormItemStyle;
 
         public FormSampleWindow()
         {

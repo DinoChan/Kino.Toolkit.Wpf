@@ -1,5 +1,0 @@
-﻿<FrameworkElement.Resources>
-    <Style TargetType="kino:TextBlockHighlightSource">
-        <Setter Property="LowlightForeground" Value="Blue"/>
-    </Style>
-</FrameworkElement.Resources>

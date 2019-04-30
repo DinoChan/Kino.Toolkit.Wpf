@@ -20,8 +20,8 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class PagingSample 
     {
-        private readonly RemoteCollectionView _remoteCollectionView;
-        private readonly AsyncRemoteCollectionView _asyncRemoteCollectionView;
+        private RemoteCollectionView _remoteCollectionView;
+        private AsyncRemoteCollectionView _asyncRemoteCollectionView;
 
         public PagingSample()
         {

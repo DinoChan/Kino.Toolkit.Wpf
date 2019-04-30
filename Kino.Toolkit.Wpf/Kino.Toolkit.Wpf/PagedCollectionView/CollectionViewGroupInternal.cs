@@ -39,7 +39,7 @@ namespace System.Windows.Data
         /// <summary>
         /// Parent group of this CollectionViewGroupInternal
         /// </summary>
-        private readonly CollectionViewGroupInternal _parentGroup;
+        private CollectionViewGroupInternal _parentGroup;
 
         /// <summary>
         /// Used for detecting stale enumerators

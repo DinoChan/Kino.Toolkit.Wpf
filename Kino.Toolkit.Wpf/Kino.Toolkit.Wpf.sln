@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kino.Toolkit.Wpf", "Kino.Toolkit.Wpf\Kino.Toolkit.Wpf.csproj", "{F816C9BC-B890-4C91-8341-04F32CE64C17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kino.Toolkit.Wpf", "Kino.Toolkit.Wpf\Kino.Toolkit.Wpf.csproj", "{F816C9BC-B890-4C91-8341-04F32CE64C17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kino.Toolkit.Wpf.Samples", "Kino.Toolkit.Wpf.Samples\Kino.Toolkit.Wpf.Samples.csproj", "{C42C3B76-CB37-400F-8B53-5E7AFFD3B590}"
 EndProject

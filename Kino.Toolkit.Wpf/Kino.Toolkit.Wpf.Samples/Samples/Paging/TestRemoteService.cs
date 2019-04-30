@@ -12,8 +12,8 @@ namespace Kino.Toolkit.Wpf.Samples
 {
     public class TestRemoteService : ILoadOperation
     {
-        private readonly DispatcherTimer _timer;
-        private readonly Collection<TestModel> _source;
+        private DispatcherTimer _timer;
+        private Collection<TestModel> _source;
 
         public TestRemoteService()
         {
