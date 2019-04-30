@@ -84,6 +84,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Airport.cs" />
+    <Compile Include="Common\Employee.cs" />
     <Compile Include="Common\LoadResult.cs" />
     <Compile Include="Common\ModelBase.cs" />
     <Compile Include="Common\PasswordBoxHelper.cs" />
@@ -148,6 +149,9 @@
     </Compile>
     <Compile Include="Samples\Form\FormSampleWindow.xaml.cs">
       <DependentUpon>FormSampleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\Highlight\HighlightSample.xaml.cs">
+      <DependentUpon>HighlightSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samples\ListBox\ListBoxSample.xaml.cs">
       <DependentUpon>ListBoxSample.xaml</DependentUpon>
@@ -259,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Samples\Form\FormSampleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\Highlight\HighlightSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -502,6 +510,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\ExpanderSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\HighlightSample.Section1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\HighlightSample.Section1 - 复制.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\HighlightSample.Section2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\HighlightSample.Section3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\HighlightSample.Section4.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

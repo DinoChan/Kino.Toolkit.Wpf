@@ -27,7 +27,7 @@ namespace Kino.Toolkit.Wpf
         /// <summary>
         /// WeakReference to the instance listening for the event.
         /// </summary>
-        private WeakReference _weakInstance;
+        private readonly WeakReference _weakInstance;
 
         /// <summary>
         /// Gets or sets the method to call when the event fires.

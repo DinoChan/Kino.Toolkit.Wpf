@@ -19,8 +19,7 @@ namespace Kino.Toolkit.Wpf.Samples
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
             base.PrepareContainerForItemOverride(element, item);
-            var sourceCodeModel = item as SourceCodeModel;
-            if (!(element is SourceCodeBox sourceCodeBox) || sourceCodeModel == null)
+            if (!(element is SourceCodeBox sourceCodeBox) || !(item is SourceCodeModel sourceCodeModel))
                 return;
 
             sourceCodeBox.Content = sourceCodeModel.Haader;

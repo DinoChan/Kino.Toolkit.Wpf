@@ -27,7 +27,9 @@ namespace Kino.Toolkit.Wpf
         public static readonly DependencyProperty FunctionBarProperty =
             DependencyProperty.Register(nameof(FunctionBar), typeof(KinoWindowFunctionBar), typeof(KinoRibbonWindow), new PropertyMetadata(default(KinoWindowFunctionBar), OnFunctionBarChanged));
 
+#pragma warning disable IDE1006 // 命名样式
         private static readonly DependencyPropertyKey IsNonClientActivePropertyKey =
+#pragma warning restore IDE1006 // 命名样式
             DependencyProperty.RegisterReadOnly("IsNonClientActive", typeof(bool), typeof(KinoRibbonWindow), new FrameworkPropertyMetadata(false));
 
 #pragma warning disable SA1202 // Elements must be ordered by access
@@ -35,7 +37,6 @@ namespace Kino.Toolkit.Wpf
 #pragma warning restore SA1202 // Elements must be ordered by access
 
         private readonly IntPtr _trueValue = new IntPtr(1);
-        private readonly IntPtr _falseValue = new IntPtr(0);
 
         public KinoRibbonWindow()
         {

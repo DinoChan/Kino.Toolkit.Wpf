@@ -52,6 +52,18 @@
                 </Setter>
             </Style>
 
+
+            <Style TargetType="kino:KinoForm"
+                   x:Key="ControlPanelFromStyle">
+                <Setter Property="kino:FocusService.IsAutoFocus" Value="False"/>
+                <Style.Resources>
+                    <ResourceDictionary>
+                        <Style BasedOn="{StaticResource ControlPanelFromItemStyle}"
+                               TargetType="{x:Type kino:KinoFormItem}" />
+                    </ResourceDictionary>
+                </Style.Resources>
+            </Style>
+
             <LinearGradientBrush x:Key="AccentBackground">
                 <GradientStop Color="#FF1F2022" />
                 <GradientStop Color="#FF434446"

@@ -35,7 +35,7 @@ namespace Kino.Toolkit.Wpf
 
         private static CornerRadius _commonCornerRadius;
 
-        private static object _resourceAccess;
+        private static readonly object _resourceAccess;
 
         private Brush[] _brushes;
 

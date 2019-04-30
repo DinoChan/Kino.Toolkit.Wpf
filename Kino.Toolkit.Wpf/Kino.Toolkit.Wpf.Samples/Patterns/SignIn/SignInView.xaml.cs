@@ -24,7 +24,7 @@ namespace Kino.Toolkit.Wpf.Samples
     /// </summary>
     public partial class SignInView : UserControl
     {
-        private UserInfo _user;
+        private readonly UserInfo _user;
 
         public SignInView()
         {
