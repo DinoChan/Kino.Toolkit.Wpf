@@ -197,7 +197,7 @@
                 <TextBlock Text="About"
                            FontSize="20"
                            Foreground="#FF333333" />
-                <TextBlock Text="Version 1.2.0"
+                <TextBlock Text="Version 1.3.0"
                            Margin="0,10" />
                 <kino:KinoHyperlinkButton Content="Github"
                                           NavigateUri="https://github.com/DinoChan/Kino.Toolkit.Wpf" />
