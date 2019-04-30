@@ -1,20 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Microsoft Managed Recommended Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="15.0">
-  <Localization ResourceAssembly="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.dll" ResourceBaseName="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.Localized">
-    <Name Resource="MinimumRecommendedRules_Name" />
-    <Description Resource="MinimumRecommendedRules_Description" />
-  </Localization>
+﻿<RuleSet Name="Rules for Security Issues" Description="Code analysis rules for Security Issues." ToolsVersion="14.0">
+  <Rules AnalyzerId="Desktop.Analyzers" RuleNamespace="Desktop.Analyzers">
+    <Rule Id="CA5350" Action="Error" /> <!-- Do not use Weak/Broken cryptographic algorithms -->
+    <Rule Id="CA5351" Action="Error" />
+    <Rule Id="CA2153" Action="Error"/> <!-- Do not catch corrupted process state exceptions -->
+  </Rules>
+
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
-    <Rule Id="CA1001" Action="Warning" />
+    <Rule Id="CA1001" Action="Warning" /> <!-- Non disposable class owns disposable fields -->
     <Rule Id="CA1009" Action="Warning" />
     <Rule Id="CA1016" Action="Warning" />
+    <Rule Id="CA1018" Action="Error" /> <!-- Specify attribute usage on attribute -->
     <Rule Id="CA1033" Action="Warning" />
+    <Rule Id="CA1036" Action="None" /> <!-- Overload comparison operators when implementing System.IComparable -->
     <Rule Id="CA1049" Action="Warning" />
     <Rule Id="CA1060" Action="Warning" />
     <Rule Id="CA1061" Action="Warning" />
     <Rule Id="CA1063" Action="Warning" />
     <Rule Id="CA1065" Action="Warning" />
-    <Rule Id="CA1301" Action="Warning" />
+    <Rule Id="CA1200" Action="None" />
+    <Rule Id="CA1301" Action="Warning" /> 
     <Rule Id="CA1400" Action="Warning" />
     <Rule Id="CA1401" Action="Warning" />
     <Rule Id="CA1403" Action="Warning" />
@@ -22,10 +26,10 @@
     <Rule Id="CA1405" Action="Warning" />
     <Rule Id="CA1410" Action="Warning" />
     <Rule Id="CA1415" Action="Warning" />
+    <Rule Id="CA1715" Action="None" /> <!-- Type parameters names should be prefixed with T -->
     <Rule Id="CA1821" Action="Warning" />
     <Rule Id="CA1900" Action="Warning" />
     <Rule Id="CA1901" Action="Warning" />
-    <Rule Id="CA2002" Action="Warning" />
     <Rule Id="CA2100" Action="Warning" />
     <Rule Id="CA2101" Action="Warning" />
     <Rule Id="CA2108" Action="Warning" />
@@ -46,45 +50,36 @@
     <Rule Id="CA2138" Action="Warning" />
     <Rule Id="CA2140" Action="Warning" />
     <Rule Id="CA2141" Action="Warning" />
+
     <Rule Id="CA2146" Action="Warning" />
     <Rule Id="CA2147" Action="Warning" />
     <Rule Id="CA2149" Action="Warning" />
-    <Rule Id="CA2200" Action="Warning" />
     <Rule Id="CA2202" Action="Warning" />
     <Rule Id="CA2207" Action="Warning" />
     <Rule Id="CA2212" Action="Warning" />
+    
     <Rule Id="CA2213" Action="Warning" />
-    <Rule Id="CA2214" Action="Warning" />
     <Rule Id="CA2216" Action="Warning" />
     <Rule Id="CA2220" Action="Warning" />
-    <Rule Id="CA2229" Action="Warning" />
-    <Rule Id="CA2231" Action="Warning" />
+    <Rule Id="CA2229" Action="Error" /> <!-- Serializable type doesn't have a serialization constructor -->
     <Rule Id="CA2232" Action="Warning" />
-    <Rule Id="CA2235" Action="Warning" />
+    <Rule Id="CA2235" Action="Warning" /> 
     <Rule Id="CA2236" Action="Warning" />
-    <Rule Id="CA2237" Action="Warning" />
+    <Rule Id="CA2231" Action="None" /> <!-- Overload operator equals when overriding ValueType.Equals -->
+    <Rule Id="CA2237" Action="Warning" /> 
+
+    <Rule Id="CA2200" Action="None"/> <!-- Rethrowing caught exception changes stack information -->
     <Rule Id="CA2238" Action="Warning" />
     <Rule Id="CA2240" Action="Warning" />
     <Rule Id="CA2241" Action="Warning" />
     <Rule Id="CA2242" Action="Warning" />
+
+    <Rule Id="CA2214" Action="None" /> <!-- Do not call overridable methods in constructors -->
+    
   </Rules>
-  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-    <Rule Id="SA1011" Action="None" />
-    <Rule Id="SA1101" Action="None" />
-    <Rule Id="SA1118" Action="None" />
-    <Rule Id="SA1200" Action="None" />
-    <Rule Id="SA1201" Action="None" />
-    <Rule Id="SA1202" Action="None" />
-    <Rule Id="SA1309" Action="None" />
-    <Rule Id="SA1310" Action="None" />
-    <Rule Id="SA1600" Action="None" />
-    <Rule Id="SA1602" Action="None" />
-    <Rule Id="SA1611" Action="None" />
-    <Rule Id="SA1633" Action="None" />
-    <Rule Id="SA1634" Action="None" />
-    <Rule Id="SA1652" Action="None" />
+  <Rules AnalyzerId="System.Runtime.Analyzers" RuleNamespace="System.Runtime.Analyzers">
+    <Rule Id="CA2002" Action="Error" /> <!-- Do not lock on objects with weak identity -->
   </Rules>
-  <Rules AnalyzerId="Microsoft.CodeQuality.CSharp.Analyzers" RuleNamespace="Microsoft.CodeQuality.CSharp.Analyzers">
-    <Rule Id="CA1200" Action="None" />
-  </Rules>
-</RuleSet>
+
+  
+</RuleSet>  
