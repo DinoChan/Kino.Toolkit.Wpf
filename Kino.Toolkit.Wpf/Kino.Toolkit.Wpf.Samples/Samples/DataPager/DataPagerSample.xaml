@@ -24,7 +24,7 @@
             <Setter Property="Source"
                     Value="{Binding}" />
             <Setter Property="HorizontalAlignment"
-                    Value="Left" />
+                    Value="Stretch" />
             <Setter Property="Foreground"
                     Value="{Binding SelectedColor,ElementName=ColorPicker,Converter={StaticResource ColorToSolidBrushConverter}}" />
         </Style>
