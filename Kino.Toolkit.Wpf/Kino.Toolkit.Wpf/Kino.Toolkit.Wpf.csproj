@@ -1,57 +1,318 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
-    <UseWPF>true</UseWPF>
-    <Version>1.2.1</Version>
-    <Authors>dino.c</Authors>
-    <Product>Kino.Toolkit.Wpf</Product>
-    <Description>A set of wpf toolkit.</Description>
-    <Copyright>Copyright 2019 dino.c</Copyright>
-    <PackageLicenseExpression>https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/LICENSE</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/Logo.png?raw=true</PackageIconUrl>
-    <PackageTags>WPF Control Toolkit Xaml</PackageTags>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F816C9BC-B890-4C91-8341-04F32CE64C17}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Kino.Toolkit.Wpf</RootNamespace>
+    <AssemblyName>Kino.Toolkit.Wpf</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>Kino.Toolkit.Wpf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>Kino.Toolkit.Wpf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
   <ItemGroup>
-    <Compile Remove="SelectionCheckBox\KinoDataGridSelectionCheckBox.cs" />
-    <Compile Remove="SelectionCheckBox\KinoListBoxSelectionCheckBox.cs" />
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Remove="Kino.Toolkit.Wpf.1.0.0.nupkg" />
-    <None Remove="Kino.Toolkit.Wpf.1.0.1.nupkg" />
-    <None Remove="Kino.Toolkit.Wpf.1.2.0.nupkg" />
+    <Compile Include="Button\KinoHyperlinkButton.cs" />
+    <Compile Include="Chromes\DataGridHeaderBorder.cs" />
+    <Compile Include="Common\DpiHelper.cs" />
+    <Compile Include="Common\FocusService.cs" />
+    <Compile Include="Common\SystemDropShadowChrome.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Common\WindowNotifications.cs" />
+    <Compile Include="Expander\ExpandableContentControl.cs" />
+    <Compile Include="Expander\KinoExpander.cs" />
+    <Compile Include="FunctionBar\KinoFunctionBar.cs" />
+    <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
+    <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
+    <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\FunctionalProgramming.cs" />
+    <Compile Include="Common\NativeMethods.cs" />
+    <Compile Include="Common\FrameworkElementService.cs" />
+    <Compile Include="Common\Picker.cs" />
+    <Compile Include="Common\TypeHelper.cs" />
+    <Compile Include="Common\VisualStates.cs" />
+    <Compile Include="Common\VisualTreeExtensions.cs" />
+    <Compile Include="Common\WeakEventListener.cs" />
+    <Compile Include="Converters\BoolToObjectConverter.cs" />
+    <Compile Include="Converters\EmptyObjectToObjectConverter.cs" />
+    <Compile Include="Converters\EmptyObjectToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToValueConverter.cs" />
+    <Compile Include="Converters\TimesConverter.cs" />
+    <Compile Include="DataGrid\KinoDataGrid.cs" />
+    <Compile Include="DataPager\KinoDataPager.cs" />
+    <Compile Include="DataPager\PagerDisplayMode.cs" />
+    <Compile Include="DataPager\PagerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainServices\AsyncRemoteCollectionViewLoader.cs" />
+    <Compile Include="DomainServices\CollectionViewLoader.cs" />
+    <Compile Include="DomainServices\CollectionViewWrapper.cs" />
+    <Compile Include="DomainServices\DomainCollectionView.cs" />
+    <Compile Include="DomainServices\DomainServicesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainServicesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainServices\ILoadOperation.cs" />
+    <Compile Include="DomainServices\ILoadResult.cs" />
+    <Compile Include="DomainServices\PagedCollectionViewBase.cs" />
+    <Compile Include="DomainServices\AsyncRemoteCollectionView.cs" />
+    <Compile Include="DomainServices\RemoteCollectionView.cs" />
+    <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
+    <Compile Include="Form\KinoForm.Properties.cs" />
+    <Compile Include="Form\KinoForm.cs" />
+    <Compile Include="Form\KinoFormItem.cs" />
+    <Compile Include="Form\KinoFormSeparator.cs" />
+    <Compile Include="Form\KinoFormTitle.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HeaderedContentControl\KinoHeaderedContentControl.cs" />
+    <Compile Include="Layout\KinoPageTitle.cs" />
+    <Compile Include="ListBox\KinoListBox.cs" />
+    <Compile Include="ListBox\KinoListBoxItem.cs" />
+    <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
+    <Compile Include="PagedCollectionView\CollectionViewGroupRoot.cs" />
+    <Compile Include="PagedCollectionView\IPagedCollectionView.cs" />
+    <Compile Include="PagedCollectionView\PageChangingEventArgs.cs" />
+    <Compile Include="PagedCollectionView\PagedCollectionView.cs" />
+    <Compile Include="PagedCollectionView\PagedCollectionViewResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagedCollectionViewResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressRing\TemplateSettingValues.cs" />
+    <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
+    <Compile Include="Resizer\InnerContentControl.cs" />
+    <Compile Include="Resizer\KinoResizer.cs" />
+    <Compile Include="ScrollViewer\KinoScrollViewer.cs" />
+    <Compile Include="SelectionCheckBox\IMultiSelector.cs" />
+    <Compile Include="SelectionCheckBox\KinoSelectionCheckBox.cs" />
+    <Compile Include="SkeletonScreen\KinoSkeletonScreen.cs" />
+    <Compile Include="SquareBox\KinoSquareBox.cs" />
+    <Compile Include="SquareBox\KinoSquareBoxTemplateSettings.cs" />
+    <Compile Include="StateIndicator\KinoStateIndicator.cs" />
+    <Compile Include="StateIndicator\ProgressState.cs" />
+    <Compile Include="ProgressRing\KinoProgressRing.cs" />
+    <Compile Include="TextBlock\TextBlockHighlightSource.cs" />
+    <Compile Include="TextBlock\TextBlockHightlighSourceConverter.cs" />
+    <Compile Include="TextBlock\TextBlockService.cs" />
+    <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.cs" />
+    <Compile Include="TransitioningContentControl\TransitionType.cs" />
+    <Compile Include="Validation\KinoValidationContent.cs" />
+    <Compile Include="Window\KinoRibbonWindow.cs" />
+    <Compile Include="Window\KinoWindow.cs" />
+    <Compile Include="Window\WindowParameters.cs" />
+    <Compile Include="Window\WindowService.cs" />
+    <Compile Include="Window\WindowService.WindowCommandHelper.cs" />
+    <Page Include="Button\KinoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Expander\KinoExpander.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionBar\KinoFunctionBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionBar\KinoFormFunctionBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FunctionBar\KinoWindowFunctionBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataGrid\KinoDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataPager\KinoDataPager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\KinoForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeaderedContentControl\KinoHeaderedContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Layout\KinoPageTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ListBox\KinoListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resizer\KinoResizer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkeletonScreen\KinoSkeletonScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SquareBox\KinoSquareBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StateIndicator\KinoStateIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgressRing\KinoProgressRing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Button\KinoButton.cs" />
+    <Page Include="TransitioningContentControl\KinoTransitioningContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Validation\KinoValidationContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\KinoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\Ribbon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1" />
-  </ItemGroup>
-
-
-
-  <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
+    <EmbeddedResource Include="DataPager\PagerResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PagerResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Kino.Toolkit.Wpf</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainServices\DomainServicesResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainServicesResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Kino.Toolkit.Wpf</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagedCollectionView\PagedCollectionViewResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PagedCollectionViewResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>System.Windows.Data</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Kino.Toolkit.Wpf.ruleset" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.VisualStates.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\defaultsystemicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\kino.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+  </Target>
 </Project>
