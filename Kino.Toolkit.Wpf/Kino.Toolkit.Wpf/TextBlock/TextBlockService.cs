@@ -20,14 +20,14 @@ namespace Kino.Toolkit.Wpf
         /// </summary>
         /// <param name="obj">从中读取属性值的元素。</param>
         /// <returns>从属性存储获取的属性值。</returns>
-        public static TextBlockHighlightSource GetHighlightText(DependencyObject obj) => (TextBlockHighlightSource)obj.GetValue(HighlightTextProperty);
+        public static TextBlockHighlightSource GetHighlightText(TextBlock textBlock) => (TextBlockHighlightSource)textBlock.GetValue(HighlightTextProperty);
 
         /// <summary>
         /// 将 HighlightText 依赖项属性的值设置为指定元素。
         /// </summary>
         /// <param name="obj">对其设置属性值的元素。</param>
         /// <param name="value">要设置的值。</param>
-        public static void SetHighlightText(DependencyObject obj, TextBlockHighlightSource value) => obj.SetValue(HighlightTextProperty, value);
+        public static void SetHighlightText(TextBlock textBlock, TextBlockHighlightSource value) => textBlock.SetValue(HighlightTextProperty, value);
 
         /// <summary>
         /// 标识 HighlightText 依赖项属性。
