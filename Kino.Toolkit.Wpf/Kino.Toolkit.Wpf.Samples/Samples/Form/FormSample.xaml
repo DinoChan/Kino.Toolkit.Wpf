@@ -24,7 +24,7 @@
         <kino:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
         <kino:BoolToObjectConverter x:Key="BoolToObjectConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <Style TargetType="kino:KinoForm">
+        <Style TargetType="kino:Form">
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                     Value="Disabled" />
             <Setter Property="kino:FocusService.IsAutoFocus"
@@ -33,32 +33,32 @@
     </local:SamplePage.Resources>
     <StackPanel Background="White">
         <local:SampleSection Header="使用Form">
-            <kino:KinoForm Width="500"
+            <kino:Form Width="500"
                            kino:FocusService.IsAutoFocus="True"
                            HorizontalAlignment="Left"
                            Header="NormalForm">
-                <kino:KinoFormTitle Content="用户信息" />
-                <TextBox kino:KinoForm.Label="用户名"
-                         kino:KinoForm.IsRequired="True"
+                <kino:FormTitle Content="用户信息" />
+                <TextBox kino:Form.Label="用户名"
+                         kino:Form.IsRequired="True"
                          Text="{Binding Name,Mode=TwoWay}" />
 
-                <PasswordBox kino:KinoForm.Label="密码"
-                             kino:KinoForm.IsRequired="True" />
-                <ComboBox kino:KinoForm.Label="国家与地区(请选择居住地)" />
+                <PasswordBox kino:Form.Label="密码"
+                             kino:Form.IsRequired="True" />
+                <ComboBox kino:Form.Label="国家与地区(请选择居住地)" />
 
-                <kino:KinoFormSeparator />
+                <kino:FormSeparator />
 
-                <kino:KinoFormTitle Content="家庭信息"
+                <kino:FormTitle Content="家庭信息"
                                     Description="填写家庭信息可以让我们给您提供更好的服务。" />
 
-                <TextBox kino:KinoForm.Label="父"
-                         kino:KinoForm.Description="可以不填" />
-                <TextBox kino:KinoForm.Label="母"
-                         kino:KinoForm.Description="可以不填" />
-                <TextBox kino:KinoForm.Label="伴侣"
-                         kino:KinoForm.Description="可以没有"
-                         kino:KinoForm.IsRequired="True" />
-                <StackPanel kino:KinoForm.Label="性别"
+                <TextBox kino:Form.Label="父"
+                         kino:Form.Description="可以不填" />
+                <TextBox kino:Form.Label="母"
+                         kino:Form.Description="可以不填" />
+                <TextBox kino:Form.Label="伴侣"
+                         kino:Form.Description="可以没有"
+                         kino:Form.IsRequired="True" />
+                <StackPanel kino:Form.Label="性别"
                             Orientation="Horizontal">
                     <RadioButton Content="男"
                                  GroupName="Sex" />
@@ -67,22 +67,22 @@
                                  Margin="8,0,0,0" />
                 </StackPanel>
                 <TextBox AcceptsReturn="True"
-                         kino:KinoForm.Label="备注"
-                         kino:KinoForm.LabelTemplate="{StaticResource TopHeaderTemplate}"
+                         kino:Form.Label="备注"
+                         kino:Form.LabelTemplate="{StaticResource TopHeaderTemplate}"
                          VerticalScrollBarVisibility="Auto"
                          Height="100" />
-                <kino:KinoForm.FunctionBar>
-                    <kino:KinoFormFunctionBar>
-                        <kino:KinoButton Content="OK"
+                <kino:Form.FunctionBar>
+                    <kino:FormFunctionBar>
+                        <kino:ExtendedButton Content="OK"
                                          Click="OnOK"
                                          IsDefault="True" />
-                        <kino:KinoButton Content="Cancel"
+                        <kino:ExtendedButton Content="Cancel"
                                          IsCancel="True"
                                          Click="OnCancel" />
 
-                    </kino:KinoFormFunctionBar>
-                </kino:KinoForm.FunctionBar>
-            </kino:KinoForm>
+                    </kino:FormFunctionBar>
+                </kino:Form.FunctionBar>
+            </kino:Form>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
@@ -90,24 +90,24 @@
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="显示或隐藏">
-            <kino:KinoForm Width="500"
+            <kino:Form Width="500"
                            HorizontalAlignment="Left">
-                <CheckBox kino:KinoForm.Label="显示额外信息"
+                <CheckBox kino:Form.Label="显示额外信息"
                           x:Name="ExtraInformationCheckBox" />
-                <Grid kino:KinoForm.IsItemItsOwnContainer="True"
+                <Grid kino:Form.IsItemItsOwnContainer="True"
                       Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                    <kino:Form Grid.IsSharedSizeScope="False"
                                    Padding="0">
-                        <ComboBox kino:KinoForm.Label="国家" />
-                        <TextBox kino:KinoForm.Label="父"
-                                 kino:KinoForm.Description="可以不填" />
-                        <TextBox kino:KinoForm.Label="母"
-                                 kino:KinoForm.Description="可以不填" />
-                    </kino:KinoForm>
+                        <ComboBox kino:Form.Label="国家" />
+                        <TextBox kino:Form.Label="父"
+                                 kino:Form.Description="可以不填" />
+                        <TextBox kino:Form.Label="母"
+                                 kino:Form.Description="可以不填" />
+                    </kino:Form>
                 </Grid>
-                <TextBox kino:KinoForm.Label="地址"
+                <TextBox kino:Form.Label="地址"
                          Visibility="{Binding IsChecked,ElementName=ExtraInformationCheckBox,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            </kino:KinoForm>
+            </kino:Form>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
@@ -115,33 +115,33 @@
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用Expander分组">
-            <kino:KinoForm Width="500"
+            <kino:Form Width="500"
                            HorizontalAlignment="Left">
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                <Expander kino:Form.IsItemItsOwnContainer="True"
                           Header="用户信息"
                           IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                    <kino:Form Grid.IsSharedSizeScope="False"
                                    Padding="0">
-                        <TextBox kino:KinoForm.Label="用户名"
-                                 kino:KinoForm.IsRequired="True"
+                        <TextBox kino:Form.Label="用户名"
+                                 kino:Form.IsRequired="True"
                                  Text="{Binding Name,Mode=TwoWay}" />
-                        <PasswordBox kino:KinoForm.Label="密码"
-                                     kino:KinoForm.IsRequired="True" />
-                    </kino:KinoForm>
+                        <PasswordBox kino:Form.Label="密码"
+                                     kino:Form.IsRequired="True" />
+                    </kino:Form>
                 </Expander>
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                <Expander kino:Form.IsItemItsOwnContainer="True"
                           Header="其它信息"
                           IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                    <kino:Form Grid.IsSharedSizeScope="False"
                                    Padding="0">
-                        <ComboBox kino:KinoForm.Label="国家" />
-                        <TextBox kino:KinoForm.Label="父"
-                                 kino:KinoForm.Description="可以不填" />
-                        <TextBox kino:KinoForm.Label="母"
-                                 kino:KinoForm.Description="可以不填" />
-                    </kino:KinoForm>
+                        <ComboBox kino:Form.Label="国家" />
+                        <TextBox kino:Form.Label="父"
+                                 kino:Form.Description="可以不填" />
+                        <TextBox kino:Form.Label="母"
+                                 kino:Form.Description="可以不填" />
+                    </kino:Form>
                 </Expander>
-            </kino:KinoForm>
+            </kino:Form>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
@@ -149,17 +149,17 @@
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用ItemsPanelTemplate">
-            <kino:KinoForm Width="500"
+            <kino:Form Width="500"
                            HorizontalAlignment="Left">
-                <kino:KinoForm.Resources>
-                    <Style TargetType="kino:KinoFormItem"
+                <kino:Form.Resources>
+                    <Style TargetType="kino:FormItem"
                            x:Key="FromItemStyle"
                            BasedOn="{StaticResource ControlPanelFromItemStyle}">
                         <Setter Property="Margin"
                                 Value="8" />
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="kino:KinoFormItem">
+                                <ControlTemplate TargetType="kino:FormItem">
                                     <StackPanel x:Name="Root">
                                         <ContentPresenter Content="{TemplateBinding Label}"
                                                           ContentTemplate="{TemplateBinding LabelTemplate}" />
@@ -178,36 +178,36 @@
                     <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
                         <UniformGrid Rows="1" />
                     </ItemsPanelTemplate>
-                </kino:KinoForm.Resources>
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                </kino:Form.Resources>
+                <Expander kino:Form.IsItemItsOwnContainer="True"
                           Header="用户信息"
                           IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                    <kino:Form Grid.IsSharedSizeScope="False"
                                    Padding="0"
                                    ItemContainerStyle="{StaticResource FromItemStyle}"
                                    ItemsPanel="{StaticResource ItemsPanelTemplate}">
-                        <TextBox kino:KinoForm.Label="用户名" />
-                        <TextBox kino:KinoForm.Label="级别" />
-                        <TextBox kino:KinoForm.Label="备注" />
+                        <TextBox kino:Form.Label="用户名" />
+                        <TextBox kino:Form.Label="级别" />
+                        <TextBox kino:Form.Label="备注" />
 
-                    </kino:KinoForm>
+                    </kino:Form>
                 </Expander>
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                <Expander kino:Form.IsItemItsOwnContainer="True"
                           Header="其它信息"
                           IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                    <kino:Form Grid.IsSharedSizeScope="False"
                                    Padding="0"
                                    ItemContainerStyle="{StaticResource FromItemStyle}"
                                    ItemsPanel="{StaticResource ItemsPanelTemplate}">
-                        <TextBox kino:KinoForm.Label="学校" />
-                        <TextBox kino:KinoForm.Label="职业" />
-                        <TextBox kino:KinoForm.Label="证书" />
-                    </kino:KinoForm>
+                        <TextBox kino:Form.Label="学校" />
+                        <TextBox kino:Form.Label="职业" />
+                        <TextBox kino:Form.Label="证书" />
+                    </kino:Form>
                 </Expander>
-                <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+                <Expander kino:Form.IsItemItsOwnContainer="True"
                           Header="住址信息"
                           IsExpanded="True">
-                    <kino:KinoForm Grid.IsSharedSizeScope="False"
+                    <kino:Form Grid.IsSharedSizeScope="False"
                                    Padding="0"
                                    ItemContainerStyle="{StaticResource FromItemStyle}">
                         <ItemsControl.ItemsPanel>
@@ -221,15 +221,15 @@
                                 </Grid>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <TextBox kino:KinoForm.Label="邮编" />
-                        <kino:KinoFormItem Label="住址"
+                        <TextBox kino:Form.Label="邮编" />
+                        <kino:FormItem Label="住址"
                                            Grid.Column="1"
                                            Grid.ColumnSpan="2">
                             <TextBox />
-                        </kino:KinoFormItem>
-                    </kino:KinoForm>
+                        </kino:FormItem>
+                    </kino:Form>
                 </Expander>
-            </kino:KinoForm>
+            </kino:Form>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormSample.xaml"
@@ -237,7 +237,7 @@
             </local:SampleSection.SourceCodes>
         </local:SampleSection>
         <local:SampleSection Header="使用LabelMemberPath">
-            <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
+            <kino:Form ItemsSource="{x:Static local:Product.Products}"
                            DisplayMemberPath="Value"
                            LabelMemberPath="Key" />
             <local:SampleSection.SourceCodes>

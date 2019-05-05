@@ -55,7 +55,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            <kino:KinoDataGrid Grid.Row="1"
+            <kino:ExtendedDataGrid Grid.Row="1"
                                Margin="0,8,0,0"
                                IsReadOnly="True"
                                AutoGenerateColumns="False"
@@ -70,8 +70,8 @@
                                         Binding="{Binding Age}"
                                         SortMemberPath="Age" />
                 </DataGrid.Columns>
-            </kino:KinoDataGrid>
-            <kino:KinoDataPager Source="{Binding}"
+            </kino:ExtendedDataGrid>
+            <kino:DataPager Source="{Binding}"
                                 Grid.Row="2"
                                 DisplayMode="FirstLastPreviousNextNumeric" />
         </Grid>

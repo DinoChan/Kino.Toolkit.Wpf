@@ -46,31 +46,31 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnChangByDefault(object sender, RoutedEventArgs e)
         {
-            DefaultContent.Transition = KinoTransitioningContentControl.DefaultTransitionState;
+            DefaultContent.Transition = TransitioningContentControl.DefaultTransitionState;
             DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void OnChangeByLeft(object sender, RoutedEventArgs e)
         {
-            DefaultContent.Transition = KinoTransitioningContentControl.LeftTransitionState;
+            DefaultContent.Transition = TransitioningContentControl.LeftTransitionState;
             DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void OnChangeByUp(object sender, RoutedEventArgs e)
         {
-            DefaultContent.Transition = KinoTransitioningContentControl.UpTransitionState;
+            DefaultContent.Transition = TransitioningContentControl.UpTransitionState;
             DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void OnChangeByRight(object sender, RoutedEventArgs e)
         {
-            DefaultContent.Transition = KinoTransitioningContentControl.RightTransitionState;
+            DefaultContent.Transition = TransitioningContentControl.RightTransitionState;
             DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void OnChangeByDown(object sender, RoutedEventArgs e)
         {
-            DefaultContent.Transition = KinoTransitioningContentControl.DownTransitionState;
+            DefaultContent.Transition = TransitioningContentControl.DownTransitionState;
             DefaultContent.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 

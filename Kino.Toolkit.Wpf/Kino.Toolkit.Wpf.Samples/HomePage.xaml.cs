@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,9 @@ namespace Kino.Toolkit.Wpf.Samples
         public HomePage()
         {
             InitializeComponent();
-            foreach (var button in ControlsPanel.Children.OfType<KinoHyperlinkButton>())
+            var version = Assembly.GetAssembly(typeof(ExtendedButton)).GetName().Version;
+            VersionElement.Text = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
+            foreach (var button in ControlsPanel.Children.OfType<HyperlinkButton>())
             {
                 button.Click += (s, e) =>
                 {

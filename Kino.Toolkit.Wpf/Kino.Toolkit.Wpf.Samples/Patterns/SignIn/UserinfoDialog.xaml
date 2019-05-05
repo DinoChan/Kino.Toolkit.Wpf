@@ -1,4 +1,4 @@
-﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.UserinfoDialog"
+﻿<kino:ExtendedWindow x:Class="Kino.Toolkit.Wpf.Samples.UserinfoDialog"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +14,7 @@
                  Width="300">
     <FrameworkElement.Resources>
         <ControlTemplate x:Key="CustomTemplate"
-                         TargetType="kino:KinoTransitioningContentControl">
+                         TargetType="kino:TransitioningContentControl">
             <Border Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}">
@@ -125,22 +125,22 @@
             </Border>
         </ControlTemplate>
     </FrameworkElement.Resources>
-    <kino:KinoResizer HorizontalContentAlignment="Stretch">
-        <kino:KinoResizer.Animation>
+    <kino:Resizer HorizontalContentAlignment="Stretch">
+        <kino:Resizer.Animation>
             <DoubleAnimation BeginTime="0:0:0"
                              Duration="0:0:0.15">
                 <DoubleAnimation.EasingFunction>
                     <QuinticEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-        </kino:KinoResizer.Animation>
-        <kino:KinoTransitioningContentControl x:Name="ContentElement"
+        </kino:Resizer.Animation>
+        <kino:TransitioningContentControl x:Name="ContentElement"
                                               HorizontalContentAlignment="Stretch"
                                               VerticalContentAlignment="Stretch"
                                               Template="{StaticResource CustomTemplate}"
                                               Transition="CustomTransition">
             <local:SignInView Finished="OnFinished"
                               SignUp="OnSignUp" />
-        </kino:KinoTransitioningContentControl>
-    </kino:KinoResizer>
-</kino:KinoWindow>
+        </kino:TransitioningContentControl>
+    </kino:Resizer>
+</kino:ExtendedWindow>

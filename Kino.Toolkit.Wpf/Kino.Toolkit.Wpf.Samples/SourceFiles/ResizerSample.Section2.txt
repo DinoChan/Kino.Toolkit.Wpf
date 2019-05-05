@@ -1,5 +1,5 @@
-﻿<kino:KinoResizer HorizontalContentAlignment="Stretch">
+﻿<kino:Resizer HorizontalContentAlignment="Stretch">
     <TextBox AcceptsReturn="True"
              VerticalScrollBarVisibility="Disabled" />
-</kino:KinoResizer>
+</kino:Resizer>
 <Button Margin="0,8,0,0" />

@@ -13,7 +13,7 @@
     <Grid>
         <Grid.Resources>
             <ControlTemplate x:Key="CustomTemplate"
-                             TargetType="kino:KinoTransitioningContentControl">
+                             TargetType="kino:TransitioningContentControl">
                 <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
@@ -176,7 +176,7 @@
         <StackPanel>
             <local:SampleSection Header="Default Transition">
                 <StackPanel>
-                    <kino:KinoTransitioningContentControl Margin="8"
+                    <kino:TransitioningContentControl Margin="8"
                                                           x:Name="DefaultContent"
                                                           HorizontalAlignment="Left" />
                     <StackPanel Orientation="Horizontal">
@@ -213,7 +213,7 @@
             </local:SampleSection>
             <local:SampleSection Header="Custom Transition">
                 <StackPanel>
-                    <kino:KinoTransitioningContentControl Margin="8"
+                    <kino:TransitioningContentControl Margin="8"
                                                           x:Name="CustomContent"
                                                           Template="{StaticResource CustomTemplate}" />
                     <StackPanel Orientation="Horizontal">
@@ -239,8 +239,8 @@
 
 
             <local:SampleSection Header="Custom ContentTemplate">
-                <kino:KinoTransitioningContentControl x:Name="ContentControl"
-                                                      Transition="{x:Static kino:KinoTransitioningContentControl.DownTransitionState}"
+                <kino:TransitioningContentControl x:Name="ContentControl"
+                                                      Transition="{x:Static kino:TransitioningContentControl.DownTransitionState}"
                                                       Margin="0,0,0,30">
                     <ContentControl.ContentTemplate>
                         <DataTemplate>
@@ -273,7 +273,7 @@
                             </Grid>
                         </DataTemplate>
                     </ContentControl.ContentTemplate>
-                </kino:KinoTransitioningContentControl>
+                </kino:TransitioningContentControl>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
                                            Haader="TransitioningContentControlSample.xaml"

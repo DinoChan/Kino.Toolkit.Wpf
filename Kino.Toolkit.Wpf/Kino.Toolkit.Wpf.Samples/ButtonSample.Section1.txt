@@ -1,18 +1,18 @@
-﻿<kino:KinoButton Content="bookmark"
+﻿<kino:ExtendedButton Content="bookmark"
                  MinWidth="18"
                  x:Name="BookmarkButton"
                  HorizontalAlignment="Left"
                  State="{Binding SelectedItem,ElementName=StatesListBox}">
-    <kino:KinoButton.Icon>
+    <kino:ExtendedButton.Icon>
         <TextBlock Style="{StaticResource FontAwesome}"
                    Text="&#xf02e;" />
-    </kino:KinoButton.Icon>
-</kino:KinoButton>
+    </kino:ExtendedButton.Icon>
+</kino:ExtendedButton>
 
 <local:SampleSection.ControlPanel>
-    <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+    <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
         <StackPanel Orientation="Horizontal"
-                    kino:KinoForm.Label="Content And Icon">
+                    kino:Form.Label="Content And Icon">
             <RadioButton Content="Content Only"
                          Checked="OnContentOnlyCheck" />
             <RadioButton Content="Icon Only"
@@ -26,6 +26,6 @@
         <ListBox x:Name="StatesListBox"
                  HorizontalAlignment="Left"
                  Width="250"
-                 kino:KinoForm.Label="State" />
-    </kino:KinoForm>
+                 kino:Form.Label="State" />
+    </kino:Form>
 </local:SampleSection.ControlPanel>

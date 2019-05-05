@@ -1,0 +1,163 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Kino.Toolkit.Wpf">
+    <local:NullToValueConverter x:Key="NullToValueConverter" />
+    <local:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <Style TargetType="local:FormSeparator">
+        <Setter Property="Margin"
+                Value="0,8,0,8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FormSeparator">
+                    <Rectangle VerticalAlignment="Bottom"
+                               Height="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:FormTitle">
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="Margin"
+                Value="0,0,0,12" />
+        <Setter Property="Padding"
+                Value="12,0" />
+        <Setter Property="Foreground"
+                Value="#FF333333" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FormTitle">
+                    <StackPanel Margin="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}" />
+                        <ContentPresenter Content="{TemplateBinding Description}"
+                                          Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource NullToValueConverter},ConverterParameter=Collapsed,FallbackValue=Visible}"
+                                          Margin="0,2,0,0"
+                                          TextBlock.FontSize="12"
+                                          TextBlock.Foreground="Gray" />
+
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:FormItem">
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="Margin"
+                Value="12,0,12,12" />
+        <Setter Property="Padding"
+                Value="8,0,0,0" />
+        <Setter Property="LabelTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               VerticalAlignment="Center" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:FormItem">
+                    <Grid x:Name="Root">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="Header" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <TextBlock x:Name="IsRequiredMark"
+                                       Margin="0,0,2,0"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="2"
+                                       Visibility="{Binding IsRequired,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       Text="*"
+                                       Foreground="Red" />
+                            <ContentPresenter Content="{TemplateBinding Label}"
+                                              TextBlock.Foreground="#FF444444"
+                                              ContentTemplate="{TemplateBinding LabelTemplate}"
+                                              Visibility="{Binding Label,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}" />
+                        </StackPanel>
+                        <ContentPresenter Grid.Column="1"
+                                          Margin="{TemplateBinding Padding}"
+                                          x:Name="ContentPresenter" />
+                        <ContentPresenter Grid.Row="1"
+                                          Grid.Column="1"
+                                          Visibility="{Binding Description,RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource EmptyObjectToVisibilityConverter}}"
+                                          Margin="{TemplateBinding Padding}"
+                                          Content="{TemplateBinding Description}"
+                                          TextBlock.Foreground="Gray" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Form}">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll"
+                Value="True" />
+        <Setter Property="ScrollViewer.PanningMode"
+                Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled"
+                Value="False" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="True" />
+        <Setter Property="local:FocusService.IsAutoFocus"
+                Value="True" />
+        <Setter Property="Padding"
+                Value="0,12,0,0" />
+        <Setter Property="BorderBrush"
+                Value="LightGray" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type  local:Form}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <local:PageTitle Content="{TemplateBinding Header}"
+                                                 ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                            <local:ExtendedScrollViewer Grid.Row="1"
+                                                    Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="True"
+                                                UseLayoutRounding="True" />
+                            </local:ExtendedScrollViewer>
+                            <ContentPresenter Content="{TemplateBinding FunctionBar}"
+                                              Grid.Row="2" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

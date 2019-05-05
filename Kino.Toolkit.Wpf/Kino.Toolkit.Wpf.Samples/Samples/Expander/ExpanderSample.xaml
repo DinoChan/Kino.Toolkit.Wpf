@@ -240,27 +240,27 @@
         <StackPanel>
             <local:SampleSection Header="Expander">
                 <StackPanel>
-                    <kino:KinoExpander Header="我的日历">
+                    <kino:ExtendedExpander Header="我的日历">
                         <StackPanel>
                             <CheckBox Content="Calender"/>
                             <CheckBox Content="中国节假日"/>
                             <CheckBox Content="Birthdays"/>
                         </StackPanel>
-                    </kino:KinoExpander>
-                    <kino:KinoExpander Header="其它日历">
+                    </kino:ExtendedExpander>
+                    <kino:ExtendedExpander Header="其它日历">
                         <StackPanel>
                             <CheckBox Content="Calender"/>
                             <CheckBox Content="中国节假日"/>
                             <CheckBox Content="Birthdays"/>
                         </StackPanel>
-                    </kino:KinoExpander>
-                    <kino:KinoExpander Header="共享日历">
+                    </kino:ExtendedExpander>
+                    <kino:ExtendedExpander Header="共享日历">
                         <StackPanel>
                             <CheckBox Content="Calender"/>
                             <CheckBox Content="中国节假日"/>
                             <CheckBox Content="Birthdays"/>
                         </StackPanel>
-                    </kino:KinoExpander>
+                    </kino:ExtendedExpander>
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
@@ -272,7 +272,7 @@
             <local:SampleSection Header="Simple Accordion">
                 <Grid Height="400" x:Name="MenuRoot">
                     <Grid.Resources>
-                        <Style TargetType="{x:Type kino:KinoExpander}" >
+                        <Style TargetType="{x:Type kino:ExtendedExpander}" >
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
                             <Setter Property="Background" Value="Transparent"/>
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -281,7 +281,7 @@
                             <Setter Property="BorderThickness" Value="1"/>
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type kino:KinoExpander}">
+                                    <ControlTemplate TargetType="{x:Type kino:ExtendedExpander}">
                                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="true">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="ExpansionStates">

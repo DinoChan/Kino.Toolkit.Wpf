@@ -13,12 +13,12 @@
     <local:SampleSection>
         <StackPanel>
             <TextBlock Text="Selection Mode"
-                       Margin="8,8,8,0" />
+                       Margin="0,8,0,0" />
             <ComboBox Width="300"
                       HorizontalAlignment="Left"
-                      Margin="8"
+                      Margin="0,0,0,8"
                       x:Name="SelectionComboBox" />
-            <kino:KinoDataGrid ItemsSource="{Binding}" 
+            <kino:ExtendedDataGrid ItemsSource="{Binding}" 
                            AutoGenerateColumns="False"
                            SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
                            IsReadOnly="True">
@@ -27,7 +27,7 @@
                                     Binding="{Binding Name}"
                                     Width="200" />
                 </DataGrid.Columns>
-            </kino:KinoDataGrid>
+            </kino:ExtendedDataGrid>
         </StackPanel>
         <local:SampleSection.SourceCodes>
             <local:SourceCodeModel SourceCodeType="Xaml"

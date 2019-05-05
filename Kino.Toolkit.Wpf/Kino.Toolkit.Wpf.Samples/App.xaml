@@ -14,7 +14,7 @@
                         Value="/Kino.Toolkit.Wpf.Samples;component/Assets/#Font Awesome 5 Free Regular" />
             </Style>
 
-            <Style TargetType="kino:KinoFormItem"
+            <Style TargetType="kino:FormItem"
                    x:Key="ControlPanelFromItemStyle">
                 <Setter Property="IsTabStop"
                         Value="False" />
@@ -36,7 +36,7 @@
                 </Setter>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="kino:KinoFormItem">
+                        <ControlTemplate TargetType="kino:FormItem">
                             <StackPanel x:Name="Root">
                                 <ContentPresenter Content="{TemplateBinding Label}"
                                                   ContentTemplate="{TemplateBinding LabelTemplate}" />
@@ -53,13 +53,13 @@
             </Style>
 
 
-            <Style TargetType="kino:KinoForm"
+            <Style TargetType="kino:Form"
                    x:Key="ControlPanelFromStyle">
                 <Setter Property="kino:FocusService.IsAutoFocus" Value="False"/>
                 <Style.Resources>
                     <ResourceDictionary>
                         <Style BasedOn="{StaticResource ControlPanelFromItemStyle}"
-                               TargetType="{x:Type kino:KinoFormItem}" />
+                               TargetType="{x:Type kino:FormItem}" />
                     </ResourceDictionary>
                 </Style.Resources>
             </Style>
@@ -75,7 +75,7 @@
 
             <ControlTemplate x:Key="ErrorTemplate">
                 <AdornedElementPlaceholder>
-                    <kino:KinoValidationContent  />
+                    <kino:ValidationContent  />
                 </AdornedElementPlaceholder>
             </ControlTemplate>
         </ResourceDictionary>

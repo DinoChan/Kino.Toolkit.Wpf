@@ -1,7 +1,7 @@
-﻿<kino:KinoResizer HorizontalContentAlignment="Stretch"
+﻿<kino:Resizer HorizontalContentAlignment="Stretch"
                   Animation="{x:Null}">
     <TextBox AcceptsReturn="True"
              VerticalScrollBarVisibility="Disabled" />
-</kino:KinoResizer>
+</kino:Resizer>
 <Button Content="Commit"
         Margin="0,8,0,0" />

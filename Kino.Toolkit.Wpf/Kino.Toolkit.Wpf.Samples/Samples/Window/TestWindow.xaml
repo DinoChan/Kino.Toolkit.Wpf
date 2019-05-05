@@ -1,4 +1,4 @@
-﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.TestWindow"
+﻿<kino:ExtendedWindow x:Class="Kino.Toolkit.Wpf.Samples.TestWindow"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,8 +10,8 @@
                  Width="400"
                  SizeToContent="Height"
                  UseLayoutRounding="True">
-    <kino:KinoWindow.FunctionBar>
-        <kino:KinoWindowFunctionBar>
+    <kino:ExtendedWindow.FunctionBar>
+        <kino:WindowFunctionBar>
             <Button Content="Dino.C" />
             <Separator />
             <Menu>
@@ -35,8 +35,8 @@
                            Fill="White" />
                 </Grid>
             </Button>
-        </kino:KinoWindowFunctionBar>
-    </kino:KinoWindow.FunctionBar>
+        </kino:WindowFunctionBar>
+    </kino:ExtendedWindow.FunctionBar>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -59,4 +59,4 @@
                 Margin="0,10" />
 
     </Grid>
-</kino:KinoWindow>
+</kino:ExtendedWindow>

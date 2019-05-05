@@ -65,7 +65,7 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private async void OnComment(object sender, RoutedEventArgs e)
         {
-            var button = sender as KinoButton;
+            var button = sender as ExtendedButton;
             button.IsEnabled = false;
             button.State = ProgressState.Busy;
 

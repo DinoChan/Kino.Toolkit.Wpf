@@ -12,22 +12,22 @@
                   d:DesignWidth="800">
     <Grid>
         <local:SampleSection>
-            <kino:KinoStateIndicator x:Name="StateIndicator"
+            <kino:StateIndicator x:Name="StateIndicator"
                                      VerticalContentAlignment="Center"
                                      HorizontalContentAlignment="Center"
                                      State="{Binding SelectedItem,ElementName=StatesListBox}"
                                      HorizontalAlignment="Left" />
             <local:SampleSection.ControlPanel>
-                <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
-                    <CheckBox kino:KinoForm.Label="Has Content"
+                <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                    <CheckBox kino:Form.Label="Has Content"
                               x:Name="HasContentCheckBox"
                               Checked="OnHasContentChecked"
                               Unchecked="OnHasContentUnchecked" />
                     <ListBox x:Name="StatesListBox"
                              HorizontalAlignment="Left"
                              Width="250"
-                             kino:KinoForm.Label="State" />
-                </kino:KinoForm>
+                             kino:Form.Label="State" />
+                </kino:Form>
             </local:SampleSection.ControlPanel>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"

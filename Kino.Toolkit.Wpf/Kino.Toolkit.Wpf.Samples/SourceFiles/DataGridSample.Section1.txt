@@ -4,7 +4,7 @@
           HorizontalAlignment="Left"
           Margin="8"
           x:Name="SelectionComboBox" />
-<kino:KinoDataGrid ItemsSource="{Binding}" 
+<kino:ExtendedDataGrid ItemsSource="{Binding}" 
                AutoGenerateColumns="False"
                SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
                IsReadOnly="True">
@@ -13,4 +13,4 @@
                         Binding="{Binding Name}"
                         Width="200" />
     </DataGrid.Columns>
-</kino:KinoDataGrid>
+</kino:ExtendedDataGrid>

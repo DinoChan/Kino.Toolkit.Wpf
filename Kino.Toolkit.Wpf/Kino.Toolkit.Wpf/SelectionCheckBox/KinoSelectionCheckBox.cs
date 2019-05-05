@@ -9,11 +9,11 @@ using Kino.Toolkit.Wpf.Primitives;
 
 namespace Kino.Toolkit.Wpf.Primitives
 {
-    public class KinoSelectionCheckBox : CheckBox
+    public class SelectionCheckBox : CheckBox
     {
         // Using a DependencyProperty as the backing store for Selector.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectorProperty =
-            DependencyProperty.Register("Selector", typeof(IMultiSelector), typeof(KinoSelectionCheckBox), new PropertyMetadata(null, OnSelectorPropertyChanged));
+            DependencyProperty.Register("Selector", typeof(IMultiSelector), typeof(SelectionCheckBox), new PropertyMetadata(null, OnSelectorPropertyChanged));
 
         private bool _isUpdatingIsChecked;
 
@@ -72,7 +72,7 @@ namespace Kino.Toolkit.Wpf.Primitives
 
         private static void OnSelectorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var target = d as KinoSelectionCheckBox;
+            var target = d as SelectionCheckBox;
             target.OnSelectorChanged(e.OldValue as IMultiSelector, e.NewValue as IMultiSelector);
         }
 

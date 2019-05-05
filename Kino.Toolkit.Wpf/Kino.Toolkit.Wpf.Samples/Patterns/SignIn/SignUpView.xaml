@@ -10,12 +10,12 @@
     <UserControl.Resources>
         <kino:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <Style TargetType="kino:KinoFormItem">
+        <Style TargetType="kino:FormItem">
             <Setter Property="Padding"
                     Value="0,4,0,0" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <StackPanel x:Name="Root">
                             <StackPanel Orientation="Horizontal">
                                 <ContentPresenter Content="{TemplateBinding Label}"
@@ -46,42 +46,42 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <kino:KinoResizer HorizontalContentAlignment="Stretch">
+    <kino:Resizer HorizontalContentAlignment="Stretch">
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <kino:KinoForm Header="注册">
-                    <TextBox kino:KinoForm.Label="用户名"
+                <kino:Form Header="注册">
+                    <TextBox kino:Form.Label="用户名"
                              Text="{Binding Username,Mode=TwoWay}"
                              Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-                    <TextBox kino:KinoForm.Label="昵称"
+                    <TextBox kino:Form.Label="昵称"
                              Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-                    <PasswordBox kino:KinoForm.Label="密码"
+                    <PasswordBox kino:Form.Label="密码"
                                  Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
                                   local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}" />
-                    <TextBox kino:KinoForm.Label="邮箱"/>
-                    <TextBox kino:KinoForm.Label="家庭住址"/>
-                    <TextBox kino:KinoForm.Label="邮编"/>
-                    <kino:KinoForm.FunctionBar>
-                        <kino:KinoFormFunctionBar>
-                            <kino:KinoFormFunctionBar.Header>
-                                <kino:KinoHyperlinkButton Content="返回"
+                    <TextBox kino:Form.Label="邮箱"/>
+                    <TextBox kino:Form.Label="家庭住址"/>
+                    <TextBox kino:Form.Label="邮编"/>
+                    <kino:Form.FunctionBar>
+                        <kino:FormFunctionBar>
+                            <kino:FormFunctionBar.Header>
+                                <kino:HyperlinkButton Content="返回"
                                                           Click="OnBack"
                                                           VerticalAlignment="Bottom"
                                                           HorizontalAlignment="Left" />
-                            </kino:KinoFormFunctionBar.Header>
-                            <kino:KinoButton Content="Sign Up"
+                            </kino:FormFunctionBar.Header>
+                            <kino:ExtendedButton Content="Sign Up"
                                              x:Name="SignUpButton"
                                              IsDefault="True"
                                              Click="OnSignUp" />
-                        </kino:KinoFormFunctionBar>
-                    </kino:KinoForm.FunctionBar>
-                </kino:KinoForm>
+                        </kino:FormFunctionBar>
+                    </kino:Form.FunctionBar>
+                </kino:Form>
              
             </Grid>
         </Grid>
-    </kino:KinoResizer>
+    </kino:Resizer>
 </UserControl>

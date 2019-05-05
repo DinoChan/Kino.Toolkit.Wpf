@@ -1,42 +1,42 @@
 ﻿<local:SampleSection>
     <StackPanel Orientation="Horizontal">
-        <kino:KinoSquareBox HorizontalAlignment="Left"
+        <kino:SquareBox HorizontalAlignment="Left"
                             Height="{Binding ElementName=HeightElement,Path=Value}"
                             Width="{Binding ElementName=WidthElement,Path=Value}">
             <Ellipse Fill="Green" />
-        </kino:KinoSquareBox>
-        <kino:KinoSquareBox Margin="8,0,0,0"
+        </kino:SquareBox>
+        <kino:SquareBox Margin="8,0,0,0"
                             HorizontalAlignment="Left"
                             Height="{Binding ElementName=HeightElement,Path=Value}"
                             Width="{Binding ElementName=WidthElement,Path=Value}">
             <Rectangle Fill="Green" />
-        </kino:KinoSquareBox>
+        </kino:SquareBox>
     </StackPanel>
     <local:SampleSection.ControlPanel>
         <StackPanel>
-            <kino:KinoForm HorizontalAlignment="Left"
+            <kino:Form HorizontalAlignment="Left"
                            ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
-                <Slider kino:KinoForm.Label="Height"
+                <Slider kino:Form.Label="Height"
                         Maximum="100"
                         Value="10"
                         Minimum="5"
                         Width="300"
                         x:Name="HeightElement">
-                    <kino:KinoForm.Description>
+                    <kino:Form.Description>
                         <TextBlock Text="{Binding ElementName=HeightElement,Path=Value,StringFormat=N2}" />
-                    </kino:KinoForm.Description>
+                    </kino:Form.Description>
                 </Slider>
-                <Slider kino:KinoForm.Label="Width"
+                <Slider kino:Form.Label="Width"
                         Maximum="100"
                         Value="10"
                         Minimum="5"
                         Width="300"
                         x:Name="WidthElement">
-                    <kino:KinoForm.Description>
+                    <kino:Form.Description>
                         <TextBlock Text="{Binding ElementName=WidthElement,Path=Value,StringFormat=N2}" />
-                    </kino:KinoForm.Description>
+                    </kino:Form.Description>
                 </Slider>
-            </kino:KinoForm>
+            </kino:Form>
         </StackPanel>
     </local:SampleSection.ControlPanel>
 </local:SampleSection>

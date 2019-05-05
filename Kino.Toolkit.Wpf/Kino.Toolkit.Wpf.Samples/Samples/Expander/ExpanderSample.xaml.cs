@@ -27,11 +27,11 @@ namespace Kino.Toolkit.Wpf.Samples
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var expanders = new List<KinoExpander>();
+            var expanders = new List<ExtendedExpander>();
             Expander firstExpander = null;
             for (int i = 0; i < 10; i++)
             {
-                var expander = new KinoExpander() { Header = "This is AccordionItem " + i };
+                var expander = new ExtendedExpander() { Header = "This is AccordionItem " + i };
                 if (i == 0)
                     firstExpander = expander;
 

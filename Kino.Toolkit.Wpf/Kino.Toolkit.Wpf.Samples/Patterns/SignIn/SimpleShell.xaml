@@ -1,4 +1,4 @@
-﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.SimpleShell"
+﻿<kino:ExtendedWindow x:Class="Kino.Toolkit.Wpf.Samples.SimpleShell"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,16 +10,16 @@
                  Title="SimpleShell"
                  Height="450"
                  Width="800">
-    <kino:KinoWindow.FunctionBar>
-        <kino:KinoWindowFunctionBar>
+    <kino:ExtendedWindow.FunctionBar>
+        <kino:WindowFunctionBar>
             <Menu>
                 <MenuItem x:Name="UsernameItem">
                     <MenuItem Header="Sign Out"
                               Click="OnSignOut" />
                 </MenuItem>
             </Menu>
-        </kino:KinoWindowFunctionBar>
-    </kino:KinoWindow.FunctionBar>
+        </kino:WindowFunctionBar>
+    </kino:ExtendedWindow.FunctionBar>
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Welcome:"  Foreground="#FF666666" FontSize="16"
@@ -32,4 +32,4 @@
                        x:Name="UsernameElement"/>
         </StackPanel>
     </Grid>
-</kino:KinoWindow>
+</kino:ExtendedWindow>

@@ -12,7 +12,7 @@
                                     SortMemberPath="Name" />
             </DataGrid.Columns>
         </DataGrid>
-        <kino:KinoDataPager Source="{Binding}"
+        <kino:DataPager Source="{Binding}"
                             DisplayMode="FirstLastPreviousNextNumeric" />
     </StackPanel>
 </xctk:BusyIndicator>
