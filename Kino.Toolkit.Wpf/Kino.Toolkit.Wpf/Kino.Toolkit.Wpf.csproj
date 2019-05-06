@@ -67,7 +67,7 @@
     <Compile Include="Chromes\DataGridHeaderBorder.cs" />
     <Compile Include="Common\DpiHelper.cs" />
     <Compile Include="Common\FocusService.cs" />
-    <Compile Include="Common\SystemDropShadowChrome.cs" />
+    <Compile Include="Chromes\SystemDropShadowChrome.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WindowNotifications.cs" />
     <Compile Include="Expander\ExpandableContentControl.cs" />
