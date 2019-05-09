@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.4.0</version>
+    <version>1.4.3</version>
     <title>Kino.Toolkit.Wpf</title>
     <authors>dino.c</authors>
     <owners>dino.c</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/Logo.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A set of wpf toolkit.</description>
-    <releaseNotes>1.4.0</releaseNotes>
+    <releaseNotes>1.4.3</releaseNotes>
     <copyright>Copyright 2019 dino.c</copyright>
     <tags>WPF Control Toolkit Xaml</tags>
     <dependencies>
