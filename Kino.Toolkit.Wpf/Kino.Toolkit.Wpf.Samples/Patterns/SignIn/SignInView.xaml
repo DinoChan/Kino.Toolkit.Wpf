@@ -11,12 +11,12 @@
     <UserControl.Resources>
         <kino:EmptyObjectToVisibilityConverter x:Key="EmptyObjectToVisibilityConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <Style TargetType="kino:KinoFormItem">
+        <Style TargetType="kino:FormItem">
             <Setter Property="Padding"
                     Value="0,4,0,0" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <StackPanel x:Name="Root">
                             <StackPanel Orientation="Horizontal">
                                 <ContentPresenter Content="{TemplateBinding Label}"
@@ -53,23 +53,23 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <kino:KinoForm Header="登录">
-            <TextBox kino:KinoForm.Label="用户名"
+        <kino:Form Header="登录">
+            <TextBox kino:Form.Label="用户名"
                      x:Name="UsernameElement"
                      Text="{Binding Username,Mode=TwoWay}"
                      Validation.ErrorTemplate="{StaticResource ErrorTemplate}"/>
-            <PasswordBox kino:KinoForm.Label="密码"
+            <PasswordBox kino:Form.Label="密码"
                          local:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay}"
                          Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-            <kino:KinoForm.FunctionBar>
-                <kino:KinoFormFunctionBar>
-                    <kino:KinoButton Content="Sign In"
+            <kino:Form.FunctionBar>
+                <kino:FormFunctionBar>
+                    <kino:ExtendedButton Content="Sign In"
                                      IsDefault="True"
                                      Click="OnSignIn"
                                      x:Name="SignInButton" />
-                </kino:KinoFormFunctionBar>
-            </kino:KinoForm.FunctionBar>
-        </kino:KinoForm>
+                </kino:FormFunctionBar>
+            </kino:Form.FunctionBar>
+        </kino:Form>
         <Grid Grid.Row="1"
               Background="#FFDFDFDF">
             <StackPanel Orientation="Horizontal"
@@ -77,7 +77,7 @@
                         Margin="8">
                 <TextBlock Text="没有账号？"
                            VerticalAlignment="Center" />
-                <kino:KinoHyperlinkButton Content="注册"
+                <kino:HyperlinkButton Content="注册"
                                           Click="OnSignUp" />
             </StackPanel>
         </Grid>

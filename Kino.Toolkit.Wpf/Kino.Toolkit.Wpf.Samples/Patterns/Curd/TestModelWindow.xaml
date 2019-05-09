@@ -1,4 +1,4 @@
-﻿<kino:KinoWindow x:Class="Kino.Toolkit.Wpf.Samples.TestModelWindow"
+﻿<kino:ExtendedWindow x:Class="Kino.Toolkit.Wpf.Samples.TestModelWindow"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,23 +15,23 @@
                  Width="800">
     <Grid Width="400">
         <xctk:BusyIndicator x:Name="BusyIndicator">
-            <kino:KinoForm>
-                <kino:KinoFormTitle Content="TestModel" />
-                <TextBox kino:KinoForm.Label="Name"
+            <kino:Form>
+                <kino:FormTitle Content="TestModel" />
+                <TextBox kino:Form.Label="Name"
                          Text="{Binding Name}" />
-                <xctk:IntegerUpDown kino:KinoForm.Label="Age"
+                <xctk:IntegerUpDown kino:Form.Label="Age"
                                     Value="{Binding Age,Mode=TwoWay}" />
-                <kino:KinoForm.FunctionBar>
-                    <kino:KinoFormFunctionBar>
+                <kino:Form.FunctionBar>
+                    <kino:FormFunctionBar>
                         <Button Content="Save"
                                 IsDefault="True"
                                 Click="OnSave" />
                         <Button Content="Cancel"
                                 IsCancel="True"
                                 Click="OnCancel" />
-                    </kino:KinoFormFunctionBar>
-                </kino:KinoForm.FunctionBar>
-            </kino:KinoForm>
+                    </kino:FormFunctionBar>
+                </kino:Form.FunctionBar>
+            </kino:Form>
         </xctk:BusyIndicator>
     </Grid>
-</kino:KinoWindow>
+</kino:ExtendedWindow>

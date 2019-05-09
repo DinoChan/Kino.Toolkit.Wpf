@@ -1,14 +1,14 @@
-﻿<kino:KinoForm Width="500"
+﻿<kino:Form Width="500"
                HorizontalAlignment="Left">
-    <kino:KinoForm.Resources>
-        <Style TargetType="kino:KinoFormItem"
+    <kino:Form.Resources>
+        <Style TargetType="kino:FormItem"
                x:Key="FromItemStyle"
                BasedOn="{StaticResource ControlPanelFromItemStyle}">
             <Setter Property="Margin"
                     Value="8" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <StackPanel x:Name="Root">
                             <ContentPresenter Content="{TemplateBinding Label}"
                                               ContentTemplate="{TemplateBinding LabelTemplate}" />
@@ -27,36 +27,36 @@
         <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
             <UniformGrid Rows="1" />
         </ItemsPanelTemplate>
-    </kino:KinoForm.Resources>
-    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+    </kino:Form.Resources>
+    <Expander kino:Form.IsItemItsOwnContainer="True"
               Header="用户信息"
               IsExpanded="True">
-        <kino:KinoForm Grid.IsSharedSizeScope="False"
+        <kino:Form Grid.IsSharedSizeScope="False"
                        Padding="0"
                        ItemContainerStyle="{StaticResource FromItemStyle}"
                        ItemsPanel="{StaticResource ItemsPanelTemplate}">
-            <TextBox kino:KinoForm.Label="用户名" />
-            <TextBox kino:KinoForm.Label="级别" />
-            <TextBox kino:KinoForm.Label="备注" />
+            <TextBox kino:Form.Label="用户名" />
+            <TextBox kino:Form.Label="级别" />
+            <TextBox kino:Form.Label="备注" />
 
-        </kino:KinoForm>
+        </kino:Form>
     </Expander>
-    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+    <Expander kino:Form.IsItemItsOwnContainer="True"
               Header="其它信息"
               IsExpanded="True">
-        <kino:KinoForm Grid.IsSharedSizeScope="False"
+        <kino:Form Grid.IsSharedSizeScope="False"
                        Padding="0"
                        ItemContainerStyle="{StaticResource FromItemStyle}"
                        ItemsPanel="{StaticResource ItemsPanelTemplate}">
-            <TextBox kino:KinoForm.Label="学校" />
-            <TextBox kino:KinoForm.Label="职业" />
-            <TextBox kino:KinoForm.Label="证书" />
-        </kino:KinoForm>
+            <TextBox kino:Form.Label="学校" />
+            <TextBox kino:Form.Label="职业" />
+            <TextBox kino:Form.Label="证书" />
+        </kino:Form>
     </Expander>
-    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+    <Expander kino:Form.IsItemItsOwnContainer="True"
               Header="住址信息"
               IsExpanded="True">
-        <kino:KinoForm Grid.IsSharedSizeScope="False"
+        <kino:Form Grid.IsSharedSizeScope="False"
                        Padding="0"
                        ItemContainerStyle="{StaticResource FromItemStyle}">
             <ItemsControl.ItemsPanel>
@@ -70,12 +70,12 @@
                     </Grid>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <TextBox kino:KinoForm.Label="邮编" />
-            <kino:KinoFormItem Label="住址"
+            <TextBox kino:Form.Label="邮编" />
+            <kino:FormItem Label="住址"
                                Grid.Column="1"
                                Grid.ColumnSpan="2">
                 <TextBox />
-            </kino:KinoFormItem>
-        </kino:KinoForm>
+            </kino:FormItem>
+        </kino:Form>
     </Expander>
-</kino:KinoForm>
+</kino:Form>

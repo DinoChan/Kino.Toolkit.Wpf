@@ -1,8 +1,8 @@
 ﻿<StackPanel>
-    <kino:KinoSelectionCheckBox Selector="{Binding ElementName=ListBox}"
+    <kino:SelectionCheckBox Selector="{Binding ElementName=ListBox}"
                                 Content="全选"
                                 Margin="8,8,8,0" />
-    <kino:KinoListBox DisplayMemberPath="Name"
+    <kino:ExtendedListBox DisplayMemberPath="Name"
                       ItemsSource="{Binding}"
                       IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement,Path=IsChecked}"
                       SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
@@ -10,14 +10,14 @@
                       x:Name="ListBox" />
 </StackPanel>
 <local:SampleSection.ControlPanel>
-    <kino:KinoForm Style="{StaticResource ControlPanelFromStyle}">
+    <kino:Form Style="{StaticResource ControlPanelFromStyle}">
         <ComboBox Width="300"
                   HorizontalAlignment="Left"
                   x:Name="SelectionComboBox"  
-                  kino:KinoForm.Label="SelectionMode"/>
+                  kino:Form.Label="SelectionMode"/>
         <CheckBox Width="300"
-                  kino:KinoForm.Label="IsMultiSelectCheckBoxEnabled"
+                  kino:Form.Label="IsMultiSelectCheckBoxEnabled"
                   HorizontalAlignment="Left"
                   x:Name="IsMultiSelectCheckBoxEnabledElement" />
-    </kino:KinoForm>
+    </kino:Form>
 </local:SampleSection.ControlPanel>

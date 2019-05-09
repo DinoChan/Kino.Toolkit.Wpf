@@ -35,7 +35,7 @@
 </VisualState>
 
 
-<kino:KinoTransitioningContentControl Margin="8"
+<kino:TransitioningContentControl Margin="8"
                                       x:Name="CustomContent"
                                       Template="{StaticResource CustomTemplate}" />
 <StackPanel Orientation="Horizontal">

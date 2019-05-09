@@ -59,9 +59,9 @@ namespace Kino.Toolkit.Wpf.Samples
                 _isLargeSize = value;
                 Root.Resources.Clear();
                 if (_isLargeSize)
-                    Root.Resources.Add(typeof(KinoFormItem), _horizontalFormItemStyle);
+                    Root.Resources.Add(typeof(FormItem), _horizontalFormItemStyle);
                 else
-                    Root.Resources.Add(typeof(KinoFormItem), _verticalFormItemStyle);
+                    Root.Resources.Add(typeof(FormItem), _verticalFormItemStyle);
             }
         }
     }

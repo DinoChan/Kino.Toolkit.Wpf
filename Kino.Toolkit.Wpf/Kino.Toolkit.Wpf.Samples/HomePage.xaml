@@ -10,7 +10,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <FrameworkElement.Resources>
-        <Style TargetType="kino:KinoHyperlinkButton">
+        <Style TargetType="kino:HyperlinkButton">
             <Setter Property="Margin"
                     Value="0,10,20,10" />
             <Setter Property="MinWidth"
@@ -157,37 +157,37 @@
                            FontSize="20"
                            Foreground="#FF333333" />
                 <WrapPanel x:Name="ControlsPanel">
-                    <kino:KinoHyperlinkButton Content="Button"
+                    <kino:HyperlinkButton Content="Button"
                                               Tag="{x:Type local:ButtonSample}" />
-                    <kino:KinoHyperlinkButton Content="TransitioningContentControl"
+                    <kino:HyperlinkButton Content="TransitioningContentControl"
                                               Tag="{x:Type local:TransitioningContentControlSample}" />
-                    <kino:KinoHyperlinkButton Content="ProgressRing"
+                    <kino:HyperlinkButton Content="ProgressRing"
                                               Tag="{x:Type local:ProgressRingSample}" />
-                    <kino:KinoHyperlinkButton Content="StateIndicator"
+                    <kino:HyperlinkButton Content="StateIndicator"
                                               Tag="{x:Type local:StateIndicatorSample}" />
-                    <kino:KinoHyperlinkButton Content="Window"
+                    <kino:HyperlinkButton Content="Window"
                                               Tag="{x:Type local:WindowSample}" />
-                    <kino:KinoHyperlinkButton Content="Resizer"
+                    <kino:HyperlinkButton Content="Resizer"
                                               Tag="{x:Type local:ResizerSample}" />
-                    <kino:KinoHyperlinkButton Content="Expander"
+                    <kino:HyperlinkButton Content="Expander"
                                               Tag="{x:Type local:ExpanderSample}" />
-                    <kino:KinoHyperlinkButton Content="SquareBox"
+                    <kino:HyperlinkButton Content="SquareBox"
                                               Tag="{x:Type local:SquareBoxSample}" />
-                    <kino:KinoHyperlinkButton Content="FormItem"
+                    <kino:HyperlinkButton Content="FormItem"
                                               Tag="{x:Type local:FormItemSample}" />
-                    <kino:KinoHyperlinkButton Content="Form"
+                    <kino:HyperlinkButton Content="Form"
                                               Tag="{x:Type local:FormSample}" />
-                    <kino:KinoHyperlinkButton Content="RadioButtonMenuItem"
+                    <kino:HyperlinkButton Content="RadioButtonMenuItem"
                                               Tag="{x:Type local:RadioButtonMenuItemSample}" />
-                    <kino:KinoHyperlinkButton Content="DataPager"
+                    <kino:HyperlinkButton Content="DataPager"
                                               Tag="{x:Type local:DataPagerSample}" />
-                    <kino:KinoHyperlinkButton Content="ListBox"
+                    <kino:HyperlinkButton Content="ListBox"
                                               Tag="{x:Type local:ListBoxSample}" />
-                    <kino:KinoHyperlinkButton Content="DataGrid"
+                    <kino:HyperlinkButton Content="DataGrid"
                                               Tag="{x:Type local:DataGridSample}" />
-                    <kino:KinoHyperlinkButton Content="Paging"
+                    <kino:HyperlinkButton Content="Paging"
                                               Tag="{x:Type local:PagingSample}" />
-                    <kino:KinoHyperlinkButton Content="Highlight"
+                    <kino:HyperlinkButton Content="Highlight"
                                               Tag="{x:Type local:HighlightSample}" />
                 </WrapPanel>
                 <Rectangle Height="1"
@@ -197,9 +197,10 @@
                 <TextBlock Text="About"
                            FontSize="20"
                            Foreground="#FF333333" />
-                <TextBlock Text="Version 1.3.0"
-                           Margin="0,10" />
-                <kino:KinoHyperlinkButton Content="Github"
+                <TextBlock Text="Version 1.3.1"
+                           Margin="0,10"
+                           x:Name="VersionElement"/>
+                <kino:HyperlinkButton Content="Github"
                                           NavigateUri="https://github.com/DinoChan/Kino.Toolkit.Wpf" />
             </StackPanel>
         </ScrollViewer>

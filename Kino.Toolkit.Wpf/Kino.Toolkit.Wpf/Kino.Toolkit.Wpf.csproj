@@ -63,18 +63,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button\KinoHyperlinkButton.cs" />
+    <Compile Include="Button\HyperlinkButton.cs" />
     <Compile Include="Chromes\DataGridHeaderBorder.cs" />
     <Compile Include="Common\DpiHelper.cs" />
     <Compile Include="Common\FocusService.cs" />
-    <Compile Include="Common\SystemDropShadowChrome.cs" />
+    <Compile Include="Chromes\SystemDropShadowChrome.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WindowNotifications.cs" />
     <Compile Include="Expander\ExpandableContentControl.cs" />
-    <Compile Include="Expander\KinoExpander.cs" />
-    <Compile Include="FunctionBar\KinoFunctionBar.cs" />
-    <Compile Include="FunctionBar\KinoFormFunctionBar.cs" />
-    <Compile Include="FunctionBar\KinoWindowFunctionBar.cs" />
+    <Compile Include="Expander\ExtendedExpander.cs" />
+    <Compile Include="FunctionBar\FunctionBar.cs" />
+    <Compile Include="FunctionBar\FormFunctionBar.cs" />
+    <Compile Include="FunctionBar\WindowFunctionBar.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\FunctionalProgramming.cs" />
     <Compile Include="Common\NativeMethods.cs" />
@@ -89,8 +89,8 @@
     <Compile Include="Converters\EmptyObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />
     <Compile Include="Converters\TimesConverter.cs" />
-    <Compile Include="DataGrid\KinoDataGrid.cs" />
-    <Compile Include="DataPager\KinoDataPager.cs" />
+    <Compile Include="DataGrid\ExtendedDataGrid.cs" />
+    <Compile Include="DataPager\DataPager.cs" />
     <Compile Include="DataPager\PagerDisplayMode.cs" />
     <Compile Include="DataPager\PagerResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -112,16 +112,16 @@
     <Compile Include="DomainServices\AsyncRemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionView.cs" />
     <Compile Include="DomainServices\RemoteCollectionViewLoader.cs" />
-    <Compile Include="Form\KinoForm.Properties.cs" />
-    <Compile Include="Form\KinoForm.cs" />
-    <Compile Include="Form\KinoFormItem.cs" />
-    <Compile Include="Form\KinoFormSeparator.cs" />
-    <Compile Include="Form\KinoFormTitle.cs" />
+    <Compile Include="Form\Form.Properties.cs" />
+    <Compile Include="Form\Form.cs" />
+    <Compile Include="Form\FormItem.cs" />
+    <Compile Include="Form\FormSeparator.cs" />
+    <Compile Include="Form\FormTitle.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="HeaderedContentControl\KinoHeaderedContentControl.cs" />
-    <Compile Include="Layout\KinoPageTitle.cs" />
-    <Compile Include="ListBox\KinoListBox.cs" />
-    <Compile Include="ListBox\KinoListBoxItem.cs" />
+    <Compile Include="HeaderedContentControl\ExtendedHeaderedContentControl.cs" />
+    <Compile Include="Layout\PageTitle.cs" />
+    <Compile Include="ListBox\ExtendedListBox.cs" />
+    <Compile Include="ListBox\ListBoxItem.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupRoot.cs" />
     <Compile Include="PagedCollectionView\IPagedCollectionView.cs" />
@@ -133,94 +133,94 @@
       <DependentUpon>PagedCollectionViewResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ProgressRing\TemplateSettingValues.cs" />
-    <Compile Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.cs" />
+    <Compile Include="RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Resizer\InnerContentControl.cs" />
-    <Compile Include="Resizer\KinoResizer.cs" />
-    <Compile Include="ScrollViewer\KinoScrollViewer.cs" />
+    <Compile Include="Resizer\Resizer.cs" />
+    <Compile Include="ScrollViewer\ExtendedScrollViewer.cs" />
     <Compile Include="SelectionCheckBox\IMultiSelector.cs" />
     <Compile Include="SelectionCheckBox\KinoSelectionCheckBox.cs" />
-    <Compile Include="SkeletonScreen\KinoSkeletonScreen.cs" />
-    <Compile Include="SquareBox\KinoSquareBox.cs" />
-    <Compile Include="SquareBox\KinoSquareBoxTemplateSettings.cs" />
-    <Compile Include="StateIndicator\KinoStateIndicator.cs" />
+    <Compile Include="SkeletonScreen\SkeletonScreen.cs" />
+    <Compile Include="SquareBox\SquareBox.cs" />
+    <Compile Include="SquareBox\SquareBoxTemplateSettings.cs" />
+    <Compile Include="StateIndicator\StateIndicator.cs" />
     <Compile Include="StateIndicator\ProgressState.cs" />
-    <Compile Include="ProgressRing\KinoProgressRing.cs" />
+    <Compile Include="ProgressRing\ProgressRing.cs" />
     <Compile Include="TextBlock\TextBlockHighlightSource.cs" />
     <Compile Include="TextBlock\TextBlockHightlighSourceConverter.cs" />
     <Compile Include="TextBlock\TextBlockService.cs" />
-    <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.cs" />
+    <Compile Include="TransitioningContentControl\TransitioningContentControl.cs" />
     <Compile Include="TransitioningContentControl\TransitionType.cs" />
-    <Compile Include="Validation\KinoValidationContent.cs" />
-    <Compile Include="Window\KinoRibbonWindow.cs" />
-    <Compile Include="Window\KinoWindow.cs" />
+    <Compile Include="Validation\ValidationContent.cs" />
+    <Compile Include="Window\ExtendedRibbonWindow.cs" />
+    <Compile Include="Window\ExtendedWindow.cs" />
     <Compile Include="Window\WindowParameters.cs" />
     <Compile Include="Window\WindowService.cs" />
     <Compile Include="Window\WindowService.WindowCommandHelper.cs" />
-    <Page Include="Button\KinoButton.xaml">
+    <Page Include="Button\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Expander\KinoExpander.xaml">
+    <Page Include="Expander\Expander.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FunctionBar\KinoFunctionBar.xaml">
+    <Page Include="FunctionBar\FunctionBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FunctionBar\KinoFormFunctionBar.xaml">
+    <Page Include="FunctionBar\FormFunctionBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FunctionBar\KinoWindowFunctionBar.xaml">
+    <Page Include="FunctionBar\WindowFunctionBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataGrid\KinoDataGrid.xaml">
+    <Page Include="DataGrid\DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataPager\KinoDataPager.xaml">
+    <Page Include="DataPager\DataPager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\KinoForm.xaml">
+    <Page Include="Form\Form.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HeaderedContentControl\KinoHeaderedContentControl.xaml">
+    <Page Include="HeaderedContentControl\HeaderedContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Layout\KinoPageTitle.xaml">
+    <Page Include="Layout\PageTitle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ListBox\KinoListBox.xaml">
+    <Page Include="ListBox\ListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RadioButtonMenuItem\KinoRadioButtonMenuItem.xaml">
+    <Page Include="RadioButtonMenuItem\RadioButtonMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resizer\KinoResizer.xaml">
+    <Page Include="Resizer\Resizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SkeletonScreen\KinoSkeletonScreen.xaml">
+    <Page Include="SkeletonScreen\SkeletonScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SquareBox\KinoSquareBox.xaml">
+    <Page Include="SquareBox\SquareBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StateIndicator\KinoStateIndicator.xaml">
+    <Page Include="StateIndicator\StateIndicator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProgressRing\KinoProgressRing.xaml">
+    <Page Include="ProgressRing\ProgressRing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,16 +228,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Button\KinoButton.cs" />
-    <Page Include="TransitioningContentControl\KinoTransitioningContentControl.xaml">
+    <Compile Include="Button\ExtendedButton.cs" />
+    <Page Include="TransitioningContentControl\TransitioningContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Validation\KinoValidationContent.xaml">
+    <Page Include="Validation\ValidationContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window\KinoWindow.xaml">
+    <Page Include="Window\Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,7 +286,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="TransitioningContentControl\KinoTransitioningContentControl.VisualStates.cs" />
+    <Compile Include="TransitioningContentControl\TransitioningContentControl.VisualStates.cs" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\defaultsystemicon.png" />

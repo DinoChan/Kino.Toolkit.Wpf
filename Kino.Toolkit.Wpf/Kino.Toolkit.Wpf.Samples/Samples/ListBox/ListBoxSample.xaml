@@ -309,10 +309,10 @@
     <StackPanel>
         <local:SampleSection Header="基本使用">
             <StackPanel>
-                <kino:KinoSelectionCheckBox Selector="{Binding ElementName=ListBox}"
+                <kino:SelectionCheckBox Selector="{Binding ElementName=ListBox}"
                                             Content="全选"
                                             Margin="8,8,8,0" />
-                <kino:KinoListBox DisplayMemberPath="Name"
+                <kino:ExtendedListBox DisplayMemberPath="Name"
                                   ItemsSource="{Binding}"
                                   IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement,Path=IsChecked}"
                                   SelectionMode="{Binding ElementName=SelectionComboBox,Path=SelectedItem}"
@@ -320,16 +320,16 @@
                                   x:Name="ListBox" />
             </StackPanel>
             <local:SampleSection.ControlPanel>
-                <kino:KinoForm Style="{StaticResource ControlPanelFromStyle}">
+                <kino:Form Style="{StaticResource ControlPanelFromStyle}">
                     <ComboBox Width="300"
                               HorizontalAlignment="Left"
                               x:Name="SelectionComboBox"  
-                              kino:KinoForm.Label="SelectionMode"/>
+                              kino:Form.Label="SelectionMode"/>
                     <CheckBox Width="300"
-                              kino:KinoForm.Label="IsMultiSelectCheckBoxEnabled"
+                              kino:Form.Label="IsMultiSelectCheckBoxEnabled"
                               HorizontalAlignment="Left"
                               x:Name="IsMultiSelectCheckBoxEnabledElement" />
-                </kino:KinoForm>
+                </kino:Form>
             </local:SampleSection.ControlPanel>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
@@ -349,14 +349,14 @@
                               Checked="OnChangeToMultipleSelection"
                               Unchecked="OnChangeToSingleSelection"
                               HorizontalAlignment="Left" />
-                    <kino:KinoSelectionCheckBox Selector="{Binding ElementName=SquareListBox}"
+                    <kino:SelectionCheckBox Selector="{Binding ElementName=SquareListBox}"
                                                 Content="全选"
                                                 Margin="8"
                                                 Visibility="Collapsed"
                                                 x:Name="SquareSelectionCheckBox"
                                                 HorizontalAlignment="Right" />
                 </Grid>
-                <kino:KinoListBox Margin="8,0,8,8"
+                <kino:ExtendedListBox Margin="8,0,8,8"
                                   x:Name="SquareListBox"
                                   BorderThickness="0"
                                   ItemContainerStyle="{StaticResource SquareListBoxItemStyle}"
@@ -394,12 +394,12 @@
                     <Rectangle />
                     <Rectangle />
                     <Rectangle />
-                </kino:KinoListBox>
+                </kino:ExtendedListBox>
             </StackPanel>
         </local:SampleSection>
         <local:SampleSection Header="使用VisualState">
             <StackPanel>
-                <kino:KinoListBox DisplayMemberPath="Name"
+                <kino:ExtendedListBox DisplayMemberPath="Name"
                                   ItemsSource="{Binding}"
                                   ItemContainerStyle="{StaticResource StyleUsingVisualState}"
                                   IsMultiSelectCheckBoxEnabled="{Binding ElementName=IsMultiSelectCheckBoxEnabledElement2,Path=IsChecked}"
@@ -407,12 +407,12 @@
                                   Margin="8,4,8,8"/>
             </StackPanel>
             <local:SampleSection.ControlPanel>
-                <kino:KinoForm Style="{StaticResource ControlPanelFromStyle}">
+                <kino:Form Style="{StaticResource ControlPanelFromStyle}">
                     <CheckBox Width="300"
-                              kino:KinoForm.Label="IsMultiSelectCheckBoxEnabled"
+                              kino:Form.Label="IsMultiSelectCheckBoxEnabled"
                               HorizontalAlignment="Left"
                               x:Name="IsMultiSelectCheckBoxEnabledElement2" />
-                </kino:KinoForm>
+                </kino:Form>
             </local:SampleSection.ControlPanel>
         </local:SampleSection>
     </StackPanel>

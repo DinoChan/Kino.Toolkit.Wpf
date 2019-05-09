@@ -1,4 +1,4 @@
-﻿<Style TargetType="kino:KinoFormItem">
+﻿<Style TargetType="kino:FormItem">
     <Setter Property="Margin"
             Value="0,4,0,8" />
     <Setter Property="Padding"
@@ -15,7 +15,7 @@
     </Setter>
     <Setter Property="Template">
         <Setter.Value>
-            <ControlTemplate TargetType="kino:KinoFormItem">
+            <ControlTemplate TargetType="kino:FormItem">
                 <StackPanel x:Name="Root">
                     <StackPanel Orientation="Horizontal">
                         <ContentPresenter Content="{TemplateBinding Header}"
@@ -39,12 +39,12 @@
     </Setter>
 </Style>
 
-<Style TargetType="kino:KinoFormTitle">
+<Style TargetType="kino:FormTitle">
     <Setter Property="Margin"
             Value="0,4,4,8" />
 </Style>
 
-<Style TargetType="kino:KinoFormSeparator">
+<Style TargetType="kino:FormSeparator">
     <Setter Property="Margin"
             Value="0,4,0,8" />
 </Style>

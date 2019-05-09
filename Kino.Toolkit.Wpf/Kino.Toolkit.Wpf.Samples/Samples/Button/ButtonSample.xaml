@@ -14,29 +14,29 @@
         <StackPanel>
             <local:SampleSection>
                 <StackPanel>
-                    <kino:KinoButton Content="bookmark"
+                    <kino:ExtendedButton Content="bookmark"
                                      MinWidth="18"
                                      x:Name="BookmarkButton"
                                      HorizontalAlignment="Left"
                                      State="{Binding SelectedItem,ElementName=StatesListBox}">
-                        <kino:KinoButton.Icon>
+                        <kino:ExtendedButton.Icon>
                             <TextBlock Style="{StaticResource FontAwesome}"
                                        Text="&#xf02e;" />
-                        </kino:KinoButton.Icon>
-                    </kino:KinoButton>
-                    <!--<kino:KinoHyperlinkButton Content="Bing" IsEnabled="False"
+                        </kino:ExtendedButton.Icon>
+                    </kino:ExtendedButton>
+                    <!--<kino:HyperlinkButton Content="Bing" IsEnabled="False"
                                               NavigateUri="https://cn.bing.com/?FORM=Z9FD1"/>
-                    <kino:KinoHyperlinkButton NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
+                    <kino:HyperlinkButton NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
                         <StackPanel Orientation="Horizontal">
                             <Rectangle Height="20"
                                        Width="20"
                                        Fill="Red" />
                             <TextBlock Text="Bing" Resources="{x:Null}"/>
                         </StackPanel>
-                    </kino:KinoHyperlinkButton>
-                    <kino:KinoHyperlinkButton Content="Bing"
+                    </kino:HyperlinkButton>
+                    <kino:HyperlinkButton Content="Bing"
                                               NavigateUri="https://cn.bing.com/?FORM=Z9FD1" />
-                    <kino:KinoHyperlinkButton Content="Bing"
+                    <kino:HyperlinkButton Content="Bing"
                                               VerticalContentAlignment="Center"
                                               NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
                         <ButtonBase.ContentTemplate>
@@ -50,12 +50,12 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ButtonBase.ContentTemplate>
-                    </kino:KinoHyperlinkButton>-->
+                    </kino:HyperlinkButton>-->
                 </StackPanel>
                 <local:SampleSection.ControlPanel>
-                    <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                    <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
                         <StackPanel Orientation="Horizontal"
-                                    kino:KinoForm.Label="Content And Icon">
+                                    kino:Form.Label="Content And Icon">
                             <RadioButton Content="Content Only"
                                          Checked="OnContentOnlyCheck" />
                             <RadioButton Content="Icon Only"
@@ -69,8 +69,8 @@
                         <ListBox x:Name="StatesListBox"
                                  HorizontalAlignment="Left"
                                  Width="250"
-                                 kino:KinoForm.Label="State" />
-                    </kino:KinoForm>
+                                 kino:Form.Label="State" />
+                    </kino:Form>
                 </local:SampleSection.ControlPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
@@ -86,19 +86,19 @@
                     <TextBlock Text="Comment" />
                     <TextBox Width="200"
                              HorizontalAlignment="Left" />
-                    <kino:KinoButton Content="Comment"
+                    <kino:ExtendedButton Content="Comment"
                                      x:Name="CommentButton"
                                      HorizontalAlignment="Left"
                                      Margin="0,4,0,0"
                                      Width="100"
                                      Click="OnComment"
                                      IsDefault="True">
-                        <kino:KinoButton.Icon>
+                        <kino:ExtendedButton.Icon>
                             <TextBlock Style="{StaticResource FontAwesome}"
                                        Text="&#xf075;"
                                        Foreground="BlueViolet" />
-                        </kino:KinoButton.Icon>
-                    </kino:KinoButton>
+                        </kino:ExtendedButton.Icon>
+                    </kino:ExtendedButton>
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"

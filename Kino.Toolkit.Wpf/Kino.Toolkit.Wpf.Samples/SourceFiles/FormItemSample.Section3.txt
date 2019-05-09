@@ -1,4 +1,4 @@
-﻿<kino:KinoPageTitle>
+﻿<kino:PageTitle>
     <Grid>
         <TextBlock Text="Responsive" />
         <CheckBox HorizontalAlignment="Right"
@@ -8,4 +8,4 @@
                   Checked="OnCanEditChecked"
                   Unchecked="OnCanEditUnchecked" />
     </Grid>
-</kino:KinoPageTitle>
+</kino:PageTitle>

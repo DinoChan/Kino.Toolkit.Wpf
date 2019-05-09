@@ -1,4 +1,4 @@
-﻿<kino:KinoRibbonWindow x:Class="Kino.Toolkit.Wpf.Samples.TestRibbonWindow"
+﻿<kino:ExtendedRibbonWindow x:Class="Kino.Toolkit.Wpf.Samples.TestRibbonWindow"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,8 +10,8 @@
                        Title="TestWindow"
                        Height="450"
                        Width="800">
-    <kino:KinoRibbonWindow.FunctionBar>
-        <kino:KinoWindowFunctionBar>
+    <kino:ExtendedRibbonWindow.FunctionBar>
+        <kino:WindowFunctionBar>
             <Button Content="Dino.C" />
             <Separator />
             <Menu>
@@ -35,8 +35,8 @@
                            Fill="White" />
                 </Grid>
             </Button>
-        </kino:KinoWindowFunctionBar>
-    </kino:KinoRibbonWindow.FunctionBar>
+        </kino:WindowFunctionBar>
+    </kino:ExtendedRibbonWindow.FunctionBar>
 
     <Grid>
         <Ribbon x:Name="RibbonMenu"
@@ -84,4 +84,4 @@
                 HorizontalAlignment="Center" />
 
     </Grid>
-</kino:KinoRibbonWindow>
+</kino:ExtendedRibbonWindow>

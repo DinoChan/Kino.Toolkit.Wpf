@@ -1,10 +1,10 @@
 ﻿<local:SampleSection.Resources>
-    <Style TargetType="kino:KinoFormItem">
+    <Style TargetType="kino:FormItem">
         <Setter Property="Padding"
                 Value="0,4,0,0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="kino:KinoFormItem">
+                <ControlTemplate TargetType="kino:FormItem">
                     <StackPanel x:Name="Root">
                         <StackPanel Orientation="Horizontal">
                             <ContentPresenter Content="{TemplateBinding Label}"
@@ -35,28 +35,28 @@
         </Setter>
     </Style>
 </local:SampleSection.Resources>
-<kino:KinoForm Width="400"
+<kino:Form Width="400"
                HorizontalAlignment="Left"
                Header="登录">
-    <kino:KinoFormTitle Content="用户信息" />
+    <kino:FormTitle Content="用户信息" />
 
-    <TextBox kino:KinoForm.Label="用户名"
-             kino:KinoForm.IsRequired="True"
+    <TextBox kino:Form.Label="用户名"
+             kino:Form.IsRequired="True"
              Text="{Binding Name,Mode=TwoWay}" />
 
-    <PasswordBox kino:KinoForm.Label="密码"
-                 kino:KinoForm.IsRequired="True" />
-    <ComboBox kino:KinoForm.Label="国家"
-              kino:KinoForm.Description="请选择先居住地" />
+    <PasswordBox kino:Form.Label="密码"
+                 kino:Form.IsRequired="True" />
+    <ComboBox kino:Form.Label="国家"
+              kino:Form.Description="请选择先居住地" />
 
-    <kino:KinoForm.FunctionBar>
-        <kino:KinoFormFunctionBar>
-            <kino:KinoButton Content="OK"
+    <kino:Form.FunctionBar>
+        <kino:FormFunctionBar>
+            <kino:ExtendedButton Content="OK"
                              Click="OnOK"
                              IsDefault="True" />
-            <kino:KinoButton Content="Cancel"
+            <kino:ExtendedButton Content="Cancel"
                              IsCancel="True" />
 
-        </kino:KinoFormFunctionBar>
-    </kino:KinoForm.FunctionBar>
-</kino:KinoForm>
+        </kino:FormFunctionBar>
+    </kino:Form.FunctionBar>
+</kino:Form>

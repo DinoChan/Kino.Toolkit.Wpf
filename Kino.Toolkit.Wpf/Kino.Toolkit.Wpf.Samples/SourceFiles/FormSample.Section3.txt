@@ -1,27 +1,27 @@
-﻿<kino:KinoForm Width="500"
+﻿<kino:Form Width="500"
                HorizontalAlignment="Left">
-    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+    <Expander kino:Form.IsItemItsOwnContainer="True"
               Header="用户信息"
               IsExpanded="True">
-        <kino:KinoForm Grid.IsSharedSizeScope="False"
+        <kino:Form Grid.IsSharedSizeScope="False"
                        Padding="0">
-            <TextBox kino:KinoForm.Label="用户名"
-                     kino:KinoForm.IsRequired="True"
+            <TextBox kino:Form.Label="用户名"
+                     kino:Form.IsRequired="True"
                      Text="{Binding Name,Mode=TwoWay}" />
-            <PasswordBox kino:KinoForm.Label="密码"
-                         kino:KinoForm.IsRequired="True" />
-        </kino:KinoForm>
+            <PasswordBox kino:Form.Label="密码"
+                         kino:Form.IsRequired="True" />
+        </kino:Form>
     </Expander>
-    <Expander kino:KinoForm.IsItemItsOwnContainer="True"
+    <Expander kino:Form.IsItemItsOwnContainer="True"
               Header="其它信息"
               IsExpanded="True">
-        <kino:KinoForm Grid.IsSharedSizeScope="False"
+        <kino:Form Grid.IsSharedSizeScope="False"
                        Padding="0">
-            <ComboBox kino:KinoForm.Label="国家" />
-            <TextBox kino:KinoForm.Label="父"
-                     kino:KinoForm.Description="可以不填" />
-            <TextBox kino:KinoForm.Label="母"
-                     kino:KinoForm.Description="可以不填" />
-        </kino:KinoForm>
+            <ComboBox kino:Form.Label="国家" />
+            <TextBox kino:Form.Label="父"
+                     kino:Form.Description="可以不填" />
+            <TextBox kino:Form.Label="母"
+                     kino:Form.Description="可以不填" />
+        </kino:Form>
     </Expander>
-</kino:KinoForm>
+</kino:Form>

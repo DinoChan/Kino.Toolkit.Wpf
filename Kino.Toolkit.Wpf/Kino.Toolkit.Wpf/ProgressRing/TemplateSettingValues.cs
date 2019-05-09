@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace Kino.Toolkit.Wpf
 {
-    public partial class KinoProgressRing
+    public partial class ProgressRing
     {
         public class TemplateSettingValues : System.Windows.DependencyObject
         {

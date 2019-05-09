@@ -11,17 +11,17 @@
         Height="450"
         Width="1200">
     <Window.Resources>
-        <Style TargetType="kino:KinoForm">
+        <Style TargetType="kino:Form">
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                     Value="Disabled" />
             <Setter Property="Grid.IsSharedSizeScope"
                     Value="False" />
         </Style>
-        <Style TargetType="kino:KinoFormItem"
+        <Style TargetType="kino:FormItem"
                x:Key="HorizontalFormItemStyle">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <Grid x:Name="Root">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"
@@ -41,11 +41,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="kino:KinoFormItem"
+        <Style TargetType="kino:FormItem"
                x:Key="VerticalFormItemStyle">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <StackPanel>
                             <ContentPresenter Content="{TemplateBinding Label}"
                                               TextBlock.Foreground="#FF777777" />
@@ -59,44 +59,44 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <kino:KinoPageTitle Content="Responsive" />
+            <kino:PageTitle Content="Responsive" />
             <WrapPanel x:Name="Root"
                        Grid.IsSharedSizeScope="True">
-                <kino:KinoForm>
-                    <kino:KinoFormTitle Content="Product" />
+                <kino:Form>
+                    <kino:FormTitle Content="Product" />
                     <TextBlock Text="1234999"
-                               kino:KinoForm.Label="Product ID" />
+                               kino:Form.Label="Product ID" />
                     <TextBlock Text="Power Projector 4713"
-                               kino:KinoForm.Label="IGNORE" />
+                               kino:Form.Label="IGNORE" />
                     <TextBlock Text="Projector (PR)"
-                               kino:KinoForm.Label="Category" />
+                               kino:Form.Label="Category" />
                     <TextBlock Text="A very powerful projector with special features for Internet usability, USB"
-                               kino:KinoForm.Label="Description"
+                               kino:Form.Label="Description"
                                TextWrapping="Wrap" />
                     <TextBlock Text="856.49 EUR"
-                               kino:KinoForm.Label="Price" />
-                </kino:KinoForm>
+                               kino:Form.Label="Price" />
+                </kino:Form>
 
-                <kino:KinoForm>
-                    <kino:KinoFormTitle Content="Specification" />
+                <kino:Form>
+                    <kino:FormTitle Content="Specification" />
                     <TextBlock Text="51 cm"
-                               kino:KinoForm.Label="Width" />
+                               kino:Form.Label="Width" />
                     <TextBlock Text="42 cm"
-                               kino:KinoForm.Label="Depth" />
+                               kino:Form.Label="Depth" />
                     <TextBlock Text="18 cm"
-                               kino:KinoForm.Label="Height" />
+                               kino:Form.Label="Height" />
                     <TextBlock Text="1,467 g"
-                               kino:KinoForm.Label="Weight" />
-                </kino:KinoForm>
+                               kino:Form.Label="Weight" />
+                </kino:Form>
 
 
-                <kino:KinoForm ItemsSource="{x:Static local:Product.Products}"
+                <kino:Form ItemsSource="{x:Static local:Product.Products}"
                                DisplayMemberPath="Value">
                     <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="kino:KinoFormItem">
+                        <Style TargetType="kino:FormItem">
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="kino:KinoFormItem">
+                                    <ControlTemplate TargetType="kino:FormItem">
                                         <Grid x:Name="Root">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"
@@ -118,7 +118,7 @@
 
                         </Style>
                     </ItemsControl.ItemContainerStyle>
-                </kino:KinoForm>
+                </kino:Form>
             </WrapPanel>
 
         </StackPanel>

@@ -26,13 +26,13 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
 
-        <Style TargetType="kino:KinoFormItem"
+        <Style TargetType="kino:FormItem"
                x:Key="FormItemStyle">
             <Setter Property="Padding"
                     Value="11,0,3,0" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <Grid x:Name="Root"
                               Height="25">
                             <Grid.ColumnDefinitions>
@@ -56,11 +56,11 @@
             </Setter>
         </Style>
 
-        <Style TargetType="kino:KinoFormItem"
+        <Style TargetType="kino:FormItem"
                x:Key="EditableFormItemStyle">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="kino:KinoFormItem">
+                    <ControlTemplate TargetType="kino:FormItem">
                         <Grid x:Name="Root">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"
@@ -85,7 +85,7 @@
             </Setter>
         </Style>
 
-        <Style TargetType="kino:KinoForm">
+        <Style TargetType="kino:Form">
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                     Value="Disabled" />
         </Style>
@@ -95,36 +95,36 @@
             <StackPanel Width="500"
                         HorizontalAlignment="Left"
                         Grid.IsSharedSizeScope="True">
-                <kino:KinoFormTitle Content="用户信息" />
-                <kino:KinoFormItem Label="用户名"
+                <kino:FormTitle Content="用户信息" />
+                <kino:FormItem Label="用户名"
                                    IsRequired="True">
                     <TextBox Text="{Binding Name,Mode=TwoWay}" />
-                </kino:KinoFormItem>
-                <kino:KinoFormItem Label="密码"
+                </kino:FormItem>
+                <kino:FormItem Label="密码"
                                    IsRequired="True">
                     <PasswordBox />
-                </kino:KinoFormItem>
-                <kino:KinoFormItem Label="国家与地区(请选择居住地)">
+                </kino:FormItem>
+                <kino:FormItem Label="国家与地区(请选择居住地)">
                     <ComboBox />
-                </kino:KinoFormItem>
-                <kino:KinoFormSeparator />
+                </kino:FormItem>
+                <kino:FormSeparator />
 
-                <kino:KinoFormTitle Content="家庭信息"
+                <kino:FormTitle Content="家庭信息"
                                     Description="填写家庭信息可以让我们给您提供更好的服务。" />
-                <kino:KinoFormItem Label="父"
+                <kino:FormItem Label="父"
                                    Description="可以不填">
                     <TextBox />
-                </kino:KinoFormItem>
-                <kino:KinoFormItem Label="母"
+                </kino:FormItem>
+                <kino:FormItem Label="母"
                                    Description="可以不填">
                     <TextBox />
-                </kino:KinoFormItem>
-                <kino:KinoFormItem Label="伴侣"
+                </kino:FormItem>
+                <kino:FormItem Label="伴侣"
                                    Description="可以没有"
                                    IsRequired="True">
                     <TextBox />
-                </kino:KinoFormItem>
-                <kino:KinoFormItem Label="性别">
+                </kino:FormItem>
+                <kino:FormItem Label="性别">
                     <StackPanel Orientation="Horizontal">
                         <RadioButton Content="男"
                                      GroupName="Sex" />
@@ -132,13 +132,13 @@
                                      GroupName="Sex"
                                      Margin="8,0,0,0" />
                     </StackPanel>
-                </kino:KinoFormItem>
-                <kino:KinoFormItem Label="备注"
+                </kino:FormItem>
+                <kino:FormItem Label="备注"
                                    LabelTemplate="{StaticResource TopHeaderTemplate}">
                     <TextBox AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
                              Height="100" />
-                </kino:KinoFormItem>
+                </kino:FormItem>
             </StackPanel>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
@@ -149,12 +149,12 @@
 
         <local:SampleSection Header="使用样式">
             <local:SampleSection.Resources>
-                <Style TargetType="kino:KinoFormItem">
+                <Style TargetType="kino:FormItem">
                     <Setter Property="Padding"
                             Value="0,4,0,0" />
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="kino:KinoFormItem">
+                            <ControlTemplate TargetType="kino:FormItem">
                                 <StackPanel x:Name="Root">
                                     <StackPanel Orientation="Horizontal">
                                         <ContentPresenter Content="{TemplateBinding Label}"
@@ -185,31 +185,31 @@
                     </Setter>
                 </Style>
             </local:SampleSection.Resources>
-            <kino:KinoForm Width="400"
+            <kino:Form Width="400"
                            HorizontalAlignment="Left"
                            Header="登录">
-                <kino:KinoFormTitle Content="用户信息" />
+                <kino:FormTitle Content="用户信息" />
 
-                <TextBox kino:KinoForm.Label="用户名"
-                         kino:KinoForm.IsRequired="True"
+                <TextBox kino:Form.Label="用户名"
+                         kino:Form.IsRequired="True"
                          Text="{Binding Name,Mode=TwoWay}" />
 
-                <PasswordBox kino:KinoForm.Label="密码"
-                             kino:KinoForm.IsRequired="True" />
-                <ComboBox kino:KinoForm.Label="国家"
-                          kino:KinoForm.Description="请选择先居住地" />
+                <PasswordBox kino:Form.Label="密码"
+                             kino:Form.IsRequired="True" />
+                <ComboBox kino:Form.Label="国家"
+                          kino:Form.Description="请选择先居住地" />
 
-                <kino:KinoForm.FunctionBar>
-                    <kino:KinoFormFunctionBar>
-                        <kino:KinoButton Content="OK"
+                <kino:Form.FunctionBar>
+                    <kino:FormFunctionBar>
+                        <kino:ExtendedButton Content="OK"
                                          Click="OnOK"
                                          IsDefault="True" />
-                        <kino:KinoButton Content="Cancel"
+                        <kino:ExtendedButton Content="Cancel"
                                          IsCancel="True" />
 
-                    </kino:KinoFormFunctionBar>
-                </kino:KinoForm.FunctionBar>
-            </kino:KinoForm>
+                    </kino:FormFunctionBar>
+                </kino:Form.FunctionBar>
+            </kino:Form>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
                                        Haader="FormItemSample.xaml"
@@ -219,13 +219,13 @@
         <local:SampleSection Header="可编辑">
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel.Resources>
-                    <Style TargetType="kino:KinoForm"
-                           BasedOn="{StaticResource {x:Type kino:KinoForm}}">
+                    <Style TargetType="kino:Form"
+                           BasedOn="{StaticResource {x:Type kino:Form}}">
                         <Setter Property="Grid.IsSharedSizeScope"
                                 Value="False" />
                     </Style>
                 </StackPanel.Resources>
-                <kino:KinoPageTitle>
+                <kino:PageTitle>
                     <Grid>
                         <TextBlock Text="Responsive" />
                         <CheckBox HorizontalAlignment="Right"
@@ -235,34 +235,34 @@
                                   Checked="OnCanEditChecked"
                                   Unchecked="OnCanEditUnchecked" />
                     </Grid>
-                </kino:KinoPageTitle>
+                </kino:PageTitle>
                 <WrapPanel x:Name="Root"
                            Grid.IsSharedSizeScope="True">
-                    <kino:KinoForm>
-                        <kino:KinoFormTitle Content="Product" />
+                    <kino:Form>
+                        <kino:FormTitle Content="Product" />
                         <TextBlock Text="1234999"
-                                   kino:KinoForm.Label="Product ID" />
+                                   kino:Form.Label="Product ID" />
                         <TextBlock Text="Power Projector 4713"
-                                   kino:KinoForm.Label="IGNORE" />
+                                   kino:Form.Label="IGNORE" />
                         <TextBlock Text="Projector (PR)"
-                                   kino:KinoForm.Label="Category" />
+                                   kino:Form.Label="Category" />
                         <TextBlock Text="A very powerful projector"
-                                   kino:KinoForm.Label="Description" />
+                                   kino:Form.Label="Description" />
                         <TextBlock Text="856.49 EUR"
-                                   kino:KinoForm.Label="Price" />
-                    </kino:KinoForm>
+                                   kino:Form.Label="Price" />
+                    </kino:Form>
 
-                    <kino:KinoForm>
-                        <kino:KinoFormTitle Content="Specification" />
+                    <kino:Form>
+                        <kino:FormTitle Content="Specification" />
                         <TextBlock Text="51 cm"
-                                   kino:KinoForm.Label="Width" />
+                                   kino:Form.Label="Width" />
                         <TextBlock Text="42 cm"
-                                   kino:KinoForm.Label="Depth" />
+                                   kino:Form.Label="Depth" />
                         <TextBlock Text="18 cm"
-                                   kino:KinoForm.Label="Height" />
+                                   kino:Form.Label="Height" />
                         <TextBlock Text="1,467 g"
-                                   kino:KinoForm.Label="Weight" />
-                    </kino:KinoForm>
+                                   kino:Form.Label="Weight" />
+                    </kino:Form>
 
                 </WrapPanel>
             </StackPanel>

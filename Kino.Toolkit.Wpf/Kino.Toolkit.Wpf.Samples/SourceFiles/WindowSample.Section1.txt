@@ -1,4 +1,4 @@
-﻿<ListBox kino:KinoForm.Label="WindowState"
+﻿<ListBox kino:Form.Label="WindowState"
          SelectedIndex="0"
          Width="250"
          HorizontalAlignment="Left"
@@ -6,7 +6,7 @@
     <WindowState>Normal</WindowState>
     <WindowState>Maximized</WindowState>
 </ListBox>
-<ListBox kino:KinoForm.Label="WindowStartupLocation"
+<ListBox kino:Form.Label="WindowStartupLocation"
          SelectedIndex="0"
          Width="250"
          HorizontalAlignment="Left"
@@ -15,7 +15,7 @@
     <WindowStartupLocation>CenterScreen</WindowStartupLocation>
     <WindowStartupLocation>CenterOwner</WindowStartupLocation>
 </ListBox>
-<ListBox kino:KinoForm.Label="ResizeMode"
+<ListBox kino:Form.Label="ResizeMode"
          SelectedIndex="0"
          Width="250"
          HorizontalAlignment="Left"

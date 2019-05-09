@@ -1,5 +1,5 @@
 ﻿<StackPanel>
-    <kino:KinoTransitioningContentControl Margin="8"
+    <kino:TransitioningContentControl Margin="8"
                                           x:Name="DefaultContent" 
                                           HorizontalAlignment="Left"/>
     <StackPanel Orientation="Horizontal">

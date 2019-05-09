@@ -28,7 +28,7 @@ namespace Kino.Toolkit.Wpf.Samples
             this.InitializeComponent();
             this._formItemStyle = this.Resources["FormItemStyle"] as Style;
             this._editableFormItemStyle = this.Resources["EditableFormItemStyle"] as Style;
-            this.Root.Resources.Add(typeof(KinoFormItem), this._formItemStyle);
+            this.Root.Resources.Add(typeof(FormItem), this._formItemStyle);
         }
 
         private void OnOK(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace Kino.Toolkit.Wpf.Samples
         private async void OnCanEditChecked(object sender, RoutedEventArgs e)
         {
             this.Root.Resources.Clear();
-            this.Root.Resources.Add(typeof(KinoFormItem), this._editableFormItemStyle);
+            this.Root.Resources.Add(typeof(FormItem), this._editableFormItemStyle);
             await this.Dispatcher.InvokeAsync(async () =>
             {
                 await Task.Delay(100);
@@ -62,7 +62,7 @@ namespace Kino.Toolkit.Wpf.Samples
         private void OnCanEditUnchecked(object sender, RoutedEventArgs e)
         {
             this.Root.Resources.Clear();
-            this.Root.Resources.Add(typeof(KinoFormItem), this._formItemStyle);
+            this.Root.Resources.Add(typeof(FormItem), this._formItemStyle);
         }
     }
 }

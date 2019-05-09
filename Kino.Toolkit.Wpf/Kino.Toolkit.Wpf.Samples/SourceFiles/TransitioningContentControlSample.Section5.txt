@@ -1,5 +1,5 @@
-﻿<kino:KinoTransitioningContentControl x:Name="ContentControl"
-                                      Transition="{x:Static kino:KinoTransitioningContentControl.DownTransitionState}">
+﻿<kino:TransitioningContentControl x:Name="ContentControl"
+                                      Transition="{x:Static kino:TransitioningContentControl.DownTransitionState}">
     <ContentControl.ContentTemplate>
         <DataTemplate>
             <Grid MinWidth="370">
@@ -31,4 +31,4 @@
             </Grid>
         </DataTemplate>
     </ContentControl.ContentTemplate>
-</kino:KinoTransitioningContentControl>
+</kino:TransitioningContentControl>

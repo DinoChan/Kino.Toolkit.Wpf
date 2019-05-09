@@ -13,11 +13,11 @@
     <Grid>
         <local:SampleSection>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                <kino:KinoProgressRing IsActive="True"
+                <kino:ProgressRing IsActive="True"
                                        Height="20"
                                        Width="20"
                                        Margin="8" />
-                <kino:KinoProgressRing IsActive="True"
+                <kino:ProgressRing IsActive="True"
                                        Height="40"
                                        Width="40"
                                        Margin="8"

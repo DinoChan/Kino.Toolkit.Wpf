@@ -39,8 +39,8 @@
                         Click="OnSystemRibbonWindowShowDialog" />
             </StackPanel>
             <local:SampleSection.ControlPanel>
-                <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
-                    <ListBox kino:KinoForm.Label="WindowState"
+                <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
+                    <ListBox kino:Form.Label="WindowState"
                              SelectedIndex="0"
                              Width="250"
                              HorizontalAlignment="Left"
@@ -48,7 +48,7 @@
                         <WindowState>Normal</WindowState>
                         <WindowState>Maximized</WindowState>
                     </ListBox>
-                    <ListBox kino:KinoForm.Label="WindowStartupLocation"
+                    <ListBox kino:Form.Label="WindowStartupLocation"
                              SelectedIndex="0"
                              Width="250"
                              HorizontalAlignment="Left"
@@ -57,7 +57,7 @@
                         <WindowStartupLocation>CenterScreen</WindowStartupLocation>
                         <WindowStartupLocation>CenterOwner</WindowStartupLocation>
                     </ListBox>
-                    <ListBox kino:KinoForm.Label="ResizeMode"
+                    <ListBox kino:Form.Label="ResizeMode"
                              SelectedIndex="0"
                              Width="250"
                              HorizontalAlignment="Left"
@@ -67,7 +67,7 @@
                         <ResizeMode>CanResize</ResizeMode>
                         <ResizeMode>CanResizeWithGrip</ResizeMode>
                     </ListBox>
-                </kino:KinoForm>
+                </kino:Form>
             </local:SampleSection.ControlPanel>
             <local:SampleSection.SourceCodes>
                 <local:SourceCodeModel SourceCodeType="Xaml"
@@ -78,4 +78,3 @@
 
     </Grid>
 </local:SamplePage>
-                  

@@ -14,7 +14,7 @@
                   d:DesignWidth="800">
     <local:SamplePage.Resources>
         <extend:ColorToSolidColorBrushConverter x:Key="ColorToSolidBrushConverter" />
-        <Style TargetType="kino:KinoDataPager">
+        <Style TargetType="kino:DataPager">
             <Setter Property="NumericButtonCount"
                     Value="{Binding Value, ElementName=NumericButtonCount}" />
             <Setter Property="AutoEllipsis"
@@ -36,20 +36,20 @@
                                   MinWidth="400" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <kino:KinoForm>
-                <kino:KinoDataPager DisplayMode="FirstLastNumeric"
-                                    kino:KinoForm.Label="FirstLastNumeric" />
-                <kino:KinoDataPager DisplayMode="FirstLastPreviousNext"
-                                    kino:KinoForm.Label="FirstLastPreviousNext" />
-                <kino:KinoDataPager DisplayMode="FirstLastPreviousNextNumeric"
-                                    kino:KinoForm.Label="FirstLastPreviousNextNumeric" />
-                <kino:KinoDataPager DisplayMode="Numeric"
-                                    kino:KinoForm.Label="Numeric" />
-                <kino:KinoDataPager DisplayMode="PreviousNext"
-                                    kino:KinoForm.Label="PreviousNext" />
-                <kino:KinoDataPager DisplayMode="PreviousNextNumeric"
-                                    kino:KinoForm.Label="PreviousNextNumeric" />
-            </kino:KinoForm>
+            <kino:Form>
+                <kino:DataPager DisplayMode="FirstLastNumeric"
+                                    kino:Form.Label="FirstLastNumeric" />
+                <kino:DataPager DisplayMode="FirstLastPreviousNext"
+                                    kino:Form.Label="FirstLastPreviousNext" />
+                <kino:DataPager DisplayMode="FirstLastPreviousNextNumeric"
+                                    kino:Form.Label="FirstLastPreviousNextNumeric" />
+                <kino:DataPager DisplayMode="Numeric"
+                                    kino:Form.Label="Numeric" />
+                <kino:DataPager DisplayMode="PreviousNext"
+                                    kino:Form.Label="PreviousNext" />
+                <kino:DataPager DisplayMode="PreviousNextNumeric"
+                                    kino:Form.Label="PreviousNextNumeric" />
+            </kino:Form>
             <StackPanel Grid.Column="1">
                 <ListBox ItemsSource="{Binding}"
                          DisplayMemberPath="Name"
@@ -70,25 +70,25 @@
             </StackPanel>
         </Grid>
         <local:SampleSection.ControlPanel>
-            <kino:KinoForm ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}"
+            <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}"
                            HorizontalAlignment="Left">
                 <CheckBox x:Name="AutoEllipsis"
-                          kino:KinoForm.Label="AutoEllipsis" />
+                          kino:Form.Label="AutoEllipsis" />
                 <CheckBox x:Name="TotalItemCountFixed"
-                          kino:KinoForm.Label="IsTotalItemCountFixed"
+                          kino:Form.Label="IsTotalItemCountFixed"
                           IsChecked="True" />
                 <extend:IntegerUpDown x:Name="NumericButtonCount"
-                                      kino:KinoForm.Label="NumericButtonCount"
+                                      kino:Form.Label="NumericButtonCount"
                                       Value="5"
                                       Minimum="0"
                                       Maximum="20" />
                 <extend:IntegerUpDown Value="{Binding PageSize, Mode=TwoWay}"
-                                      kino:KinoForm.Label="PageSize"
+                                      kino:Form.Label="PageSize"
                                       Minimum="1" />
                 <extend:ColorPicker SelectedColor="Black"
-                                    kino:KinoForm.Label="Foreground"
+                                    kino:Form.Label="Foreground"
                                     x:Name="ColorPicker" />
-            </kino:KinoForm>
+            </kino:Form>
         </local:SampleSection.ControlPanel>
         <local:SampleSection.SourceCodes>
             <local:SourceCodeModel SourceCodeType="Xaml"

@@ -1,7 +1,7 @@
 ﻿private async void OnCanEditChecked(object sender, RoutedEventArgs e)
 {
     this.Root.Resources.Clear();
-    this.Root.Resources.Add(typeof(KinoFormItem), this._editableFormItemStyle);
+    this.Root.Resources.Add(typeof(FormItem), this._editableFormItemStyle);
     await this.Dispatcher.InvokeAsync(async () =>
     {
         await Task.Delay(100);
@@ -12,5 +12,5 @@
 private void OnCanEditUnchecked(object sender, RoutedEventArgs e)
 {
     this.Root.Resources.Clear();
-    this.Root.Resources.Add(typeof(KinoFormItem), this._formItemStyle);
+    this.Root.Resources.Add(typeof(FormItem), this._formItemStyle);
 }

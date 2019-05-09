@@ -35,7 +35,7 @@
                                                 Foreground="#FF54698D"
                                                 FontSize="36"
                                                 Margin="24" />
-                                <kino:KinoHyperlinkButton HorizontalAlignment="Right"
+                                <kino:HyperlinkButton HorizontalAlignment="Right"
                                                           VerticalAlignment="Bottom"
                                                           NavigateUri="{TemplateBinding Link}"
                                                           Margin="0,0,24,30"
@@ -175,7 +175,7 @@
                             <Rectangle Height="1"
                                        VerticalAlignment="Bottom"
                                        Fill="{TemplateBinding BorderBrush}" />
-                            <kino:KinoResizer Grid.Row="1"
+                            <kino:Resizer Grid.Row="1"
                                               HorizontalContentAlignment="Stretch">
                                 <ContentControl x:Name="SourceCodePlacement"
                                                 MaxHeight="5000"
@@ -195,7 +195,7 @@
                                         </Style>
                                     </ContentControl.Resources>
                                 </ContentControl>
-                            </kino:KinoResizer>
+                            </kino:Resizer>
                         </Grid>
                     </Border>
                 </ControlTemplate>
