@@ -4,7 +4,7 @@
 
 Kino Toolkit For Wpf.
 
-![](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/demo.png)
+![](https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/demo.png)
 [NuGet](https://www.nuget.org/packages/Kino.Toolkit.Wpf/)
 
 一组简单实用的WPF控件与工具，用于介绍自定义控件的入门。相关博客地址如下：
