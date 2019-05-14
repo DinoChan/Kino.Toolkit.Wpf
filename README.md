@@ -5,9 +5,8 @@
 
 ![](https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/demo.png)
 
-Kino.Toolkit.Wpf是一组简单实用的WPF控件与工具，用于介绍自定义控件的入门。
+Kino.Toolkit.Wpf是一组简单实用的WPF控件与工具，用于介绍自定义控件的入门。相关博客地址如下：
 
-相关博客地址如下：
 
 [开始一个自定义控件库项目](https://www.cnblogs.com/dino623/p/CustomControLibrary.html)
 
