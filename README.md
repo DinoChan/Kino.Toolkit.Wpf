@@ -21,3 +21,7 @@ ContentControl是WPF中最基础的一种控件，Window、Button、ScrollViewer
 [了解如何自定义ItemsControl](https://www.cnblogs.com/dino623/p/Custom-ItemsControl.html)
 
 WPF提供了一大堆ItemsControl的派生类：HeaderedItemsControl、TreeView、Menu、StatusBar、ListBox、ListView、ComboBox；而且配合Style或DataTemplate足以完成大部分的定制化工作。可以说ItemsControl是XAML系统灵活性的最佳代表。这篇文章介绍简单的自定义ItemsControl知识，通过重写GetContainerForItemOverride和IsItemItsOwnContainerOverride、PrepareContainerForItemOverride函数并使用ItemContainerGenerator等自定义一个简单的IItemsControl控件。
+
+[自定义控件的代码如何与ControlTemplate交互](https://www.cnblogs.com/dino623/p/interact_with_ControlTemplate.html)
+
+介绍自定义控件的代码如何和ControlTemplate交互，涉及的知识包括RelativeSource、Trigger、TemplatePart和VisualState，以及它们之间的选择。
