@@ -25,3 +25,7 @@ WPF提供了一大堆ItemsControl的派生类：HeaderedItemsControl、TreeView�
 [自定义控件的代码如何与ControlTemplate交互](https://www.cnblogs.com/dino623/p/interact_with_ControlTemplate.html)
 
 介绍自定义控件的代码如何和ControlTemplate交互，涉及的知识包括RelativeSource、Trigger、TemplatePart和VisualState，以及它们之间的选择。
+
+
+[以Button为例谈谈如何模仿Aero2主题](https://www.cnblogs.com/dino623/p/Aero2Theme.html)
+WPF控件库通常都会提供“素颜”的外观，这样做的最大好处是可以和原生控件或其它控件库兼容。这篇文章以Button为例，谈谈现在最常用的Aero2主题的设计元素，以及尺寸、颜色、字体、动画等细节。
