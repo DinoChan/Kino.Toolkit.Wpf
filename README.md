@@ -40,3 +40,7 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 [让Form在加载后自动获得焦点](https://www.cnblogs.com/dino623/p/AutoFocus.html)
 
 为了让Form可以在加载后自动获得焦点，我创建了一个叫FocusService的工具类，这篇文章介绍这个类的使用及原理，以及补充一些WPF焦点的知识。
+
+[为Form和自定义Window添加FunctionBar](https://www.cnblogs.com/dino623/p/FunctionBar.html)
+
+这篇文章介绍了另一种ItemsControl的实现方式，并使用它为Form及自定义Window添加常用的按钮及其它功能。
