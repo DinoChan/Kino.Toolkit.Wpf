@@ -45,6 +45,11 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 
 这篇文章介绍了另一种ItemsControl的实现方式，并使用它为Form及自定义Window添加常用的按钮及其它功能。
 
+
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/functionbar/1.png)
+
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/functionbar/2.png)
+
 [Window(窗体)的UI元素及行为](https://www.cnblogs.com/dino623/p/uielements_of_window.html)
 
 这篇文章主要讨论标准Window的UI元素和行为。无论是桌面编程还是日常使用，Window(窗体)都是最常接触的UI元素之一，既然Window这么重要那么多了解一些也没有坏处。
