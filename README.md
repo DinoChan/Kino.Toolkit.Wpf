@@ -1,6 +1,6 @@
 # Kino.Toolkit.Wpf
 
-![dotnet-version](https://img.shields.io/badge/.net-%3E%3D4.5-blue.svg?style=flat-square) [![nuget-version](https://img.shields.io/nuget/v/Kino.Toolkit.Wpf.svg?style=flat-square)](https://www.nuget.org/packages/Kino.Toolkit.Wpf/) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/LICENSE)![IDE-version](https://img.shields.io/badge/IDE-vs2017-blue.svgstyle=flat-square)
+![dotnet-version](https://img.shields.io/badge/.net-%3E%3D4.5-blue.svg?style=flat-square) [![nuget-version](https://img.shields.io/nuget/v/Kino.Toolkit.Wpf.svg?style=flat-square)](https://www.nuget.org/packages/Kino.Toolkit.Wpf/) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/LICENSE)![IDE-version](https://img.shields.io/badge/IDE-vs2017-blue.svg?style=flat-square)
 
 
 ![](https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/demo.png)
