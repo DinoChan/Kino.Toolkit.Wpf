@@ -53,3 +53,9 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 [Window(窗体)的UI元素及行为](https://www.cnblogs.com/dino623/p/uielements_of_window.html)
 
 这篇文章主要讨论标准Window的UI元素和行为。无论是桌面编程还是日常使用，Window(窗体)都是最常接触的UI元素之一，既然Window这么重要那么多了解一些也没有坏处。
+
+[使用WindowChrome自定义Window Style](https://www.cnblogs.com/dino623/p/custom_window_style_using_WindowChrome.html)
+
+介绍使用WindowChrome自定义Window的原理及各种细节。
+
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/CustomWindowUsingWindowChrome/1.png)
