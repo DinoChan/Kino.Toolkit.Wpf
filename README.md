@@ -1,6 +1,6 @@
 # Kino.Toolkit.Wpf
 
-[![dotnet-version](https://img.shields.io/badge/.net-%3E%3D4.5-blue.svg?style=flat-square)](https://dotnet.microsoft.com/) [![nuget-version](https://img.shields.io/nuget/v/Kino.Toolkit.Wpf.svg?style=flat-square)](https://www.nuget.org/packages/Kino.Toolkit.Wpf/) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/LICENSE) [![IDE-version](https://img.shields.io/badge/IDE-vs2017-purple.svg?style=flat-square)]](https://visualstudio.microsoft.com/) [![IDE-version](https://img.shields.io/badge/IDE-vs2019-purple.svg?style=flat-square)](https://visualstudio.microsoft.com/)
+[![dotnet-version](https://img.shields.io/badge/.net-%3E%3D4.5-blue.svg?style=flat-square)](https://dotnet.microsoft.com/) [![nuget-version](https://img.shields.io/nuget/v/Kino.Toolkit.Wpf.svg?style=flat-square)](https://www.nuget.org/packages/Kino.Toolkit.Wpf/) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/DinoChan/Kino.Toolkit.Wpf/blob/master/LICENSE) [![IDE-version](https://img.shields.io/badge/IDE-vs2017-purple.svg?style=flat-square)](https://visualstudio.microsoft.com/) [![IDE-version](https://img.shields.io/badge/IDE-vs2019-purple.svg?style=flat-square)](https://visualstudio.microsoft.com/)
 
 
 ![](https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/demo.png)
