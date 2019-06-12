@@ -59,3 +59,7 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 介绍使用WindowChrome自定义Window的原理及各种细节。
 
 ![](https://raw.githubusercontent.com/DinoChan/Pictures/master/CustomWindowUsingWindowChrome/1.png)
+
+[使用WindowChrome的问题](https://www.cnblogs.com/dino623/p/problems_of_WindowChrome.html)
+
+使用WindowChrome自定义Window会遇到很多问题，例如最大化的尺寸问题，这篇文章介绍如何处理这些细节。
