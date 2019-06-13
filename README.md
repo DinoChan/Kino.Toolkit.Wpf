@@ -63,3 +63,9 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 [使用WindowChrome的问题](https://www.cnblogs.com/dino623/p/problems_of_WindowChrome.html)
 
 使用WindowChrome自定义Window会遇到很多问题，例如最大化的尺寸问题，这篇文章介绍如何处理这些细节。
+
+[使用WindowChrome自定义RibbonWindow](https://www.cnblogs.com/dino623/p/custom_ribbonwindow_using_WindowChrome.html)
+
+因为WPF原生的RibbonWindow有不少UI上的Bug，所以我提供了一个自定义的RibbonWindow以解决这些问题。
+
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/RibbonWindow/3.png)
