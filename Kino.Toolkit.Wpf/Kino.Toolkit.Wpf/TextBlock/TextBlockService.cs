@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,8 +99,8 @@ namespace Kino.Toolkit.Wpf
 
         private static void MarkHighlight(TextBlock target, string highlightText)
         {
-            target.Inlines.Clear();
             var text = target.Text;
+            target.Inlines.Clear();
             if (string.IsNullOrWhiteSpace(text))
                 return;
 
