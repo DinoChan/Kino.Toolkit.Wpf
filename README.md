@@ -80,5 +80,6 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 
 这篇文章介绍了使用TypeConverter简化调用，以及继承自FrameworkElement以便使用Style。
 
-[好用的VisualTreeExtensions](https://www.cnblogs.com/dino623/p/VisualTreeExtensions.html )
+[好用的VisualTreeExtensions](https://www.cnblogs.com/dino623/p/VisualTreeExtensions.html)
+
 VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tree的方法，这篇文档介绍了这个工具类大致的内容，以及使用上要注意的地方。
