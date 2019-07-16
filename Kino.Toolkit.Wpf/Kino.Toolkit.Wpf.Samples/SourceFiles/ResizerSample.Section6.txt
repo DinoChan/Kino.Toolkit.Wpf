@@ -1,0 +1,29 @@
+﻿<StackPanel>
+    <kino:Resizer HorizontalContentAlignment="Stretch">
+        <Expander Header="我的日历">
+            <StackPanel>
+                <CheckBox Content="Calender"/>
+                <CheckBox Content="中国节假日"/>
+                <CheckBox Content="Birthdays"/>
+            </StackPanel>
+        </Expander>
+    </kino:Resizer>
+    <kino:Resizer HorizontalContentAlignment="Stretch">
+        <Expander Header="其它日历">
+            <StackPanel>
+                <CheckBox Content="Calender"/>
+                <CheckBox Content="中国节假日"/>
+                <CheckBox Content="Birthdays"/>
+            </StackPanel>
+        </Expander>
+    </kino:Resizer>
+    <kino:Resizer HorizontalContentAlignment="Stretch">
+        <Expander Header="共享日历">
+            <StackPanel>
+                <CheckBox Content="Calender"/>
+                <CheckBox Content="中国节假日"/>
+                <CheckBox Content="Birthdays"/>
+            </StackPanel>
+        </Expander>
+    </kino:Resizer>
+</StackPanel>

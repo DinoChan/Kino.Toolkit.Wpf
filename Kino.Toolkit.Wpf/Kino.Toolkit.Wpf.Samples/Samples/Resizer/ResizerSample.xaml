@@ -121,7 +121,7 @@
                 </StackPanel>
                 <local:SampleSection.SourceCodes>
                     <local:SourceCodeModel SourceCodeType="Xaml"
-                                           Haader="ExpanderSample.xaml.cs"
+                                           Haader="ExpanderSample.xaml"
                                            CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ResizerSample.Section5.txt" />
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
@@ -130,7 +130,7 @@
                 <StackPanel>
                     <kino:Resizer HorizontalContentAlignment="Stretch">
                         <Expander Header="我的日历">
-                            <StackPanel>
+                            <StackPanel Margin="24,0,0,0">
                                 <CheckBox Content="Calender"/>
                                 <CheckBox Content="中国节假日"/>
                                 <CheckBox Content="Birthdays"/>
@@ -139,7 +139,7 @@
                     </kino:Resizer>
                     <kino:Resizer HorizontalContentAlignment="Stretch">
                         <Expander Header="其它日历">
-                            <StackPanel>
+                            <StackPanel Margin="24,0,0,0">
                                 <CheckBox Content="Calender"/>
                                 <CheckBox Content="中国节假日"/>
                                 <CheckBox Content="Birthdays"/>
@@ -148,7 +148,7 @@
                     </kino:Resizer>
                     <kino:Resizer HorizontalContentAlignment="Stretch">
                         <Expander Header="共享日历">
-                            <StackPanel>
+                            <StackPanel Margin="24,0,0,0">
                                 <CheckBox Content="Calender"/>
                                 <CheckBox Content="中国节假日"/>
                                 <CheckBox Content="Birthdays"/>
@@ -156,6 +156,12 @@
                         </Expander>
                     </kino:Resizer>
                 </StackPanel>
+
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="ExpanderSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ResizerSample.Section6.txt" />
+                </local:SampleSection.SourceCodes>
             </local:SampleSection>
         </StackPanel>
     </Grid>

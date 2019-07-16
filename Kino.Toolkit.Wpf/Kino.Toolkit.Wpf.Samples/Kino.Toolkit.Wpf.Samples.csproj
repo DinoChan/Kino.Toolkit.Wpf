@@ -506,7 +506,7 @@
     <Resource Include="SourceFiles\ExpanderSample.Section1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SourceFiles\ResizerSample.Section5 - 复制.txt" />
+    <Resource Include="SourceFiles\ResizerSample.Section6.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\ExpanderSample.Section2.txt" />

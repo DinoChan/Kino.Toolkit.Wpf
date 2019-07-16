@@ -17,6 +17,7 @@
                     <kino:ExtendedButton Content="bookmark"
                                      MinWidth="18"
                                      x:Name="BookmarkButton"
+                                         Margin="30"
                                      HorizontalAlignment="Left"
                                      State="{Binding SelectedItem,ElementName=StatesListBox}">
                         <kino:ExtendedButton.Icon>
