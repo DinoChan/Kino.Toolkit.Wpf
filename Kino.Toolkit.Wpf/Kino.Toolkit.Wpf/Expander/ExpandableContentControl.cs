@@ -15,7 +15,10 @@ namespace Kino.Toolkit.Wpf.Primitives
         /// 标识 Pentage 依赖属性。
         /// </summary>
         public static readonly DependencyProperty PercentageProperty =
-            DependencyProperty.Register(nameof(Percentage), typeof(double), typeof(ExpandableContentControl), new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            DependencyProperty.Register(nameof(Percentage),
+                                        typeof(double),
+                                        typeof(ExpandableContentControl),
+                                        new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// 获取或设置Pentage的值
