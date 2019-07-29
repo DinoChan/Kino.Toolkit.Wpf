@@ -84,8 +84,14 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 
 VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tree的方法，这篇文档介绍了这个工具类大致的内容，以及使用上要注意的地方。
 
-[https://www.cnblogs.com/dino623/p/Resizer.html](了解WPF的布局过程，并利用Measure为Expander添加动画)
+[了解WPF的布局过程，并利用Measure为Expander添加动画](https://www.cnblogs.com/dino623/p/Resizer.html)
 
 这篇文章介绍WPF UI元素的两步布局过程，并且通过Resizer控件介绍只使用Measure可以实现些什么内容。
 
 ![](https://img2018.cnblogs.com/blog/38937/201907/38937-20190716160348707-33264020.gif)
+
+[自定义Expander](https://www.cnblogs.com/dino623/p/Custom_Expander.html)
+
+继续Measure的话题，这次真的创建了个自定义的Expander。
+
+![](https://img2018.cnblogs.com/blog/38937/201907/38937-20190724112707672-795921895.gif)
