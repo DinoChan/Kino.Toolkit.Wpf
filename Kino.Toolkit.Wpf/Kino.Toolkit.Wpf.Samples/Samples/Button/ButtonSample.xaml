@@ -25,7 +25,7 @@
                                        Text="&#xf02e;" />
                         </kino:ExtendedButton.Icon>
                     </kino:ExtendedButton>
-                    <!--<kino:HyperlinkButton Content="Bing" IsEnabled="False"
+                    <kino:HyperlinkButton Content="Bing" IsEnabled="False"
                                               NavigateUri="https://cn.bing.com/?FORM=Z9FD1"/>
                     <kino:HyperlinkButton NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
                         <StackPanel Orientation="Horizontal">
@@ -51,7 +51,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ButtonBase.ContentTemplate>
-                    </kino:HyperlinkButton>-->
+                    </kino:HyperlinkButton>
                 </StackPanel>
                 <local:SampleSection.ControlPanel>
                     <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
