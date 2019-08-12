@@ -1,38 +1,31 @@
-﻿//https://github.com/unoplatform/uno/blob/master/src/Uno.UI/UI/Xaml/Controls/StackPanel/StackPanel.cs
-/*
-# Uno Platform
+﻿# Uno Platform
 
-Copyright(c) nventive
+Copyright (c) nventive
 
-All rights reserved.
+All rights reserved. 
 
 # Apache 2.0 License
 
-                                Apache License
-                          Version 2.0, January 2004
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
 
-                       http://www.apache.org/licenses/
-
-
-  TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
 
       "License" shall mean the terms and conditions for use, reproduction,
-     and distribution as defined by Sections 1 through 9 of this document.
+      and distribution as defined by Sections 1 through 9 of this document.
 
       "Licensor" shall mean the copyright owner or entity authorized by
-     the copyright owner that is granting the License.
+      the copyright owner that is granting the License.
 
       "Legal Entity" shall mean the union of the acting entity and all
-
-     other entities that control, are controlled by, or are under common
-
-     control with that entity. For the purposes of this definition,
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
       "control" means (i) the power, direct or indirect, to cause the
-     direction or management of such entity, whether by contract or
-
-     otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
       outstanding shares, or (iii) beneficial ownership of such entity.
 
       "You" (or "Your") shall mean an individual or Legal Entity
@@ -142,7 +135,7 @@ All rights reserved.
       reproduction, and distribution of the Work otherwise complies with
       the conditions stated in this License.
 
-   5.Submission of Contributions.Unless You explicitly state otherwise,
+   5. Submission of Contributions. Unless You explicitly state otherwise,
       any Contribution intentionally submitted for inclusion in the Work
       by You to the Licensor shall be under the terms and conditions of
       this License, without any additional terms or conditions.
@@ -150,40 +143,38 @@ All rights reserved.
       the terms of any separate license agreement you may have executed
       with Licensor regarding such Contributions.
 
-   6.Trademarks.This License does not grant permission to use the trade
+   6. Trademarks. This License does not grant permission to use the trade
       names, trademarks, service marks, or product names of the Licensor,
       except as required for reasonable and customary use in describing the
       origin of the Work and reproducing the content of the NOTICE file.
 
-   7.Disclaimer of Warranty.Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work(and each
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
       Contributor provides its Contributions) on an "AS IS" BASIS,
       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
       implied, including, without limitation, any warranties or conditions
-      of TITLE, NON - INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE.You are solely responsible for determining the
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
 
-     appropriateness of using or redistributing the Work and assume any
-     risks associated with Your exercise of permissions under this License.
-
-   8.Limitation of Liability. In no event and under no legal theory,
-      whether in tort(including negligence), contract, or otherwise,
-     unless required by applicable law(such as deliberate and grossly
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
       negligent acts) or agreed to in writing, shall any Contributor be
       liable to You for damages, including any direct, indirect, special,
       incidental, or consequential damages of any character arising as a
       result of this License or out of the use or inability to use the
-      Work(including but not limited to damages for loss of goodwill,
-     work stoppage, computer failure or malfunction, or any and all
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
 
-     other commercial damages or losses), even if such Contributor
-     has been advised of the possibility of such damages.
-
-   9.Accepting Warranty or Additional Liability. While redistributing
+   9. Accepting Warranty or Additional Liability. While redistributing
       the Work or Derivative Works thereof, You may choose to offer,
       and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and / or rights consistent with this
-      License.However, in accepting such obligations, You may act only
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
       on Your own behalf and on Your sole responsibility, not on behalf
       of any other Contributor, and only if You agree to indemnify,
       defend, and hold each Contributor harmless for any liability
@@ -198,7 +189,7 @@ All rights reserved.
       boilerplate notice, with the fields enclosed by brackets "[]"
       replaced with your own identifying information. (Don't include
       the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format.We also recommend that a
+      comment syntax for the file format. We also recommend that a
       file or class name and description of purpose be included on the
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
@@ -206,156 +197,13 @@ All rights reserved.
    Copyright [yyyy] [name of copyright owner]
 
    Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-See the License for the specific language governing permissions and
-
-limitations under the License.
-
-*/
-
-using System;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace Kino.Toolkit.Wpf
-{
-    public partial class ExtendedStackPanel : Panel
-    {
-
-        #region  DependencyProperty
-
-        public Orientation Orientation
-        {
-            get => (Orientation)GetValue(OrientationProperty);
-            set => SetValue(OrientationProperty, value);
-        }
-
-        public static readonly DependencyProperty OrientationProperty =
-            DependencyProperty.Register(
-                "Orientation",
-                typeof(Orientation),
-                typeof(ExtendedStackPanel),
-                new FrameworkPropertyMetadata(Orientation.Vertical, FrameworkPropertyMetadataOptions.AffectsMeasure)
-            );
-
-
-        private void OnOrientationChanged(DependencyPropertyChangedEventArgs e)
-        {
-            this.InvalidateMeasure();
-        }
-
-        public double Spacing
-        {
-            get => (double)GetValue(SpacingProperty);
-            set => SetValue(SpacingProperty, value);
-        }
-
-        public static readonly DependencyProperty SpacingProperty =
-            DependencyProperty.Register(
-                name: "Spacing",
-                propertyType: typeof(double),
-                ownerType: typeof(ExtendedStackPanel),
-                typeMetadata: new FrameworkPropertyMetadata(
-                    defaultValue: 0.0,
-                    FrameworkPropertyMetadataOptions.AffectsMeasure
-                ));
-
-        #endregion
-
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            var desiredSize = default(Size);
-            var isHorizontal = Orientation == Orientation.Horizontal;
-
-            if (isHorizontal)
-                availableSize.Width = float.PositiveInfinity;
-            else
-                availableSize.Height = float.PositiveInfinity;
-
-            var spacing = Spacing;
-            var count = Children.Count;
-
-            for (int i = 0; i < count; i++)
-            {
-                UIElement view = Children[i];
-                view.Measure(availableSize);
-                Size measuredSize = view.DesiredSize;
-                var addSpacing = i != count - 1;
-
-                if (isHorizontal)
-                {
-                    desiredSize.Width += measuredSize.Width;
-                    desiredSize.Height = Math.Max(desiredSize.Height, measuredSize.Height);
-
-                    if (addSpacing)
-                        desiredSize.Width += spacing;
-                }
-                else
-                {
-                    desiredSize.Width = Math.Max(desiredSize.Width, measuredSize.Width);
-                    desiredSize.Height += measuredSize.Height;
-
-                    if (addSpacing)
-                        desiredSize.Height += spacing;
-                }
-            }
-
-            return desiredSize;
-        }
-
-        protected override Size ArrangeOverride(Size arrangeSize)
-        {
-            var childRectangle = new Rect(arrangeSize);
-            var isHorizontal = Orientation == Orientation.Horizontal;
-            var previousChildSize = 0.0;
-
-            var spacing = Spacing;
-            var count = Children.Count;
-
-            for (int i = 0; i < count; i++)
-            {
-                UIElement view = Children[i];
-                Size desiredChildSize = view.DesiredSize;
-                var addSpacing = i != 0;
-
-                if (isHorizontal)
-                {
-                    childRectangle.X += previousChildSize;
-
-                    if (addSpacing)
-                        childRectangle.X += spacing;
-
-                    previousChildSize = desiredChildSize.Width;
-                    childRectangle.Width = desiredChildSize.Width;
-                    childRectangle.Height = Math.Max(arrangeSize.Height, desiredChildSize.Height);
-                }
-                else
-                {
-                    childRectangle.Y += previousChildSize;
-
-                    if (addSpacing)
-                        childRectangle.Y += spacing;
-
-                    previousChildSize = desiredChildSize.Height;
-                    childRectangle.Height = desiredChildSize.Height;
-                    childRectangle.Width = Math.Max(arrangeSize.Width, desiredChildSize.Width);
-                }
-
-                Rect adjustedRectangle = childRectangle;
-                view.Arrange(adjustedRectangle);
-            }
-
-            return arrangeSize;
-        }
-    }
-}
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
