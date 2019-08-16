@@ -183,14 +183,11 @@
                     <ControlTemplate.Resources>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
-                                                   Value="True" />
-                                    </MultiDataTrigger.Conditions>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
+                                             Value="True">
                                     <Setter Property="TextDecorations"
                                             Value="Underline" />
-                                </MultiDataTrigger>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </ControlTemplate.Resources>
@@ -230,14 +227,11 @@
                             <ContentPresenter.Resources>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
-                                                           Value="True" />
-                                            </MultiDataTrigger.Conditions>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
+                                                     Value="True">
                                             <Setter Property="TextDecorations"
                                                     Value="Underline" />
-                                        </MultiDataTrigger>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </ContentPresenter.Resources>
