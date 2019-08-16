@@ -1,0 +1,32 @@
+﻿<kino:HyperlinkButton Content="Microsoft"
+                      FontSize="20"
+                      NavigateUri="https://www.microsoft.com/" />
+
+<kino:HyperlinkButton NavigateUri="https://www.microsoft.com/"
+                      Margin="0,16,0,0"
+                      FontSize="20">
+    <StackPanel Orientation="Horizontal">
+        <Image Height="20"
+               Width="20"
+               Source="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/Microsoft_logo.png" />
+        <TextBlock Text="Microsoft"
+                   Margin="4,0,0,0"
+                   Resources="{x:Null}" />
+    </StackPanel>
+</kino:HyperlinkButton>
+<kino:HyperlinkButton Content="Microsoft"
+                      NavigateUri="https://www.microsoft.com/"
+                      Margin="0,16,0,0"
+                      FontSize="20">
+    <ButtonBase.ContentTemplate>
+        <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+                <Image Height="20"
+                       Width="20"
+                       Source="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/Microsoft_logo.png" />
+                <TextBlock Text="Microsoft"
+                           Margin="4,0,0,0" />
+            </StackPanel>
+        </DataTemplate>
+    </ButtonBase.ContentTemplate>
+</kino:HyperlinkButton>

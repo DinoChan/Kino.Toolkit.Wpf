@@ -526,5 +526,11 @@
   <ItemGroup>
     <Resource Include="SourceFiles\HighlightSample.Section4.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Microsoft_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section5.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

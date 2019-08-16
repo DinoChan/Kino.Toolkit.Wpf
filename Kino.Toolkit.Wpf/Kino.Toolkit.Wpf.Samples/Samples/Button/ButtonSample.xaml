@@ -8,50 +8,24 @@
                   Header="Button"
                   Link="https://github.com/DinoChan/Kino.Toolkit.Wpf/tree/master/Kino.Toolkit.Wpf/Kino.Toolkit.Wpf/Button"
                   mc:Ignorable="d"
-                  d:DesignHeight="650"
+                  d:DesignHeight="2650"
                   d:DesignWidth="800">
     <Grid>
         <StackPanel>
             <local:SampleSection>
                 <StackPanel>
                     <kino:ExtendedButton Content="bookmark"
-                                     MinWidth="18"
-                                     x:Name="BookmarkButton"
+                                         MinWidth="18"
+                                         x:Name="BookmarkButton"
                                          Margin="30"
-                                     HorizontalAlignment="Left"
-                                     State="{Binding SelectedItem,ElementName=StatesListBox}">
+                                         HorizontalAlignment="Left"
+                                         State="{Binding SelectedItem,ElementName=StatesListBox}">
                         <kino:ExtendedButton.Icon>
                             <TextBlock Style="{StaticResource FontAwesome}"
                                        Text="&#xf02e;" />
                         </kino:ExtendedButton.Icon>
                     </kino:ExtendedButton>
-                    <kino:HyperlinkButton Content="Bing" IsEnabled="False"
-                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1"/>
-                    <kino:HyperlinkButton NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
-                        <StackPanel Orientation="Horizontal">
-                            <Rectangle Height="20"
-                                       Width="20"
-                                       Fill="Red" />
-                            <TextBlock Text="Bing" Resources="{x:Null}"/>
-                        </StackPanel>
-                    </kino:HyperlinkButton>
-                    <kino:HyperlinkButton Content="Bing"
-                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1" />
-                    <kino:HyperlinkButton Content="Bing"
-                                              VerticalContentAlignment="Center"
-                                              NavigateUri="https://cn.bing.com/?FORM=Z9FD1">
-                        <ButtonBase.ContentTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Height="30"
-                                               Width="20"
-                                               Fill="Red" />
-                                    <TextBlock Text="Bing"
-                                               Resources="{x:Null}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ButtonBase.ContentTemplate>
-                    </kino:HyperlinkButton>
+
                 </StackPanel>
                 <local:SampleSection.ControlPanel>
                     <kino:Form ItemContainerStyle="{StaticResource ControlPanelFromItemStyle}">
@@ -88,12 +62,12 @@
                     <TextBox Width="200"
                              HorizontalAlignment="Left" />
                     <kino:ExtendedButton Content="Comment"
-                                     x:Name="CommentButton"
-                                     HorizontalAlignment="Left"
-                                     Margin="0,4,0,0"
-                                     Width="100"
-                                     Click="OnComment"
-                                     IsDefault="True">
+                                         x:Name="CommentButton"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,4,0,0"
+                                         Width="100"
+                                         Click="OnComment"
+                                         IsDefault="True">
                         <kino:ExtendedButton.Icon>
                             <TextBlock Style="{StaticResource FontAwesome}"
                                        Text="&#xf075;"
@@ -111,7 +85,47 @@
                 </local:SampleSection.SourceCodes>
             </local:SampleSection>
 
+            <local:SampleSection Header="HyperlinkButton">
+                <StackPanel>
+                    <kino:HyperlinkButton Content="Microsoft"
+                                          FontSize="20"
+                                          NavigateUri="https://www.microsoft.com/" />
 
+                    <kino:HyperlinkButton NavigateUri="https://www.microsoft.com/"
+                                          Margin="0,16,0,0"
+                                          FontSize="20">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="20"
+                                   Width="20"
+                                   Source="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/Microsoft_logo.png" />
+                            <TextBlock Text="Microsoft"
+                                       Margin="4,0,0,0"
+                                       Resources="{x:Null}" />
+                        </StackPanel>
+                    </kino:HyperlinkButton>
+                    <kino:HyperlinkButton Content="Microsoft"
+                                          NavigateUri="https://www.microsoft.com/"
+                                          Margin="0,16,0,0"
+                                          FontSize="20">
+                        <ButtonBase.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="20"
+                                           Width="20"
+                                           Source="/Kino.Toolkit.Wpf.Samples;component/Assets/Images/Microsoft_logo.png" />
+                                    <TextBlock Text="Microsoft"
+                                               Margin="4,0,0,0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ButtonBase.ContentTemplate>
+                    </kino:HyperlinkButton>
+                </StackPanel>
+                <local:SampleSection.SourceCodes>
+                    <local:SourceCodeModel SourceCodeType="Xaml"
+                                           Haader="ButtonSample.xaml"
+                                           CodeSource="/Kino.Toolkit.Wpf.Samples;component/SourceFiles/ButtonSample.Section5.txt" />
+                </local:SampleSection.SourceCodes>
+            </local:SampleSection>
         </StackPanel>
     </Grid>
 </local:SamplePage>
