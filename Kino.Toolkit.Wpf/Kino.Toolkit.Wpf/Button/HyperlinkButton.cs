@@ -55,7 +55,7 @@ namespace Kino.Toolkit.Wpf
             {
                 try
                 {
-                    Process.Start(new ProcessStartInfo(NavigateUri.AbsoluteUri));
+                    Process.Start(new ProcessStartInfo(NavigateUri.AbsoluteUri) { UseShellExecute = true });
                 }
                 catch (Win32Exception)
                 {
