@@ -15,7 +15,10 @@ namespace Kino.Toolkit.Wpf
     {
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
-            if (VerticalScrollBarVisibility == ScrollBarVisibility.Disabled)
+            if (ViewportHeight + VerticalOffset >= ExtentHeight && e.Delta <= 0)
+                return;
+
+            if (VerticalOffset == 0 && e.Delta >= 0)
                 return;
 
             base.OnMouseWheel(e);
