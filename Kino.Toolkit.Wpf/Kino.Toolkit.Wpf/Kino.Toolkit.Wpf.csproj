@@ -133,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PagedCollectionViewResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Panels\ExtendedStackPanel.cs" />
     <Compile Include="ProgressRing\TemplateSettingValues.cs" />
     <Compile Include="RadioButtonMenuItem\RadioButtonMenuItem.cs" />
     <Compile Include="Resizer\InnerContentControl.cs" />
@@ -288,6 +289,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="TransitioningContentControl\TransitioningContentControl.VisualStates.cs" />
+    <None Include="THIRD-PARTY-NOTICES.md" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\defaultsystemicon.png" />

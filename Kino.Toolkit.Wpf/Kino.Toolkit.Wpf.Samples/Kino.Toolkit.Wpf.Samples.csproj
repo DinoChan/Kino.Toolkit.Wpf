@@ -506,7 +506,7 @@
     <Resource Include="SourceFiles\ExpanderSample.Section1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SourceFiles\ResizerSample.Section5 - 复制.txt" />
+    <Resource Include="SourceFiles\ResizerSample.Section6.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\ExpanderSample.Section2.txt" />
@@ -525,6 +525,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SourceFiles\HighlightSample.Section4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Microsoft_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SourceFiles\ButtonSample.Section5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -62,12 +62,14 @@
                                                                Storyboard.TargetProperty="(UIElement.Opacity)">
                                     <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                           Value="0" />
-                                    <SplineDoubleKeyFrame KeyTime="00:00:00.400"
+                                    <SplineDoubleKeyFrame KeyTime="00:00:0.40"
+                                                          Value="0" />
+                                    <SplineDoubleKeyFrame KeyTime="00:00:0.8"
                                                           Value="1" />
                                 </DoubleAnimationUsingKeyFrames>
 
                                 <DoubleAnimation BeginTime="00:00:00"
-                                                 Duration="00:00:00.500"
+                                                 Duration="00:00:01"
                                                  Storyboard.TargetName="CurrentContentPresentationSite"
                                                  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
                                                  From="-50"
@@ -128,7 +130,7 @@
     <kino:Resizer HorizontalContentAlignment="Stretch">
         <kino:Resizer.Animation>
             <DoubleAnimation BeginTime="0:0:0"
-                             Duration="0:0:0.15">
+                             Duration="0:0:0.3">
                 <DoubleAnimation.EasingFunction>
                     <QuinticEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>

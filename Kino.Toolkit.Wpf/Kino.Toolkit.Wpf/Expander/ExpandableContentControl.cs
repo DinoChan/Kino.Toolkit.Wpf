@@ -15,7 +15,10 @@ namespace Kino.Toolkit.Wpf.Primitives
         /// 标识 Pentage 依赖属性。
         /// </summary>
         public static readonly DependencyProperty PercentageProperty =
-            DependencyProperty.Register(nameof(Percentage), typeof(double), typeof(ExpandableContentControl), new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            DependencyProperty.Register(nameof(Percentage),
+                                        typeof(double),
+                                        typeof(ExpandableContentControl),
+                                        new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// 获取或设置Pentage的值
@@ -41,20 +44,20 @@ namespace Kino.Toolkit.Wpf.Primitives
             return new Size(result.Width * Percentage, result.Height * Percentage);
         }
 
-        protected override Size ArrangeOverride(Size arrangeBounds)
-        {
-            int count = VisualChildrenCount;
-            UIElement child = (count > 0) ? GetVisualChild(0) as UIElement : null;
-            if (child != null)
-            {
-                Size childArrangeBounds = arrangeBounds;
-                childArrangeBounds.Width = Math.Max(arrangeBounds.Width, child.DesiredSize.Width);
-                childArrangeBounds.Height = Math.Max(arrangeBounds.Height, child.DesiredSize.Height);
-                child.Arrange(new Rect(new Point(0, 0), childArrangeBounds));
-            }
+        //protected override Size ArrangeOverride(Size arrangeBounds)
+        //{
+        //    int count = VisualChildrenCount;
+        //    UIElement child = (count > 0) ? GetVisualChild(0) as UIElement : null;
+        //    if (child != null)
+        //    {
+        //        Size childArrangeBounds = arrangeBounds;
+        //        childArrangeBounds.Width = Math.Max(arrangeBounds.Width, child.DesiredSize.Width);
+        //        childArrangeBounds.Height = Math.Max(arrangeBounds.Height, child.DesiredSize.Height);
+        //        child.Arrange(new Rect(new Point(0, 0), childArrangeBounds));
+        //    }
 
-            return arrangeBounds;
-        }
+        //    return arrangeBounds;
+        //}
 
         protected override Geometry GetLayoutClip(Size layoutSlotSize)
         {

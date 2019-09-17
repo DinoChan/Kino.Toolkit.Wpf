@@ -1,13 +1,14 @@
-﻿<StackPanel Width="500"
-            HorizontalAlignment="Left"
-            Grid.IsSharedSizeScope="True">
+﻿<kino:ExtendedStackPanel Width="500"
+                         Spacing="12"
+                         HorizontalAlignment="Left"
+                         Grid.IsSharedSizeScope="True">
     <kino:FormTitle Content="用户信息" />
     <kino:FormItem Label="用户名"
-                       IsRequired="True">
+                   IsRequired="True">
         <TextBox Text="{Binding Name,Mode=TwoWay}" />
     </kino:FormItem>
     <kino:FormItem Label="密码"
-                       IsRequired="True">
+                   IsRequired="True">
         <PasswordBox />
     </kino:FormItem>
     <kino:FormItem Label="国家与地区(请选择居住地)">
@@ -16,18 +17,18 @@
     <kino:FormSeparator />
 
     <kino:FormTitle Content="家庭信息"
-                        Description="填写家庭信息可以让我们给您提供更好的服务。"/>
+                    Description="填写家庭信息可以让我们给您提供更好的服务。" /
     <kino:FormItem Label="父"
-                       Description="可以不填">
+                   Description="可以不填">
         <TextBox />
     </kino:FormItem>
     <kino:FormItem Label="母"
-                       Description="可以不填">
+                   Description="可以不填">
         <TextBox />
     </kino:FormItem>
     <kino:FormItem Label="伴侣"
-                       Description="可以没有"
-                       IsRequired="True">
+                   Description="可以没有"
+                   IsRequired="True">
         <TextBox />
     </kino:FormItem>
     <kino:FormItem Label="性别">
@@ -40,9 +41,9 @@
         </StackPanel>
     </kino:FormItem>
     <kino:FormItem Label="备注"
-                       LabelTemplate="{StaticResource TopHeaderTemplate}">
+                   LabelTemplate="{StaticResource TopHeaderTemplate}">
         <TextBox AcceptsReturn="True"
                  VerticalScrollBarVisibility="Auto"
                  Height="100" />
     </kino:FormItem>
-</StackPanel>
+</kino:ExtendedStackPanel>

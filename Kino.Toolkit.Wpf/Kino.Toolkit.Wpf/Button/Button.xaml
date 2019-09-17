@@ -125,17 +125,17 @@
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Center">
                                 <primitives:Resizer VerticalContentAlignment="Stretch"
-                                                   HorizontalContentAlignment="Left"
-                                                   FlowDirection="RightToLeft"
-                                                   x:Name="Resizer">
+                                                    HorizontalContentAlignment="Left"
+                                                    FlowDirection="RightToLeft"
+                                                    x:Name="Resizer">
                                     <local:StateIndicator State="{TemplateBinding State}"
-                                                              Height="Auto"
-                                                              Width="Auto"
-                                                              MaxHeight="{TemplateBinding FontSize}"
-                                                              MaxWidth="{TemplateBinding FontSize}"
-                                                              Content="{TemplateBinding Icon}"
-                                                              VerticalContentAlignment="Stretch"
-                                                              HorizontalContentAlignment="Stretch">
+                                                          Height="Auto"
+                                                          Width="Auto"
+                                                          MaxHeight="{TemplateBinding FontSize}"
+                                                          MaxWidth="{TemplateBinding FontSize}"
+                                                          Content="{TemplateBinding Icon}"
+                                                          VerticalContentAlignment="Stretch"
+                                                          HorizontalContentAlignment="Stretch">
                                     </local:StateIndicator>
                                 </primitives:Resizer>
                                 <Rectangle Width="{Binding ElementName=Resizer,Path=ActualWidth,Converter={StaticResource TimesConverter},ConverterParameter=0.3}"
@@ -180,6 +180,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HyperlinkButton">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
+                                             Value="True">
+                                    <Setter Property="TextDecorations"
+                                            Value="Underline" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ControlTemplate.Resources>
                     <Grid Cursor="{TemplateBinding Cursor}"
                           Background="{TemplateBinding Background}">
                         <VisualStateManager.VisualStateGroups>
@@ -216,14 +227,11 @@
                             <ContentPresenter.Resources>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
-                                                           Value="True" />
-                                            </MultiDataTrigger.Conditions>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ButtonBase}, Path=IsMouseOver}"
+                                                     Value="True">
                                             <Setter Property="TextDecorations"
                                                     Value="Underline" />
-                                        </MultiDataTrigger>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </ContentPresenter.Resources>

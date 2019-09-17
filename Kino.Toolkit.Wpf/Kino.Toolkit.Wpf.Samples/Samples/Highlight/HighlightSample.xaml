@@ -13,10 +13,10 @@
             <local:SampleSection Header="基本使用">
                 <StackPanel HorizontalAlignment="Left" Width="400">
                     <TextBox x:Name="FilterElement"
-                                 TextChanged="OnFilterTextChanged"/>
+                             TextChanged="OnFilterTextChanged"/>
                     <ListBox Name="EmployeeElement"
                              Grid.Row="1"
-                             Height="400"
+                             Height="200"
                              Margin="0,8,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
