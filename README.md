@@ -106,3 +106,8 @@ VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tr
 [关于ScrollViewr和滚动轮劫持(scroll-wheel-hijack)](https://www.cnblogs.com/dino623/p/scroll-wheel-hijack.html)
 
 这篇文章介绍了如何自定义ScrollViewer以避免滚动轮劫持的问题。
+
+
+[模仿UWP的ProgressRing](https://www.cnblogs.com/dino623/p/create_a_ProgressRing_for_wpf.html)
+
+这篇文章介绍如何在WPF中模仿UWP的ProgressRing。
