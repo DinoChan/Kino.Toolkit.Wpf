@@ -74,7 +74,7 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 
 介绍WPF怎么做筛选及排序，以及使用自定义的附加属性实现文本高亮。
 
-![](https://img2018.cnblogs.com/blog/38937/201906/38937-20190621144025431-973300660.gif)
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/Highlight/2.gif)
 
 [使用TypeConverter强化文本高亮的功能](https://www.cnblogs.com/dino623/p/TextBlockHighlightSource.html)
 
@@ -88,13 +88,13 @@ VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tr
 
 这篇文章介绍WPF UI元素的两步布局过程，并且通过Resizer控件介绍只使用Measure可以实现些什么内容。
 
-![](https://img2018.cnblogs.com/blog/38937/201907/38937-20190716160348707-33264020.gif)
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/Resizer/2.gif)
 
 [自定义Expander](https://www.cnblogs.com/dino623/p/Custom_Expander.html)
 
 继续Measure的话题，这次真的创建了个自定义的Expander。
 
-![Expander](https://img2018.cnblogs.com/blog/38937/201907/38937-20190724112707672-795921895.gif)
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/Expander/2.gif)
 
 
 [给WPF一个HyperlinkButton](https://www.cnblogs.com/dino623/p/WPF_HyperlinkButton.html)
@@ -111,3 +111,5 @@ VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tr
 [模仿UWP的ProgressRing](https://www.cnblogs.com/dino623/p/create_a_ProgressRing_for_wpf.html)
 
 这篇文章介绍如何在WPF中模仿UWP的ProgressRing。
+
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/ProgressRing/4.gif)
