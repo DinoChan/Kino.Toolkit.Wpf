@@ -101,7 +101,7 @@ VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tr
 
 这篇文章的目的是介绍怎么在WPF里创建自定义的HyperlinkButton控件。
 
-![](https://img2018.cnblogs.com/blog/38937/201908/38937-20190820103534021-181456441.gif)
+![](https://raw.githubusercontent.com/DinoChan/Pictures/master/HyperlinkOfWpf/6.gif)
 
 [关于ScrollViewr和滚动轮劫持(scroll-wheel-hijack)](https://www.cnblogs.com/dino623/p/scroll-wheel-hijack.html)
 
