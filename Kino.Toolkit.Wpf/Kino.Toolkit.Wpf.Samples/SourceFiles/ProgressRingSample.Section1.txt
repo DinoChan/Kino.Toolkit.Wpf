@@ -9,4 +9,10 @@
                            Margin="8"
                            MinHeight="9"
                            MinWidth="9" />
+    <kino:ProgressRing IsActive="True"
+                           Height="200"
+                           Width="200"
+                           Margin="8"
+                           MinHeight="9"
+                           MinWidth="9" />
 </StackPanel>

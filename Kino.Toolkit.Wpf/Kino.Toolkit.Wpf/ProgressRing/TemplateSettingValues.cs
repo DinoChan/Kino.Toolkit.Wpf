@@ -22,8 +22,6 @@ namespace Kino.Toolkit.Wpf
 
             public TemplateSettingValues(double width)
             {
-
-
                 if (width <= 40)
                 {
                     EllipseDiameter = (width / 10) + 1;
