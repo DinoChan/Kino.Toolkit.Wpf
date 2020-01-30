@@ -1,0 +1,160 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Background"
+                     Color="#f4f4f4" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Border"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelected.Background"
+                     Color="#deecf9" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelected.Border"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedHover.Background"
+                     Color="#deecf9" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedHover.Border"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedNoFocus.Background"
+                     Color="#deecf9" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedNoFocus.Border"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewFocus.Border"
+                     Color="#deecf9" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHoverFocus.Background"
+                     Color="#f4f4f4" />
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHoverFocus.Border"
+                     Color="#deecf9" />
+
+
+    <Style TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
+        <Setter Property="Padding"
+                Value="10,6" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="VerticalContentAlignment"
+                Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="BorderBrush"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border x:Name="Bd"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="true">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter TargetName="Bd"
+                                    Property="TextElement.Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="False" />
+                                <Condition Property="IsMouseOver"
+                                           Value="True" />
+                                <Condition Property="UIElement.IsKeyboardFocused"
+                                           Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewHover.Background}" />
+                            <Setter TargetName="Bd"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewHover.Border}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="True" />
+                                <Condition Property="IsMouseOver"
+                                           Value="False" />
+                                <Condition Property="UIElement.IsKeyboardFocused"
+                                           Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewSelected.Background}" />
+                            <Setter TargetName="Bd"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewSelected.Border}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="True" />
+                                <Condition Property="IsMouseOver"
+                                           Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewSelectedHover.Background}" />
+                            <Setter TargetName="Bd"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewSelectedHover.Border}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="True" />
+                                <Condition Property="IsMouseOver"
+                                           Value="False" />
+                                <Condition Property="UIElement.IsKeyboardFocused"
+                                           Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewSelectedNoFocus.Background}" />
+                            <Setter TargetName="Bd"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewSelectedNoFocus.Border}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="False" />
+                                <Condition Property="IsMouseOver"
+                                           Value="False" />
+                                <Condition Property="UIElement.IsKeyboardFocused"
+                                           Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewFocus.Border}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="False" />
+                                <Condition Property="IsMouseOver"
+                                           Value="True" />
+                                <Condition Property="UIElement.IsKeyboardFocused"
+                                           Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewHoverFocus.Background}" />
+                            <Setter TargetName="Bd"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource ComboBoxItem.ItemsviewHoverFocus.Border}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

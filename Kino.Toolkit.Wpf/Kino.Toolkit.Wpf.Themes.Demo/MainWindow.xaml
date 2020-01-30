@@ -1,0 +1,157 @@
+﻿<Window x:Class="Kino.Toolkit.Wpf.Themes.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        FontFamily="Segoe UI VSS (Regular), Segoe UI, BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, Ubuntu, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol"
+        mc:Ignorable="d"
+        FontSize="14"
+        Title="MainWindow"
+        Height="750"
+        Width="1440">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical"
+                        Margin="5">
+                <Button Content="Button"
+                        Margin="3" />
+                <Button Content="Disable"
+                        IsEnabled="False"
+                        Margin="3" />
+                <ToggleButton Content="ToggleButton"
+                              Margin="3" />
+                <ComboBox Margin="3">
+                    <ComboBoxItem Content="ComboBoxItem 1" />
+                    <ComboBoxItem Content="ComboBoxItem 2" />
+                    <ComboBoxItem Content="ComboBoxItem 3" />
+                </ComboBox>
+
+
+                <ComboBox Margin="3"
+                          IsEnabled="False">
+                </ComboBox>
+
+                <ComboBox Margin="3"
+                          IsEditable="True">
+                    <ComboBoxItem Content="ComboBoxItem 1" />
+                    <ComboBoxItem Content="ComboBoxItem 2" />
+                    <ComboBoxItem Content="ComboBoxItem 3" />
+                </ComboBox>
+
+
+                <TextBox Margin="3"
+                         Text="Textbox" />
+                <TextBox Margin="3"
+                         Text="Textbox"
+                         IsEnabled="False" />
+                <!--<input:AutoCompleteBox x:Name="SampleAutoComplete"
+                                       Margin="5,5,5,5" />-->
+                <PasswordBox Margin="3"
+                             Password="password" />
+
+                <PasswordBox Margin="3"
+                             IsEnabled="False"
+                             Password="password" />
+                <!--<inputToolkit:NumericUpDown Margin="3" />-->
+                <RadioButton Content="RadioButton 1"
+                             Margin="5"
+                             IsChecked="false"
+                             IsThreeState="True" />
+                <RadioButton Content="RadioButton 2"
+                             Margin="5"
+                             IsChecked="true"
+                             IsThreeState="True" />
+                <RadioButton Content="RadioButton 3"
+                             Margin="5"
+                             IsChecked="{x:Null}"
+                             IsThreeState="True" />
+                <CheckBox Content="CheckBox 1"
+                          Margin="5"
+                          IsChecked="false"
+                          IsThreeState="True" />
+                <CheckBox Content="CheckBox 2"
+                          Margin="5"
+                          IsChecked="true"
+                          IsThreeState="True" />
+                <CheckBox Content="CheckBox 3"
+                          Margin="5"
+                          IsChecked="{x:Null}"
+                          IsThreeState="True" />
+                <ListBox Height="100"
+                         Margin="5">
+                    <ListBoxItem Content="ListBoxItem 1" />
+                    <ListBoxItem Content="ListBoxItem 2" />
+                    <ListBoxItem Content="ListBoxItem 3" />
+                    <ListBoxItem Content="ListBoxItem 4" />
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Margin="5">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              Height="200"
+                              Margin="5">
+                    <Rectangle Height="500"
+                               Width="500" />
+                </ScrollViewer>
+                <TreeView Margin="5">
+                    <TreeViewItem Header="TreeViewItem 1">
+                        <TreeViewItem Header="TreeViewItem 2" />
+                        <TreeViewItem Header="TreeViewItem 3" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="TreeViewItem 4">
+                        <TreeViewItem Header="TreeViewItem 5" />
+                        <TreeViewItem Header="TreeViewItem 6" />
+                    </TreeViewItem>
+                </TreeView>
+                <Calendar Margin="5" />
+                <TabControl  Height="50"
+                             TabStripPlacement="Top"
+                             Margin="5">
+                    <TabItem Header="TabItem 1"
+                             Width="70">
+                        <Grid />
+                    </TabItem>
+                    <TabItem Header="TabItem 2">
+                        <Grid />
+                    </TabItem>
+                </TabControl>
+                <Slider Margin="5" />
+                <!--<HyperlinkButton Content="HyperlinkButton"
+                                 Margin="5" />-->
+                <Expander Margin="5"
+                          Header="Expander">
+                    <Rectangle Width="50"
+                               Height="150"
+                               Margin="10"
+                               Fill="#88000000"
+                               StrokeThickness="2"
+                               Stroke="#FFFFFFFF"
+                               RadiusX="5"
+                               RadiusY="5" />
+                </Expander>
+                <DatePicker Margin="5" />
+                <DataGrid x:Name="SampleDataGrid"
+                          Margin="5"
+                          AutoGenerateColumns="False"
+                          HeadersVisibility="All"
+                          GridLinesVisibility="All">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="First Name"
+                                            Binding="{Binding FirstName}" />
+                        <DataGridTextColumn Header="Last Name"
+                                            Binding="{Binding LastName}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</Window>

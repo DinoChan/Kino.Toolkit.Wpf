@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Kino.Toolkit.Wpf.Themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/Button.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/ComboBox.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/ComboBoxItem.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TextBox.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/RadioButton.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/CheckBox.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/ScrollBar.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/ScrollViewer.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/ListBox.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/ListBoxItem.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TreeView.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TreeViewItem.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TabControl.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TabItem.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
