@@ -23,13 +23,13 @@ namespace Kino.Toolkit.Wpf
 
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new KinoListBoxItem();
+            return new ExtendedListBoxItem();
         }
 
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
             base.PrepareContainerForItemOverride(element, item);
-            if (element is KinoListBoxItem listBoxItem)
+            if (element is ExtendedListBoxItem listBoxItem)
                 listBoxItem.Owner = this;
         }
     }

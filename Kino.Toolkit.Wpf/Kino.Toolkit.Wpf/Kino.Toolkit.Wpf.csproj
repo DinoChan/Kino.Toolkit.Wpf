@@ -122,7 +122,7 @@
     <Compile Include="HeaderedContentControl\ExtendedHeaderedContentControl.cs" />
     <Compile Include="Layout\PageTitle.cs" />
     <Compile Include="ListBox\ExtendedListBox.cs" />
-    <Compile Include="ListBox\ListBoxItem.cs" />
+    <Compile Include="ListBox\ExtendedListBoxItem.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupInternal.cs" />
     <Compile Include="PagedCollectionView\CollectionViewGroupRoot.cs" />
     <Compile Include="PagedCollectionView\IPagedCollectionView.cs" />
@@ -140,7 +140,7 @@
     <Compile Include="Resizer\Resizer.cs" />
     <Compile Include="ScrollViewer\ExtendedScrollViewer.cs" />
     <Compile Include="SelectionCheckBox\IMultiSelector.cs" />
-    <Compile Include="SelectionCheckBox\KinoSelectionCheckBox.cs" />
+    <Compile Include="SelectionCheckBox\SelectionCheckBox.cs" />
     <Compile Include="SkeletonScreen\SkeletonScreen.cs" />
     <Compile Include="SquareBox\SquareBox.cs" />
     <Compile Include="SquareBox\SquareBoxTemplateSettings.cs" />

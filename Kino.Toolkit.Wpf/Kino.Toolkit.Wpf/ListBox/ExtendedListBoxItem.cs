@@ -11,16 +11,16 @@ namespace Kino.Toolkit.Wpf
 {
     [TemplateVisualState(GroupName = MultiSelectStatesGroupName, Name = MultiSelectDisabledStateName)]
     [TemplateVisualState(GroupName = MultiSelectStatesGroupName, Name = MultiSelectEnabledStateName)]
-    public class KinoListBoxItem : ListBoxItem
+    public class ExtendedListBoxItem : ListBoxItem
     {
         private const string MultiSelectEnabledStateName = "MultiSelectEnabled";
         private const string MultiSelectDisabledStateName = "MultiSelectDisabled";
         private const string MultiSelectStatesGroupName = "MultiSelectStates";
 
 
-        public KinoListBoxItem()
+        public ExtendedListBoxItem()
         {
-            DefaultStyleKey = typeof(KinoListBoxItem);
+            DefaultStyleKey = typeof(ExtendedListBoxItem);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Kino.Toolkit.Wpf
         /// 标识 Owner 依赖属性。
         /// </summary>
         public static readonly DependencyProperty OwnerProperty =
-            DependencyProperty.Register(nameof(Owner), typeof(ExtendedListBox), typeof(KinoListBoxItem), new PropertyMetadata(default(ExtendedListBox), OnOwnerChanged));
+            DependencyProperty.Register(nameof(Owner), typeof(ExtendedListBox), typeof(ExtendedListBoxItem), new PropertyMetadata(default(ExtendedListBox), OnOwnerChanged));
 
         private static void OnOwnerChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
@@ -45,7 +45,7 @@ namespace Kino.Toolkit.Wpf
             if (oldValue == newValue)
                 return;
 
-            var target = obj as KinoListBoxItem;
+            var target = obj as ExtendedListBoxItem;
             target?.OnOwnerChanged(oldValue, newValue);
         }
 
