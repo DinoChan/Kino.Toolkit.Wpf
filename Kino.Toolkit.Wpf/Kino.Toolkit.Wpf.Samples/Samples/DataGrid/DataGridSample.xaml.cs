@@ -29,7 +29,7 @@ namespace Kino.Toolkit.Wpf.Samples
             SelectionComboBox.SelectedIndex = 0;
 
             var list = new List<TestModel>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
                 list.Add(new TestModel { Name = "this is " + i });
             }
