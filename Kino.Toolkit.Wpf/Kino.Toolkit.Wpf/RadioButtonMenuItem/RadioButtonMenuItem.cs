@@ -52,11 +52,11 @@ namespace Kino.Toolkit.Wpf
         {
             base.OnChecked(e);
 
-            if (VisualTreeHelper.GetParent(this) is FrameworkElement parent)
+            if (this.Parent is MenuItem parent)
             {
-                foreach (var menuItem in this.GetVisualSiblings().OfType<RadioButtonMenuItem>())
+                foreach (var menuItem in parent.Items.OfType<RadioButtonMenuItem>())
                 {
-                    if (menuItem.GroupName == GroupName && (menuItem.DataContext == parent.DataContext || menuItem.DataContext != DataContext))
+                    if (menuItem != this && menuItem.GroupName == GroupName && (menuItem.DataContext == parent.DataContext || menuItem.DataContext != DataContext))
                     {
                         menuItem.IsChecked = false;
                     }
