@@ -111,25 +111,34 @@
                     </TreeViewItem>
                 </TreeView>
                 <Calendar Margin="5" />
-                <TabControl  Height="50"
+                <TabControl  Height="200"
                              TabStripPlacement="Top"
                              Margin="5">
-                    <TabItem Header="TabItem 1"
-                             Width="70">
-                        <Grid />
+                    <TabItem Header="Taskboard">
+                        <Grid Background="Purple"/>
                     </TabItem>
-                    <TabItem Header="TabItem 2">
-                        <Grid />
+                    <TabItem Header="Backlog">
+                        <Grid Background="Beige" />
+                    </TabItem>
+                    <TabItem Header="Capacity">
+                        <Grid Background="Beige" />
+                    </TabItem>
+                    <TabItem Header="Analytics">
+                        <Grid Background="Beige" />
                     </TabItem>
                 </TabControl>
                 <Slider Margin="5" />
                 <!--<HyperlinkButton Content="HyperlinkButton"
                                  Margin="5" />-->
+                
+            </StackPanel>
+            <StackPanel Grid.Column="2"
+                        Orientation="Vertical"
+                        Margin="5">
                 <Expander Margin="5"
                           Header="Expander">
                     <Rectangle Width="50"
                                Height="150"
-                               Margin="10"
                                Fill="#88000000"
                                StrokeThickness="2"
                                Stroke="#FFFFFFFF"
@@ -150,7 +159,6 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-
         </Grid>
 
     </Grid>

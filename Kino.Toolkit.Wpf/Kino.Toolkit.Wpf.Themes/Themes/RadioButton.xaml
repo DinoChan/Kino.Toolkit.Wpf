@@ -37,7 +37,6 @@
                 Value="{StaticResource RadioButton.Static.Background}" />
         <Setter Property="BorderBrush"
                 Value="{StaticResource RadioButton.Static.Border}" />
-       
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="VerticalContentAlignment"

@@ -43,8 +43,9 @@
                           SnapsToDevicePixels="true">
                         <Border x:Name="mainBorder"
                                 Background="{TemplateBinding Background}"
-                                BorderBrush="{StaticResource TabItem.MouseOver.Border}"
-                                Margin="0">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Margin="12,0">
 
                         </Border>
                         <ContentPresenter x:Name="contentPresenter"
@@ -230,7 +231,7 @@
                             <Setter Property="BorderThickness"
                                     Value="0,0,0,2" />
                             <Setter Property="FontWeight"
-                                    Value="Bold" />
+                                    Value="600" />
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

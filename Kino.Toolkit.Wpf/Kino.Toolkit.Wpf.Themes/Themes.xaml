@@ -17,5 +17,7 @@
         <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TreeViewItem.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TabControl.xaml" />
         <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/TabItem.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/Slider.xaml" />
+        <ResourceDictionary Source="/Kino.Toolkit.Wpf.Themes;component/Themes/Expander.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
