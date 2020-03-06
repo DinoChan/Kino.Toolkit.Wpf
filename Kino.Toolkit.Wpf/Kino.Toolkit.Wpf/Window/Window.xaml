@@ -242,7 +242,7 @@
                                                     Foreground="White"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
-                                                    FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}"
+                                                    FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSizeKey}}"
                                                     Content="{TemplateBinding Title}" />
                                 </StackPanel>
                                 <StackPanel x:Name="WindowCommandButtonsPanel"
