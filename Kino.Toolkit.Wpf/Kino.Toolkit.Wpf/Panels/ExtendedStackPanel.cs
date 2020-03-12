@@ -249,11 +249,6 @@ namespace Kino.Toolkit.Wpf
             );
 
 
-        private void OnOrientationChanged(DependencyPropertyChangedEventArgs e)
-        {
-            this.InvalidateMeasure();
-        }
-
         public double Spacing
         {
             get => (double)GetValue(SpacingProperty);
