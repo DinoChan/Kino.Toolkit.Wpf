@@ -35,7 +35,6 @@ WPF控件库通常都会提供“素颜”的外观，这样做的最大好处�
 
 Form是一个轻量的表单布局控件，同时也是一个很好的结合了ItemsControl、ContentControl、附加属性的教学例子。
 
-![](https://img2018.cnblogs.com/blog/38937/201812/38937-20181224155611763-1596133293.png)
 
 [让Form在加载后自动获得焦点](https://www.cnblogs.com/dino623/p/AutoFocus.html)
 
@@ -46,9 +45,6 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 这篇文章介绍了另一种ItemsControl的实现方式，并使用它为Form及自定义Window添加常用的按钮及其它功能。
 
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/functionbar/1.png)
-
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/functionbar/2.png)
 
 [Window(窗体)的UI元素及行为](https://www.cnblogs.com/dino623/p/uielements_of_window.html)
 
@@ -58,8 +54,6 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 
 介绍使用WindowChrome自定义Window的原理及各种细节。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/CustomWindowUsingWindowChrome/1.png)
-
 [使用WindowChrome的问题](https://www.cnblogs.com/dino623/p/problems_of_WindowChrome.html)
 
 使用WindowChrome自定义Window会遇到很多问题，例如最大化的尺寸问题，这篇文章介绍如何处理这些细节。
@@ -68,13 +62,13 @@ Form是一个轻量的表单布局控件，同时也是一个很好的结合了I
 
 因为WPF原生的RibbonWindow有不少UI上的Bug，所以我提供了一个自定义的RibbonWindow以解决这些问题。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/RibbonWindow/3.png)
+
 
 [排序、筛选以及高亮](https://www.cnblogs.com/dino623/p/sort_filter_highlight.html)
 
 介绍WPF怎么做筛选及排序，以及使用自定义的附加属性实现文本高亮。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/Highlight/2.gif)
+
 
 [使用TypeConverter强化文本高亮的功能](https://www.cnblogs.com/dino623/p/TextBlockHighlightSource.html)
 
@@ -88,20 +82,20 @@ VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tr
 
 这篇文章介绍WPF UI元素的两步布局过程，并且通过Resizer控件介绍只使用Measure可以实现些什么内容。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/Resizer/2.gif)
+
 
 [自定义Expander](https://www.cnblogs.com/dino623/p/Custom_Expander.html)
 
 继续Measure的话题，这次真的创建了个自定义的Expander。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/Expander/2.gif)
+
 
 
 [给WPF一个HyperlinkButton](https://www.cnblogs.com/dino623/p/WPF_HyperlinkButton.html)
 
 这篇文章的目的是介绍怎么在WPF里创建自定义的HyperlinkButton控件。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/HyperlinkOfWpf/6.gif)
+
 
 [关于ScrollViewr和滚动轮劫持(scroll-wheel-hijack)](https://www.cnblogs.com/dino623/p/scroll-wheel-hijack.html)
 
@@ -112,4 +106,15 @@ VisualTreeExtensions封装了`VisualTreeHelper`并提供了各种查询Visual Tr
 
 这篇文章介绍如何在WPF中模仿UWP的ProgressRing。
 
-![](https://raw.githubusercontent.com/DinoChan/Pictures/master/ProgressRing/4.gif)
+[创建包含CheckBox的ListBoxItem](https://www.cnblogs.com/dino623/p/Create_ListBoxIte_with_a_CheckBox.html)
+
+介绍如何为ListBox和DataGrid添加用于选中项目的CheckBox。
+
+[在MenuItem上使用RadioButton](https://www.cnblogs.com/dino623/p/Uising_RadioButton_in_MenuItem.html)
+
+这篇文章将介绍如何自定义一个RadioButtonMenuItem控件实现MenuItem的单选功能。
+
+
+[自定义一个“传统”的 Validation.ErrorTemplate](https://www.cnblogs.com/dino623/p/Validation_ErrorTemplate.html)
+
+这篇文章介绍如何自定义一个模仿 Silverlight 的 Validation.ErrorTemplate，以便可以展示详细的错误信息。
