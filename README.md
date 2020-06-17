@@ -5,6 +5,12 @@
 
 ![](https://raw.githubusercontent.com/DinoChan/Kino.Toolkit.Wpf/master/demo.png)
 
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/DinoChan/Kino.Toolkit.Wpf.svg)](https://starchart.cc/DinoChan/Kino.Toolkit.Wpf)
+      
+
 Kino.Toolkit.Wpf是一组简单实用的WPF控件与工具，用于介绍自定义控件的入门。相关博客地址如下：
 
 
